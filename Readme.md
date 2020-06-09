@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анна Кузнецова](https://up.htmlacademy.ru/react/4/user/993327).
-* Наставник: `Неизвестно`.
+* Наставник: [Раиль Сахавиев](https://htmlacademy.ru/profile/id1331891).
 
 ---
 

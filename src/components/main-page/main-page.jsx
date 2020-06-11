@@ -1,7 +1,10 @@
 import React from "react";
 
 
-const MainPage = () => {
+const MainPage = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const {promoMovie: {title: promoMovieTitle, genre: promoMovieGenre, releaseYear: promoMovieReleaseYear, posterUrl: PromoMoviePosterUrl, backgroundUrl: promoBackgroundUrl}} = props;
+
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -35,7 +38,7 @@ const MainPage = () => {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoBackgroundUrl} alt={promoMovieTitle} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -59,14 +62,14 @@ const MainPage = () => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={PromoMoviePosterUrl} alt={promoMovieTitle} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{promoMovieTitle}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{promoMovieGenre}</span>
+                <span className="movie-card__year">{promoMovieReleaseYear}</span>
               </p>
 
               <div className="movie-card__buttons">

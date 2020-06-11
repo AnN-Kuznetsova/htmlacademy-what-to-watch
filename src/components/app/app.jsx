@@ -1,8 +1,8 @@
 import React from "react";
-import MainPage from "../main-page/main-page.jsx";
+import {MainPage} from "../main-page/main-page.jsx";
 
 
-const App = (props) => {
+export const App = (props) => {
   // eslint-disable-next-line react/prop-types
   const {promoMovie} = props;
 
@@ -10,6 +10,3 @@ const App = (props) => {
     <MainPage promoMovie={promoMovie} />
   );
 };
-
-
-export default App;

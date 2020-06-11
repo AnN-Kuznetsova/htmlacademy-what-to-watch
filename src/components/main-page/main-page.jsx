@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const MainPage = (props) => {
+export const MainPage = (props) => {
   // eslint-disable-next-line react/prop-types
   const {promoMovie: {title: promoMovieTitle, genre: promoMovieGenre, releaseYear: promoMovieReleaseYear, posterUrl: PromoMoviePosterUrl, backgroundUrl: promoBackgroundUrl}} = props;
 
@@ -337,6 +337,3 @@ const MainPage = (props) => {
     </React.Fragment>
   );
 };
-
-
-export default MainPage;

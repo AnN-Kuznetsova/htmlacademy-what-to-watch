@@ -3,7 +3,11 @@ import React from "react";
 
 export const MainPage = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {promoMovie: {title: promoMovieTitle, genre: promoMovieGenre, releaseYear: promoMovieReleaseYear, posterUrl: PromoMoviePosterUrl, backgroundUrl: promoBackgroundUrl}} = props;
+  const {promoMovie} = props;
+  // eslint-disable-next-line react/prop-types
+  const {title: promoMovieTitle, genre: promoMovieGenre, releaseDate, posterUrl: PromoMoviePosterUrl, backgroundUrl: promoBackgroundUrl} = promoMovie;
+  // eslint-disable-next-line react/prop-types
+  const promoMovieReleaseYear = releaseDate.getFullYear();
 
   return (
     <React.Fragment>

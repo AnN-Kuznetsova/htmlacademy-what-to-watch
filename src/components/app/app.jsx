@@ -4,9 +4,12 @@ import {MainPage} from "../main-page/main-page.jsx";
 
 export const App = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {promoMovie} = props;
+  const {promoMovie, movieTitles} = props;
 
   return (
-    <MainPage promoMovie={promoMovie} />
+    <MainPage
+      promoMovie={promoMovie}
+      movieTitles={movieTitles}
+    />
   );
 };

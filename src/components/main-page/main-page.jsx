@@ -1,6 +1,6 @@
 import React from "react";
+import {CatalogMoviesCard} from "../catalog-movies-card/catalog-movies-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
-import {Promo} from "../promo/promo.jsx";
 
 
 export const MainPage = (props) => {
@@ -38,7 +38,7 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <Promo promoMovie={promoMovie} />
+      <MovieCard promoMovie={promoMovie} />
 
       <div className="page-content">
         <section className="catalog">
@@ -80,7 +80,7 @@ export const MainPage = (props) => {
           <div className="catalog__movies-list">
             {
               // eslint-disable-next-line react/prop-types
-              movieTitles.map((movieTitle, index) => <MovieCard key={movieTitle + index} movieTitle={movieTitle}/>)
+              movieTitles.map((movieTitle, index) => <CatalogMoviesCard key={movieTitle + index} movieTitle={movieTitle}/>)
             }
           </div>
 

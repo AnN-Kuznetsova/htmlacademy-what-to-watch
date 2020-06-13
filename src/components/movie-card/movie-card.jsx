@@ -2,11 +2,8 @@ import React from "react";
 
 
 export const MovieCard = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {promoMovie} = props;
-  // eslint-disable-next-line react/prop-types
   const {title, genre, releaseDate, posterUrl, backgroundUrl} = promoMovie;
-  // eslint-disable-next-line react/prop-types
   const promoMovieReleaseYear = releaseDate.getFullYear();
 
   return (

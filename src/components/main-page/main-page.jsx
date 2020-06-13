@@ -4,7 +4,6 @@ import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
 export const MainPage = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {promoMovie, movieTitles} = props;
 
   return (
@@ -79,7 +78,6 @@ export const MainPage = (props) => {
 
           <div className="catalog__movies-list">
             {
-              // eslint-disable-next-line react/prop-types
               movieTitles.map((movieTitle, index) => <CatalogMoviesCard key={movieTitle + index} movieTitle={movieTitle}/>)
             }
           </div>

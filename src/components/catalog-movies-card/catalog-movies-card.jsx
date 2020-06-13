@@ -2,7 +2,6 @@ import React from "react";
 
 
 export const CatalogMoviesCard = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {movieTitle} = props;
 
   return (

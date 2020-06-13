@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import {CatalogMoviesCard} from "../catalog-movies-card/catalog-movies-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
@@ -103,4 +104,10 @@ export const MainPage = (props) => {
       </div>
     </React.Fragment>
   );
+};
+
+
+MainPage.propTypes = {
+  promoMovie: PropTypes.object.isRequired,
+  movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

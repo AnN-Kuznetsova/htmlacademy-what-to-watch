@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 
@@ -62,4 +63,15 @@ export const MovieCard = (props) => {
       </div>
     </section>
   );
+};
+
+
+MovieCard.propTypes = {
+  promoMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.instanceOf(Date).isRequired,
+    posterUrl: PropTypes.string.isRequired,
+    backgroundUrl: PropTypes.string.isRequired,
+  }).isRequired,
 };

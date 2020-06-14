@@ -16,6 +16,12 @@ export const App = (props) => {
 
 
 App.propTypes = {
-  promoMovie: PropTypes.object.isRequired,
+  promoMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.instanceOf(Date).isRequired,
+    posterUrl: PropTypes.string.isRequired,
+    backgroundUrl: PropTypes.string.isRequired,
+  }).isRequired,
   movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

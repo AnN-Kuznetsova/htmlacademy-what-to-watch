@@ -1,5 +1,5 @@
-import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import {SmallMovieCard} from "./small-movie-card.jsx";
 

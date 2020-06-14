@@ -3,8 +3,7 @@ import React from "react";
 
 
 export const MovieCard = (props) => {
-  const {promoMovie} = props;
-  const {title, genre, releaseDate, posterUrl, backgroundUrl} = promoMovie;
+  const {title, genre, releaseDate, posterUrl, backgroundUrl} = props;
   const promoMovieReleaseYear = releaseDate.getFullYear();
 
   return (
@@ -67,11 +66,9 @@ export const MovieCard = (props) => {
 
 
 MovieCard.propTypes = {
-  promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.instanceOf(Date).isRequired,
-    posterUrl: PropTypes.string.isRequired,
-    backgroundUrl: PropTypes.string.isRequired,
-  }).isRequired,
+  title: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  releaseDate: PropTypes.instanceOf(Date).isRequired,
+  posterUrl: PropTypes.string.isRequired,
+  backgroundUrl: PropTypes.string.isRequired,
 };

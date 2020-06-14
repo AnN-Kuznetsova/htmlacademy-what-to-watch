@@ -38,7 +38,7 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <MovieCard promoMovie={promoMovie} />
+      <MovieCard {...promoMovie} />
 
       <div className="page-content">
         <section className="catalog">

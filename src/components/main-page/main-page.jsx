@@ -4,6 +4,9 @@ import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
+const cardTitleClickHandler = () => {};
+
+
 export const MainPage = (props) => {
   const {promoMovie, movieTitles} = props;
 
@@ -78,8 +81,12 @@ export const MainPage = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {
-              movieTitles.map((movieTitle, index) => <SmallMovieCard key={movieTitle + index} movieTitle={movieTitle}/>)
+            {movieTitles.map((movieTitle, index) =>
+              <SmallMovieCard
+                key={movieTitle + index}
+                movieTitle={movieTitle}
+                cardTitleClickHandler={cardTitleClickHandler}/>
+            )
             }
           </div>
 

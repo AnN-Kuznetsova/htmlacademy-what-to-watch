@@ -1,17 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {CatalogMoviesCard} from "./catalog-movies-card.jsx";
+import {SmallMovieCard} from "./small-movie-card.jsx";
 
 
 const props = {
   movieTitle: `Aviator`,
+  cardTitleClickHandler: () => {},
 };
 
 
-describe(`Render CatalogMoviesCard`, () => {
-  it(`Render correctly CatalogMoviesCard component`, () => {
+describe(`Render SmallMovieCard`, () => {
+  it(`Render correctly SmallMovieCard component`, () => {
     const catalogMoviesCardComponent = renderer.create(
-        <CatalogMoviesCard {...props} />
+        <SmallMovieCard {...props} />
     ).toJSON();
 
     expect(catalogMoviesCardComponent).toMatchSnapshot();

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 
-export const CatalogMoviesCard = (props) => {
+export const SmallMovieCard = (props) => {
   const {movieTitle} = props;
 
   return (
@@ -18,6 +18,6 @@ export const CatalogMoviesCard = (props) => {
 };
 
 
-CatalogMoviesCard.propTypes = {
+SmallMovieCard.propTypes = {
   movieTitle: PropTypes.string.isRequired,
 };

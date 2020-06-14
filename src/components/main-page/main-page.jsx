@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {CatalogMoviesCard} from "../catalog-movies-card/catalog-movies-card.jsx";
+import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
@@ -79,7 +79,7 @@ export const MainPage = (props) => {
 
           <div className="catalog__movies-list">
             {
-              movieTitles.map((movieTitle, index) => <CatalogMoviesCard key={movieTitle + index} movieTitle={movieTitle}/>)
+              movieTitles.map((movieTitle, index) => <SmallMovieCard key={movieTitle + index} movieTitle={movieTitle}/>)
             }
           </div>
 

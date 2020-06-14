@@ -6,6 +6,7 @@ import {SmallMovieCard} from "./small-movie-card.jsx";
 const props = {
   movieTitle: `Aviator`,
   cardTitleClickHandler: () => {},
+  cardImageClickHandler: () => {},
 };
 
 

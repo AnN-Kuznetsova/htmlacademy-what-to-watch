@@ -374,6 +374,7 @@ Array [
             <img
               alt="Fantastic Beasts: The Crimes of Grindelwald"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -399,6 +400,7 @@ Array [
             <img
               alt="Bohemian Rhapsody"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -424,6 +426,7 @@ Array [
             <img
               alt="Macbeth"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -449,6 +452,7 @@ Array [
             <img
               alt="Aviator"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -474,6 +478,7 @@ Array [
             <img
               alt="We need to talk about Kevin"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -499,6 +504,7 @@ Array [
             <img
               alt="What We Do in the Shadows"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -524,6 +530,7 @@ Array [
             <img
               alt="Revenant"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -549,6 +556,7 @@ Array [
             <img
               alt="Johnny English"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -574,6 +582,7 @@ Array [
             <img
               alt="Shutter Island"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -599,6 +608,7 @@ Array [
             <img
               alt="Pulp Fiction"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -624,6 +634,7 @@ Array [
             <img
               alt="No Country for Old Men"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -649,6 +660,7 @@ Array [
             <img
               alt="Snatch"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -674,6 +686,7 @@ Array [
             <img
               alt="Moonrise Kingdom"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -699,6 +712,7 @@ Array [
             <img
               alt="Seven Years in Tibet"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -724,6 +738,7 @@ Array [
             <img
               alt="Midnight Special"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -749,6 +764,7 @@ Array [
             <img
               alt="War of the Worlds"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -774,6 +790,7 @@ Array [
             <img
               alt="Dardjeeling Limited"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -799,6 +816,7 @@ Array [
             <img
               alt="Orlando"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -824,6 +842,7 @@ Array [
             <img
               alt="Mindhunter"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -849,6 +868,7 @@ Array [
             <img
               alt="Midnight Special"
               height="175"
+              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />

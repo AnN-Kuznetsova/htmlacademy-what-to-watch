@@ -10,6 +10,7 @@ exports[`Render SmallMovieCard Render correctly SmallMovieCard component 1`] = `
     <img
       alt="Aviator"
       height="175"
+      onClick={[Function]}
       src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       width="280"
     />

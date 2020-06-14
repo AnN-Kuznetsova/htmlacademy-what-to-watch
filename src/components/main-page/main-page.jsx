@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
+import {SmallMovieCard} from "../catalog-movies-card/catalog-movies-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
 const cardTitleClickHandler = () => {};
+const cardImageClickHandler = () => {};
 
 
 export const MainPage = (props) => {
@@ -41,7 +42,7 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <MovieCard {...promoMovie} />
+      <MovieCard promoMovie={promoMovie} />
 
       <div className="page-content">
         <section className="catalog">
@@ -81,12 +82,15 @@ export const MainPage = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {movieTitles.map((movieTitle, index) =>
-              <SmallMovieCard
-                key={movieTitle + index}
-                movieTitle={movieTitle}
-                cardTitleClickHandler={cardTitleClickHandler}/>
-            )
+            {
+              movieTitles.map((movieTitle, index) =>
+                <SmallMovieCard
+                  key={movieTitle + index}
+                  movieTitle={movieTitle}
+                  cardTitleClickHandler={cardTitleClickHandler}
+                  cardImageClickHandler={cardImageClickHandler}
+                />
+              )
             }
           </div>
 
@@ -115,12 +119,6 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
-  promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.instanceOf(Date).isRequired,
-    posterUrl: PropTypes.string.isRequired,
-    backgroundUrl: PropTypes.string.isRequired,
-  }).isRequired,
+  promoMovie: PropTypes.object.isRequired,
   movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

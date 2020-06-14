@@ -1,7 +1,7 @@
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
-import {SmallMovieCard} from "./small-movie-card.jsx";
+import {SmallMovieCard} from "./catalog-movies-card.jsx";
 
 
 Enzyme.configure({
@@ -9,19 +9,27 @@ Enzyme.configure({
 });
 
 
-describe(`SmallMovieCard e2e-tests`, () => {
-  it(`Should title be pressed`, () => {
-    const titleClickHandler = jest.fn();
+describe(`CatalogMoviesCard e2e-tests`, () => {
+  const cardTitleClickHandler = jest.fn();
+  const cardImageClickHandler = jest.fn();
 
-    const props = {
-      movieTitle: `Aviator`,
-      cardTitleClickHandler: titleClickHandler,
-    };
+  const props = {
+    movieTitle: `Aviator`,
+    cardTitleClickHandler,
+    cardImageClickHandler,
+  };
 
-    const catalogMoviesCardElement = shallow(<SmallMovieCard {...props} />);
-    const titleLinkELement = catalogMoviesCardElement.find(`h3.small-movie-card__title .small-movie-card__link`);
+  const catalogMoviesCardElement = shallow(<SmallMovieCard {...props} />);
 
-    titleLinkELement.simulate(`click`);
-    expect(titleClickHandler).toHaveBeenCalled();
+  it(`Should card title be pressed`, () => {
+    const cardTitleLinkELement = catalogMoviesCardElement.find(`h3.small-movie-card__title .small-movie-card__link`);
+    cardTitleLinkELement.simulate(`click`);
+    expect(cardTitleClickHandler).toHaveBeenCalled();
+  });
+
+  it(`Should card image be pressed`, () => {
+    const cardImageElement = catalogMoviesCardElement.find(`div.small-movie-card__image img`);
+    cardImageElement.simulate(`click`);
+    expect(cardImageClickHandler).toHaveBeenCalled();
   });
 });

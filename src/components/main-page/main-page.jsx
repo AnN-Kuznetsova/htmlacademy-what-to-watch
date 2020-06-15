@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {SmallMovieCard} from "../catalog-movies-card/catalog-movies-card.jsx";
+import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
@@ -42,7 +42,7 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <MovieCard promoMovie={promoMovie} />
+      <MovieCard {...promoMovie} />
 
       <div className="page-content">
         <section className="catalog">
@@ -119,6 +119,12 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
-  promoMovie: PropTypes.object.isRequired,
+  promoMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.instanceOf(Date).isRequired,
+    posterUrl: PropTypes.string.isRequired,
+    backgroundUrl: PropTypes.string.isRequired,
+  }).isRequired,
   movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

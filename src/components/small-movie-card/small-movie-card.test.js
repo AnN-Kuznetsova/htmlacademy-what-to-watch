@@ -19,23 +19,23 @@ const props = {
 
 describe(`Render SmallMovieCard`, () => {
   it(`Render correctly SmallMovieCard component`, () => {
-    const catalogMoviesCardComponent = renderer.create(
+    const smallMovieCardElement = renderer.create(
         <SmallMovieCard {...props} />
     ).toJSON();
 
-    expect(catalogMoviesCardComponent).toMatchSnapshot();
+    expect(smallMovieCardElement).toMatchSnapshot();
   });
 
 
   it(`Render correctly movie title`, () => {
-    const catalogMoviesCardElement = shallow(
-        <CatalogMoviesCard {...props} />
+    const smallMovieCardElement = shallow(
+        <SmallMovieCard {...props} />
     );
 
-    expect(catalogMoviesCardElement.find(`h3.small-movie-card__title .small-movie-card__link`).text())
+    expect(smallMovieCardElement.find(`h3.small-movie-card__title .small-movie-card__link`).text())
       .toEqual(props.movieTitle);
 
-    expect(catalogMoviesCardElement.find(`div.small-movie-card__image img`).prop(`alt`))
+    expect(smallMovieCardElement.find(`div.small-movie-card__image img`).prop(`alt`))
       .toEqual(props.movieTitle);
   });
 });

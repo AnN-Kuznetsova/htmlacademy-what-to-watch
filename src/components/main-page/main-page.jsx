@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {CatalogGenresList} from "../catalog-genres-list/catalog-genres-list.jsx";
+import {CatalogMore} from "../catalog-more/catalog-more.jsx";
 import {CatalogMoviesList} from "../catalog-movies-list/catalog-movies-list.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
@@ -49,9 +50,7 @@ export const MainPage = (props) => {
 
           <CatalogMoviesList movieTitles={movieTitles} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <CatalogMore />
         </section>
 
         <footer className="page-footer">

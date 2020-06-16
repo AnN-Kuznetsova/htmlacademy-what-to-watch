@@ -1,11 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {CatalogGenresList} from "../catalog-genres-list/catalog-genres-list.jsx";
-import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
+import {CatalogMoviesList} from "../catalog-movies-list/catalog-movies-list.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
-
-
-const handleSmallMovieCardClick = () => {};
 
 
 export const MainPage = (props) => {
@@ -50,17 +47,7 @@ export const MainPage = (props) => {
 
           <CatalogGenresList />
 
-          <div className="catalog__movies-list">
-            {
-              movieTitles.map((movieTitle, index) =>
-                <SmallMovieCard
-                  key={movieTitle + index}
-                  movieTitle={movieTitle}
-                  onSmallMovieCardClick={handleSmallMovieCardClick}
-                />
-              )
-            }
-          </div>
+          <CatalogMoviesList movieTitles={movieTitles} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

@@ -1,0 +1,528 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render CatalogMoviesList Should match with snapshot 1`] = `
+<div
+  className="catalog__movies-list"
+>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Fantastic Beasts: The Crimes of Grindelwald
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Bohemian Rhapsody"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Bohemian Rhapsody
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Macbeth"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Macbeth
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Aviator"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Aviator
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="We need to talk about Kevin"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        We need to talk about Kevin
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="What We Do in the Shadows"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        What We Do in the Shadows
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Revenant"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Revenant
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Johnny English"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Johnny English
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Shutter Island"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Shutter Island
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Pulp Fiction"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Pulp Fiction
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="No Country for Old Men"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        No Country for Old Men
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Snatch"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Snatch
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Moonrise Kingdom"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Moonrise Kingdom
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Seven Years in Tibet"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Seven Years in Tibet
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Midnight Special"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Midnight Special
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="War of the Worlds"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        War of the Worlds
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Dardjeeling Limited"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Dardjeeling Limited
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Orlando"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Orlando
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Mindhunter"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Mindhunter
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={[Function]}
+    >
+      <img
+        alt="Midnight Special"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+        onClick={[Function]}
+      >
+        Midnight Special
+      </a>
+    </h3>
+  </article>
+</div>
+`;

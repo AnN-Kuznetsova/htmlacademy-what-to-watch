@@ -12,8 +12,8 @@ Enzyme.configure({
 
 const props = {
   movieTitle: `Aviator`,
-  cardTitleClickHandler: () => {},
-  cardImageClickHandler: () => {},
+  onCardTitleClick: () => {},
+  onCardImageClick: () => {},
 };
 
 

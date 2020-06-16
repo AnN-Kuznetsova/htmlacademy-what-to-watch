@@ -370,11 +370,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Fantastic Beasts: The Crimes of Grindelwald"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -396,11 +396,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Bohemian Rhapsody"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -422,11 +422,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Macbeth"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -448,11 +448,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Aviator"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -474,11 +474,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="We need to talk about Kevin"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -500,11 +500,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="What We Do in the Shadows"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -526,11 +526,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Revenant"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -552,11 +552,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Johnny English"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -578,11 +578,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Shutter Island"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -604,11 +604,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Pulp Fiction"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -630,11 +630,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="No Country for Old Men"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -656,11 +656,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Snatch"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -682,11 +682,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Moonrise Kingdom"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -708,11 +708,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Seven Years in Tibet"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -734,11 +734,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Midnight Special"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -760,11 +760,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="War of the Worlds"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -786,11 +786,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Dardjeeling Limited"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -812,11 +812,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Orlando"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -838,11 +838,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Mindhunter"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
@@ -864,11 +864,11 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Midnight Special"
               height="175"
-              onClick={[Function]}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />

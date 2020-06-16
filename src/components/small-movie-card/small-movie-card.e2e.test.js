@@ -9,13 +9,13 @@ Enzyme.configure({
 });
 
 
-const cardTitleClickHandler = jest.fn();
-const cardImageClickHandler = jest.fn();
+const onCardTitleClick = jest.fn();
+const onCardImageClick = jest.fn();
 
 const props = {
   movieTitle: `Aviator`,
-  cardTitleClickHandler,
-  cardImageClickHandler,
+  onCardTitleClick,
+  onCardImageClick,
 };
 
 const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
@@ -25,12 +25,12 @@ describe(`SmallMovieCard e2e-tests`, () => {
   it(`Should card title be pressed`, () => {
     const cardTitleLinkELement = smallMovieCardElement.find(`h3.small-movie-card__title .small-movie-card__link`);
     cardTitleLinkELement.simulate(`click`);
-    expect(cardTitleClickHandler).toHaveBeenCalled();
+    expect(onCardTitleClick).toHaveBeenCalled();
   });
 
   it(`Should card image be pressed`, () => {
-    const cardImageElement = smallMovieCardElement.find(`div.small-movie-card__image img`);
+    const cardImageElement = smallMovieCardElement.find(`div.small-movie-card__image`);
     cardImageElement.simulate(`click`);
-    expect(cardImageClickHandler).toHaveBeenCalled();
+    expect(onCardImageClick).toHaveBeenCalled();
   });
 });

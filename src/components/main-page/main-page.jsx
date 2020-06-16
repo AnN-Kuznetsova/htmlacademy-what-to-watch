@@ -4,8 +4,14 @@ import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
-const cardTitleClickHandler = () => {};
-const cardImageClickHandler = () => {};
+const handleCardTitleClick = (evt) => {
+  evt.preventDefault();
+  window.console.log(`card title click`);
+};
+const handleCardImageClick = (evt) => {
+  evt.preventDefault();
+  window.console.log(`card image click`);
+};
 
 
 export const MainPage = (props) => {
@@ -87,8 +93,8 @@ export const MainPage = (props) => {
                 <SmallMovieCard
                   key={movieTitle + index}
                   movieTitle={movieTitle}
-                  cardTitleClickHandler={cardTitleClickHandler}
-                  cardImageClickHandler={cardImageClickHandler}
+                  onCardTitleClick={handleCardTitleClick}
+                  onCardImageClick={handleCardImageClick}
                 />
               )
             }

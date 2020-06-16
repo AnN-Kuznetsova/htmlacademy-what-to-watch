@@ -6,6 +6,20 @@ import {CatalogMoviesList} from "../catalog-movies-list/catalog-movies-list.jsx"
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
+const movieGenres = [
+  `All genres`,
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+  `Dramas`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-Fi`,
+  `Thrillers`,
+];
+
+
 export const MainPage = (props) => {
   const {promoMovie, movieTitles} = props;
 
@@ -46,7 +60,7 @@ export const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <CatalogGenresList />
+          <CatalogGenresList movieGenres={movieGenres} />
 
           <CatalogMoviesList movieTitles={movieTitles} />
 

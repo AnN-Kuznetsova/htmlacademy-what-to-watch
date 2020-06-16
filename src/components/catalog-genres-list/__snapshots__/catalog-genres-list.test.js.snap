@@ -5,11 +5,12 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
   className="catalog__genres-list"
 >
   <li
-    className="catalog__genres-item catalog__genres-item--active"
+    className="catalog__genres-item"
   >
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       All genres
     </a>
@@ -20,6 +21,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Comedies
     </a>
@@ -30,6 +32,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Crime
     </a>
@@ -40,6 +43,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Documentary
     </a>
@@ -50,6 +54,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Dramas
     </a>
@@ -60,6 +65,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Horror
     </a>
@@ -70,6 +76,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Kids & Family
     </a>
@@ -80,6 +87,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Romance
     </a>
@@ -90,6 +98,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Sci-Fi
     </a>
@@ -100,6 +109,7 @@ exports[`Render CatalogGenresList Should match with snapshot 1`] = `
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Thrillers
     </a>

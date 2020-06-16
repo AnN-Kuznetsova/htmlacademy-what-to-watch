@@ -36,6 +36,9 @@ const movieTitles = [
 
 
 ReactDom.render(
-    <App promoMovie={promoMovie} movieTitles={movieTitles} />,
+    <App
+      promoMovie={promoMovie}
+      movieTitles={movieTitles}
+    />,
     document.querySelector(`#root`)
 );

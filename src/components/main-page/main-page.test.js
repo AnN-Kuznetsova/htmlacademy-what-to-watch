@@ -37,11 +37,11 @@ const props = {
 
 
 describe(`Render MainPage`, () => {
-  it(`Render correctly MainPage component`, () => {
-    const mainPageComponent = renderer.create(
+  it(`Should match with snapshot`, () => {
+    const mainPageSnapshot = renderer.create(
         <MainPage {...props} />
-    );
+    ).toJSON();
 
-    expect(mainPageComponent).toMatchSnapshot();
+    expect(mainPageSnapshot).toMatchSnapshot();
   });
 });

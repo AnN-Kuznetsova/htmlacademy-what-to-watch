@@ -37,11 +37,11 @@ const props = {
 
 
 describe(`Render App`, () => {
-  it(`Render correctly App component`, () => {
-    const appComponent = renderer.create(
+  it(`Should match with snapshot`, () => {
+    const appSnapshot = renderer.create(
         <App {...props} />
-    );
+    ).toJSON();
 
-    expect(appComponent).toMatchSnapshot();
+    expect(appSnapshot).toMatchSnapshot();
   });
 });

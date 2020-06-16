@@ -18,16 +18,16 @@ const props = {
 
 
 describe(`Render SmallMovieCard`, () => {
-  it(`Render correctly SmallMovieCard component`, () => {
-    const smallMovieCardElement = renderer.create(
+  it(`Should match with snapshot`, () => {
+    const smallMovieCardSnapshot = renderer.create(
         <SmallMovieCard {...props} />
     ).toJSON();
 
-    expect(smallMovieCardElement).toMatchSnapshot();
+    expect(smallMovieCardSnapshot).toMatchSnapshot();
   });
 
 
-  it(`Render correctly movie title`, () => {
+  it(`Should render correct movie title`, () => {
     const smallMovieCardElement = shallow(
         <SmallMovieCard {...props} />
     );

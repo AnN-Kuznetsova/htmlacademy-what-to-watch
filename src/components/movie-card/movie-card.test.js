@@ -13,11 +13,11 @@ const props = {
 
 
 describe(`Render MovieCard`, () => {
-  it(`Render correctly MovieCard component`, () => {
-    const movieCardComponent = renderer.create(
+  it(`Should match with snapshot`, () => {
+    const movieCardSnapshot = renderer.create(
         <MovieCard {...props} />
     ).toJSON();
 
-    expect(movieCardComponent).toMatchSnapshot();
+    expect(movieCardSnapshot).toMatchSnapshot();
   });
 });

@@ -4,14 +4,7 @@ import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
-const handleCardTitleClick = (evt) => {
-  evt.preventDefault();
-  window.console.log(`card title click`);
-};
-const handleCardImageClick = (evt) => {
-  evt.preventDefault();
-  window.console.log(`card image click`);
-};
+const handleSmallMovieCardClick = () => {};
 
 
 export const MainPage = (props) => {
@@ -93,8 +86,7 @@ export const MainPage = (props) => {
                 <SmallMovieCard
                   key={movieTitle + index}
                   movieTitle={movieTitle}
-                  onCardTitleClick={handleCardTitleClick}
-                  onCardImageClick={handleCardImageClick}
+                  onSmallMovieCardClick={handleSmallMovieCardClick}
                 />
               )
             }

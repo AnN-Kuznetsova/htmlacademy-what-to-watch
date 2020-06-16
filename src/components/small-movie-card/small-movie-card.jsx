@@ -3,13 +3,13 @@ import React from "react";
 
 
 export const SmallMovieCard = (props) => {
-  const {movieTitle, onCardTitleClick, onCardImageClick} = props;
+  const {movieTitle, onSmallMovieCardClick} = props;
 
   return (
     <article className="small-movie-card catalog__movies-card">
       <div
         className="small-movie-card__image"
-        onClick={onCardImageClick}
+        onClick={onSmallMovieCardClick}
       >
         <img
           src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
@@ -22,7 +22,7 @@ export const SmallMovieCard = (props) => {
         <a
           className="small-movie-card__link"
           href="movie-page.html"
-          onClick={onCardTitleClick}
+          onClick={onSmallMovieCardClick}
         >{movieTitle}</a>
       </h3>
     </article>
@@ -32,6 +32,5 @@ export const SmallMovieCard = (props) => {
 
 SmallMovieCard.propTypes = {
   movieTitle: PropTypes.string.isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
-  onCardImageClick: PropTypes.func.isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
 };

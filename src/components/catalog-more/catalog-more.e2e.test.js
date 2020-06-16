@@ -20,11 +20,8 @@ const catalogMoreElement = shallow(<CatalogMore {...props} />);
 
 describe(`CatalogMore e2e-tests`, () => {
   it(`Should catalog button be pressed`, () => {
-    /* const catalogButtonElement = catalogMoreElement.find(`button.catalog__button`);
+    const catalogButtonElement = catalogMoreElement.find(`button.catalog__button`);
     catalogButtonElement.simulate(`click`);
-    expect(onCatalogButtonClick).toHaveBeenCalled(); */
-
-    // TO DO !!!
-    expect(true).toBeTruthy();
+    expect(onCatalogButtonClick).toHaveBeenCalled();
   });
 });

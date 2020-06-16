@@ -19,6 +19,11 @@ const movieGenres = [
   `Thrillers`,
 ];
 
+const handleCatalogButtonClick = (evt) => {
+  evt.preventDefault();
+  window.console.log(`CatalogButtonClick`);
+};
+
 
 export const MainPage = (props) => {
   const {promoMovie, movieTitles} = props;
@@ -64,7 +69,7 @@ export const MainPage = (props) => {
 
           <CatalogMoviesList movieTitles={movieTitles} />
 
-          <CatalogMore />
+          <CatalogMore onClick={handleCatalogButtonClick} />
         </section>
 
         <footer className="page-footer">

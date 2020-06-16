@@ -3,7 +3,10 @@ import React from "react";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 
 
-const handleSmallMovieCardClick = () => {};
+const handleSmallMovieCardClick = (evt) => {
+  evt.preventDefault();
+  window.console.log(`SmallMovieCardClick`);
+};
 
 
 export const CatalogMoviesList = (props) => {

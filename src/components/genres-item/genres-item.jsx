@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 
-export const CatalogGenresItem = (props) => {
+export const GenresItem = (props) => {
   const {genreName, onGenreClick} = props;
 
   return (
@@ -17,7 +17,7 @@ export const CatalogGenresItem = (props) => {
 };
 
 
-CatalogGenresItem.propTypes = {
+GenresItem.propTypes = {
   genreName: PropTypes.string.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };

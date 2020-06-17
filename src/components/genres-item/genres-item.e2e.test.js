@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import {CatalogGenresItem} from "./catalog-genres-item.jsx";
+import {GenresItem} from "./genres-item.jsx";
 import {genreName} from "../../__test-data__/test-mocks.js";
 
 
@@ -11,12 +11,12 @@ const props = {
   onGenreClick,
 };
 
-const catalogGenresItemElement = shallow(<CatalogGenresItem {...props} />);
+const genresItemElement = shallow(<GenresItem {...props} />);
 
 
-describe(`CatalogGenresItem e2e-tests`, () => {
+describe(`GenresItem e2e-tests`, () => {
   it(`Should movie genre link be pressed`, () => {
-    const catalogGenresLinkElement = catalogGenresItemElement.find(`a.catalog__genres-link`);
+    const catalogGenresLinkElement = genresItemElement.find(`a.catalog__genres-link`);
     catalogGenresLinkElement.simulate(`click`);
     expect(onGenreClick).toHaveBeenCalled();
   });

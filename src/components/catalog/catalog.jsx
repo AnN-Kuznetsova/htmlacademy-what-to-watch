@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {CatalogGenresItem} from "../catalog-genres-item/catalog-genres-item.jsx";
+import {GenresItem} from "../genres-item/genres-item.jsx";
 import {CatalogMore} from "../catalog-more/catalog-more.jsx";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 
@@ -41,7 +41,7 @@ export const Catalog = (props) => {
       <ul className="catalog__genres-list">
         {
           genreNames.map((genreName, index) =>
-            <CatalogGenresItem
+            <GenresItem
               key={genreName + index}
               genreName={genreName}
               onGenreClick={handleGenreClick}

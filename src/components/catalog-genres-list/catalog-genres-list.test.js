@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {CatalogGenresList} from "./catalog-genres-list.jsx";
 
 
-const movieGenres = [
+const genreNames = [
   `All genres`,
   `Comedies`,
   `Crime`,
@@ -17,7 +17,7 @@ const movieGenres = [
 ];
 
 const props = {
-  movieGenres,
+  genreNames,
 };
 
 

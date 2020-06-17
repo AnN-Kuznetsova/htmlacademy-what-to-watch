@@ -9,11 +9,11 @@ Enzyme.configure({
 });
 
 
-const onCatalogGenresLinkClick = jest.fn();
+const onGenreClick = jest.fn();
 
 const props = {
-  movieGenre: `Kids & Family`,
-  onCatalogGenresLinkClick,
+  genreName: `Kids & Family`,
+  onGenreClick,
 };
 
 const catalogGenresItemElement = shallow(<CatalogGenresItem {...props} />);
@@ -23,6 +23,6 @@ describe(`CatalogGenresItem e2e-tests`, () => {
   it(`Should movie genre link be pressed`, () => {
     const catalogGenresLinkElement = catalogGenresItemElement.find(`a.catalog__genres-link`);
     catalogGenresLinkElement.simulate(`click`);
-    expect(onCatalogGenresLinkClick).toHaveBeenCalled();
+    expect(onGenreClick).toHaveBeenCalled();
   });
 });

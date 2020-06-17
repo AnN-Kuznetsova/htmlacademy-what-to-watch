@@ -6,7 +6,7 @@ import {CatalogMoviesList} from "../catalog-movies-list/catalog-movies-list.jsx"
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
-const movieGenres = [
+const genreNames = [
   `All genres`,
   `Comedies`,
   `Crime`,
@@ -65,7 +65,7 @@ export const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <CatalogGenresList movieGenres={movieGenres} />
+          <CatalogGenresList genreNames={genreNames} />
 
           <CatalogMoviesList movieTitles={movieTitles} />
 

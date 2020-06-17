@@ -3,21 +3,21 @@ import React from "react";
 
 
 export const CatalogGenresItem = (props) => {
-  const {movieGenre, onCatalogGenresLinkClick} = props;
+  const {genreName, onGenreClick} = props;
 
   return (
     <li className="catalog__genres-item">
       <a
         href="#"
         className="catalog__genres-link"
-        onClick={onCatalogGenresLinkClick}
-      >{movieGenre}</a>
+        onClick={onGenreClick}
+      >{genreName}</a>
     </li>
   );
 };
 
 
 CatalogGenresItem.propTypes = {
-  movieGenre: PropTypes.string.isRequired,
-  onCatalogGenresLinkClick: PropTypes.func.isRequired,
+  genreName: PropTypes.string.isRequired,
+  onGenreClick: PropTypes.func.isRequired,
 };

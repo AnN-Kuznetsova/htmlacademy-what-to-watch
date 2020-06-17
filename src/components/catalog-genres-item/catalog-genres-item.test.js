@@ -11,8 +11,8 @@ Enzyme.configure({
 
 
 const props = {
-  movieGenre: `Kids & Family`,
-  onCatalogGenresLinkClick: () => {},
+  genreName: `Kids & Family`,
+  onGenreClick: () => {},
 };
 
 const catalogGenresItemElement = shallow(<CatalogGenresItem {...props} />);
@@ -29,6 +29,6 @@ describe(`Render CatalogGenresItem`, () => {
 
   it(`Should render correct movie genre`, () => {
     expect(catalogGenresItemElement.find(`a.catalog__genres-link`).text())
-      .toEqual(props.movieGenre);
+      .toEqual(props.genreName);
   });
 });

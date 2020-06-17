@@ -3,23 +3,23 @@ import React from "react";
 import {CatalogGenresItem} from "../catalog-genres-item/catalog-genres-item.jsx";
 
 
-const handleCatalogGenresLinkClick = (evt) => {
+const handleGenreClick = (evt) => {
   evt.preventDefault();
   window.console.log(`CatalogGenresLinkClick`);
 };
 
 
 export const CatalogGenresList = (props) => {
-  const {movieGenres} = props;
+  const {genreNames} = props;
 
   return (
     <ul className="catalog__genres-list">
       {
-        movieGenres.map((movieGenre, index) =>
+        genreNames.map((genreName, index) =>
           <CatalogGenresItem
-            key={movieGenre + index}
-            movieGenre={movieGenre}
-            onCatalogGenresLinkClick={handleCatalogGenresLinkClick}
+            key={genreName + index}
+            genreName={genreName}
+            onGenreClick={handleGenreClick}
           />
         )
       }
@@ -29,5 +29,5 @@ export const CatalogGenresList = (props) => {
 
 
 CatalogGenresList.propTypes = {
-  movieGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genreNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

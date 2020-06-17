@@ -2,6 +2,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import {SmallMovieCard} from "./small-movie-card.jsx";
+import {movieTitle} from "../__test-data__/mocks.js";
 
 
 Enzyme.configure({
@@ -12,7 +13,7 @@ Enzyme.configure({
 const onSmallMovieCardClick = jest.fn();
 
 const props = {
-  movieTitle: `Aviator`,
+  movieTitle,
   onSmallMovieCardClick,
 };
 

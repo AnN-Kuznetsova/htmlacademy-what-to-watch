@@ -3,6 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
 import {SmallMovieCard} from "./small-movie-card.jsx";
+import {movieTitle} from "../__test-data__/mocks.js";
 
 
 Enzyme.configure({
@@ -11,7 +12,7 @@ Enzyme.configure({
 
 
 const props = {
-  movieTitle: `Aviator`,
+  movieTitle,
   onSmallMovieCardClick: () => {},
 };
 

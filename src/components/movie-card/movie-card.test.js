@@ -3,6 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
 import {MovieCard} from "./movie-card.jsx";
+import {promoMovie} from "../__test-data__/mocks.js";
 
 
 Enzyme.configure({
@@ -10,13 +11,7 @@ Enzyme.configure({
 });
 
 
-const props = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseDate: new Date(2014, 0),
-  posterUrl: `img/the-grand-budapest-hotel-poster.jpg`,
-  backgroundUrl: `img/bg-the-grand-budapest-hotel.jpg`,
-};
+const props = promoMovie;
 
 const movieCardElement = shallow(<MovieCard {...props} />
 );

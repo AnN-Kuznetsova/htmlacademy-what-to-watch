@@ -2,6 +2,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import {CatalogGenresItem} from "./catalog-genres-item.jsx";
+import {genreName} from "../__test-data__/mocks.js";
 
 
 Enzyme.configure({
@@ -12,7 +13,7 @@ Enzyme.configure({
 const onGenreClick = jest.fn();
 
 const props = {
-  genreName: `Kids & Family`,
+  genreName,
   onGenreClick,
 };
 

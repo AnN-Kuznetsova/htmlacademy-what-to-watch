@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {formatReleaseDate} from "../../utils.js";
 
 
 export const MovieCard = (props) => {
   const {title, genre, releaseDate, posterUrl, backgroundUrl} = props;
-  const promoMovieReleaseYear = formatReleaseDate(releaseDate);
+  const promoMovieReleaseYear = releaseDate.getFullYear();
 
   return (
     <section className="movie-card">

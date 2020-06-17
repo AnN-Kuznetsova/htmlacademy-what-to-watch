@@ -3,7 +3,6 @@ import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
 import {MovieCard} from "./movie-card.jsx";
-import {formatReleaseDate} from "../../utils.js";
 
 
 Enzyme.configure({
@@ -50,7 +49,7 @@ describe(`Render MovieCard`, () => {
 
   it(`Should render correct promo-movie release date`, () => {
     expect(movieCardElement.find(`span.movie-card__year`).text())
-      .toEqual(formatReleaseDate(props.releaseDate).toString());
+      .toEqual(props.releaseDate.getFullYear().toString());
   });
 
   it(`Should render correct promo-movie poster`, () => {

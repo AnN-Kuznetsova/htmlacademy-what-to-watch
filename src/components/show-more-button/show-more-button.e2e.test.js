@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import {CatalogMore} from "./catalog-more.jsx";
+import {ShowMoreButton} from "./show-more-button.jsx";
 
 
 const onCatalogButtonClick = jest.fn();
@@ -9,12 +9,12 @@ const props = {
   onClick: onCatalogButtonClick,
 };
 
-const catalogMoreElement = shallow(<CatalogMore {...props} />);
+const showMoreButtonElement = shallow(<ShowMoreButton {...props} />);
 
 
-describe(`CatalogMore e2e-tests`, () => {
+describe(`ShowMoreButton e2e-tests`, () => {
   it(`Should catalog button be pressed`, () => {
-    const catalogButtonElement = catalogMoreElement.find(`button.catalog__button`);
+    const catalogButtonElement = showMoreButtonElement.find(`button.catalog__button`);
     catalogButtonElement.simulate(`click`);
     expect(onCatalogButtonClick).toHaveBeenCalled();
   });

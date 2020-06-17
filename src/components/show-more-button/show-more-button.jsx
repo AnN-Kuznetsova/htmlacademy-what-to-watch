@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 
-export const CatalogMore = (props) => {
+export const ShowMoreButton = (props) => {
   const {onClick} = props;
 
   return (
@@ -19,6 +19,6 @@ export const CatalogMore = (props) => {
 };
 
 
-CatalogMore.propTypes = {
+ShowMoreButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };

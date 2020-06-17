@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {GenresItem} from "../genres-item/genres-item.jsx";
-import {CatalogMore} from "../catalog-more/catalog-more.jsx";
+import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 
 
@@ -26,7 +26,7 @@ const handleSmallMovieCardClick = (event) => {
   event.preventDefault();
 };
 
-const handleCatalogButtonClick = (event) => {
+const handleShowMoreButtonClick = (event) => {
   event.preventDefault();
 };
 
@@ -62,7 +62,7 @@ export const Catalog = (props) => {
         }
       </div>
 
-      <CatalogMore onClick={handleCatalogButtonClick} />
+      <ShowMoreButton onClick={handleShowMoreButtonClick} />
     </section>
   );
 };

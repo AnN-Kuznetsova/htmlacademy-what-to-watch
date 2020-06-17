@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {shallow} from "enzyme";
 import {SmallMovieCard} from "./small-movie-card.jsx";
-import {movieTitle} from "../__test-data__/test-mocks.js";
+import {movieTitle} from "../../__test-data__/test-mocks.js";
 
 
 const props = {

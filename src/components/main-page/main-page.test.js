@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {MainPage} from "./main-page.jsx";
-import {promoMovie, movieTitles} from "../__test-data__/test-mocks.js";
+import {promoMovie, movieTitles} from "../../__test-data__/test-mocks.js";
 
 
 const props = {

@@ -1,7 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import {SmallMovieCard} from "./small-movie-card.jsx";
-import {movieTitle} from "../__test-data__/test-mocks.js";
+import {movieTitle} from "../../__test-data__/test-mocks.js";
 
 
 const onSmallMovieCardClick = jest.fn();

@@ -1,14 +1,8 @@
-import Adapter from "enzyme-adapter-react-16";
-import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
+import {shallow} from "enzyme";
 import {CatalogGenresItem} from "./catalog-genres-item.jsx";
-import {genreName} from "../__test-data__/mocks.js";
-
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import {genreName} from "../__test-data__/test-mocks.js";
 
 
 const props = {

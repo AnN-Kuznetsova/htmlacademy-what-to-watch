@@ -1,13 +1,7 @@
-import Adapter from "enzyme-adapter-react-16";
-import Enzyme, {shallow} from "enzyme";
 import React from "react";
+import {shallow} from "enzyme";
 import {SmallMovieCard} from "./small-movie-card.jsx";
-import {movieTitle} from "../__test-data__/mocks.js";
-
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import {movieTitle} from "../__test-data__/test-mocks.js";
 
 
 const onSmallMovieCardClick = jest.fn();

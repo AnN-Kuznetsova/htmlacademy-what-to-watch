@@ -1,14 +1,8 @@
-import Adapter from "enzyme-adapter-react-16";
-import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
+import {shallow} from "enzyme";
 import {MovieCard} from "./movie-card.jsx";
-import {promoMovie} from "../__test-data__/mocks.js";
-
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import {promoMovie} from "../__test-data__/test-mocks.js";
 
 
 const props = promoMovie;

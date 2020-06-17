@@ -1,12 +1,6 @@
-import Adapter from "enzyme-adapter-react-16";
-import Enzyme, {shallow} from "enzyme";
 import React from "react";
+import {shallow} from "enzyme";
 import {CatalogMore} from "./catalog-more.jsx";
-
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
 
 
 const onCatalogButtonClick = jest.fn();

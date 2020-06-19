@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import {array, arrayOf, string, instanceOf} from "prop-types";
 import React from "react";
 
 
@@ -66,9 +66,15 @@ export const MovieCard = (props) => {
 
 
 MovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.instanceOf(Date).isRequired,
-  posterUrl: PropTypes.string.isRequired,
-  backgroundUrl: PropTypes.string.isRequired,
+  title: string.isRequired,
+  smallPictureUrl: string.isRequired,
+  backgroundUrl: string.isRequired,
+  posterUrl: string.isRequired,
+  genre: string.isRequired,
+  releaseDate: instanceOf(Date).isRequired,
+  description: string.isRequired,
+  director: string.isRequired,
+  starring: arrayOf(string).isRequired,
+  runTime: string.isRequired,
+  reviews: array.isRequired,
 };

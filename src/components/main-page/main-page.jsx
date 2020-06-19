@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import {array, arrayOf, shape, string, instanceOf} from "prop-types";
 import React from "react";
 import {Catalog} from "../catalog/catalog.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
@@ -63,15 +63,30 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
-  promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.instanceOf(Date).isRequired,
-    posterUrl: PropTypes.string.isRequired,
-    backgroundUrl: PropTypes.string.isRequired,
+  promoMovie: shape({
+    title: string.isRequired,
+    smallPictureUrl: string.isRequired,
+    backgroundUrl: string.isRequired,
+    posterUrl: string.isRequired,
+    genre: string.isRequired,
+    releaseDate: instanceOf(Date).isRequired,
+    description: string.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string).isRequired,
+    runTime: string.isRequired,
+    reviews: array.isRequired,
   }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
+  films: arrayOf(shape({
+    title: string.isRequired,
+    smallPictureUrl: string.isRequired,
+    backgroundUrl: string.isRequired,
+    posterUrl: string.isRequired,
+    genre: string.isRequired,
+    releaseDate: instanceOf(Date).isRequired,
+    description: string.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string).isRequired,
+    runTime: string.isRequired,
+    reviews: array.isRequired,
   })).isRequired,
 };

@@ -1,18 +1,24 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, {PureComponent} from "react";
 import {MainPage} from "../main-page/main-page.jsx";
 
 
-export const App = (props) => {
-  const {promoMovie, movieTitles} = props;
+export class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <MainPage
-      promoMovie={promoMovie}
-      movieTitles={movieTitles}
-    />
-  );
-};
+  render() {
+    const {promoMovie, movieTitles} = this.props;
+
+    return (
+      <MainPage
+        promoMovie={promoMovie}
+        movieTitles={movieTitles}
+      />
+    );
+  }
+}
 
 
 App.propTypes = {

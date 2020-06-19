@@ -3,7 +3,8 @@ import React from "react";
 
 
 export const SmallMovieCard = (props) => {
-  const {movieTitle, onClick} = props;
+  const {movie, onClick} = props;
+  const {title, picture} = movie;
 
   return (
     <article className="small-movie-card catalog__movies-card">
@@ -12,8 +13,8 @@ export const SmallMovieCard = (props) => {
         onClick={onClick}
       >
         <img
-          src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-          alt={movieTitle}
+          src={picture}
+          alt={title}
           width="280"
           height="175"
         />
@@ -23,7 +24,7 @@ export const SmallMovieCard = (props) => {
           className="small-movie-card__link"
           href="movie-page.html"
           onClick={onClick}
-        >{movieTitle}</a>
+        >{title}</a>
       </h3>
     </article>
   );
@@ -31,6 +32,9 @@ export const SmallMovieCard = (props) => {
 
 
 SmallMovieCard.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  }),
   onClick: PropTypes.func.isRequired,
 };

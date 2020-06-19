@@ -5,7 +5,7 @@ import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
 export const MainPage = (props) => {
-  const {promoMovie, movieTitles} = props;
+  const {promoMovie, films} = props;
 
   return (
     <React.Fragment>
@@ -41,7 +41,7 @@ export const MainPage = (props) => {
       <MovieCard {...promoMovie} />
 
       <div className="page-content">
-        <Catalog movieTitles={movieTitles} />
+        <Catalog films={films} />
 
         <footer className="page-footer">
           <div className="logo">
@@ -70,5 +70,8 @@ MainPage.propTypes = {
     posterUrl: PropTypes.string.isRequired,
     backgroundUrl: PropTypes.string.isRequired,
   }).isRequired,
-  movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  })).isRequired,
 };

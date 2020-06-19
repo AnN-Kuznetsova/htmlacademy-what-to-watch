@@ -10,7 +10,7 @@ export class App extends PureComponent {
   }
 
   render() {
-    const {promoMovie, movieTitles} = this.props;
+    const {promoMovie, films} = this.props;
 
     return (
       <BrowserRouter>
@@ -18,7 +18,7 @@ export class App extends PureComponent {
           <Route exact path="/">
             <MainPage
               promoMovie={promoMovie}
-              movieTitles={movieTitles}
+              films={films}
             />
           </Route>
         </Switch>
@@ -42,5 +42,8 @@ App.propTypes = {
     posterUrl: PropTypes.string.isRequired,
     backgroundUrl: PropTypes.string.isRequired,
   }).isRequired,
-  movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  })).isRequired,
 };

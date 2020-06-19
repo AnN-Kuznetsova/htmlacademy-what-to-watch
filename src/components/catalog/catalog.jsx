@@ -20,7 +20,7 @@ const handleShowMoreButtonClick = (event) => {
 
 
 export const Catalog = (props) => {
-  const {movieTitles} = props;
+  const {films} = props;
 
   return (
     <section className="catalog">
@@ -40,10 +40,10 @@ export const Catalog = (props) => {
 
       <div className="catalog__movies-list">
         {
-          movieTitles.map((movieTitle, index) =>
+          films.map((movie, index) =>
             <SmallMovieCard
-              key={movieTitle + index}
-              movieTitle={movieTitle}
+              key={movie + index}
+              movie={movie}
               onClick={handleSmallMovieCardClick}
             />
           )
@@ -57,5 +57,8 @@ export const Catalog = (props) => {
 
 
 Catalog.propTypes = {
-  movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  })).isRequired,
 };

@@ -10,7 +10,10 @@ export const SmallMovieCard = (props) => {
     <article className="small-movie-card catalog__movies-card">
       <div
         className="small-movie-card__image"
-        onClick={onClick}
+        onClick={(event) => {
+          event.preventDefault();
+          onClick(movie);
+        }}
       >
         <img
           src={smallPictureUrl}
@@ -23,7 +26,10 @@ export const SmallMovieCard = (props) => {
         <a
           className="small-movie-card__link"
           href="movie-page.html"
-          onClick={onClick}
+          onClick={(event) => {
+            event.preventDefault();
+            onClick(movie);
+          }}
         >{title}</a>
       </h3>
     </article>

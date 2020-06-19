@@ -6,17 +6,11 @@ import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
 
 
-const handleGenreClick = (event) => {
-  event.preventDefault();
-};
+const handleGenreClick = () => {};
 
-const handleSmallMovieCardClick = (event) => {
-  event.preventDefault();
-};
+const handleSmallMovieCardClick = () => {};
 
-const handleShowMoreButtonClick = (event) => {
-  event.preventDefault();
-};
+const handleShowMoreButtonClick = () => {};
 
 
 export const Catalog = (props) => {

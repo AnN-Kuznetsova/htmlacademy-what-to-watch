@@ -3,7 +3,7 @@ import React from "react";
 
 
 export const SmallMovieCard = (props) => {
-  const {movie, onClick} = props;
+  const {movie, onClick, onHover} = props;
   const {title, smallPictureUrl} = movie;
 
   return (
@@ -13,6 +13,10 @@ export const SmallMovieCard = (props) => {
         onClick={(event) => {
           event.preventDefault();
           onClick(movie);
+        }}
+        onMouseEnter={(event) => {
+          event.preventDefault();
+          onHover(movie);
         }}
       >
         <img
@@ -52,4 +56,5 @@ SmallMovieCard.propTypes = {
     reviews: PropTypes.array.isRequired,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
+  onHover: PropTypes.func.isRequired,
 };

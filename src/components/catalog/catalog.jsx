@@ -10,6 +10,8 @@ const handleGenreClick = () => {};
 
 const handleSmallMovieCardClick = () => {};
 
+const handleSmallMovieCardHover = () => {};
+
 const handleShowMoreButtonClick = () => {};
 
 
@@ -39,6 +41,7 @@ export const Catalog = (props) => {
               key={movie + index}
               movie={movie}
               onClick={handleSmallMovieCardClick}
+              onHover={handleSmallMovieCardHover}
             />
           )
         }

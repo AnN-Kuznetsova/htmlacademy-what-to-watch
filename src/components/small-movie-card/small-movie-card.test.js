@@ -8,6 +8,7 @@ import {films} from "../../__test-data__/test-mocks.js";
 const props = {
   movie: films[1],
   onClick: () => {},
+  onHover: () => {},
 };
 
 const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);

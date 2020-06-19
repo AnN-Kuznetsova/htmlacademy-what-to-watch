@@ -132,6 +132,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Bohemian Rhapsody"
@@ -158,6 +159,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Aviator"
@@ -184,6 +186,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Revenant"
@@ -210,6 +213,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Johnny English"
@@ -236,6 +240,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Shutter Island"
@@ -262,6 +267,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Pulp Fiction"
@@ -288,6 +294,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Seven Years in Tibet"
@@ -314,6 +321,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       <div
         className="small-movie-card__image"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <img
           alt="Snatch"

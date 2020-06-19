@@ -7,6 +7,7 @@ exports[`Render SmallMovieCard Should match with snapshot 1`] = `
   <div
     className="small-movie-card__image"
     onClick={[Function]}
+    onMouseEnter={[Function]}
   >
     <img
       alt="Aviator"

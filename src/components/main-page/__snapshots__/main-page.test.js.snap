@@ -381,6 +381,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Bohemian Rhapsody"
@@ -407,6 +408,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Aviator"
@@ -433,6 +435,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Revenant"
@@ -459,6 +462,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Johnny English"
@@ -485,6 +489,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Shutter Island"
@@ -511,6 +516,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Pulp Fiction"
@@ -537,6 +543,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Seven Years in Tibet"
@@ -563,6 +570,7 @@ Array [
           <div
             className="small-movie-card__image"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             <img
               alt="Snatch"

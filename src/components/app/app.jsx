@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {MainPage} from "../main-page/main-page.jsx";
 
 
@@ -12,11 +13,23 @@ export class App extends PureComponent {
     const {promoMovie, movieTitles} = this.props;
 
     return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <MainPage
+              promoMovie={promoMovie}
+              movieTitles={movieTitles}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+    /* return (
       <MainPage
         promoMovie={promoMovie}
         movieTitles={movieTitles}
       />
-    );
+    ); */
   }
 }
 

@@ -44,7 +44,7 @@ export const Catalog = (props) => {
             <GenresItem
               key={genreName + index}
               genreName={genreName}
-              onGenreClick={handleGenreClick}
+              onClick={handleGenreClick}
             />
           )
         }

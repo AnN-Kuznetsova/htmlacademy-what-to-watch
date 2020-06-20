@@ -7,7 +7,7 @@ import {genreName} from "../../__test-data__/test-mocks.js";
 
 const props = {
   genreName,
-  onGenreClick: () => {},
+  onClick: () => {},
 };
 
 const genresItemElement = shallow(<GenresItem {...props} />);

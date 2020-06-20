@@ -3,14 +3,14 @@ import React from "react";
 
 
 export const GenresItem = (props) => {
-  const {genreName, onGenreClick} = props;
+  const {genreName, onClick} = props;
 
   return (
     <li className="catalog__genres-item">
       <a
         href="#"
         className="catalog__genres-link"
-        onClick={onGenreClick}
+        onClick={onClick}
       >{genreName}</a>
     </li>
   );
@@ -19,5 +19,5 @@ export const GenresItem = (props) => {
 
 GenresItem.propTypes = {
   genreName: PropTypes.string.isRequired,
-  onGenreClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

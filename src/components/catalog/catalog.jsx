@@ -56,7 +56,7 @@ export const Catalog = (props) => {
             <SmallMovieCard
               key={movieTitle + index}
               movieTitle={movieTitle}
-              onSmallMovieCardClick={handleSmallMovieCardClick}
+              onClick={handleSmallMovieCardClick}
             />
           )
         }

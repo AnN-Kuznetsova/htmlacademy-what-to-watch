@@ -7,7 +7,7 @@ import {movieTitle} from "../../__test-data__/test-mocks.js";
 
 const props = {
   movieTitle,
-  onSmallMovieCardClick: () => {},
+  onClick: () => {},
 };
 
 

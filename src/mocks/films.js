@@ -1,4 +1,4 @@
-const movieTitles = [
+export const movieTitles = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
   `Bohemian Rhapsody`,
   `Macbeth`,
@@ -20,6 +20,3 @@ const movieTitles = [
   `Mindhunter`,
   `Midnight Special`,
 ];
-
-
-export {movieTitles};

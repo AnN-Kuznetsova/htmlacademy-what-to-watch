@@ -2,11 +2,11 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {shallow} from "enzyme";
 import {GenresItem} from "./genres-item.jsx";
-import {genreName} from "../../__test-data__/test-mocks.js";
+import {genreNames} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  genreName,
+  genreName: genreNames[6],
   onClick: () => {},
 };
 

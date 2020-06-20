@@ -3,20 +3,8 @@ import React from "react";
 import {GenresItem} from "../genres-item/genres-item.jsx";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
+import {genreNames} from "../../mocks/genre-names.js";
 
-
-const genreNames = [
-  `All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thrillers`,
-];
 
 const handleGenreClick = (event) => {
   event.preventDefault();

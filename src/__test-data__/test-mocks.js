@@ -29,11 +29,22 @@ const movieTitles = [
   `Midnight Special`,
 ];
 
-const genreName = `Kids & Family`;
+const genreNames = [
+  `All genres`,
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+  `Dramas`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-Fi`,
+  `Thrillers`,
+];
 
 
 export {
-  genreName,
+  genreNames,
   movieTitles,
   promoMovie,
 };

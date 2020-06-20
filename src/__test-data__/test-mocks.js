@@ -31,12 +31,9 @@ const movieTitles = [
 
 const genreName = `Kids & Family`;
 
-const movieTitle = `Aviator`;
-
 
 export {
   genreName,
-  movieTitle,
   movieTitles,
   promoMovie,
 };

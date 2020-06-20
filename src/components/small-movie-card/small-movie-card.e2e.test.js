@@ -1,13 +1,13 @@
 import React from "react";
 import {shallow} from "enzyme";
 import {SmallMovieCard} from "./small-movie-card.jsx";
-import {movieTitle} from "../../__test-data__/test-mocks.js";
+import {movieTitles} from "../../__test-data__/test-mocks.js";
 
 
 const onClick = jest.fn();
 
 const props = {
-  movieTitle,
+  movieTitle: movieTitles[3],
   onClick,
 };
 

@@ -3,9 +3,25 @@ import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {MainPage} from "../main-page/main-page.jsx";
 import {MoviePropType} from "../../prop-types.js";
+import { MoviePage } from "../movie-page/movie-page.jsx";
 
 
 export class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
+  renderPage() {
+    const {promoMovie, films} = this.props;
+
+    return (
+      <MainPage
+        promoMovie={promoMovie}
+        films={films}
+      />
+    );
+  }
+
   render() {
     const {promoMovie, films} = this.props;
 
@@ -13,10 +29,10 @@ export class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <MainPage
-              promoMovie={promoMovie}
-              films={films}
-            />
+            {this.renderPage()}
+          </Route>
+          <Route exact path="/movie-page">
+            <MoviePage />
           </Route>
         </Switch>
       </BrowserRouter>

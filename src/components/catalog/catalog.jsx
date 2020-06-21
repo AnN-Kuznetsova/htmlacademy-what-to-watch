@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, {PureComponent} from "react";
 import {GenresItem} from "../genres-item/genres-item.jsx";
 import {MoviePropType} from "../../prop-types.js";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
@@ -7,51 +7,60 @@ import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
 
 
-const handleGenreClick = () => {};
+export class Catalog extends PureComponent {
+  constructor(props) {
+    super(props);
 
-const handleSmallMovieCardClick = () => {};
+    this.state = {
 
-const handleSmallMovieCardHover = () => {};
+    };
+  }
 
-const handleShowMoreButtonClick = () => {};
+  handleGenreClick() {}
 
+  handleSmallMovieCardClick() {}
 
-export const Catalog = (props) => {
-  const {films} = props;
+  handleSmallMovieCardHover() {}
 
-  return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+  handleShowMoreButtonClick() {}
 
-      <ul className="catalog__genres-list">
-        {
-          genreNames.map((genreName, index) =>
-            <GenresItem
-              key={genreName + index}
-              genreName={genreName}
-              onClick={handleGenreClick}
-            />
-          )
-        }
-      </ul>
+  render() {
+    const {films} = this.props;
 
-      <div className="catalog__movies-list">
-        {
-          films.map((movie, index) =>
-            <SmallMovieCard
-              key={movie + index}
-              movie={movie}
-              onClick={handleSmallMovieCardClick}
-              onHover={handleSmallMovieCardHover}
-            />
-          )
-        }
-      </div>
+    return (
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      <ShowMoreButton onClick={handleShowMoreButtonClick} />
-    </section>
-  );
-};
+        <ul className="catalog__genres-list">
+          {
+            genreNames.map((genreName, index) =>
+              <GenresItem
+                key={genreName + index}
+                genreName={genreName}
+                onClick={this.handleGenreClick}
+              />
+            )
+          }
+        </ul>
+
+        <div className="catalog__movies-list">
+          {
+            films.map((movie, index) =>
+              <SmallMovieCard
+                key={movie + index}
+                movie={movie}
+                onClick={this.handleSmallMovieCardClick}
+                onHover={this.handleSmallMovieCardHover}
+              />
+            )
+          }
+        </div>
+
+        <ShowMoreButton onClick={this.handleShowMoreButtonClick} />
+      </section>
+    );
+  }
+}
 
 
 Catalog.propTypes = {

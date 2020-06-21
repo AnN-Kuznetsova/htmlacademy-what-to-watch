@@ -25,12 +25,6 @@ export class App extends PureComponent {
         </Switch>
       </BrowserRouter>
     );
-    /* return (
-      <MainPage
-        promoMovie={promoMovie}
-        movieTitles={movieTitles}
-      />
-    ); */
   }
 }
 

@@ -14,10 +14,3 @@ export const MoviePropType = PropTypes.shape({
   runTime: PropTypes.string,
   reviews: PropTypes.array,
 });
-
-/* const filmsType = arrayOf(movieType);
-
-const genreNameType = string;
-
-const callbackType = func; */
-

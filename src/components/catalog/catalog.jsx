@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {GenresItem} from "../genres-item/genres-item.jsx";
 import {MoviePropType} from "../../prop-types.js";
-import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
+import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
 
 

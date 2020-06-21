@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
 import {GenresItem} from "./genres-item.jsx";
 import {genreNames} from "../../__test-data__/test-mocks.js";
+import {shallow} from "enzyme";
 
 
 const props = {
@@ -21,6 +21,7 @@ describe(`Render GenresItem`, () => {
 
     expect(genresItemSnapshot).toMatchSnapshot();
   });
+
 
   it(`Should render correct movie genre`, () => {
     expect(genresItemElement.find(`a.catalog__genres-link`).text())

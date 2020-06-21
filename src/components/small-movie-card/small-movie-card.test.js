@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
 import {SmallMovieCard} from "./small-movie-card.jsx";
 import {films} from "../../__test-data__/test-mocks.js";
+import {shallow} from "enzyme";
 
 
 const props = {
@@ -12,6 +12,7 @@ const props = {
 };
 
 const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
+
 
 describe(`Render SmallMovieCard`, () => {
   it(`Should match with snapshot`, () => {

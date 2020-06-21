@@ -12,15 +12,21 @@ export class Catalog extends PureComponent {
     super(props);
 
     this.state = {
-
+      activeMovie: null,
     };
+
+    this.handleSmallMovieCardHover = this.handleSmallMovieCardHover.bind(this);
   }
 
   handleGenreClick() {}
 
   handleSmallMovieCardClick() {}
 
-  handleSmallMovieCardHover() {}
+  handleSmallMovieCardHover(movie) {
+    this.setState({
+      activeMovie: movie
+    });
+  }
 
   handleShowMoreButtonClick() {}
 

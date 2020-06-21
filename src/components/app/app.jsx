@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {MainPage} from "../main-page/main-page.jsx";
+import {MoviePage} from "../movie-page/movie-page.jsx";
 import {MoviePropType} from "../../prop-types.js";
-import { MoviePage } from "../movie-page/movie-page.jsx";
 
 
 export class App extends PureComponent {
@@ -23,8 +23,6 @@ export class App extends PureComponent {
   }
 
   render() {
-    const {promoMovie, films} = this.props;
-
     return (
       <BrowserRouter>
         <Switch>

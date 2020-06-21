@@ -1,7 +1,8 @@
-import {array, arrayOf, shape, string, instanceOf} from "prop-types";
+import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {MainPage} from "../main-page/main-page.jsx";
+import {MoviePropType} from "../../prop-types.js";
 
 
 export class App extends PureComponent {
@@ -35,30 +36,6 @@ export class App extends PureComponent {
 
 
 App.propTypes = {
-  promoMovie: shape({
-    title: string.isRequired,
-    smallPictureUrl: string.isRequired,
-    backgroundUrl: string.isRequired,
-    posterUrl: string.isRequired,
-    genre: string.isRequired,
-    releaseDate: instanceOf(Date).isRequired,
-    description: string.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string).isRequired,
-    runTime: string.isRequired,
-    reviews: array.isRequired,
-  }).isRequired,
-  films: arrayOf(shape({
-    title: string.isRequired,
-    smallPictureUrl: string.isRequired,
-    backgroundUrl: string.isRequired,
-    posterUrl: string.isRequired,
-    genre: string.isRequired,
-    releaseDate: instanceOf(Date).isRequired,
-    description: string.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string).isRequired,
-    runTime: string.isRequired,
-    reviews: array.isRequired,
-  })).isRequired,
+  promoMovie: MoviePropType.isRequired,
+  films: PropTypes.arrayOf(MoviePropType).isRequired,
 };

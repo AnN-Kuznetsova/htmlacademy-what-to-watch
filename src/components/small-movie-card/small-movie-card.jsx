@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {MoviePropType} from "../../prop-types";
 
 
 export const SmallMovieCard = (props) => {
@@ -42,19 +43,7 @@ export const SmallMovieCard = (props) => {
 
 
 SmallMovieCard.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    smallPictureUrl: PropTypes.string.isRequired,
-    backgroundUrl: PropTypes.string.isRequired,
-    posterUrl: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.instanceOf(Date).isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
-    reviews: PropTypes.array.isRequired,
-  }).isRequired,
+  movie: MoviePropType.isRequired,
   onClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
 };

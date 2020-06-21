@@ -1,6 +1,7 @@
-import {array, arrayOf, shape, string, instanceOf} from "prop-types";
+import PropTypes from "prop-types";
 import React from "react";
 import {GenresItem} from "../genres-item/genres-item.jsx";
+import {MoviePropType} from "../../prop-types.js";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
@@ -54,17 +55,5 @@ export const Catalog = (props) => {
 
 
 Catalog.propTypes = {
-  films: arrayOf(shape({
-    title: string.isRequired,
-    smallPictureUrl: string.isRequired,
-    backgroundUrl: string.isRequired,
-    posterUrl: string.isRequired,
-    genre: string.isRequired,
-    releaseDate: instanceOf(Date).isRequired,
-    description: string.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string).isRequired,
-    runTime: string.isRequired,
-    reviews: array.isRequired,
-  })).isRequired,
+  films: PropTypes.arrayOf(MoviePropType).isRequired,
 };

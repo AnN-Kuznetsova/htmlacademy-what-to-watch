@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
+import {Catalog} from "../catalog/catalog.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 
 
@@ -41,52 +41,7 @@ export const MainPage = (props) => {
       <MovieCard {...promoMovie} />
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
-
-          <div className="catalog__movies-list">
-            {
-              movieTitles.map((movieTitle, index) => <SmallMovieCard key={movieTitle + index} movieTitle={movieTitle}/>)
-            }
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
-        </section>
+        <Catalog movieTitles={movieTitles} />
 
         <footer className="page-footer">
           <div className="logo">

@@ -9,7 +9,7 @@ export const MoviePropType = PropTypes.shape({
   genre: PropTypes.string,
   releaseDate: PropTypes.instanceOf(Date),
   description: PropTypes.arrayOf(PropTypes.string),
-  director: PropTypes.arrayOf(PropTypes.string),
+  directors: PropTypes.arrayOf(PropTypes.string),
   starring: PropTypes.arrayOf(PropTypes.string),
   runTime: PropTypes.string,
   reviews: PropTypes.array,

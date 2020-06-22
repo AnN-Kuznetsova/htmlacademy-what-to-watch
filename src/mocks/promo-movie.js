@@ -11,7 +11,7 @@ export const promoMovie = {
     `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay
     there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
   ],
-  director: [`Wes Andreson`],
+  directors: [`Wes Andreson`],
   starring: [`Bill Murray`,
     `Edward Norton`,
     `Jude Law`,

@@ -1,7 +1,10 @@
 import React from "react";
 import {MoviePropType} from "../../prop-types";
-import {getRatingDescription, getLimitedNumberOfArrayElementsToString} from "../../utils/utils.js";
 import {NUMBER_OF_ELEMENTS_IN_LINE} from "../../const.js";
+import {
+  getRatingDescription,
+  getLimitedNumberOfArrayElementsToString,
+  getScoreFormat} from "../../utils/utils.js";
 
 
 export const MoviePage = (props) => {
@@ -22,7 +25,7 @@ export const MoviePage = (props) => {
 
   const directorValue = getLimitedNumberOfArrayElementsToString(directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`);
   const starringValue = getLimitedNumberOfArrayElementsToString(starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`);
-  const scoreValue = score.toString().replace(`.`, `,`);
+  const scoreValue = getScoreFormat(score);
   const ratingDescription = getRatingDescription(score);
 
   return (

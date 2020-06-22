@@ -1,6 +1,7 @@
 import {
   getRatingDescription,
-  getLimitedNumberOfArrayElementsToString
+  getLimitedNumberOfArrayElementsToString,
+  getScoreFormat
 } from "./utils.js";
 
 
@@ -24,6 +25,12 @@ describe(`Utils tests`, () => {
       .toEqual(`Begin: ${array[0]}, ${array[1]}, ${array[2]} end...`);
     expect(getLimitedNumberOfArrayElementsToString(array, 7, `Begin: `, ` end...`))
       .toEqual(`Begin: ${array[0]}, ${array[1]}, ${array[2]}, ${array[3]}, ${array[4]}`);
+  });
+
+
+  it(`Testing getScoreFormat`, () => {
+    expect(getScoreFormat(1)).toEqual(`1,0`);
+    expect(getScoreFormat(1.6)).toEqual(`1,6`);
   });
 
 

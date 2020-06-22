@@ -74,12 +74,30 @@ describe(`Render MoviePage`, () => {
 
   it(`Should render correct movie directors`, () => {
     expect(moviePageElement.find(`p.movie-card__director strong`).text())
-      .toEqual(getLimitedNumberOfArrayElementsToString(promoMovie.directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`));
+      .toEqual(getLimitedNumberOfArrayElementsToString(promoMovie.directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `));
   });
 
 
   it(`Should render correct movie starring`, () => {
     expect(moviePageElement.find(`p.movie-card__starring strong`).text())
       .toEqual(getLimitedNumberOfArrayElementsToString(promoMovie.starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`));
+  });
+
+
+  it(`Should render correct movie score`, () => {
+    expect(moviePageElement.find(`div.movie-rating__score`).text())
+      .toEqual(promoMovie.rating.score.toString().replace(`.`, `,`));
+  });
+
+
+  it(`Should render correct movie total votes`, () => {
+    expect(moviePageElement.find(`span.movie-rating__count`).text())
+      .toEqual(`${promoMovie.rating.totalVotes} ratings`);
+  });
+
+
+  it(`Should render correct movie rating description`, () => {
+    expect(moviePageElement.find(`span.movie-rating__level`).text())
+      .toEqual(`Very good`);
   });
 });

@@ -23,6 +23,25 @@ const getLimitedNumberOfArrayElementsToString = (array, elementsCount = array.le
 };
 
 
+const getRatingDescription = (score) => {
+  switch (true) {
+    case (score < 3):
+      return `Bad`;
+    case (score >= 3 && score < 5):
+      return `Normal`;
+    case (score >= 5 && score < 8):
+      return `Good`;
+    case (score >= 8 && score < 10):
+      return `Very good`;
+    case (score === 10):
+      return `Awesome`;
+    default:
+      return ``;
+  }
+};
+
+
 export {
   getLimitedNumberOfArrayElementsToString,
+  getRatingDescription,
 };

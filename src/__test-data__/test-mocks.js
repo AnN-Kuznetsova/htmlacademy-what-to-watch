@@ -25,8 +25,12 @@ const promoMovie = {
     `Ralph Fiennes`,
     `Jeff Goldblum`,
   ],
-  runTime: `99`,
+  runTime: 99,
   reviews: [],
+  rating: {
+    score: 8.9,
+    totalVotes: 240,
+  },
 };
 
 const films = [
@@ -60,8 +64,12 @@ const films = [
       `Аллен Лич`,
       `Майк Майерс`,
     ],
-    runTime: `134`,
+    runTime: 134,
     reviews: [],
+    rating: {
+      score: 8.0,
+      totalVotes: 350,
+    },
   },
 
   {
@@ -89,8 +97,12 @@ const films = [
       `Адам Скотт`,
       `Дэнни Хьюстон`,
     ],
-    runTime: `163`,
+    runTime: 163,
     reviews: [],
+    rating: {
+      score: 7.6,
+      totalVotes: 120,
+    },
   },
 
   {
@@ -118,8 +130,12 @@ const films = [
       `Дуан Ховард`,
       `Мила Нахеко`,
     ],
-    runTime: `156`,
+    runTime: 156,
     reviews: [],
+    rating: {
+      score: 7.8,
+      totalVotes: 263,
+    },
   },
 
   {
@@ -147,8 +163,12 @@ const films = [
       `Таша ди Вашконселуш`,
       `Грег Уайз      `,
     ],
-    runTime: `84`,
+    runTime: 84,
     reviews: [],
+    rating: {
+      score: 6.6,
+      totalVotes: 361,
+    },
   },
 
   {
@@ -175,8 +195,12 @@ const films = [
       `Тед Левайн`,
       `Джон Кэрролл Линч      `,
     ],
-    runTime: `138`,
+    runTime: 138,
     reviews: [],
+    rating: {
+      score: 8.5,
+      totalVotes: 499,
+    },
   },
 
   {
@@ -205,8 +229,12 @@ const films = [
       `Питер Грин`,
       `Аманда Пламмер      `,
     ],
-    runTime: `154`,
+    runTime: 154,
     reviews: [],
+    rating: {
+      score: 8.6,
+      totalVotes: 454,
+    },
   },
 
   {
@@ -236,8 +264,12 @@ const films = [
       `Лакпа Тсамшо`,
       `Джетсун Пема      `,
     ],
-    runTime: `136`,
+    runTime: 136,
     reviews: [],
+    rating: {
+      score: 7.8,
+      totalVotes: 390,
+    },
   },
 
   {
@@ -266,8 +298,12 @@ const films = [
       `Раде Шербеджия`,
       `Винни Джонс      `,
     ],
-    runTime: `104`,
+    runTime: 104,
     reviews: [],
+    rating: {
+      score: 8.5,
+      totalVotes: 343,
+    },
   },
 ];
 

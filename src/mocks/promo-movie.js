@@ -25,6 +25,10 @@ export const promoMovie = {
     `Ralph Fiennes`,
     `Jeff Goldblum`,
   ],
-  runTime: `99`,
+  runTime: 99,
   reviews: [],
+  rating: {
+    score: 8.9,
+    totalVotes: 240,
+  },
 };

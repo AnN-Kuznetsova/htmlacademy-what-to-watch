@@ -1,6 +1,6 @@
 import React from "react";
 import {MoviePropType} from "../../prop-types";
-import {getLimitedNumberOfArrayElementsToString} from "../../utils/utils.js";
+import {getRatingDescription, getLimitedNumberOfArrayElementsToString} from "../../utils/utils.js";
 import {promoMovie} from "../../mocks/promo-movie";
 
 
@@ -16,15 +16,17 @@ export const MoviePage = (props) => {
     description,
     directors,
     starring,
-    runTime,
-    reviews,
+    rating,
   } = props;
+  const {score, totalVotes} = rating;
 
   const descriptionMarkup = description.map((descriptionItem, index) =>
     <p key={descriptionItem + index}>{descriptionItem}</p>);
 
   const directorValue = getLimitedNumberOfArrayElementsToString(directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`);
   const starringValue = getLimitedNumberOfArrayElementsToString(starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`);
+  const scoreValue = score.toString().replace(`.`, `,`);
+  const ratingDescription = getRatingDescription(score);
 
   return (
     <React.Fragment>
@@ -130,10 +132,10 @@ export const MoviePage = (props) => {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
+                <div className="movie-rating__score">{scoreValue}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
+                  <span className="movie-rating__level">{ratingDescription}</span>
+                  <span className="movie-rating__count">{totalVotes} ratings</span>
                 </p>
               </div>
 

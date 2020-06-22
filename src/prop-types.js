@@ -11,6 +11,10 @@ export const MoviePropType = PropTypes.shape({
   description: PropTypes.arrayOf(PropTypes.string),
   directors: PropTypes.arrayOf(PropTypes.string),
   starring: PropTypes.arrayOf(PropTypes.string),
-  runTime: PropTypes.string,
+  runTime: PropTypes.number,
   reviews: PropTypes.array,
+  rating: PropTypes.shape({
+    score: PropTypes.number,
+    totalVotes: PropTypes.number,
+  }),
 });

@@ -1,10 +1,7 @@
 import React from "react";
 import {MoviePropType} from "../../prop-types";
 import {getRatingDescription, getLimitedNumberOfArrayElementsToString} from "../../utils/utils.js";
-import {promoMovie} from "../../mocks/promo-movie";
-
-
-const NUMBER_OF_ELEMENTS_IN_LINE = 4;
+import {NUMBER_OF_ELEMENTS_IN_LINE} from "../../const.js";
 
 
 export const MoviePage = (props) => {

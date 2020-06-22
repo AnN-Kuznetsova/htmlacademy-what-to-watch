@@ -4,12 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {MainPage} from "../main-page/main-page.jsx";
 import {MoviePage} from "../movie-page/movie-page.jsx";
 import {MoviePropType} from "../../prop-types.js";
-
-
-const Page = {
-  MAIN: `main`,
-  MOVIE: `movie`,
-};
+import {PageType} from "../../const.js";
 
 
 export class App extends PureComponent {
@@ -17,7 +12,7 @@ export class App extends PureComponent {
     super(props);
 
     this.state = {
-      activePage: Page.MAIN,
+      activePage: PageType.MAIN,
       activeMovie: null,
     };
 
@@ -26,7 +21,7 @@ export class App extends PureComponent {
 
   handleSmallMovieCardClick(newActiveMovie) {
     this.setState({
-      activePage: Page.MOVIE,
+      activePage: PageType.MOVIE,
       activeMovie: newActiveMovie,
     });
   }
@@ -36,7 +31,7 @@ export class App extends PureComponent {
     const {activePage, activeMovie} = this.state;
 
     switch (activePage) {
-      case Page.MAIN:
+      case PageType.MAIN:
         return (
           <MainPage
             promoMovie={promoMovie}
@@ -44,7 +39,7 @@ export class App extends PureComponent {
             onSmallMovieCardClick={this.handleSmallMovieCardClick}
           />
         );
-      case Page.MOVIE:
+      case PageType.MOVIE:
         return (
           <MoviePage {...activeMovie} />
         );

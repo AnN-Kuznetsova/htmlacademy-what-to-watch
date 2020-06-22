@@ -214,5 +214,3 @@ export const MoviePage = (props) => {
 
 
 MoviePage.propTypes = MoviePropType.isRequired;
-
-MoviePage.defaultProps = promoMovie;

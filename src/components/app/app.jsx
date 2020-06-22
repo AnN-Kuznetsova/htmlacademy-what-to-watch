@@ -6,23 +6,56 @@ import {MoviePage} from "../movie-page/movie-page.jsx";
 import {MoviePropType} from "../../prop-types.js";
 
 
+const Page = {
+  MAIN: `main`,
+  MOVIE: `movie`,
+};
+
+
 export class App extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      activePage: Page.MAIN,
+      activeMovie: null,
+    };
+
+    this.handleSmallMovieCardClick = this.handleSmallMovieCardClick.bind(this);
+  }
+
+  handleSmallMovieCardClick(newActiveMovie) {
+    this.setState({
+      activePage: Page.MOVIE,
+      activeMovie: newActiveMovie,
+    });
   }
 
   renderPage() {
     const {promoMovie, films} = this.props;
+    const {activePage, activeMovie} = this.state;
 
-    return (
-      <MainPage
-        promoMovie={promoMovie}
-        films={films}
-      />
-    );
+    switch (activePage) {
+      case Page.MAIN:
+        return (
+          <MainPage
+            promoMovie={promoMovie}
+            films={films}
+            onSmallMovieCardClick={this.handleSmallMovieCardClick}
+          />
+        );
+      case Page.MOVIE:
+        return (
+          <MoviePage {...activeMovie} />
+        );
+      default:
+        return null;
+    }
   }
 
   render() {
+    const {promoMovie} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -30,7 +63,7 @@ export class App extends PureComponent {
             {this.renderPage()}
           </Route>
           <Route exact path="/movie-page">
-            <MoviePage />
+            <MoviePage {...promoMovie} />
           </Route>
         </Switch>
       </BrowserRouter>

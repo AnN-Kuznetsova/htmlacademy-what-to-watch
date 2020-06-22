@@ -16,11 +16,14 @@ export class Catalog extends PureComponent {
     };
 
     this.handleSmallMovieCardHover = this.handleSmallMovieCardHover.bind(this);
+    this.handleSmallMovieCardClick = this.handleSmallMovieCardClick.bind(this);
   }
 
   handleGenreClick() {}
 
-  handleSmallMovieCardClick() {}
+  handleSmallMovieCardClick() {
+    this.props.onSmallMovieCardClick(this.state.activeMovie);
+  }
 
   handleSmallMovieCardHover(movie) {
     this.setState({
@@ -71,4 +74,5 @@ export class Catalog extends PureComponent {
 
 Catalog.propTypes = {
   films: PropTypes.arrayOf(MoviePropType).isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
 };

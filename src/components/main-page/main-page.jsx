@@ -6,7 +6,11 @@ import {MoviePropType} from "../../prop-types.js";
 
 
 export const MainPage = (props) => {
-  const {promoMovie, films} = props;
+  const {promoMovie, films, onSmallMovieCardClick} = props;
+
+  const handleSmallMovieCardClick = (activeMovie) => {
+    onSmallMovieCardClick(activeMovie);
+  };
 
   return (
     <React.Fragment>
@@ -42,7 +46,10 @@ export const MainPage = (props) => {
       <MovieCard {...promoMovie} />
 
       <div className="page-content">
-        <Catalog films={films} />
+        <Catalog
+          films={films}
+          onSmallMovieCardClick={handleSmallMovieCardClick}
+        />
 
         <footer className="page-footer">
           <div className="logo">
@@ -66,4 +73,5 @@ export const MainPage = (props) => {
 MainPage.propTypes = {
   promoMovie: MoviePropType.isRequired,
   films: PropTypes.arrayOf(MoviePropType).isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
 };

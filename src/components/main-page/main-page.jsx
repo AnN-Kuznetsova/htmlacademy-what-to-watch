@@ -6,7 +6,13 @@ import {MoviePropType} from "../../prop-types.js";
 
 
 export const MainPage = (props) => {
-  const {promoMovie, films, onSmallMovieCardHover, onSmallMovieCardClick} = props;
+  const {
+    promoMovie,
+    films,
+    onSmallMovieCardHover,
+    onSmallMovieCardClick,
+    onPromoMovieClick,
+  } = props;
 
   const handleSmallMovieCardHover = (activeMovie) => {
     onSmallMovieCardHover(activeMovie);
@@ -14,6 +20,10 @@ export const MainPage = (props) => {
 
   const handleSmallMovieCardClick = () => {
     onSmallMovieCardClick();
+  };
+
+  const handlePromoMovieClick = () => {
+    onPromoMovieClick();
   };
 
   return (
@@ -47,7 +57,10 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <MovieCard {...promoMovie} />
+      <MovieCard
+        promoMovie={promoMovie}
+        onMovieClick={handlePromoMovieClick}
+      />
 
       <div className="page-content">
         <Catalog
@@ -80,4 +93,5 @@ MainPage.propTypes = {
   films: PropTypes.arrayOf(MoviePropType).isRequired,
   onSmallMovieCardHover: PropTypes.func.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
+  onPromoMovieClick: PropTypes.func.isRequired,
 };

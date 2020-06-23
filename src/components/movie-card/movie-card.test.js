@@ -5,13 +5,18 @@ import {promoMovie} from "../../__test-data__/test-mocks.js";
 import {shallow} from "enzyme";
 
 
-const movieCardElement = shallow(<MovieCard {...promoMovie} />);
+const props = {
+  promoMovie,
+  onMovieClick: () => {},
+};
+
+const movieCardElement = shallow(<MovieCard {...props} />);
 
 
 describe(`Render MovieCard`, () => {
   it(`Should match with snapshot`, () => {
     const movieCardSnapshot = renderer.create(
-        <MovieCard {...promoMovie} />
+        <MovieCard {...props} />
     ).toJSON();
 
     expect(movieCardSnapshot).toMatchSnapshot();

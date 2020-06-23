@@ -9,6 +9,7 @@ const props = {
   films,
   onSmallMovieCardHover: () => {},
   onSmallMovieCardClick: () => {},
+  onPromoMovieClick: () => {},
 };
 
 

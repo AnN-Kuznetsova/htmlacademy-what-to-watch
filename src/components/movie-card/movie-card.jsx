@@ -1,9 +1,11 @@
+import PropTypes from "prop-types";
 import React from "react";
 import {MoviePropType} from "../../prop-types";
 
 
 export const MovieCard = (props) => {
-  const {title, genre, releaseDate, posterUrl, backgroundUrl} = props;
+  const {promoMovie, onMovieClick} = props;
+  const {title, genre, releaseDate, posterUrl, backgroundUrl} = promoMovie;
   const promoMovieReleaseYear = releaseDate.getFullYear();
 
   return (
@@ -32,12 +34,24 @@ export const MovieCard = (props) => {
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
-          <div className="movie-card__poster">
+          <div
+            className="movie-card__poster"
+            onClick={(event) => {
+              event.preventDefault();
+              onMovieClick();
+            }}
+          >
             <img src={posterUrl} alt={title} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{title}</h2>
+            <h2
+              className="movie-card__title"
+              onClick={(event) => {
+                event.preventDefault();
+                onMovieClick();
+              }}
+            >{title}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{promoMovieReleaseYear}</span>
@@ -65,4 +79,7 @@ export const MovieCard = (props) => {
 };
 
 
-MovieCard.propTypes = MoviePropType.isRequired;
+MovieCard.propTypes = {
+  promoMovie: MoviePropType.isRequired,
+  onMovieClick: PropTypes.func.isRequired,
+};

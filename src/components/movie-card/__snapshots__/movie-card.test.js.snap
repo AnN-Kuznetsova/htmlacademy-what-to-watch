@@ -66,6 +66,7 @@ exports[`Render MovieCard Should match with snapshot 1`] = `
     >
       <div
         className="movie-card__poster"
+        onClick={[Function]}
       >
         <img
           alt="The Grand Budapest Hotel"
@@ -79,6 +80,7 @@ exports[`Render MovieCard Should match with snapshot 1`] = `
       >
         <h2
           className="movie-card__title"
+          onClick={[Function]}
         >
           The Grand Budapest Hotel
         </h2>

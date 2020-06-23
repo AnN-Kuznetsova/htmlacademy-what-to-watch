@@ -7,6 +7,8 @@ import {promoMovie, films} from "../../__test-data__/test-mocks.js";
 const props = {
   promoMovie,
   films,
+  onSmallMovieCardHover: () => {},
+  onSmallMovieCardClick: () => {},
 };
 
 

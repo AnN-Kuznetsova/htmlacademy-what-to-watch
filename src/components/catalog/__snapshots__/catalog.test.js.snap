@@ -128,11 +128,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
   >
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Bohemian Rhapsody"
@@ -146,8 +146,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Bohemian Rhapsody
         </a>
@@ -155,11 +154,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
     </article>
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Aviator"
@@ -173,8 +172,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Aviator
         </a>
@@ -182,11 +180,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
     </article>
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Revenant"
@@ -200,8 +198,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Revenant
         </a>
@@ -209,11 +206,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
     </article>
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Johnny English"
@@ -227,8 +224,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Johnny English
         </a>
@@ -236,11 +232,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
     </article>
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Shutter Island"
@@ -254,8 +250,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Shutter Island
         </a>
@@ -263,11 +258,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
     </article>
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Pulp Fiction"
@@ -281,8 +276,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Pulp Fiction
         </a>
@@ -290,11 +284,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
     </article>
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Seven Years in Tibet"
@@ -308,8 +302,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Seven Years in Tibet
         </a>
@@ -317,11 +310,11 @@ exports[`Render Catalog Should match with snapshot 1`] = `
     </article>
     <article
       className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="small-movie-card__image"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <img
           alt="Snatch"
@@ -335,8 +328,7 @@ exports[`Render Catalog Should match with snapshot 1`] = `
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={[Function]}
+          href="#"
         >
           Snatch
         </a>

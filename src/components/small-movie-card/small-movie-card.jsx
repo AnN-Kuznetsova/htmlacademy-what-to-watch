@@ -7,13 +7,9 @@ export const SmallMovieCard = (props) => {
   const {movie, onClick, onHover} = props;
   const {title, smallPictureUrl} = movie;
 
-  const handleCardImgClick = () => {
-    onClick(movie);
-  };
-
-  const handleCardTitleClick = (event) => {
+  const handleCardClick = (event) => {
     event.preventDefault();
-    onClick(movie);
+    onClick();
   };
 
   const handleCardHover = () => {
@@ -21,12 +17,12 @@ export const SmallMovieCard = (props) => {
   };
 
   return (
-    <article className="small-movie-card catalog__movies-card">
-      <div
-        className="small-movie-card__image"
-        onClick={handleCardImgClick}
-        onMouseEnter={handleCardHover}
-      >
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={handleCardHover}
+      onClick={handleCardClick}
+    >
+      <div className="small-movie-card__image">
         <img
           src={smallPictureUrl}
           alt={title}
@@ -35,11 +31,7 @@ export const SmallMovieCard = (props) => {
         />
       </div>
       <h3 className="small-movie-card__title">
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-          onClick={handleCardTitleClick}
-        >{title}</a>
+        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
       </h3>
     </article>
   );

@@ -5,8 +5,10 @@ import {MoviePropType} from "../../prop-types";
 
 export const MovieCard = (props) => {
   const {promoMovie, onMovieClick} = props;
-  const {title, genre, releaseDate, posterUrl, backgroundUrl} = promoMovie;
+  const {title, genres, releaseDate, posterUrl, backgroundUrl} = promoMovie;
+
   const promoMovieReleaseYear = releaseDate.getFullYear();
+  const genre = genres[0];
 
   return (
     <section className="movie-card">

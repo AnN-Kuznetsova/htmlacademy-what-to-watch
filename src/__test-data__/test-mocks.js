@@ -3,7 +3,7 @@ const promoMovie = {
   smallPictureUrl: ``,
   backgroundUrl: `img/bg-the-grand-budapest-hotel.jpg`,
   posterUrl: `img/the-grand-budapest-hotel-poster.jpg`,
-  genre: `Drama`,
+  genres: [`Drama`, `Comedy`],
   releaseDate: new Date(2014, 0),
   description: [
     `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy,
@@ -39,7 +39,7 @@ const films = [
     smallPictureUrl: `img/bohemian-rhapsody.jpg`,
     backgroundUrl: `img/bohemian-rhapsody.jpg`,
     posterUrl: `img/bohemian-rhapsody.jpg`,
-    genre: `Drama`,
+    genres: [`Drama`, `Biography`],
     releaseDate: new Date(2018, 0),
     description: [
       `Сюжет картины охватывает период 1970—1985 года, рассказывая о жизни, творчестве и отношениях внутри группы Queen, а также о личной жизни фронтмена
@@ -77,7 +77,7 @@ const films = [
     smallPictureUrl: `img/aviator.jpg`,
     backgroundUrl: `img/aviator.jpg`,
     posterUrl: `img/aviator.jpg`,
-    genre: `Drama`,
+    genres: [`Drama`, `Biography`],
     releaseDate: new Date(2004, 0),
     description: [
       `Получив от отца небольшую фабрику, Говард Хьюз превратил ее в гигантское, фантастически прибыльное предприятие. Став владельцем огромной кинокомпании,
@@ -110,7 +110,7 @@ const films = [
     smallPictureUrl: `img/revenant.jpg`,
     backgroundUrl: `img/revenant.jpg`,
     posterUrl: `img/revenant.jpg`,
-    genre: `Drama`,
+    genres: [`Drama`, `Biography`, `Adventure`, `Western`, `Action`],
     releaseDate: new Date(2015, 0),
     description: [
       `Охотник Хью Гласс серьезно ранен на неизведанных просторах американского Дикого Запада. Товарищ Хью по отряду покорителей новых земель Джон Фицжеральд
@@ -143,7 +143,7 @@ const films = [
     smallPictureUrl: `img/johnny-english.jpg`,
     backgroundUrl: `img/johnny-english.jpg`,
     posterUrl: `img/johnny-english.jpg`,
-    genre: `Comedy`,
+    genres: [`Comedy`, `Action`, `Comedy`, `Adventure`],
     releaseDate: new Date(2003, 0),
     description: [
       `История самого некомпетентного и недалекого Британского дипломата, которого только можно представить, которого ошибочно принимают за самого знаменитого
@@ -176,7 +176,7 @@ const films = [
     smallPictureUrl: `img/shutter-island.jpg`,
     backgroundUrl: `img/shutter-island.jpg`,
     posterUrl: `img/shutter-island.jpg`,
-    genre: `Drama`,
+    genres: [`Drama`, `Thriller`, `Detective`],
     releaseDate: new Date(2009, 0),
     description: [
       `Два американских судебных пристава отправляются на один из островов в штате Массачусетс, чтобы расследовать исчезновение пациентки клиники для умалишенных
@@ -208,7 +208,7 @@ const films = [
     smallPictureUrl: `img/pulp-fiction.jpg`,
     backgroundUrl: `img/pulp-fiction.jpg`,
     posterUrl: `img/pulp-fiction.jpg`,
-    genre: `Thriller`,
+    genres: [`Thriller`, `Comedy`, `Crime`],
     releaseDate: new Date(1994, 0),
     description: [
       `Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между разборками и решением проблем с должниками криминального босса
@@ -242,7 +242,7 @@ const films = [
     smallPictureUrl: `img/seven-years-in-tibet.jpg`,
     backgroundUrl: `img/seven-years-in-tibet.jpg`,
     posterUrl: `img/seven-years-in-tibet.jpg`,
-    genre: `Drama`,
+    genres: [`Drama`, `Adventure`, `Military`, `Biography`, `History`],
     releaseDate: new Date(1997, 0),
     description: [
       `Генрих Харрер, офицер Рейха, человек, у которого было все — успех, красота, известность. Но ему было мало земной славы. Оставив дома беременную жену,
@@ -277,7 +277,7 @@ const films = [
     smallPictureUrl: `img/snatch.jpg`,
     backgroundUrl: `img/snatch.jpg`,
     posterUrl: `img/snatch.jpg`,
-    genre: `Action movie`,
+    genres: [`Action`, `Comedy`, `Crime`],
     releaseDate: new Date(2000, 0),
     description: [
       `Четырехпалый Френки должен был переправить краденый алмаз из Англии в США своему боссу Эви. Но вместо этого герой попадает в эпицентр больших неприятностей.

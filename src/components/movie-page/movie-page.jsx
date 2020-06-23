@@ -11,7 +11,7 @@ export const MoviePage = (props) => {
   const {title,
     backgroundUrl,
     posterUrl,
-    genre,
+    genres,
     releaseDate,
     description,
     directors,
@@ -23,6 +23,7 @@ export const MoviePage = (props) => {
   const descriptionMarkup = description.map((descriptionItem, index) =>
     <p key={descriptionItem + index}>{descriptionItem}</p>);
 
+  const genre = genres[0];
   const directorValue = getLimitedNumberOfArrayElementsToString(directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`);
   const starringValue = getLimitedNumberOfArrayElementsToString(starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`);
   const scoreValue = getScoreFormat(score);

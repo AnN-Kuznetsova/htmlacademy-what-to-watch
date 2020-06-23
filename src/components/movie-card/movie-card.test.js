@@ -37,7 +37,7 @@ describe(`Render MovieCard`, () => {
 
   it(`Should render correct promo-movie genre`, () => {
     expect(movieCardElement.find(`span.movie-card__genre`).text())
-      .toEqual(promoMovie.genre);
+      .toEqual(promoMovie.genres[0]);
   });
 
 

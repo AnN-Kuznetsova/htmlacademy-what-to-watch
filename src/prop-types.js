@@ -6,7 +6,7 @@ export const MoviePropType = PropTypes.shape({
   smallPictureUrl: PropTypes.string,
   backgroundUrl: PropTypes.string,
   posterUrl: PropTypes.string,
-  genre: PropTypes.string,
+  genres: PropTypes.arrayOf(PropTypes.string),
   releaseDate: PropTypes.instanceOf(Date),
   description: PropTypes.arrayOf(PropTypes.string),
   directors: PropTypes.arrayOf(PropTypes.string),

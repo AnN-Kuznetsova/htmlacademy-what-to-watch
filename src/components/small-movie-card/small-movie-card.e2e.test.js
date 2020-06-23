@@ -26,7 +26,6 @@ describe(`SmallMovieCard e2e-tests`, () => {
     cardTitleLinkELement.simulate(`click`, mockEvent);
 
     expect(onClick).toHaveBeenCalled();
-    expect(onClick.mock.calls[0][0]).toMatchObject(props.movie);
   });
 
 
@@ -35,7 +34,6 @@ describe(`SmallMovieCard e2e-tests`, () => {
     cardImageElement.simulate(`click`, mockEvent);
 
     expect(onClick).toHaveBeenCalled();
-    expect(onClick.mock.calls[0][0]).toMatchObject(props.movie);
   });
 
 

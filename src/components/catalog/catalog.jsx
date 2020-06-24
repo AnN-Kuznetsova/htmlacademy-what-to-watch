@@ -53,7 +53,7 @@ export class Catalog extends PureComponent {
           {
             films.map((movie, index) =>
               <SmallMovieCard
-                key={movie + index}
+                key={movie.title + index}
                 movie={movie}
                 onClick={this.handleSmallMovieCardClick}
                 onHover={this.handleSmallMovieCardHover}

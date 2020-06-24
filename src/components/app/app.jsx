@@ -6,10 +6,6 @@ import {MoviePropType} from "../../prop-types.js";
 
 
 export class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {promoMovie, films} = this.props;
 

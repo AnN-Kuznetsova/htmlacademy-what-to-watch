@@ -7,18 +7,25 @@ export const SmallMovieCard = (props) => {
   const {movie, onClick, onHover} = props;
   const {title, smallPictureUrl} = movie;
 
+  const handleCardImgClick = () => {
+    onClick(movie);
+  };
+
+  const handleCardTitleClick = (event) => {
+    event.preventDefault();
+    onClick(movie);
+  };
+
+  const handleCardHover = () => {
+    onHover(movie);
+  };
+
   return (
     <article className="small-movie-card catalog__movies-card">
       <div
         className="small-movie-card__image"
-        onClick={(event) => {
-          event.preventDefault();
-          onClick(movie);
-        }}
-        onMouseEnter={(event) => {
-          event.preventDefault();
-          onHover(movie);
-        }}
+        onClick={handleCardImgClick}
+        onMouseEnter={handleCardHover}
       >
         <img
           src={smallPictureUrl}
@@ -31,10 +38,7 @@ export const SmallMovieCard = (props) => {
         <a
           className="small-movie-card__link"
           href="movie-page.html"
-          onClick={(event) => {
-            event.preventDefault();
-            onClick(movie);
-          }}
+          onClick={handleCardTitleClick}
         >{title}</a>
       </h3>
     </article>

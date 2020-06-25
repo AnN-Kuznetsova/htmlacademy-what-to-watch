@@ -1,19 +1,35 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {MoviePropType} from "../../prop-types";
 
 
 export const SmallMovieCard = (props) => {
-  const {movieTitle, onClick} = props;
+  const {movie, onClick, onHover} = props;
+  const {title, smallPictureUrl} = movie;
+
+  const handleCardImgClick = () => {
+    onClick(movie);
+  };
+
+  const handleCardTitleClick = (event) => {
+    event.preventDefault();
+    onClick(movie);
+  };
+
+  const handleCardHover = () => {
+    onHover(movie);
+  };
 
   return (
     <article className="small-movie-card catalog__movies-card">
       <div
         className="small-movie-card__image"
-        onClick={onClick}
+        onClick={handleCardImgClick}
+        onMouseEnter={handleCardHover}
       >
         <img
-          src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-          alt={movieTitle}
+          src={smallPictureUrl}
+          alt={title}
           width="280"
           height="175"
         />
@@ -22,8 +38,8 @@ export const SmallMovieCard = (props) => {
         <a
           className="small-movie-card__link"
           href="movie-page.html"
-          onClick={onClick}
-        >{movieTitle}</a>
+          onClick={handleCardTitleClick}
+        >{title}</a>
       </h3>
     </article>
   );
@@ -31,6 +47,7 @@ export const SmallMovieCard = (props) => {
 
 
 SmallMovieCard.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
+  movie: MoviePropType.isRequired,
   onClick: PropTypes.func.isRequired,
+  onHover: PropTypes.func.isRequired,
 };

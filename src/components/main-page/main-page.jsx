@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Catalog} from "../catalog/catalog.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
+import {MoviePropType} from "../../prop-types.js";
 
 
 export const MainPage = (props) => {
-  const {promoMovie, movieTitles} = props;
+  const {promoMovie, films} = props;
 
   return (
     <React.Fragment>
@@ -41,7 +42,7 @@ export const MainPage = (props) => {
       <MovieCard {...promoMovie} />
 
       <div className="page-content">
-        <Catalog movieTitles={movieTitles} />
+        <Catalog films={films} />
 
         <footer className="page-footer">
           <div className="logo">
@@ -63,12 +64,6 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
-  promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.instanceOf(Date).isRequired,
-    posterUrl: PropTypes.string.isRequired,
-    backgroundUrl: PropTypes.string.isRequired,
-  }).isRequired,
-  movieTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  promoMovie: MoviePropType.isRequired,
+  films: PropTypes.arrayOf(MoviePropType).isRequired,
 };

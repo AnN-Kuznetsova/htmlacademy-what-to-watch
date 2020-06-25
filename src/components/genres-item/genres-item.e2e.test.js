@@ -1,7 +1,7 @@
 import React from "react";
-import {shallow} from "enzyme";
 import {GenresItem} from "./genres-item.jsx";
 import {genreNames} from "../../__test-data__/test-mocks.js";
+import {shallow} from "enzyme";
 
 
 const onClick = jest.fn();

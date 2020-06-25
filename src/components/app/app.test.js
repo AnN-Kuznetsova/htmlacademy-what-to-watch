@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {App} from "./app.jsx";
-import {promoMovie, movieTitles} from "../../__test-data__/test-mocks.js";
+import {promoMovie, films} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
   promoMovie,
-  movieTitles,
+  films,
 };
 
 

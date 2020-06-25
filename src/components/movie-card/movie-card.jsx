@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import React from "react";
+import {MoviePropType} from "../../prop-types";
 
 
 export const MovieCard = (props) => {
@@ -46,13 +46,13 @@ export const MovieCard = (props) => {
             <div className="movie-card__buttons">
               <button className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
+                  <use xlinkHref="#play-s" />
                 </svg>
                 <span>Play</span>
               </button>
               <button className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
+                  <use xlinkHref="#add" />
                 </svg>
                 <span>My list</span>
               </button>
@@ -65,10 +65,4 @@ export const MovieCard = (props) => {
 };
 
 
-MovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.instanceOf(Date).isRequired,
-  posterUrl: PropTypes.string.isRequired,
-  backgroundUrl: PropTypes.string.isRequired,
-};
+MovieCard.propTypes = MoviePropType.isRequired;

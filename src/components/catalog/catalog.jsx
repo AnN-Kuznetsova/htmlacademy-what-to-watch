@@ -8,7 +8,7 @@ import {genreNames} from "../../mocks/genre-names.js";
 
 
 export const Catalog = (props) => {
-  const {films, onSmallMovieCardHover, onSmallMovieCardClick} = props;
+  const {films, isMoviePage, onSmallMovieCardHover, onSmallMovieCardClick} = props;
 
   const handleGenreClick = () => {};
 
@@ -26,17 +26,18 @@ export const Catalog = (props) => {
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      <ul className="catalog__genres-list">
-        {
-          genreNames.map((genreName, index) =>
-            <GenresItem
-              key={genreName + index}
-              genreName={genreName}
-              onClick={handleGenreClick}
-            />
-          )
-        }
-      </ul>
+      {!isMoviePage &&
+        <ul className="catalog__genres-list">
+          {
+            genreNames.map((genreName, index) =>
+              <GenresItem
+                key={genreName + index}
+                genreName={genreName}
+                onClick={handleGenreClick}
+              />
+            )
+          }
+        </ul>}
 
       <div className="catalog__movies-list">
         {
@@ -51,7 +52,7 @@ export const Catalog = (props) => {
         }
       </div>
 
-      <ShowMoreButton onClick={handleShowMoreButtonClick} />
+      {!isMoviePage && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
     </section>
   );
 };
@@ -59,6 +60,7 @@ export const Catalog = (props) => {
 
 Catalog.propTypes = {
   films: PropTypes.arrayOf(MoviePropType).isRequired,
+  isMoviePage: PropTypes.bool.isRequired,
   onSmallMovieCardHover: PropTypes.func.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
 };

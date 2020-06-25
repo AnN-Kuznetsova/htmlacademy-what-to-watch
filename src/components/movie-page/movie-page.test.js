@@ -2,19 +2,26 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {MoviePage} from "./movie-page.jsx";
 import {getLimitedNumberOfArrayElementsToString} from "../../utils/utils.js";
-import {promoMovie} from "../../__test-data__/test-mocks.js";
+import {promoMovie, films} from "../../__test-data__/test-mocks.js";
 import {mount} from "enzyme";
 
 
 const NUMBER_OF_ELEMENTS_IN_LINE = 4;
 
-const moviePageElement = mount(<MoviePage {...promoMovie} />);
+const props = {
+  currentMovie: promoMovie,
+  films,
+  onSmallMovieCardHover: () => {},
+  onSmallMovieCardClick: () => {},
+};
+
+const moviePageElement = mount(<MoviePage {...props} />);
 
 
 describe(`Render MoviePage`, () => {
   it(`Should match with snapshot`, () => {
     const moviePageSnapshot = renderer.create(
-        <MoviePage {...promoMovie} />
+        <MoviePage {...props} />
     ).toJSON();
 
     expect(moviePageSnapshot).toMatchSnapshot();

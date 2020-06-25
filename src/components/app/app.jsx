@@ -11,9 +11,11 @@ export class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.activeMovie = null;
+
     this.state = {
       activePage: PageType.MAIN,
-      activeMovie: null,
+      currentActiveMovie: null,
     };
 
     this.handleSmallMovieCardHover = this.handleSmallMovieCardHover.bind(this);
@@ -22,27 +24,26 @@ export class App extends PureComponent {
   }
 
   handleSmallMovieCardHover(newActiveMovie) {
-    this.setState({
-      activeMovie: newActiveMovie,
-    });
+    this.activeMovie = newActiveMovie;
   }
 
   handleSmallMovieCardClick() {
     this.setState({
       activePage: PageType.MOVIE,
+      currentActiveMovie: this.activeMovie,
     });
   }
 
   handlePromoMovieClick() {
     this.setState({
-      activeMovie: this.props.promoMovie,
+      currentActiveMovie: this.props.promoMovie,
       activePage: PageType.MOVIE,
     });
   }
 
   renderPage() {
     const {promoMovie, films} = this.props;
-    const {activePage, activeMovie} = this.state;
+    const {activePage} = this.state;
 
     switch (activePage) {
       case PageType.MAIN:
@@ -57,7 +58,12 @@ export class App extends PureComponent {
         );
       case PageType.MOVIE:
         return (
-          <MoviePage {...activeMovie} />
+          <MoviePage
+            currentMovie={this.state.currentActiveMovie}
+            films={films}
+            onSmallMovieCardHover={this.handleSmallMovieCardHover}
+            onSmallMovieCardClick={this.handleSmallMovieCardClick}
+          />
         );
       default:
         return null;
@@ -65,7 +71,7 @@ export class App extends PureComponent {
   }
 
   render() {
-    const {promoMovie} = this.props;
+    const {promoMovie, films} = this.props;
 
     return (
       <BrowserRouter>
@@ -74,7 +80,12 @@ export class App extends PureComponent {
             {this.renderPage()}
           </Route>
           <Route exact path="/movie-page">
-            <MoviePage {...promoMovie} />
+            <MoviePage
+              currentMovie={promoMovie}
+              films={films}
+              onSmallMovieCardHover={this.handleSmallMovieCardHover}
+              onSmallMovieCardClick={this.handleSmallMovieCardClick}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

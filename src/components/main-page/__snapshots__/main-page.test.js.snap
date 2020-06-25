@@ -397,7 +397,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Bohemian Rhapsody
             </a>
@@ -423,7 +423,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Aviator
             </a>
@@ -449,7 +449,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Revenant
             </a>
@@ -475,7 +475,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Johnny English
             </a>
@@ -501,7 +501,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Shutter Island
             </a>
@@ -527,7 +527,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Pulp Fiction
             </a>
@@ -553,7 +553,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Seven Years in Tibet
             </a>
@@ -579,7 +579,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="movie-page.html"
             >
               Snatch
             </a>

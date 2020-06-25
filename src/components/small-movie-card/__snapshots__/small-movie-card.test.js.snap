@@ -21,7 +21,7 @@ exports[`Render SmallMovieCard Should match with snapshot 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="#"
+      href="movie-page.html"
     >
       Aviator
     </a>

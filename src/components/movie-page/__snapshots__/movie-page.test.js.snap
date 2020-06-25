@@ -358,42 +358,20 @@ Array [
     className="page-content"
   >
     <section
-      className="catalog catalog--like-this"
+      className="catalog"
     >
       <h2
-        className="catalog__title"
+        className="catalog__title visually-hidden"
       >
-        More like this
+        Catalog
       </h2>
       <div
         className="catalog__movies-list"
       >
         <article
           className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -418,30 +396,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="img/macbeth.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -461,6 +417,162 @@ Array [
               href="movie-page.html"
             >
               Aviator
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Revenant"
+              height="175"
+              src="img/revenant.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Revenant
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Johnny English"
+              height="175"
+              src="img/johnny-english.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Johnny English
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Shutter Island"
+              height="175"
+              src="img/shutter-island.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Shutter Island
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Pulp Fiction"
+              height="175"
+              src="img/pulp-fiction.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Pulp Fiction
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Seven Years in Tibet"
+              height="175"
+              src="img/seven-years-in-tibet.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Seven Years in Tibet
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Snatch"
+              height="175"
+              src="img/snatch.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Snatch
             </a>
           </h3>
         </article>

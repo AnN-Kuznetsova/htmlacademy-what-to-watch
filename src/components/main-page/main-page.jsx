@@ -65,6 +65,7 @@ export const MainPage = (props) => {
       <div className="page-content">
         <Catalog
           films={films}
+          isMoviePage={false}
           onSmallMovieCardHover={handleSmallMovieCardHover}
           onSmallMovieCardClick={handleSmallMovieCardClick}
         />

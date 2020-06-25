@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Catalog} from "../catalog/catalog.jsx";
+import {Footer} from "../footer/footer.jsx";
 import {MoviePropType} from "../../prop-types";
 import {NUMBER_OF_ELEMENTS_IN_LINE} from "../../const.js";
 import {
@@ -172,19 +173,7 @@ export const MoviePage = (props) => {
           onSmallMovieCardClick={handleSmallMovieCardClick}
         />
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );

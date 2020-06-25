@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Footer Should match with snapshot 1`] = `
+<footer
+  className="page-footer"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link logo__link--light"
+      href="main.html"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <div
+    className="copyright"
+  >
+    <p>
+      © 2019 What to watch Ltd.
+    </p>
+  </div>
+</footer>
+`;

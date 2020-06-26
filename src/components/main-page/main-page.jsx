@@ -7,6 +7,7 @@ import {MoviePropType} from "../../prop-types.js";
 
 
 export const MainPage = (props) => {
+  const isMoviePage = false;
   const {
     promoMovie,
     films,
@@ -59,14 +60,15 @@ export const MainPage = (props) => {
       </div>
 
       <MovieCard
-        promoMovie={promoMovie}
+        movie={promoMovie}
+        isMoviePage={isMoviePage}
         onMovieClick={handlePromoMovieClick}
       />
 
       <div className="page-content">
         <Catalog
           films={films}
-          isMoviePage={false}
+          isMoviePage={isMoviePage}
           onSmallMovieCardHover={handleSmallMovieCardHover}
           onSmallMovieCardClick={handleSmallMovieCardClick}
         />

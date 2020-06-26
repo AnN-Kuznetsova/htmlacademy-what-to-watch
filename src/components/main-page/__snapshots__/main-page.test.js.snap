@@ -111,7 +111,7 @@ Array [
     </svg>
   </div>,
   <section
-    className="movie-card"
+    className="movie-card "
   >
     <div
       className="movie-card__bg"

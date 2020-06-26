@@ -179,6 +179,7 @@ Array [
         >
           <h2
             className="movie-card__title"
+            onClick={[Function]}
           >
             The Grand Budapest Hotel
           </h2>
@@ -251,6 +252,7 @@ Array [
       >
         <div
           className="movie-card__poster movie-card__poster--big"
+          onClick={[Function]}
         >
           <img
             alt="The Grand Budapest Hotel poster"

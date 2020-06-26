@@ -7,13 +7,13 @@ import {MoviePropType} from "../../prop-types.js";
 
 
 export const MainPage = (props) => {
-  const isMoviePage = false;
   const {
-    promoMovie,
+    currentMovie,
     films,
+    isMoviePage,
     onSmallMovieCardHover,
     onSmallMovieCardClick,
-    onPromoMovieClick,
+    onCurrentMovieClick,
   } = props;
 
   const handleSmallMovieCardHover = (activeMovie) => {
@@ -24,8 +24,8 @@ export const MainPage = (props) => {
     onSmallMovieCardClick();
   };
 
-  const handlePromoMovieClick = () => {
-    onPromoMovieClick();
+  const handleCurrentMovieClick = () => {
+    onCurrentMovieClick();
   };
 
   return (
@@ -60,9 +60,9 @@ export const MainPage = (props) => {
       </div>
 
       <MovieCard
-        movie={promoMovie}
+        movie={currentMovie}
         isMoviePage={isMoviePage}
-        onMovieClick={handlePromoMovieClick}
+        onMovieClick={handleCurrentMovieClick}
       />
 
       <div className="page-content">
@@ -81,9 +81,10 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
-  promoMovie: MoviePropType.isRequired,
+  currentMovie: MoviePropType.isRequired,
   films: PropTypes.arrayOf(MoviePropType).isRequired,
+  isMoviePage: PropTypes.bool.isRequired,
   onSmallMovieCardHover: PropTypes.func.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
-  onPromoMovieClick: PropTypes.func.isRequired,
+  onCurrentMovieClick: PropTypes.func.isRequired,
 };

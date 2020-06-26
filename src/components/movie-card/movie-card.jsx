@@ -183,5 +183,5 @@ export const MovieCard = (props) => {
 MovieCard.propTypes = {
   movie: MoviePropType.isRequired,
   isMoviePage: PropTypes.bool.isRequired,
-  onMovieClick: PropTypes.func,
+  onMovieClick: PropTypes.func.isRequired,
 };

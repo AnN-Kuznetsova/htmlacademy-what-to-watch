@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {MainPage} from "../main-page/main-page.jsx";
-import {MoviePage} from "../movie-page/movie-page.jsx";
 import {MoviePropType} from "../../prop-types.js";
 import {PageType} from "../../const.js";
 
@@ -15,7 +14,7 @@ export class App extends PureComponent {
 
     this.state = {
       activePage: PageType.MAIN,
-      currentActiveMovie: null,
+      currentActiveMovie: this.props.promoMovie,
     };
 
     this.handleSmallMovieCardHover = this.handleSmallMovieCardHover.bind(this);
@@ -35,34 +34,28 @@ export class App extends PureComponent {
   }
 
   handlePromoMovieClick() {
-    this.setState({
-      currentActiveMovie: this.props.promoMovie,
-      activePage: PageType.MOVIE,
-    });
+    if (this.state.activePage === PageType.MAIN) {
+      this.setState({
+        activePage: PageType.MOVIE,
+      });
+    }
   }
 
   renderPage() {
-    const {promoMovie, films} = this.props;
-    const {activePage} = this.state;
+    const {films} = this.props;
+    const {activePage, currentActiveMovie} = this.state;
 
     switch (activePage) {
       case PageType.MAIN:
-        return (
-          <MainPage
-            promoMovie={promoMovie}
-            films={films}
-            onSmallMovieCardHover={this.handleSmallMovieCardHover}
-            onSmallMovieCardClick={this.handleSmallMovieCardClick}
-            onPromoMovieClick={this.handlePromoMovieClick}
-          />
-        );
       case PageType.MOVIE:
         return (
-          <MoviePage
-            currentMovie={this.state.currentActiveMovie}
+          <MainPage
+            currentMovie={currentActiveMovie}
             films={films}
+            isMoviePage={activePage === PageType.MOVIE}
             onSmallMovieCardHover={this.handleSmallMovieCardHover}
             onSmallMovieCardClick={this.handleSmallMovieCardClick}
+            onCurrentMovieClick={this.handlePromoMovieClick}
           />
         );
       default:
@@ -71,7 +64,7 @@ export class App extends PureComponent {
   }
 
   render() {
-    const {promoMovie, films} = this.props;
+    const {films} = this.props;
 
     return (
       <BrowserRouter>
@@ -80,11 +73,13 @@ export class App extends PureComponent {
             {this.renderPage()}
           </Route>
           <Route exact path="/movie-page">
-            <MoviePage
-              currentMovie={promoMovie}
+            <MainPage
+              currentMovie={this.state.currentActiveMovie}
               films={films}
+              isMoviePage={true}
               onSmallMovieCardHover={this.handleSmallMovieCardHover}
               onSmallMovieCardClick={this.handleSmallMovieCardClick}
+              onCurrentMovieClick={this.handlePromoMovieClick}
             />
           </Route>
         </Switch>

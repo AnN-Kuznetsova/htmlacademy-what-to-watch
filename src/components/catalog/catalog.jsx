@@ -24,8 +24,10 @@ export const Catalog = (props) => {
   const handleShowMoreButtonClick = () => {};
 
   return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+    <section className={`catalog ${activePage === PageType.MAIN_MOVIE_DETAILS ? `catalog--like-this` : ``}`}>
+      <h2 className={`catalog__title ${activePage === PageType.MAIN_INDEX ? `visually-hidden` : ``}`}>
+        {activePage === PageType.MAIN_MOVIE_DETAILS ? `More like this` : `Catalog`}
+      </h2>
 
       {activePage === PageType.MAIN_INDEX &&
         <ul className="catalog__genres-list">

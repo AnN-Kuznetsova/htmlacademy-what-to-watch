@@ -2,7 +2,7 @@
 
 exports[`Render Catalog Should match with snapshot when active page is MAIN_INDEX 1`] = `
 <section
-  className="catalog"
+  className="catalog "
 >
   <h2
     className="catalog__title visually-hidden"
@@ -351,12 +351,12 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
 
 exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVIE_DETAILS 1`] = `
 <section
-  className="catalog"
+  className="catalog catalog--like-this"
 >
   <h2
-    className="catalog__title visually-hidden"
+    className="catalog__title "
   >
-    Catalog
+    More like this
   </h2>
   <div
     className="catalog__movies-list"

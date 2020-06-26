@@ -253,7 +253,7 @@ Array [
     className="page-content"
   >
     <section
-      className="catalog"
+      className="catalog "
     >
       <h2
         className="catalog__title visually-hidden"

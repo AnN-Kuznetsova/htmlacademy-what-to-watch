@@ -253,7 +253,7 @@ Array [
     className="page-content"
   >
     <section
-      className="catalog"
+      className="catalog "
     >
       <h2
         className="catalog__title visually-hidden"
@@ -997,12 +997,12 @@ Array [
     className="page-content"
   >
     <section
-      className="catalog"
+      className="catalog catalog--like-this"
     >
       <h2
-        className="catalog__title visually-hidden"
+        className="catalog__title "
       >
-        Catalog
+        More like this
       </h2>
       <div
         className="catalog__movies-list"

@@ -10,6 +10,8 @@ import {genreNames} from "../../mocks/genre-names.js";
 
 export const Catalog = (props) => {
   const {films, activePage, onSmallMovieCardHover, onSmallMovieCardClick} = props;
+  const isMainIndexPage = activePage === PageType.MAIN_INDEX;
+  const isMainMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
 
   const handleGenreClick = () => {};
 
@@ -24,12 +26,12 @@ export const Catalog = (props) => {
   const handleShowMoreButtonClick = () => {};
 
   return (
-    <section className={`catalog ${activePage === PageType.MAIN_MOVIE_DETAILS ? `catalog--like-this` : ``}`}>
-      <h2 className={`catalog__title ${activePage === PageType.MAIN_INDEX ? `visually-hidden` : ``}`}>
-        {activePage === PageType.MAIN_MOVIE_DETAILS ? `More like this` : `Catalog`}
+    <section className={`catalog ${isMainMovieDetailsPage ? `catalog--like-this` : ``}`}>
+      <h2 className={`catalog__title ${isMainIndexPage ? `visually-hidden` : ``}`}>
+        {isMainMovieDetailsPage ? `More like this` : `Catalog`}
       </h2>
 
-      {activePage === PageType.MAIN_INDEX &&
+      {isMainIndexPage &&
         <ul className="catalog__genres-list">
           {
             genreNames.map((genreName, index) =>
@@ -55,7 +57,7 @@ export const Catalog = (props) => {
         }
       </div>
 
-      {activePage === PageType.MAIN_INDEX && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
+      {isMainIndexPage && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
     </section>
   );
 };

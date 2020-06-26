@@ -22,15 +22,17 @@ export const MovieCard = (props) => {
     rating,
   } = movie;
   const {score, totalVotes} = rating;
+  const isMainIndexPage = activePage === PageType.MAIN_INDEX;
+  const isMainMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
 
   const handlePosterClick = () => {
-    if (activePage === PageType.MAIN_INDEX) {
+    if (isMainIndexPage) {
       onMovieClick();
     }
   };
 
   const handleTitleClick = () => {
-    if (activePage === PageType.MAIN_INDEX) {
+    if (isMainIndexPage) {
       onMovieClick();
     }
   };
@@ -70,14 +72,14 @@ export const MovieCard = (props) => {
             </svg>
             <span>My list</span>
           </button>
-          {activePage === PageType.MAIN_MOVIE_DETAILS && <a href="add-review.html" className="btn movie-card__button">Add review</a>}
+          {isMainMovieDetailsPage && <a href="add-review.html" className="btn movie-card__button">Add review</a>}
         </div>
       </div>
     );
   };
 
   const cardHeaderMarkup = () => {
-    const logoHrefValue = (activePage === PageType.MAIN_MOVIE_DETAILS) ? `main.html` : null;
+    const logoHrefValue = (isMainMovieDetailsPage) ? `main.html` : null;
     const logoHref = logoHrefValue ? {href: `main.html`} : null;
 
     return (
@@ -105,7 +107,7 @@ export const MovieCard = (props) => {
         </header>
 
         <div className="movie-card__wrap">
-          {activePage === PageType.MAIN_MOVIE_DETAILS && cardDeskMarkup() ||
+          {isMainMovieDetailsPage && cardDeskMarkup() ||
           <div className="movie-card__info">
             <div className="movie-card__poster"
               onClick={(event) => {
@@ -124,14 +126,14 @@ export const MovieCard = (props) => {
   };
 
   return (
-    <section className={`movie-card ${activePage === PageType.MAIN_MOVIE_DETAILS ? `movie-card--full` : ``}`}>
+    <section className={`movie-card ${isMainMovieDetailsPage ? `movie-card--full` : ``}`}>
       {
-        activePage === PageType.MAIN_MOVIE_DETAILS && <div className="movie-card__hero">
+        isMainMovieDetailsPage && <div className="movie-card__hero">
           {cardHeaderMarkup()}
         </div> || cardHeaderMarkup()
       }
 
-      {activePage === PageType.MAIN_MOVIE_DETAILS &&
+      {isMainMovieDetailsPage &&
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div

@@ -1,7 +1,9 @@
 import React from "react";
 import {Catalog} from "./catalog.jsx";
+import {PageType} from "../../const.js";
 import {films} from "../../__test-data__/test-mocks.js";
 import {mount} from "enzyme";
+
 
 const mockEvent = {
   preventDefault() {}
@@ -12,7 +14,7 @@ const onSmallMovieCardClick = jest.fn();
 
 const props = {
   films,
-  isMoviePage: false,
+  activePage: PageType.MAIN_INDEX,
   onSmallMovieCardHover,
   onSmallMovieCardClick,
 };

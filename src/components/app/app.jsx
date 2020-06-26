@@ -13,7 +13,7 @@ export class App extends PureComponent {
     this.activeMovie = null;
 
     this.state = {
-      activePage: PageType.MAIN,
+      activePage: PageType.MAIN_INDEX,
       currentActiveMovie: this.props.promoMovie,
     };
 
@@ -28,15 +28,15 @@ export class App extends PureComponent {
 
   handleSmallMovieCardClick() {
     this.setState({
-      activePage: PageType.MOVIE,
+      activePage: PageType.MAIN_MOVIE_DETAILS,
       currentActiveMovie: this.activeMovie,
     });
   }
 
   handlePromoMovieClick() {
-    if (this.state.activePage === PageType.MAIN) {
+    if (this.state.activePage === PageType.MAIN_INDEX) {
       this.setState({
-        activePage: PageType.MOVIE,
+        activePage: PageType.MAIN_MOVIE_DETAILS,
       });
     }
   }
@@ -46,13 +46,13 @@ export class App extends PureComponent {
     const {activePage, currentActiveMovie} = this.state;
 
     switch (activePage) {
-      case PageType.MAIN:
-      case PageType.MOVIE:
+      case PageType.MAIN_INDEX:
+      case PageType.MAIN_MOVIE_DETAILS:
         return (
           <MainPage
             currentMovie={currentActiveMovie}
             films={films}
-            isMoviePage={activePage === PageType.MOVIE}
+            activePage={activePage}
             onSmallMovieCardHover={this.handleSmallMovieCardHover}
             onSmallMovieCardClick={this.handleSmallMovieCardClick}
             onCurrentMovieClick={this.handlePromoMovieClick}
@@ -72,11 +72,11 @@ export class App extends PureComponent {
           <Route exact path="/">
             {this.renderPage()}
           </Route>
-          <Route exact path="/movie-page">
+          <Route exact path="/movie-details">
             <MainPage
               currentMovie={this.state.currentActiveMovie}
               films={films}
-              isMoviePage={true}
+              activePage={PageType.MAIN_MOVIE_DETAILS}
               onSmallMovieCardHover={this.handleSmallMovieCardHover}
               onSmallMovieCardClick={this.handleSmallMovieCardClick}
               onCurrentMovieClick={this.handlePromoMovieClick}

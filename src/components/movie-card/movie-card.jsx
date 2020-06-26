@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {MoviePropType} from "../../prop-types";
-import {NUMBER_OF_ELEMENTS_IN_LINE} from "../../const.js";
+import {NUMBER_OF_ELEMENTS_IN_LINE, PageType} from "../../const.js";
 import {
   getRatingDescription,
   getLimitedNumberOfArrayElementsToString,
@@ -10,7 +10,7 @@ import {
 
 
 export const MovieCard = (props) => {
-  const {movie, isMoviePage, onMovieClick} = props;
+  const {movie, activePage, onMovieClick} = props;
   const {title,
     backgroundUrl,
     posterUrl,
@@ -24,13 +24,13 @@ export const MovieCard = (props) => {
   const {score, totalVotes} = rating;
 
   const handlePosterClick = () => {
-    if (!isMoviePage) {
+    if (activePage === PageType.MAIN_INDEX) {
       onMovieClick();
     }
   };
 
   const handleTitleClick = () => {
-    if (!isMoviePage) {
+    if (activePage === PageType.MAIN_INDEX) {
       onMovieClick();
     }
   };
@@ -70,14 +70,14 @@ export const MovieCard = (props) => {
             </svg>
             <span>My list</span>
           </button>
-          {isMoviePage && <a href="add-review.html" className="btn movie-card__button">Add review</a>}
+          {activePage === PageType.MAIN_MOVIE_DETAILS && <a href="add-review.html" className="btn movie-card__button">Add review</a>}
         </div>
       </div>
     );
   };
 
   const cardHeaderMarkup = () => {
-    const logoHrefValue = isMoviePage ? `main.html` : null;
+    const logoHrefValue = (activePage === PageType.MAIN_MOVIE_DETAILS) ? `main.html` : null;
     const logoHref = logoHrefValue ? {href: `main.html`} : null;
 
     return (
@@ -105,7 +105,7 @@ export const MovieCard = (props) => {
         </header>
 
         <div className="movie-card__wrap">
-          {isMoviePage && cardDeskMarkup() ||
+          {activePage === PageType.MAIN_MOVIE_DETAILS && cardDeskMarkup() ||
           <div className="movie-card__info">
             <div className="movie-card__poster"
               onClick={(event) => {
@@ -124,14 +124,14 @@ export const MovieCard = (props) => {
   };
 
   return (
-    <section className={`movie-card ${isMoviePage ? `movie-card--full` : ``}`}>
+    <section className={`movie-card ${activePage === PageType.MAIN_MOVIE_DETAILS ? `movie-card--full` : ``}`}>
       {
-        isMoviePage && <div className="movie-card__hero">
+        activePage === PageType.MAIN_MOVIE_DETAILS && <div className="movie-card__hero">
           {cardHeaderMarkup()}
         </div> || cardHeaderMarkup()
       }
 
-      {isMoviePage &&
+      {activePage === PageType.MAIN_MOVIE_DETAILS &&
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div
@@ -182,6 +182,6 @@ export const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   movie: MoviePropType.isRequired,
-  isMoviePage: PropTypes.bool.isRequired,
+  activePage: PropTypes.string.isRequired,
   onMovieClick: PropTypes.func.isRequired,
 };

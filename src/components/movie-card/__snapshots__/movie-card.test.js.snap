@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render MovieCard when isMoviePage is false Should match with snapshot 1`] = `
+exports[`Render MovieCard when active page is MAIN_MOVIE_DETAILS Should match with snapshot 1`] = `
 <section
   className="movie-card movie-card--full"
 >
@@ -249,7 +249,7 @@ exports[`Render MovieCard when isMoviePage is false Should match with snapshot 1
 </section>
 `;
 
-exports[`Render MovieCard when isMoviePage is true Should match with snapshot 1`] = `
+exports[`Render MovieCard when ative page is MAIN_INDEX Should match with snapshot 1`] = `
 <section
   className="movie-card movie-card--full"
 >

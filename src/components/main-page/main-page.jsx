@@ -10,7 +10,7 @@ export const MainPage = (props) => {
   const {
     currentMovie,
     films,
-    isMoviePage,
+    activePage,
     onSmallMovieCardHover,
     onSmallMovieCardClick,
     onCurrentMovieClick,
@@ -61,14 +61,14 @@ export const MainPage = (props) => {
 
       <MovieCard
         movie={currentMovie}
-        isMoviePage={isMoviePage}
+        activePage={activePage}
         onMovieClick={handleCurrentMovieClick}
       />
 
       <div className="page-content">
         <Catalog
           films={films}
-          isMoviePage={isMoviePage}
+          activePage={activePage}
           onSmallMovieCardHover={handleSmallMovieCardHover}
           onSmallMovieCardClick={handleSmallMovieCardClick}
         />
@@ -83,7 +83,7 @@ export const MainPage = (props) => {
 MainPage.propTypes = {
   currentMovie: MoviePropType.isRequired,
   films: PropTypes.arrayOf(MoviePropType).isRequired,
-  isMoviePage: PropTypes.bool.isRequired,
+  activePage: PropTypes.string.isRequired,
   onSmallMovieCardHover: PropTypes.func.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
   onCurrentMovieClick: PropTypes.func.isRequired,

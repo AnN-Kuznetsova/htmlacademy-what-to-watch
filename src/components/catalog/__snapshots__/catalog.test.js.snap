@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Catalog Should match with snapshot in MainPage 1`] = `
+exports[`Render Catalog Should match with snapshot when active page is MAIN_INDEX 1`] = `
 <section
   className="catalog"
 >
@@ -349,7 +349,7 @@ exports[`Render Catalog Should match with snapshot in MainPage 1`] = `
 </section>
 `;
 
-exports[`Render Catalog Should match with snapshot in MoviePage 1`] = `
+exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVIE_DETAILS 1`] = `
 <section
   className="catalog"
 >

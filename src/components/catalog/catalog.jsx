@@ -2,13 +2,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import {GenresItem} from "../genres-item/genres-item.jsx";
 import {MoviePropType} from "../../prop-types.js";
+import {PageType} from "../../const.js";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
 
 
 export const Catalog = (props) => {
-  const {films, isMoviePage, onSmallMovieCardHover, onSmallMovieCardClick} = props;
+  const {films, activePage, onSmallMovieCardHover, onSmallMovieCardClick} = props;
 
   const handleGenreClick = () => {};
 
@@ -26,7 +27,7 @@ export const Catalog = (props) => {
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      {!isMoviePage &&
+      {activePage === PageType.MAIN_INDEX &&
         <ul className="catalog__genres-list">
           {
             genreNames.map((genreName, index) =>
@@ -52,7 +53,7 @@ export const Catalog = (props) => {
         }
       </div>
 
-      {!isMoviePage && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
+      {activePage === PageType.MAIN_INDEX && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
     </section>
   );
 };
@@ -60,7 +61,7 @@ export const Catalog = (props) => {
 
 Catalog.propTypes = {
   films: PropTypes.arrayOf(MoviePropType).isRequired,
-  isMoviePage: PropTypes.bool.isRequired,
+  activePage: PropTypes.string.isRequired,
   onSmallMovieCardHover: PropTypes.func.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
 };

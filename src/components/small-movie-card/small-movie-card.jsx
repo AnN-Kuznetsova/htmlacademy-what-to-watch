@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import {DELAY_PLAYBACK_PREVIEW} from "../../const.js";
 import {MoviePropType} from "../../prop-types.js";
-import {VideoPlayer} from "../video-player/video-player.jsx";
+import {VideoPlayerMode} from "../../hocs/with-video-player/with-video-player.jsx";
 
 const src = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 
 export const SmallMovieCard = (props) => {
-  const {movie, onClick, onHover} = props;
+  const {movie, onClick, onHover, renderVideoPlayer/* , changeMoviePlaingStatus */} = props;
   const {title, smallPictureUrl} = movie;
   let timer = null;
 
@@ -17,7 +17,7 @@ export const SmallMovieCard = (props) => {
 
   const _finishPlayingPreview = () => {
     console.log(`finish playing`);
-  }
+  };
 
   const _handleCardClick = (event) => {
     event.preventDefault();
@@ -42,14 +42,7 @@ export const SmallMovieCard = (props) => {
       onClick={_handleCardClick}
     >
       <div className="small-movie-card__image">
-        <VideoPlayer
-          src={src}
-          posterUrl={smallPictureUrl}
-          isFullScreen={false}
-          isPlaying={false}
-          isSound={false}
-          videoHeight={175}
-        />
+        {renderVideoPlayer(src, smallPictureUrl, VideoPlayerMode.PREVIEW)}
 
         <img
           src={smallPictureUrl}
@@ -71,4 +64,6 @@ SmallMovieCard.propTypes = {
   movie: MoviePropType.isRequired,
   onClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
+  renderVideoPlayer: PropTypes.func.isRequired,
+  //changeMoviePlaingStatus: PropTypes.func.isRequired,
 };

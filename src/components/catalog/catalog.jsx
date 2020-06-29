@@ -6,7 +6,10 @@ import {PageType} from "../../const.js";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
+import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player.jsx";
 
+
+const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
 
 export const Catalog = (props) => {
   const {films, activePage, onSmallMovieCardHover, onSmallMovieCardClick} = props;
@@ -47,7 +50,7 @@ export const Catalog = (props) => {
       <div className="catalog__movies-list">
         {
           films.map((movie, index) =>
-            <SmallMovieCard
+            <SmallMovieCardWithVideoPlayer
               key={movie.title + index}
               movie={movie}
               onClick={handleSmallMovieCardClick}

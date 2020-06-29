@@ -117,5 +117,5 @@ VideoPlayer.propTypes = {
   isFullScreen: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   isSound: PropTypes.bool.isRequired,
-  // onPlayButtonClick: PropTypes.func.isRequired,
+  //onPlayButtonClick: PropTypes.func.isRequired,
 };

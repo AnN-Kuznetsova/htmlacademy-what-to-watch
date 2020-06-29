@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {DELAY_PLAYBACK_PREVIEW} from "../../const.js";
 import {MoviePropType} from "../../prop-types.js";
 import {VideoPlayer} from "../video-player/video-player.jsx";
 
@@ -8,21 +9,37 @@ const src = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_
 export const SmallMovieCard = (props) => {
   const {movie, onClick, onHover} = props;
   const {title, smallPictureUrl} = movie;
+  let timer = null;
 
-  const handleCardClick = (event) => {
+  const _startPlayingPreview = () => {
+    console.log(`start playing`);
+  };
+
+  const _finishPlayingPreview = () => {
+    console.log(`finish playing`);
+  }
+
+  const _handleCardClick = (event) => {
     event.preventDefault();
     onClick();
   };
 
-  const handleCardHover = () => {
+  const _handleCardHover = () => {
     onHover(movie);
+    timer = setTimeout(_startPlayingPreview, DELAY_PLAYBACK_PREVIEW);
+  };
+
+  const _handleCardLeave = () => {
+    clearTimeout(timer);
+    _finishPlayingPreview();
   };
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={handleCardHover}
-      onClick={handleCardClick}
+      onMouseEnter={_handleCardHover}
+      onMouseLeave={_handleCardLeave}
+      onClick={_handleCardClick}
     >
       <div className="small-movie-card__image">
         <VideoPlayer

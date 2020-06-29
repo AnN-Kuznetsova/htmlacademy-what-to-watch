@@ -14,7 +14,7 @@ export const withVideoPlayer = (Component) => {
       super(props);
 
       this.state = {
-        isPlaying: true, //this.props,
+        isPlaying: false, //this.props,
       };
     }
 
@@ -31,6 +31,18 @@ export const withVideoPlayer = (Component) => {
         default:
           return null;
       }
+    }
+
+    /* _changeMoviePlayingStatus() {
+      this.setState((prevState) => ({
+        isPlaying: !prevState.isPlaying,
+      }));
+    } */
+
+    _setMoviePlayingStatus(isPlaying) {
+      this.setState({
+        isPlaying,
+      });
     }
 
     _renderPlayer(src, posterUrl, playerMode) {
@@ -54,6 +66,7 @@ export const withVideoPlayer = (Component) => {
         <Component
           {...this.props}
           renderVideoPlayer={this._renderPlayer.bind(this)}
+          setMoviePlayingStatus={this._setMoviePlayingStatus.bind(this)}
         />
       );
     }

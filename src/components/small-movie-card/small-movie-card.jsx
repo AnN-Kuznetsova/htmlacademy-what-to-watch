@@ -7,17 +7,9 @@ import {VideoPlayerMode} from "../../hocs/with-video-player/with-video-player.js
 const src = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 
 export const SmallMovieCard = (props) => {
-  const {movie, onClick, onHover, renderVideoPlayer/* , changeMoviePlaingStatus */} = props;
+  const {movie, onClick, onHover, renderVideoPlayer, setMoviePlayingStatus} = props;
   const {title, smallPictureUrl} = movie;
   let timer = null;
-
-  const _startPlayingPreview = () => {
-    console.log(`start playing`);
-  };
-
-  const _finishPlayingPreview = () => {
-    console.log(`finish playing`);
-  };
 
   const _handleCardClick = (event) => {
     event.preventDefault();
@@ -26,12 +18,15 @@ export const SmallMovieCard = (props) => {
 
   const _handleCardHover = () => {
     onHover(movie);
-    timer = setTimeout(_startPlayingPreview, DELAY_PLAYBACK_PREVIEW);
+    timer = setTimeout(
+        setMoviePlayingStatus.bind(null, true),
+        DELAY_PLAYBACK_PREVIEW
+    );
   };
 
   const _handleCardLeave = () => {
     clearTimeout(timer);
-    _finishPlayingPreview();
+    setMoviePlayingStatus(false);
   };
 
   return (
@@ -65,5 +60,5 @@ SmallMovieCard.propTypes = {
   onClick: PropTypes.func.isRequired,
   onHover: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
-  //changeMoviePlaingStatus: PropTypes.func.isRequired,
+  setMoviePlayingStatus: PropTypes.func.isRequired,
 };

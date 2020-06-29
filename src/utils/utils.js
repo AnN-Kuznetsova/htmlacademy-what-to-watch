@@ -23,7 +23,7 @@ const getLimitedNumberOfArrayElementsToString = (array, elementsCount = array.le
 };
 
 
-const getScoreFormat = (score) => {
+const getFormattedScore = (score) => {
   if (score - Math.floor(score) !== 0) {
     return score.toString().replace(`.`, `,`);
   }
@@ -53,5 +53,5 @@ const getRatingDescription = (score) => {
 export {
   getLimitedNumberOfArrayElementsToString,
   getRatingDescription,
-  getScoreFormat,
+  getFormattedScore,
 };

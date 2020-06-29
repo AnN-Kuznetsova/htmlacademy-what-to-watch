@@ -5,7 +5,7 @@ import {NUMBER_OF_ELEMENTS_IN_LINE, PageType} from "../../const.js";
 import {
   getRatingDescription,
   getLimitedNumberOfArrayElementsToString,
-  getScoreFormat
+  getFormattedScore
 } from "../../utils/utils.js";
 
 
@@ -41,7 +41,7 @@ export const MovieCard = (props) => {
   const genre = genres[0];
   const directorValue = getLimitedNumberOfArrayElementsToString(directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`);
   const starringValue = getLimitedNumberOfArrayElementsToString(starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`);
-  const scoreValue = getScoreFormat(score);
+  const scoreValue = getFormattedScore(score);
   const ratingDescription = getRatingDescription(score);
 
   const descriptionMarkup = description.map((descriptionItem, index) =>

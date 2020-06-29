@@ -11,13 +11,19 @@ const props = {
   onHover: () => {},
 };
 
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
+};
+
 const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
 
 
 describe(`Render SmallMovieCard`, () => {
   it(`Should match with snapshot`, () => {
     const smallMovieCardSnapshot = renderer.create(
-        <SmallMovieCard {...props} />
+        <SmallMovieCard {...props} />, nodeMock
     ).toJSON();
 
     expect(smallMovieCardSnapshot).toMatchSnapshot();

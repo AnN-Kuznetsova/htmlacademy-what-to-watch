@@ -3,6 +3,7 @@ const promoMovie = {
   smallPictureUrl: ``,
   backgroundUrl: `img/bg-the-grand-budapest-hotel.jpg`,
   posterUrl: `img/the-grand-budapest-hotel-poster.jpg`,
+  previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   genres: [`Drama`, `Comedy`],
   releaseDate: new Date(2014, 0),
   description: [
@@ -39,6 +40,7 @@ const films = [
     smallPictureUrl: `img/bohemian-rhapsody.jpg`,
     backgroundUrl: `img/bohemian-rhapsody.jpg`,
     posterUrl: `img/bohemian-rhapsody.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Drama`, `Biography`],
     releaseDate: new Date(2018, 0),
     description: [
@@ -77,6 +79,7 @@ const films = [
     smallPictureUrl: `img/aviator.jpg`,
     backgroundUrl: `img/aviator.jpg`,
     posterUrl: `img/aviator.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Drama`, `Biography`],
     releaseDate: new Date(2004, 0),
     description: [
@@ -110,6 +113,7 @@ const films = [
     smallPictureUrl: `img/revenant.jpg`,
     backgroundUrl: `img/revenant.jpg`,
     posterUrl: `img/revenant.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Drama`, `Biography`, `Adventure`, `Western`, `Action`],
     releaseDate: new Date(2015, 0),
     description: [
@@ -143,6 +147,7 @@ const films = [
     smallPictureUrl: `img/johnny-english.jpg`,
     backgroundUrl: `img/johnny-english.jpg`,
     posterUrl: `img/johnny-english.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Comedy`, `Action`, `Comedy`, `Adventure`],
     releaseDate: new Date(2003, 0),
     description: [
@@ -176,6 +181,7 @@ const films = [
     smallPictureUrl: `img/shutter-island.jpg`,
     backgroundUrl: `img/shutter-island.jpg`,
     posterUrl: `img/shutter-island.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Drama`, `Thriller`, `Detective`],
     releaseDate: new Date(2009, 0),
     description: [
@@ -208,6 +214,7 @@ const films = [
     smallPictureUrl: `img/pulp-fiction.jpg`,
     backgroundUrl: `img/pulp-fiction.jpg`,
     posterUrl: `img/pulp-fiction.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Thriller`, `Comedy`, `Crime`],
     releaseDate: new Date(1994, 0),
     description: [
@@ -242,6 +249,7 @@ const films = [
     smallPictureUrl: `img/seven-years-in-tibet.jpg`,
     backgroundUrl: `img/seven-years-in-tibet.jpg`,
     posterUrl: `img/seven-years-in-tibet.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Drama`, `Adventure`, `Military`, `Biography`, `History`],
     releaseDate: new Date(1997, 0),
     description: [
@@ -277,6 +285,7 @@ const films = [
     smallPictureUrl: `img/snatch.jpg`,
     backgroundUrl: `img/snatch.jpg`,
     posterUrl: `img/snatch.jpg`,
+    previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     genres: [`Action`, `Comedy`, `Crime`],
     releaseDate: new Date(2000, 0),
     description: [

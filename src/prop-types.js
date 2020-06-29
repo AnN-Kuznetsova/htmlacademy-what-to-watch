@@ -6,6 +6,7 @@ export const MoviePropType = PropTypes.shape({
   smallPictureUrl: PropTypes.string.isRequired,
   backgroundUrl: PropTypes.string.isRequired,
   posterUrl: PropTypes.string.isRequired,
+  previewUrl: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   releaseDate: PropTypes.instanceOf(Date).isRequired,
   description: PropTypes.arrayOf(PropTypes.string).isRequired,

@@ -14,11 +14,17 @@ const props = {
   onCurrentMovieClick: () => {},
 };
 
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
+};
+
 
 describe(`Render MainPage`, () => {
   it(`Should match with snapshot when active page is MAIN_INDEX`, () => {
     const mainPageSnapshot = renderer.create(
-        <MainPage {...props} />
+        <MainPage {...props} />, nodeMock
     ).toJSON();
 
     expect(mainPageSnapshot).toMatchSnapshot();
@@ -29,7 +35,7 @@ describe(`Render MainPage`, () => {
     props.activePage = PageType.MAIN_MOVIE_DETAILS;
 
     const mainPageSnapshot = renderer.create(
-        <MainPage {...props} />
+        <MainPage {...props} />, nodeMock
     ).toJSON();
 
     expect(mainPageSnapshot).toMatchSnapshot();

@@ -9,11 +9,17 @@ const props = {
   films,
 };
 
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
+};
+
 
 describe(`Render App`, () => {
   it(`Should match with snapshot`, () => {
     const appSnapshot = renderer.create(
-        <App {...props} />
+        <App {...props} />, nodeMock
     ).toJSON();
 
     expect(appSnapshot).toMatchSnapshot();

@@ -134,6 +134,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/bohemian-rhapsody.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Bohemian Rhapsody"
           height="175"
@@ -160,6 +174,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/aviator.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Aviator"
           height="175"
@@ -186,6 +214,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/revenant.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Revenant"
           height="175"
@@ -212,6 +254,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/johnny-english.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Johnny English"
           height="175"
@@ -238,6 +294,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/shutter-island.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Shutter Island"
           height="175"
@@ -264,6 +334,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/pulp-fiction.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Pulp Fiction"
           height="175"
@@ -290,6 +374,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/seven-years-in-tibet.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Seven Years in Tibet"
           height="175"
@@ -316,6 +414,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/snatch.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Snatch"
           height="175"
@@ -369,6 +481,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/bohemian-rhapsody.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Bohemian Rhapsody"
           height="175"
@@ -395,6 +521,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/aviator.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Aviator"
           height="175"
@@ -421,6 +561,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/revenant.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Revenant"
           height="175"
@@ -447,6 +601,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/johnny-english.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Johnny English"
           height="175"
@@ -473,6 +641,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/shutter-island.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Shutter Island"
           height="175"
@@ -499,6 +681,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/pulp-fiction.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Pulp Fiction"
           height="175"
@@ -525,6 +721,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/seven-years-in-tibet.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Seven Years in Tibet"
           height="175"
@@ -551,6 +761,20 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       <div
         className="small-movie-card__image"
       >
+        <div
+          className=""
+        >
+          <video
+            autoPlay={false}
+            className="player__video"
+            poster="img/snatch.jpg"
+            style={
+              Object {
+                "height": 175,
+              }
+            }
+          />
+        </div>
         <img
           alt="Snatch"
           height="175"

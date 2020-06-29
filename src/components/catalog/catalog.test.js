@@ -12,11 +12,17 @@ const props = {
   onSmallMovieCardClick: () => {},
 };
 
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
+};
+
 
 describe(`Render Catalog`, () => {
   it(`Should match with snapshot when active page is MAIN_INDEX`, () => {
     const catalogSnapshot = renderer.create(
-        <Catalog {...props} />
+        <Catalog {...props} />, nodeMock
     ).toJSON();
 
     expect(catalogSnapshot).toMatchSnapshot();
@@ -27,7 +33,7 @@ describe(`Render Catalog`, () => {
     props.activePage = PageType.MAIN_MOVIE_DETAILS;
 
     const catalogSnapshot = renderer.create(
-        <Catalog {...props} />
+        <Catalog {...props} />, nodeMock
     ).toJSON();
 
     expect(catalogSnapshot).toMatchSnapshot();

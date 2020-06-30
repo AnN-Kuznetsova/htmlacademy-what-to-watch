@@ -5,11 +5,10 @@ import {MoviePropType} from "../../prop-types.js";
 import {VideoPlayerMode} from "../video-player/video-player.jsx";
 import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player.jsx";
 
-const src = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 
 export const SmallMovieCard = (props) => {
   const {movie, onClick, onHover, renderVideoPlayer, setVideoPlayerStatus} = props;
-  const {title, smallPictureUrl} = movie;
+  const {title, smallPictureUrl, previewUrl} = movie;
   let timer = null;
 
   const _handleCardClick = (event) => {
@@ -38,7 +37,7 @@ export const SmallMovieCard = (props) => {
       onClick={_handleCardClick}
     >
       <div className="small-movie-card__image">
-        {renderVideoPlayer(src, smallPictureUrl, VideoPlayerMode.PREVIEW)}
+        {renderVideoPlayer(previewUrl, smallPictureUrl, VideoPlayerMode.PREVIEW)}
 
         <img
           src={smallPictureUrl}

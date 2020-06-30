@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {VideoPlayer, VideoPlayerMode} from '../../components/video-player/video-player.jsx';
+import {VideoPlayer, VideoPlayerMode, VideoPlayerStatus} from '../../components/video-player/video-player.jsx';
 
 
 export const withVideoPlayer = (Component) => {
@@ -8,7 +8,8 @@ export const withVideoPlayer = (Component) => {
       super(props);
 
       this.state = {
-        isPlaying: null,
+        //isPlaying: null,
+        playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
       };
     }
 
@@ -27,14 +28,15 @@ export const withVideoPlayer = (Component) => {
       }
     }
 
-    _setMoviePlayingStatus(isPlaying) {
+    _setVideoPlayerStatus(newPlayerStatus) {
       this.setState({
-        isPlaying,
+        //isPlaying,
+        playerStatus: newPlayerStatus,
       });
     }
 
     _renderPlayer(src, posterUrl, playerMode) {
-      const {isPlaying} = this.state;
+      const {/* isPlaying */ playerStatus} = this.state;
       const options = this._getPlayerOptions(playerMode);
 
 
@@ -44,7 +46,9 @@ export const withVideoPlayer = (Component) => {
           posterUrl={posterUrl}
           videoHeight={options.videoHeight}
           isFullScreen={options.isFullScreen}
-          isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
+          //isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
+          playerStatus={playerStatus}
+          isAutoPlay={options.isAutoPlay}
           isSound={options.isSound}
         />
       );
@@ -55,7 +59,7 @@ export const withVideoPlayer = (Component) => {
         <Component
           {...this.props}
           renderVideoPlayer={this._renderPlayer.bind(this)}
-          setMoviePlayingStatus={this._setMoviePlayingStatus.bind(this)}
+          setVideoPlayerStatus={this._setVideoPlayerStatus.bind(this)}
         />
       );
     }

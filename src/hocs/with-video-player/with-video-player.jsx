@@ -1,11 +1,5 @@
 import React, {PureComponent} from 'react';
-import {VideoPlayer} from '../../components/video-player/video-player.jsx';
-
-
-export const VideoPlayerMode = {
-  PREVIEW: `preview`,
-  FULL_SCREEN: `full-screen`,
-};
+import {VideoPlayer, VideoPlayerMode} from '../../components/video-player/video-player.jsx';
 
 
 export const withVideoPlayer = (Component) => {
@@ -14,7 +8,7 @@ export const withVideoPlayer = (Component) => {
       super(props);
 
       this.state = {
-        isPlaying: false, //this.props,
+        isPlaying: null,
       };
     }
 
@@ -23,7 +17,7 @@ export const withVideoPlayer = (Component) => {
         case VideoPlayerMode.PREVIEW:
           return {
             isFullScreen: false,
-            isPlaying: false,
+            isAutoPlay: false,
             isSound: false,
             videoHeight: 175,
           };
@@ -32,12 +26,6 @@ export const withVideoPlayer = (Component) => {
           return null;
       }
     }
-
-    /* _changeMoviePlayingStatus() {
-      this.setState((prevState) => ({
-        isPlaying: !prevState.isPlaying,
-      }));
-    } */
 
     _setMoviePlayingStatus(isPlaying) {
       this.setState({
@@ -49,13 +37,14 @@ export const withVideoPlayer = (Component) => {
       const {isPlaying} = this.state;
       const options = this._getPlayerOptions(playerMode);
 
+
       return (
         <VideoPlayer
           src={src}
           posterUrl={posterUrl}
           videoHeight={options.videoHeight}
           isFullScreen={options.isFullScreen}
-          isPlaying={isPlaying}
+          isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
           isSound={options.isSound}
         />
       );

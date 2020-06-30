@@ -2,6 +2,12 @@ import PropTypes from "prop-types";
 import React, {PureComponent, createRef} from "react";
 
 
+export const VideoPlayerMode = {
+  PREVIEW: `preview`,
+  FULL_SCREEN: `full-screen`,
+};
+
+
 export class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);

@@ -1,5 +1,12 @@
 import React, {PureComponent} from 'react';
-import {VideoPlayer, VideoPlayerMode, VideoPlayerStatus} from '../../components/video-player/video-player.jsx';
+import {VideoPlayer, VideoPlayerMode} from '../../components/video-player/video-player.jsx';
+
+
+export const VideoPlayerStatus = {
+  ON_AUTOPLAY: `on-autoplay`,
+  ON_PLAY: `on-play`,
+  ON_PAUSE: `on-pause`,
+};
 
 
 export const withVideoPlayer = (Component) => {
@@ -8,7 +15,6 @@ export const withVideoPlayer = (Component) => {
       super(props);
 
       this.state = {
-        //isPlaying: null,
         playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
       };
     }
@@ -30,15 +36,26 @@ export const withVideoPlayer = (Component) => {
 
     _setVideoPlayerStatus(newPlayerStatus) {
       this.setState({
-        //isPlaying,
         playerStatus: newPlayerStatus,
       });
     }
 
-    _renderPlayer(src, posterUrl, playerMode) {
-      const {/* isPlaying */ playerStatus} = this.state;
-      const options = this._getPlayerOptions(playerMode);
+    _getPlayingValue() {
+      switch (this.state.playerStatus) {
+        case VideoPlayerStatus.ON_AUTOPLAY:
+          return null;
+        case VideoPlayerStatus.ON_PLAY:
+          return true;
+        case VideoPlayerStatus.ON_PAUSE:
+          return false;
+        default:
+          throw new Error(`Unknown type of playing state.`);
+      }
+    }
 
+    _renderPlayer(src, posterUrl, playerMode) {
+      const options = this._getPlayerOptions(playerMode);
+      const isPlaying = this._getPlayingValue();
 
       return (
         <VideoPlayer
@@ -46,9 +63,7 @@ export const withVideoPlayer = (Component) => {
           posterUrl={posterUrl}
           videoHeight={options.videoHeight}
           isFullScreen={options.isFullScreen}
-          //isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
-          playerStatus={playerStatus}
-          isAutoPlay={options.isAutoPlay}
+          isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
           isSound={options.isSound}
         />
       );

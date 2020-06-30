@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import {DELAY_PLAYBACK_PREVIEW} from "../../const.js";
 import {MoviePropType} from "../../prop-types.js";
-import {VideoPlayerMode, VideoPlayerStatus} from "../video-player/video-player.jsx";
+import {VideoPlayerMode} from "../video-player/video-player.jsx";
+import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player.jsx";
 
 const src = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 
@@ -19,14 +20,14 @@ export const SmallMovieCard = (props) => {
   const _handleCardHover = () => {
     onHover(movie);
     timer = setTimeout(
-        setVideoPlayerStatus.bind(null, VideoPlayerStatus.ON_PLAY /* true */),
+        setVideoPlayerStatus.bind(null, VideoPlayerStatus.ON_PLAY),
         DELAY_PLAYBACK_PREVIEW
     );
   };
 
   const _handleCardLeave = () => {
     clearTimeout(timer);
-    setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE /* false */);
+    setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
   };
 
   return (

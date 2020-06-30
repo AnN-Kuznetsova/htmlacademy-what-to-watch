@@ -7,12 +7,6 @@ export const VideoPlayerMode = {
   FULL_SCREEN: `full-screen`,
 };
 
-export const VideoPlayerStatus = {
-  ON_AUTOPLAY: `on-autoplay`,
-  ON_PLAY: `on-play`,
-  ON_PAUSE: `on-pause`,
-};
-
 
 export class VideoPlayer extends PureComponent {
   constructor(props) {
@@ -23,11 +17,8 @@ export class VideoPlayer extends PureComponent {
     this.state = {
       progress: 0,
       isLoading: true,
-      //isPlaying: null, //props.isPlaying,
-      playerStatus: props.playerStatus,
+      isPlaying: props.isPlaying,
     };
-
-    this._isPlaying = null;
   }
 
   componentDidMount() {
@@ -42,13 +33,11 @@ export class VideoPlayer extends PureComponent {
     });
 
     video.onplay = () => this.setState({
-      playerStatus: VideoPlayerStatus.ON_PLAY,
-      //isPlaying: true,
+      isPlaying: true,
     });
 
     video.onpause = () => this.setState({
-      //isPlaying: false,
-      playerStatus: VideoPlayerStatus.ON_PAUSE,
+      isPlaying: false,
     });
 
     video.ontimeupdate = () => this.setState({
@@ -59,25 +48,10 @@ export class VideoPlayer extends PureComponent {
   componentDidUpdate() {
     const video = this._videoRef.current;
 
-    /* if (this.props.isPlaying) {
+    if (this.props.isPlaying) {
       video.play();
     } else {
       video.pause();
-    } */
-    switch (this.props.playerStatus) {
-      case VideoPlayerStatus.ON_AUTOPLAY:
-        this._isPlaying = this.props.isAutoPlay;
-        break;
-      case VideoPlayerStatus.ON_PLAY:
-        video.play();
-        this._isPlaying = true;
-        break;
-      case VideoPlayerStatus.ON_PAUSE:
-        video.pause();
-        this._isPlaying = false;
-        break;
-      default:
-        throw new Error(`Unknown type of playing state.`);
     }
   }
 
@@ -92,7 +66,7 @@ export class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const {isLoading} = this.state;
+    const {isLoading, isPlaying} = this.state;
     const {posterUrl, videoHeight, isFullScreen} = this.props;
 
     return (
@@ -101,7 +75,7 @@ export class VideoPlayer extends PureComponent {
           className="player__video"
           ref={this._videoRef}
           poster={posterUrl}
-          autoPlay={this._isPlaying}
+          autoPlay={isPlaying}
           style={{height: videoHeight}}
         >
         </video>
@@ -147,9 +121,7 @@ VideoPlayer.propTypes = {
   posterUrl: PropTypes.string.isRequired,
   videoHeight: PropTypes.number.isRequired,
   isFullScreen: PropTypes.bool.isRequired,
-  //isPlaying: PropTypes.bool.isRequired,
-  playerStatus: PropTypes.string.isRequired,
-  isAutoPlay: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
   isSound: PropTypes.bool.isRequired,
   //onPlayButtonClick: PropTypes.func.isRequired,
 };

@@ -17,7 +17,6 @@ export class VideoPlayer extends PureComponent {
     this.state = {
       progress: 0,
       isLoading: true,
-      isPlaying: props.isPlaying,
     };
   }
 
@@ -28,16 +27,10 @@ export class VideoPlayer extends PureComponent {
     video.src = src;
     video.muted = !isSound;
 
+    this._returnVideoElement.call(this, video);
+
     video.oncanplaythrough = () => this.setState({
       isLoading: false,
-    });
-
-    video.onplay = () => this.setState({
-      isPlaying: true,
-    });
-
-    video.onpause = () => this.setState({
-      isPlaying: false,
     });
 
     video.ontimeupdate = () => this.setState({
@@ -65,9 +58,13 @@ export class VideoPlayer extends PureComponent {
     video.src = ``;
   }
 
+  _returnVideoElement(videoElement) {
+    this.props.getVideoElement(videoElement);
+  }
+
   render() {
-    const {isLoading, isPlaying} = this.state;
-    const {posterUrl, videoHeight, isFullScreen} = this.props;
+    // const {isLoading} = this.state;
+    const {posterUrl, videoHeight, isFullScreen, isPlaying} = this.props;
 
     return (
       <div className={isFullScreen ? `player` : ``}>
@@ -123,5 +120,5 @@ VideoPlayer.propTypes = {
   isFullScreen: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   isSound: PropTypes.bool.isRequired,
-  //onPlayButtonClick: PropTypes.func.isRequired,
+  getVideoElement: PropTypes.func.isRequired,
 };

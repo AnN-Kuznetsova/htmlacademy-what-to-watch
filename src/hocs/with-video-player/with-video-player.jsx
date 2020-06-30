@@ -6,6 +6,7 @@ export const VideoPlayerStatus = {
   ON_AUTOPLAY: `on-autoplay`,
   ON_PLAY: `on-play`,
   ON_PAUSE: `on-pause`,
+  ON_RESET: `on-reset`,
 };
 
 
@@ -17,6 +18,9 @@ export const withVideoPlayer = (Component) => {
       this.state = {
         playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
       };
+
+      this._playerMode = null;
+      this._videoElement = null;
     }
 
     _getPlayerOptions(playerMode) {
@@ -37,7 +41,18 @@ export const withVideoPlayer = (Component) => {
     _setVideoPlayerStatus(newPlayerStatus) {
       this.setState({
         playerStatus: newPlayerStatus,
+      }, () => {
+        if (this.state.playerStatus === VideoPlayerStatus.ON_PAUSE && this._playerMode === VideoPlayerMode.PREVIEW) {
+          this._videoElement.load();
+          this.setState({
+            playerStatus: VideoPlayerStatus.ON_RESET,
+          });
+        }
       });
+    }
+
+    _getVideoElement(videoElement) {
+      this._videoElement = videoElement;
     }
 
     _getPlayingValue() {
@@ -47,6 +62,7 @@ export const withVideoPlayer = (Component) => {
         case VideoPlayerStatus.ON_PLAY:
           return true;
         case VideoPlayerStatus.ON_PAUSE:
+        case VideoPlayerStatus.ON_RESET:
           return false;
         default:
           throw new Error(`Unknown type of playing state.`);
@@ -57,6 +73,8 @@ export const withVideoPlayer = (Component) => {
       const options = this._getPlayerOptions(playerMode);
       const isPlaying = this._getPlayingValue();
 
+      this._playerMode = playerMode;
+
       return (
         <VideoPlayer
           src={src}
@@ -65,6 +83,7 @@ export const withVideoPlayer = (Component) => {
           isFullScreen={options.isFullScreen}
           isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
           isSound={options.isSound}
+          getVideoElement={this._getVideoElement.bind(this)}
         />
       );
     }

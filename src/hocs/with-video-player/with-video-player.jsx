@@ -27,7 +27,6 @@ export const withVideoPlayer = (Component) => {
       switch (playerMode) {
         case VideoPlayerMode.PREVIEW:
           return {
-            isFullScreen: false,
             isAutoPlay: false,
             isSound: false,
             videoHeight: 175,
@@ -80,7 +79,7 @@ export const withVideoPlayer = (Component) => {
           src={src}
           posterUrl={posterUrl}
           videoHeight={options.videoHeight}
-          isFullScreen={options.isFullScreen}
+          playerMode={playerMode}
           isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
           isSound={options.isSound}
           getVideoElement={this._getVideoElement.bind(this)}

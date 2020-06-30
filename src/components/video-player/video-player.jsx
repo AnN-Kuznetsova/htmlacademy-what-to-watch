@@ -64,7 +64,8 @@ export class VideoPlayer extends PureComponent {
 
   render() {
     // const {isLoading} = this.state;
-    const {posterUrl, videoHeight, isFullScreen, isPlaying} = this.props;
+    const {posterUrl, videoHeight, playerMode, isPlaying} = this.props;
+    const isFullScreen = playerMode === VideoPlayerMode.FULL_SCREEN;
 
     return (
       <div className={isFullScreen ? `player` : ``}>
@@ -117,7 +118,7 @@ VideoPlayer.propTypes = {
   src: PropTypes.string.isRequired,
   posterUrl: PropTypes.string.isRequired,
   videoHeight: PropTypes.number.isRequired,
-  isFullScreen: PropTypes.bool.isRequired,
+  playerMode: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   isSound: PropTypes.bool.isRequired,
   getVideoElement: PropTypes.func.isRequired,

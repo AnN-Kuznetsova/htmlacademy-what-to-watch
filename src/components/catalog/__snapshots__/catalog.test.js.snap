@@ -130,6 +130,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -170,6 +171,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -210,6 +212,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -250,6 +253,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -290,6 +294,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -330,6 +335,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -370,6 +376,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -410,6 +417,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_INDE
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -477,6 +485,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -517,6 +526,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -557,6 +567,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -597,6 +608,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -637,6 +649,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -677,6 +690,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -717,6 +731,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"
@@ -757,6 +772,7 @@ exports[`Render Catalog Should match with snapshot when active page is MAIN_MOVI
       className="small-movie-card catalog__movies-card"
       onClick={[Function]}
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       <div
         className="small-movie-card__image"

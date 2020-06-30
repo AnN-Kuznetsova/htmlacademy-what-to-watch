@@ -5,24 +5,11 @@ exports[`Render SmallMovieCard Should match with snapshot 1`] = `
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
   onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <div
-      className=""
-    >
-      <video
-        autoPlay={false}
-        className="player__video"
-        poster="img/aviator.jpg"
-        style={
-          Object {
-            "height": 175,
-          }
-        }
-      />
-    </div>
     <img
       alt="Aviator"
       height="175"

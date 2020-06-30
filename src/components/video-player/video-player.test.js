@@ -3,6 +3,11 @@ import renderer from "react-test-renderer";
 import {VideoPlayer} from "./video-player";
 
 
+const VideoPlayerMode = {
+  PREVIEW: `preview`,
+  FULL_SCREEN: `full-screen`,
+};
+
 const videoTrack = {
   src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   smallPictureUrl: `img/snatch.jpg`,
@@ -11,10 +16,11 @@ const videoTrack = {
 const props = {
   src: videoTrack.src,
   posterUrl: videoTrack.smallPictureUrl,
-  isFullScreen: false,
+  videoHeight: 175,
+  playerMode: VideoPlayerMode.PREVIEW,
   isPlaying: false,
   isSound: false,
-  videoHeight: 175,
+  getVideoElement: () => {},
 };
 
 const nodeMock = {

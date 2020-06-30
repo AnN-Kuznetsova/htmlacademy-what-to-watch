@@ -15,6 +15,8 @@ const props = {
   movie: films[1],
   onClick,
   onHover,
+  renderVideoPlayer: () => {},
+  setVideoPlayerStatus: () => {},
 };
 
 const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);

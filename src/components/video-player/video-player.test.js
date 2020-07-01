@@ -1,12 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {VideoPlayer} from "./video-player";
+import {VideoPlayerMode} from "../../__test-data__/test-mocks.js";
 
-
-const VideoPlayerMode = {
-  PREVIEW: `preview`,
-  FULL_SCREEN: `full-screen`,
-};
 
 const videoTrack = {
   src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,

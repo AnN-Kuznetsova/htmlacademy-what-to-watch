@@ -7,5 +7,6 @@ Enzyme.configure({
 
 const noop = () => {};
 Object.defineProperty(window, `scrollTo`, {value: noop, writable: true});
+Object.defineProperty(HTMLMediaElement.prototype, `play`, {value: noop, writable: true});
 Object.defineProperty(HTMLMediaElement.prototype, `pause`, {value: noop, writable: true});
 Object.defineProperty(HTMLMediaElement.prototype, `load`, {value: noop, writable: true});

@@ -316,6 +316,11 @@ const films = [
   },
 ];
 
+const VideoPlayerMode = {
+  PREVIEW: `preview`,
+  FULL_SCREEN: `full-screen`,
+};
+
 const genreNames = [
   `All genres`,
   `Comedies`,
@@ -331,6 +336,7 @@ const genreNames = [
 
 
 export {
+  VideoPlayerMode,
   genreNames,
   promoMovie,
   films,

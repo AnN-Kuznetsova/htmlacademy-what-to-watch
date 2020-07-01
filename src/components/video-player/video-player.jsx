@@ -52,8 +52,6 @@ export class VideoPlayer extends PureComponent {
     const video = this._videoRef.current;
 
     video.oncanplaythrough = null;
-    video.onplay = null;
-    video.onpause = null;
     video.ontimeupdate = null;
     video.src = ``;
   }
@@ -63,7 +61,6 @@ export class VideoPlayer extends PureComponent {
   }
 
   render() {
-    // const {isLoading} = this.state;
     const {posterUrl, videoHeight, playerMode, isPlaying} = this.props;
     const isFullScreen = playerMode === VideoPlayerMode.FULL_SCREEN;
 

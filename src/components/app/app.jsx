@@ -45,6 +45,8 @@ export class App extends PureComponent {
     const {films} = this.props;
     const {activePage, activeMovie} = this.state;
 
+    window.scrollTo(0, 0);
+
     switch (activePage) {
       case PageType.MAIN_INDEX:
       case PageType.MAIN_MOVIE_DETAILS:

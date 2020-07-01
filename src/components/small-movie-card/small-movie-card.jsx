@@ -11,8 +11,19 @@ export const SmallMovieCard = (props) => {
   const {title, smallPictureUrl, previewUrl} = movie;
   let timer = null;
 
+  const _cancelCardHover = () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    if (VideoPlayerStatus.ON_PLAY) {
+      setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
+    }
+  };
+
   const _handleCardClick = (event) => {
     event.preventDefault();
+    _cancelCardHover();
     onClick();
   };
 
@@ -25,8 +36,7 @@ export const SmallMovieCard = (props) => {
   };
 
   const _handleCardLeave = () => {
-    clearTimeout(timer);
-    setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
+    _cancelCardHover();
   };
 
   return (

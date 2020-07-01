@@ -28,6 +28,10 @@ export const MainPage = (props) => {
     onCurrentMovieClick();
   };
 
+  const getFilmsForCatalog = (movies) => {
+    return movies.filter((movie) => movie !== currentMovie);
+  };
+
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -67,7 +71,7 @@ export const MainPage = (props) => {
 
       <div className="page-content">
         <Catalog
-          films={films}
+          films={getFilmsForCatalog(films)}
           activePage={activePage}
           onSmallMovieCardHover={handleSmallMovieCardHover}
           onSmallMovieCardClick={handleSmallMovieCardClick}

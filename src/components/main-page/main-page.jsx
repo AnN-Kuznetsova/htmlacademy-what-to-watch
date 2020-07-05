@@ -16,8 +16,8 @@ export const MainPage = (props) => {
     onCurrentMovieClick,
   } = props;
 
-  const handleSmallMovieCardHover = (activeMovie) => {
-    onSmallMovieCardHover(activeMovie);
+  const handleSmallMovieCardHover = (hoverMovie) => {
+    onSmallMovieCardHover(hoverMovie);
   };
 
   const handleSmallMovieCardClick = () => {

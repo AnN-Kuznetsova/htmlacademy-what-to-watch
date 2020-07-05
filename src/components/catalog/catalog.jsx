@@ -48,7 +48,7 @@ export const Catalog = (props) => {
         {
           films.map((movie, index) =>
             <SmallMovieCard
-              key={movie + index}
+              key={movie.title + index}
               movie={movie}
               onClick={handleSmallMovieCardClick}
               onHover={handleSmallMovieCardHover}

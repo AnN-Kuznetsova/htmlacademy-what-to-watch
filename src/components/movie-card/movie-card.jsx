@@ -4,7 +4,7 @@ import {MoviePropType} from "../../prop-types";
 import {NUMBER_OF_ELEMENTS_IN_LINE, PageType} from "../../const.js";
 import {
   getRatingDescription,
-  getLimitedNumberOfArrayElementsToString,
+  getStringFromLimitedNumbersOfArrayElements,
   getFormattedScore
 } from "../../utils/utils.js";
 
@@ -39,8 +39,8 @@ export const MovieCard = (props) => {
 
   const movieReleaseYear = releaseDate.getFullYear();
   const genre = genres[0];
-  const directorValue = getLimitedNumberOfArrayElementsToString(directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`);
-  const starringValue = getLimitedNumberOfArrayElementsToString(starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`);
+  const directorValue = getStringFromLimitedNumbersOfArrayElements(directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`);
+  const starringValue = getStringFromLimitedNumbersOfArrayElements(starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`);
   const scoreValue = getFormattedScore(score);
   const ratingDescription = getRatingDescription(score);
 

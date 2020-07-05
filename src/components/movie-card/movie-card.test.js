@@ -2,12 +2,9 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {MovieCard} from "./movie-card.jsx";
 import {PageType} from "../../const.js";
-import {getLimitedNumberOfArrayElementsToString} from "../../utils/utils.js";
 import {promoMovie} from "../../__test-data__/test-mocks.js";
 import {shallow} from "enzyme";
 
-
-const NUMBER_OF_ELEMENTS_IN_LINE = 4;
 
 const props = {
   movie: promoMovie,
@@ -134,13 +131,13 @@ describe(`Render MovieCard when active page is MAIN_MOVIE_DETAILS`, () => {
 
   it(`Should render correct movie directors`, () => {
     expect(movieCardElement.find(`p.movie-card__director strong`).text())
-      .toEqual(getLimitedNumberOfArrayElementsToString(promoMovie.directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `));
+      .toEqual(`Director: Wes Andreson`);
   });
 
 
   it(`Should render correct movie starring`, () => {
     expect(movieCardElement.find(`p.movie-card__starring strong`).text())
-      .toEqual(getLimitedNumberOfArrayElementsToString(promoMovie.starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`));
+      .toEqual(`Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`);
   });
 
 

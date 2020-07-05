@@ -1,25 +1,16 @@
-const getLimitedNumberOfArrayElementsToString = (array, elementsCount = array.length, beginningOfLine = ``, endOfLine = ``) => {
+const getStringFromLimitedNumbersOfArrayElements = (array, elementsCount = array.length, beginningOfLine = ``, endOfLine = ``) => {
   if (array.length === 0) {
     return ``;
   }
 
-  let line = beginningOfLine + array[0];
-
-  if (array.length > 1) {
-    for (let i = 1; i < elementsCount; i++) {
-      if (array[i]) {
-        line += `, ${array[i]}`;
-      } else {
-        break;
-      }
-    }
+  if (array.length <= elementsCount) {
+    endOfLine = ``;
   }
 
-  if (array.length > elementsCount) {
-    line += endOfLine;
-  }
-
-  return line;
+  return beginningOfLine
+          + array.slice(0, elementsCount)
+                 .reduce((accumulator, arrayItem) => `${accumulator}, ${arrayItem}`)
+          + endOfLine;
 };
 
 
@@ -51,7 +42,7 @@ const getRatingDescription = (score) => {
 
 
 export {
-  getLimitedNumberOfArrayElementsToString,
+  getStringFromLimitedNumbersOfArrayElements,
   getRatingDescription,
   getFormattedScore,
 };

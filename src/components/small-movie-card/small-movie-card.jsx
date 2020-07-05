@@ -11,7 +11,7 @@ export const SmallMovieCard = (props) => {
   const {title, smallPictureUrl, previewUrl} = movie;
   let timer = null;
 
-  const _cancelCardHover = () => {
+  const _lossHoverFromCard = () => {
     if (timer) {
       clearTimeout(timer);
     }
@@ -23,7 +23,7 @@ export const SmallMovieCard = (props) => {
 
   const _handleCardClick = (event) => {
     event.preventDefault();
-    _cancelCardHover();
+    _lossHoverFromCard();
     onClick();
   };
 
@@ -36,7 +36,7 @@ export const SmallMovieCard = (props) => {
   };
 
   const _handleCardLeave = () => {
-    _cancelCardHover();
+    _lossHoverFromCard();
   };
 
   return (

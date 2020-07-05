@@ -321,6 +321,13 @@ const VideoPlayerMode = {
   FULL_SCREEN: `full-screen`,
 };
 
+const VideoPlayerStatus = {
+  ON_AUTOPLAY: `on-autoplay`,
+  ON_PLAY: `on-play`,
+  ON_PAUSE: `on-pause`,
+  ON_RESET: `on-reset`,
+};
+
 const genreNames = [
   `All genres`,
   `Comedies`,
@@ -337,6 +344,7 @@ const genreNames = [
 
 export {
   VideoPlayerMode,
+  VideoPlayerStatus,
   genreNames,
   promoMovie,
   films,

@@ -57,7 +57,7 @@ export const withVideoPlayer = (Component) => {
     _getPlayingValue() {
       switch (this.state.playerStatus) {
         case VideoPlayerStatus.ON_AUTOPLAY:
-          return null;
+          return this._getPlayerOptions(this._playerMode).isAutoPlay;
         case VideoPlayerStatus.ON_PLAY:
           return true;
         case VideoPlayerStatus.ON_PAUSE:
@@ -69,10 +69,10 @@ export const withVideoPlayer = (Component) => {
     }
 
     _renderPlayer(src, posterUrl, playerMode) {
+      this._playerMode = playerMode;
+
       const options = this._getPlayerOptions(playerMode);
       const isPlaying = this._getPlayingValue();
-
-      this._playerMode = playerMode;
 
       return (
         <VideoPlayer
@@ -80,7 +80,7 @@ export const withVideoPlayer = (Component) => {
           posterUrl={posterUrl}
           videoHeight={options.videoHeight}
           playerMode={playerMode}
-          isPlaying={isPlaying === null ? options.isAutoPlay : isPlaying}
+          isPlaying={isPlaying}
           isSound={options.isSound}
           getVideoElement={this._getVideoElement.bind(this)}
         />

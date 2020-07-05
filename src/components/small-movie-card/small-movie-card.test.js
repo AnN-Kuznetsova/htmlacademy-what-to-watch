@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {SmallMovieCard} from "./small-movie-card.jsx";
-import {films} from "../../__test-data__/test-mocks.js";
+import {films, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
 import {shallow} from "enzyme";
 
 
@@ -10,6 +10,7 @@ const props = {
   onClick: () => {},
   onHover: () => {},
   renderVideoPlayer: () => {},
+  currentVideoPlayerStatus: VideoPlayerStatus.ON_PAUSE,
   setVideoPlayerStatus: () => {},
 };
 

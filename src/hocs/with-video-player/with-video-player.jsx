@@ -92,6 +92,7 @@ export const withVideoPlayer = (Component) => {
         <Component
           {...this.props}
           renderVideoPlayer={this._renderPlayer.bind(this)}
+          currentVideoPlayerStatus={this.state.playerStatus}
           setVideoPlayerStatus={this._setVideoPlayerStatus.bind(this)}
         />
       );

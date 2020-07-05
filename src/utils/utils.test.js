@@ -35,6 +35,7 @@ describe(`Utils tests`, () => {
 
 
   it(`Testing getRatingDescription`, () => {
+    expect(getRatingDescription()).toEqual(``);
     expect(getRatingDescription(0)).toEqual(`Bad`);
     expect(getRatingDescription(2.9)).toEqual(`Bad`);
     expect(getRatingDescription(3)).toEqual(`Normal`);

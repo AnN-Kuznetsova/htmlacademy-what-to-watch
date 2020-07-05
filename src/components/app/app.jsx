@@ -10,11 +10,11 @@ export class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.activeMovie = null;
+    this.hoverMovie = null;
 
     this.state = {
       activePage: PageType.MAIN_INDEX,
-      currentActiveMovie: this.props.promoMovie,
+      activeMovie: this.props.promoMovie,
     };
 
     this.handleSmallMovieCardHover = this.handleSmallMovieCardHover.bind(this);
@@ -22,14 +22,14 @@ export class App extends PureComponent {
     this.handlePromoMovieClick = this.handlePromoMovieClick.bind(this);
   }
 
-  handleSmallMovieCardHover(newActiveMovie) {
-    this.activeMovie = newActiveMovie;
+  handleSmallMovieCardHover(newHoverMovie) {
+    this.hoverMovie = newHoverMovie;
   }
 
   handleSmallMovieCardClick() {
     this.setState({
       activePage: PageType.MAIN_MOVIE_DETAILS,
-      currentActiveMovie: this.activeMovie,
+      activeMovie: this.hoverMovie,
     });
   }
 
@@ -43,14 +43,14 @@ export class App extends PureComponent {
 
   renderPage() {
     const {films} = this.props;
-    const {activePage, currentActiveMovie} = this.state;
+    const {activePage, activeMovie} = this.state;
 
     switch (activePage) {
       case PageType.MAIN_INDEX:
       case PageType.MAIN_MOVIE_DETAILS:
         return (
           <MainPage
-            currentMovie={currentActiveMovie}
+            currentMovie={activeMovie}
             films={films}
             activePage={activePage}
             onSmallMovieCardHover={this.handleSmallMovieCardHover}
@@ -74,7 +74,7 @@ export class App extends PureComponent {
           </Route>
           <Route exact path="/movie-details">
             <MainPage
-              currentMovie={this.state.currentActiveMovie}
+              currentMovie={this.state.activeMovie}
               films={films}
               activePage={PageType.MAIN_MOVIE_DETAILS}
               onSmallMovieCardHover={this.handleSmallMovieCardHover}

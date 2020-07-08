@@ -111,7 +111,7 @@ Array [
     </svg>
   </div>,
   <section
-    className="movie-card"
+    className="movie-card "
   >
     <div
       className="movie-card__bg"
@@ -175,6 +175,7 @@ Array [
       >
         <div
           className="movie-card__poster"
+          onClick={[Function]}
         >
           <img
             alt="The Grand Budapest Hotel"
@@ -188,6 +189,7 @@ Array [
         >
           <h2
             className="movie-card__title"
+            onClick={[Function]}
           >
             The Grand Budapest Hotel
           </h2>
@@ -251,7 +253,7 @@ Array [
     className="page-content"
   >
     <section
-      className="catalog"
+      className="catalog "
     >
       <h2
         className="catalog__title visually-hidden"
@@ -377,11 +379,11 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Bohemian Rhapsody"
@@ -396,7 +398,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -404,11 +405,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Aviator"
@@ -423,7 +424,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Aviator
             </a>
@@ -431,11 +431,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Revenant"
@@ -450,7 +450,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Revenant
             </a>
@@ -458,11 +457,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Johnny English"
@@ -477,7 +476,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Johnny English
             </a>
@@ -485,11 +483,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Shutter Island"
@@ -504,7 +502,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Shutter Island
             </a>
@@ -512,11 +509,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Pulp Fiction"
@@ -531,7 +528,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Pulp Fiction
             </a>
@@ -539,11 +535,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Seven Years in Tibet"
@@ -558,7 +554,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Seven Years in Tibet
             </a>
@@ -566,11 +561,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
           >
             <img
               alt="Snatch"
@@ -585,7 +580,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Snatch
             </a>
@@ -612,6 +606,7 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"

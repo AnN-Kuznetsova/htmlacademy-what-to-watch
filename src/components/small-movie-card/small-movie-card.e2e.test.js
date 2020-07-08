@@ -21,27 +21,15 @@ const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
 
 
 describe(`SmallMovieCard e2e-tests`, () => {
-  it(`Should card title be pressed and pass to the callback the movie data from which was created`, () => {
-    const cardTitleLinkELement = smallMovieCardElement.find(`h3.small-movie-card__title .small-movie-card__link`);
-    cardTitleLinkELement.simulate(`click`, mockEvent);
+  it(`Should card be pressed`, () => {
+    smallMovieCardElement.simulate(`click`, mockEvent);
 
     expect(onClick).toHaveBeenCalled();
-    expect(onClick.mock.calls[0][0]).toMatchObject(props.movie);
   });
 
 
-  it(`Should card image be pressed and pass to the callback the movie data from which was created`, () => {
-    const cardImageElement = smallMovieCardElement.find(`div.small-movie-card__image`);
-    cardImageElement.simulate(`click`, mockEvent);
-
-    expect(onClick).toHaveBeenCalled();
-    expect(onClick.mock.calls[0][0]).toMatchObject(props.movie);
-  });
-
-
-  it(`Should card image be hover and pass to the callback the movie data from which was created`, () => {
-    const cardImageElement = smallMovieCardElement.find(`div.small-movie-card__image`);
-    cardImageElement.simulate(`mouseEnter`, mockEvent);
+  it(`Should card be hover and pass to the callback the movie data from which was created`, () => {
+    smallMovieCardElement.simulate(`mouseEnter`, mockEvent);
 
     expect(onHover).toHaveBeenCalled();
     expect(onHover.mock.calls[0][0]).toMatchObject(props.movie);

@@ -3,11 +3,11 @@
 exports[`Render SmallMovieCard Should match with snapshot 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
 >
   <div
     className="small-movie-card__image"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
   >
     <img
       alt="Aviator"
@@ -22,7 +22,6 @@ exports[`Render SmallMovieCard Should match with snapshot 1`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
-      onClick={[Function]}
     >
       Aviator
     </a>

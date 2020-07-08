@@ -1,12 +1,32 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Catalog} from "../catalog/catalog.jsx";
+import {Footer} from "../footer/footer.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 import {MoviePropType} from "../../prop-types.js";
 
 
 export const MainPage = (props) => {
-  const {promoMovie, films} = props;
+  const {
+    currentMovie,
+    films,
+    activePage,
+    onSmallMovieCardHover,
+    onSmallMovieCardClick,
+    onCurrentMovieClick,
+  } = props;
+
+  const handleSmallMovieCardHover = (hoverMovie) => {
+    onSmallMovieCardHover(hoverMovie);
+  };
+
+  const handleSmallMovieCardClick = () => {
+    onSmallMovieCardClick();
+  };
+
+  const handleCurrentMovieClick = () => {
+    onCurrentMovieClick();
+  };
 
   return (
     <React.Fragment>
@@ -39,24 +59,21 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <MovieCard {...promoMovie} />
+      <MovieCard
+        movie={currentMovie}
+        activePage={activePage}
+        onMovieClick={handleCurrentMovieClick}
+      />
 
       <div className="page-content">
-        <Catalog films={films} />
+        <Catalog
+          films={films}
+          activePage={activePage}
+          onSmallMovieCardHover={handleSmallMovieCardHover}
+          onSmallMovieCardClick={handleSmallMovieCardClick}
+        />
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );
@@ -64,6 +81,10 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
-  promoMovie: MoviePropType.isRequired,
+  currentMovie: MoviePropType.isRequired,
   films: PropTypes.arrayOf(MoviePropType).isRequired,
+  activePage: PropTypes.string.isRequired,
+  onSmallMovieCardHover: PropTypes.func.isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
+  onCurrentMovieClick: PropTypes.func.isRequired,
 };

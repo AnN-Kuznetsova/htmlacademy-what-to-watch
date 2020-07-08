@@ -110,10 +110,7 @@ export const MovieCard = (props) => {
           {isMainMovieDetailsPage && cardDeskMarkup() ||
           <div className="movie-card__info">
             <div className="movie-card__poster"
-              onClick={(event) => {
-                event.preventDefault();
-                onMovieClick();
-              }}
+              onClick={onMovieClick}
             >
               <img src={posterUrl} alt={title} width="218" height="327" />
             </div>

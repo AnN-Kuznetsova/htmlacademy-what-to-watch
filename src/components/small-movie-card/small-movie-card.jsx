@@ -7,7 +7,12 @@ import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player.
 
 
 export const SmallMovieCard = (props) => {
-  const {movie, onClick, onHover, renderVideoPlayer, currentVideoPlayerStatus, setVideoPlayerStatus} = props;
+  const {movie,
+    onClick,
+    renderVideoPlayer,
+    currentVideoPlayerStatus,
+    setVideoPlayerStatus
+  } = props;
   const {title, smallPictureUrl, previewUrl} = movie;
   let timer = null;
 
@@ -24,11 +29,10 @@ export const SmallMovieCard = (props) => {
   const _handleCardClick = (event) => {
     event.preventDefault();
     _lossHoverFromCard();
-    onClick();
+    onClick(movie);
   };
 
   const _handleCardHover = () => {
-    onHover(movie);
     timer = setTimeout(
         setVideoPlayerStatus.bind(null, VideoPlayerStatus.ON_PLAY),
         DELAY_PLAYBACK_PREVIEW
@@ -68,7 +72,6 @@ export const SmallMovieCard = (props) => {
 SmallMovieCard.propTypes = {
   movie: MoviePropType.isRequired,
   onClick: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   currentVideoPlayerStatus: PropTypes.string.isRequired,
   setVideoPlayerStatus: PropTypes.func.isRequired,

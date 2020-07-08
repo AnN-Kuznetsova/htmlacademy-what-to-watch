@@ -10,26 +10,19 @@ export class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.hoverMovie = null;
-
     this.state = {
       activePage: PageType.MAIN_INDEX,
       activeMovie: this.props.promoMovie,
     };
 
-    this.handleSmallMovieCardHover = this.handleSmallMovieCardHover.bind(this);
     this.handleSmallMovieCardClick = this.handleSmallMovieCardClick.bind(this);
     this.handlePromoMovieClick = this.handlePromoMovieClick.bind(this);
   }
 
-  handleSmallMovieCardHover(newHoverMovie) {
-    this.hoverMovie = newHoverMovie;
-  }
-
-  handleSmallMovieCardClick() {
+  handleSmallMovieCardClick(newActiveMovie) {
     this.setState({
       activePage: PageType.MAIN_MOVIE_DETAILS,
-      activeMovie: this.hoverMovie,
+      activeMovie: newActiveMovie,
     });
   }
 
@@ -55,7 +48,6 @@ export class App extends PureComponent {
             currentMovie={activeMovie}
             films={films}
             activePage={activePage}
-            onSmallMovieCardHover={this.handleSmallMovieCardHover}
             onSmallMovieCardClick={this.handleSmallMovieCardClick}
             onCurrentMovieClick={this.handlePromoMovieClick}
           />
@@ -79,7 +71,6 @@ export class App extends PureComponent {
               currentMovie={this.state.activeMovie}
               films={films}
               activePage={PageType.MAIN_MOVIE_DETAILS}
-              onSmallMovieCardHover={this.handleSmallMovieCardHover}
               onSmallMovieCardClick={this.handleSmallMovieCardClick}
               onCurrentMovieClick={this.handlePromoMovieClick}
             />

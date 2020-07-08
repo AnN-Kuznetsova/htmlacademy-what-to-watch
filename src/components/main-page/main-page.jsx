@@ -11,17 +11,12 @@ export const MainPage = (props) => {
     currentMovie,
     films,
     activePage,
-    onSmallMovieCardHover,
     onSmallMovieCardClick,
     onCurrentMovieClick,
   } = props;
 
-  const handleSmallMovieCardHover = (hoverMovie) => {
-    onSmallMovieCardHover(hoverMovie);
-  };
-
-  const handleSmallMovieCardClick = () => {
-    onSmallMovieCardClick();
+  const handleSmallMovieCardClick = (newActiveMovie) => {
+    onSmallMovieCardClick(newActiveMovie);
   };
 
   const handleCurrentMovieClick = () => {
@@ -73,7 +68,6 @@ export const MainPage = (props) => {
         <Catalog
           films={getFilmsForCatalog(films)}
           activePage={activePage}
-          onSmallMovieCardHover={handleSmallMovieCardHover}
           onSmallMovieCardClick={handleSmallMovieCardClick}
         />
 
@@ -88,7 +82,6 @@ MainPage.propTypes = {
   currentMovie: MoviePropType.isRequired,
   films: PropTypes.arrayOf(MoviePropType).isRequired,
   activePage: PropTypes.string.isRequired,
-  onSmallMovieCardHover: PropTypes.func.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
   onCurrentMovieClick: PropTypes.func.isRequired,
 };

@@ -12,18 +12,18 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player.js
 const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
 
 export const Catalog = (props) => {
-  const {films, activePage, onSmallMovieCardHover, onSmallMovieCardClick} = props;
+  const {
+    films,
+    activePage,
+    onSmallMovieCardClick
+  } = props;
   const isMainIndexPage = activePage === PageType.MAIN_INDEX;
   const isMainMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
 
   const handleGenreClick = () => {};
 
-  const handleSmallMovieCardHover = (movie) => {
-    onSmallMovieCardHover(movie);
-  };
-
-  const handleSmallMovieCardClick = () => {
-    onSmallMovieCardClick();
+  const handleSmallMovieCardClick = (newActiveMovie) => {
+    onSmallMovieCardClick(newActiveMovie);
   };
 
   const handleShowMoreButtonClick = () => {};
@@ -54,7 +54,6 @@ export const Catalog = (props) => {
               key={movie.title + index}
               movie={movie}
               onClick={handleSmallMovieCardClick}
-              onHover={handleSmallMovieCardHover}
             />
           )
         }
@@ -69,6 +68,5 @@ export const Catalog = (props) => {
 Catalog.propTypes = {
   films: PropTypes.arrayOf(MoviePropType).isRequired,
   activePage: PropTypes.string.isRequired,
-  onSmallMovieCardHover: PropTypes.func.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
 };

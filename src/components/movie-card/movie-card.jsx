@@ -79,8 +79,7 @@ export const MovieCard = (props) => {
   };
 
   const cardHeaderMarkup = () => {
-    const logoHrefValue = (isMainMovieDetailsPage) ? `main.html` : null;
-    const logoHref = logoHrefValue ? {href: `main.html`} : null;
+    const logoHref = isMainMovieDetailsPage ? {href: `main.html`} : null;
 
     return (
       <React.Fragment>

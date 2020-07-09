@@ -14,11 +14,11 @@ export const Header = (props) => {
     releaseDate,
   } = movie;
 
-  const isMainIndexPage = activePage === PageType.MAIN_INDEX;
-  const isMainMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
+  const isMainPage = activePage === PageType.MAIN;
+  const isMovieDetailsPage = activePage === PageType.MOVIE_DETAILS;
 
   const handleTitleClick = () => {
-    if (isMainIndexPage) {
+    if (isMainPage) {
       onMovieClick();
     }
   };
@@ -51,14 +51,14 @@ export const Header = (props) => {
             </svg>
             <span>My list</span>
           </button>
-          {isMainMovieDetailsPage && <a href="add-review.html" className="btn movie-card__button">Add review</a>}
+          {isMovieDetailsPage && <a href="add-review.html" className="btn movie-card__button">Add review</a>}
         </div>
       </div>
     );
   };
 
   const cardHeaderMarkup = () => {
-    const logoHref = isMainMovieDetailsPage ? {href: `main.html`} : null;
+    const logoHref = isMovieDetailsPage ? {href: `main.html`} : null;
 
     return (
       <React.Fragment>
@@ -85,7 +85,7 @@ export const Header = (props) => {
         </header>
 
         <div className="movie-card__wrap">
-          {isMainMovieDetailsPage && cardDeskMarkup() ||
+          {isMovieDetailsPage && cardDeskMarkup() ||
           <div className="movie-card__info">
             <div className="movie-card__poster"
               onClick={onMovieClick}
@@ -101,7 +101,7 @@ export const Header = (props) => {
   };
 
 
-  if (isMainMovieDetailsPage) {
+  if (isMovieDetailsPage) {
     return (
       <div className="movie-card__hero">
         {cardHeaderMarkup()}
@@ -115,5 +115,5 @@ export const Header = (props) => {
 Header.propTypes = {
   movie: MoviePropType.isRequired,
   activePage: PropTypes.string.isRequired,
-  onMovieClick: PropTypes.func.isRequired,
+  onMovieClick: PropTypes.func,
 };

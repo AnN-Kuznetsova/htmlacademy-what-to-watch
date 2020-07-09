@@ -17,8 +17,8 @@ export const Catalog = (props) => {
     activePage,
     onSmallMovieCardClick
   } = props;
-  const isMainIndexPage = activePage === PageType.MAIN_INDEX;
-  const isMainMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
+  const isMainPage = activePage === PageType.MAIN_INDEX;
+  const isMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
 
   const handleGenreClick = () => {};
 
@@ -29,12 +29,12 @@ export const Catalog = (props) => {
   const handleShowMoreButtonClick = () => {};
 
   return (
-    <section className={`catalog ${isMainMovieDetailsPage ? `catalog--like-this` : ``}`}>
-      <h2 className={`catalog__title ${isMainIndexPage ? `visually-hidden` : ``}`}>
-        {isMainMovieDetailsPage ? `More like this` : `Catalog`}
+    <section className={`catalog ${isMovieDetailsPage ? `catalog--like-this` : ``}`}>
+      <h2 className={`catalog__title ${isMainPage ? `visually-hidden` : ``}`}>
+        {isMovieDetailsPage ? `More like this` : `Catalog`}
       </h2>
 
-      {isMainIndexPage &&
+      {isMainPage &&
         <ul className="catalog__genres-list">
           {
             genreNames.map((genreName, index) =>
@@ -59,7 +59,7 @@ export const Catalog = (props) => {
         }
       </div>
 
-      {isMainIndexPage && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
+      {isMainPage && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
     </section>
   );
 };

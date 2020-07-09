@@ -3,24 +3,20 @@ import React from "react";
 import {Catalog} from "../catalog/catalog.jsx";
 import {Footer} from "../footer/footer.jsx";
 import {Header} from "../header/header.jsx";
+import {MovieCard} from "../movie-card/movie-card.jsx";
 import {MoviePropType} from "../../prop-types.js";
 
 
-export const MainPage = (props) => {
+export const MovieDetailsPage = (props) => {
   const {
     currentMovie,
     filmsForCatalog,
     activePage,
     onSmallMovieCardClick,
-    onCurrentMovieClick,
   } = props;
 
   const handleSmallMovieCardClick = (newActiveMovie) => {
     onSmallMovieCardClick(newActiveMovie);
-  };
-
-  const handleCurrentMovieClick = () => {
-    onCurrentMovieClick();
   };
 
   return (
@@ -54,11 +50,15 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <section className="movie-card">
+      <section className="movie-card movie-card--full">
         <Header
           movie={currentMovie}
           activePage={activePage}
-          onMovieClick={handleCurrentMovieClick}
+          onMovieClick={null}
+        />
+
+        <MovieCard
+          movie={currentMovie}
         />
       </section>
 
@@ -76,10 +76,9 @@ export const MainPage = (props) => {
 };
 
 
-MainPage.propTypes = {
+MovieDetailsPage.propTypes = {
   currentMovie: MoviePropType.isRequired,
   filmsForCatalog: PropTypes.arrayOf(MoviePropType).isRequired,
   activePage: PropTypes.string.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
-  onCurrentMovieClick: PropTypes.func.isRequired,
 };

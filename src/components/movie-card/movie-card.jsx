@@ -1,12 +1,20 @@
 import React from "react";
 import {MoviePropType} from "../../prop-types.js";
-import {NUMBER_OF_ELEMENTS_IN_LINE} from "../../const.js";
 import {
   getRatingDescription,
-  getStringFromLimitedNumbersOfArrayElements,
   getFormattedScore
 } from "../../utils/utils.js";
+import {Header} from "../header/header.jsx"; // ToDo: настроить Eslint или/и WebPack чтобы импортировал без расширений в т.ч.
+import {PageType} from "../../const";
 
+const VISIBLE_PARTICIPANTS_COUNT = 4;
+
+function getDirectorsLine(directors) {
+  if (directors.length > 0) {
+    return `Director: ` + directors.slice(0, VISIBLE_PARTICIPANTS_COUNT).join(`, `) + ` and other`;
+  }
+  return `Unknown`;
+}
 
 export const MovieCard = (props) => {
   const {movie} = props;
@@ -20,8 +28,9 @@ export const MovieCard = (props) => {
   } = movie;
   const {score, totalVotes} = rating;
 
-  const directorValue = getStringFromLimitedNumbersOfArrayElements(directors, NUMBER_OF_ELEMENTS_IN_LINE, `Director: `, ` and other`);
-  const starringValue = getStringFromLimitedNumbersOfArrayElements(starring, NUMBER_OF_ELEMENTS_IN_LINE, `Starring: `, ` and other`);
+  // ToDo: вынести в функцию как getDirectorsLine
+  const starringValue = `Starring: ` + starring.slice(0, VISIBLE_PARTICIPANTS_COUNT).join(`, `) + ` and other`;
+
   const scoreValue = getFormattedScore(score);
   const ratingDescription = getRatingDescription(score);
 
@@ -29,45 +38,56 @@ export const MovieCard = (props) => {
     <p key={descriptionItem + index}>{descriptionItem}</p>);
 
   return (
-    <div className="movie-card__wrap movie-card__translate-top">
-      <div className="movie-card__info">
-        <div className="movie-card__poster movie-card__poster--big">
-          <img src={posterUrl} alt={`${title} poster`} width="218" height="327" />
-        </div>
+    <section className="movie-card movie-card--full">
 
-        <div className="movie-card__desc">
-          <nav className="movie-nav movie-card__nav">
-            <ul className="movie-nav__list">
-              <li className="movie-nav__item movie-nav__item--active">
-                <a href="#" className="movie-nav__link">Overview</a>
-              </li>
-              <li className="movie-nav__item">
-                <a href="#" className="movie-nav__link">Details</a>
-              </li>
-              <li className="movie-nav__item">
-                <a href="#" className="movie-nav__link">Reviews</a>
-              </li>
-            </ul>
-          </nav>
+      {/* ToDo: вынести в компонент MovieDetailsPage и удалить Header */}
+      <Header
+        movie={movie}
+        activePage={PageType.MOVIE_DETAILS}
+        onMovieClick={null}
+      />
 
-          <div className="movie-rating">
-            <div className="movie-rating__score">{scoreValue}</div>
-            <p className="movie-rating__meta">
-              <span className="movie-rating__level">{ratingDescription}</span>
-              <span className="movie-rating__count">{totalVotes} ratings</span>
-            </p>
+      <div className="movie-card__wrap movie-card__translate-top">
+        <div className="movie-card__info">
+          <div className="movie-card__poster movie-card__poster--big">
+            <img src={posterUrl} alt={`${title} poster`} width="218" height="327" />
           </div>
 
-          <div className="movie-card__text">
-            {descriptionMarkup}
+          <div className="movie-card__desc">
+            <nav className="movie-nav movie-card__nav">
+              <ul className="movie-nav__list">
+                <li className="movie-nav__item movie-nav__item--active">
+                  <a href="#" className="movie-nav__link">Overview</a>
+                </li>
+                <li className="movie-nav__item">
+                  <a href="#" className="movie-nav__link">Details</a>
+                </li>
+                <li className="movie-nav__item">
+                  <a href="#" className="movie-nav__link">Reviews</a>
+                </li>
+              </ul>
+            </nav>
 
-            <p className="movie-card__director"><strong>{directorValue}</strong></p>
+            <div className="movie-rating">
+              <div className="movie-rating__score">{scoreValue}</div>
+              <p className="movie-rating__meta">
+                <span className="movie-rating__level">{ratingDescription}</span>
+                <span className="movie-rating__count">{totalVotes} ratings</span>
+              </p>
+            </div>
 
-            <p className="movie-card__starring"><strong>{starringValue}</strong></p>
+            <div className="movie-card__text">
+              {descriptionMarkup}
+
+              <p className="movie-card__director"><strong>{getDirectorsLine(directors)}</strong></p>
+
+              <p className="movie-card__starring"><strong>{starringValue}</strong></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
   );
 };
 

@@ -32,7 +32,9 @@ export const Header = (props) => {
         <h2
           className="movie-card__title"
           onClick={handleTitleClick}
-        >{title}</h2>
+        >
+          {title}
+        </h2>
         <p className="movie-card__meta">
           <span className="movie-card__genre">{genre}</span>
           <span className="movie-card__year">{movieReleaseYear}</span>
@@ -58,7 +60,7 @@ export const Header = (props) => {
   };
 
   const cardHeaderMarkup = () => {
-    const logoHref = isMovieDetailsPage ? {href: `main.html`} : null;
+    const logoHref = isMovieDetailsPage ? {href: `/`} : null;
 
     return (
       <React.Fragment>
@@ -85,8 +87,8 @@ export const Header = (props) => {
         </header>
 
         <div className="movie-card__wrap">
-          {isMovieDetailsPage && cardDeskMarkup() ||
-          <div className="movie-card__info">
+          {isMovieDetailsPage && cardDeskMarkup()}
+          {isMainPage && <div className="movie-card__info">
             <div className="movie-card__poster"
               onClick={onMovieClick}
             >

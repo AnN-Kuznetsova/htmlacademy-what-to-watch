@@ -3,7 +3,7 @@ import React, {PureComponent} from "react";
 import {MainPage} from "../main-page/main-page.jsx";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page.jsx";
 import {MoviePropType} from "../../prop-types.js";
-import {PageType} from "../../const.js";
+import {NUMBER_OF_SIMILAR_FILMS, PageType} from "../../const.js";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 
@@ -37,7 +37,8 @@ export class App extends PureComponent {
   getFilmsForCatalog(movies) {
     switch (this.state.activePage) {
       case PageType.MOVIE_DETAILS:
-        return movies.filter((movie) => movie !== this.state.activeMovie);
+        return movies.filter((movie) => movie !== this.state.activeMovie)
+          .slice(0, NUMBER_OF_SIMILAR_FILMS);
       case PageType.MAIN:
       default:
         return movies;

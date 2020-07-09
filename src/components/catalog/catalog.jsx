@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {GenresItem} from "../genres-item/genres-item.jsx";
 import {MoviePropType} from "../../prop-types.js";
-import {PageType} from "../../const.js";
+import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP, PageType} from "../../const.js";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
@@ -17,8 +17,8 @@ export const Catalog = (props) => {
     activePage,
     onSmallMovieCardClick
   } = props;
-  const isMainPage = activePage === PageType.MAIN_INDEX;
-  const isMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
+  const isMainPage = activePage === PageType.MAIN;
+  const isMovieDetailsPage = activePage === PageType.MOVIE_DETAILS;
 
   const handleGenreClick = () => {};
 
@@ -59,7 +59,10 @@ export const Catalog = (props) => {
         }
       </div>
 
-      {isMainPage && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
+      {
+        (films.length > NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP) &&
+        <ShowMoreButton onClick={handleShowMoreButtonClick} />
+      }
     </section>
   );
 };

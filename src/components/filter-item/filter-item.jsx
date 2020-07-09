@@ -5,12 +5,16 @@ import React from "react";
 export const FilterItem = (props) => {
   const {filterName, onClick} = props;
 
+  const handleClick = () => {
+    onClick(filterName);
+  };
+
   return (
     <li className="catalog__genres-item">
       <a
         href="#"
         className="catalog__genres-link"
-        onClick={onClick}
+        onClick={handleClick}
       >{filterName}</a>
     </li>
   );

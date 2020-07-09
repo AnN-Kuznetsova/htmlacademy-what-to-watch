@@ -32,11 +32,6 @@ export class App extends PureComponent {
     this.setState({
       activePage: PageType.MOVIE_DETAILS,
     });
-    /* if (this.state.activePage === PageType.MAIN_INDEX) {
-      this.setState({
-        activePage: PageType.MAIN_MOVIE_DETAILS,
-      });
-    } */
   }
 
   getFilmsForCatalog(movies) {
@@ -82,6 +77,7 @@ export class App extends PureComponent {
 
   render() {
     const {films} = this.props;
+    const {activeMovie} = this.state;
 
     return (
       <BrowserRouter>
@@ -90,13 +86,12 @@ export class App extends PureComponent {
             {this.renderPage()}
           </Route>
           <Route exact path="/movie-details">
-            {/* <MainPage
-              currentMovie={this.state.activeMovie}
-              films={films}
-              activePage={PageType.MAIN_MOVIE_DETAILS}
+            <MovieDetailsPage
+              currentMovie={activeMovie}
+              filmsForCatalog={this.getFilmsForCatalog(films)}
+              activePage={PageType.MOVIE_DETAILS}
               onSmallMovieCardClick={this.handleSmallMovieCardClick}
-              onCurrentMovieClick={this.handlePromoMovieClick}
-            /> */}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

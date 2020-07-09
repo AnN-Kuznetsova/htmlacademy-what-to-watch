@@ -2,16 +2,20 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Catalog} from "../catalog/catalog.jsx";
 import {Footer} from "../footer/footer.jsx";
-import {Header} from "../header/header.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 import {MoviePropType} from "../../prop-types.js";
-import {PageType} from "../../const.js";
+import {NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
+import {movies} from "../../mocks/movies.js";
+
+function getFilteredMovies(moviesArray, currentMovie) {
+  return moviesArray.filter((movie) => movie !== currentMovie)
+    .slice(0, NUMBER_OF_SIMILAR_FILMS);
+}
 
 export const MovieDetailsPage = (props) => {
   const {
-    currentMovie,
-    filmsForCatalog,
+    activeMovie,
     onSmallMovieCardClick,
   } = props;
 
@@ -50,17 +54,9 @@ export const MovieDetailsPage = (props) => {
         </svg>
       </div>
 
-      <section className="movie-card movie-card--full">
-        <Header
-          movie={currentMovie}
-          activePage={PageType.MOVIE_DETAILS}
-          onMovieClick={null}
-        />
-
-        <MovieCard
-          movie={currentMovie}
-        />
-      </section>
+      <MovieCard
+        movie={activeMovie}
+      />
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
@@ -69,7 +65,7 @@ export const MovieDetailsPage = (props) => {
           </h2>
 
           <Catalog
-            films={filmsForCatalog}
+            movies={getFilteredMovies(movies, activeMovie)}
             onSmallMovieCardClick={handleSmallMovieCardClick}
           />
         </section>
@@ -82,7 +78,6 @@ export const MovieDetailsPage = (props) => {
 
 
 MovieDetailsPage.propTypes = {
-  currentMovie: MoviePropType.isRequired,
-  filmsForCatalog: PropTypes.arrayOf(MoviePropType).isRequired,
+  activeMovie: MoviePropType.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
 };

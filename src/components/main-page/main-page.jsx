@@ -1,29 +1,24 @@
-import PropTypes from "prop-types";
 import React from "react";
-import {Catalog} from "../catalog/catalog.jsx";
+import PropTypes from "prop-types";
+
+import {MainPageHeader} from "../main-page-header/main-page-header.jsx";
 import {Footer} from "../footer/footer.jsx";
-import {Header} from "../header/header.jsx";
-import {MoviePropType} from "../../prop-types.js";
-import {PageType, FilterType} from "../../const.js";
-import {withFilter} from "../../hocs/with-filter/with-filter.jsx";
+import {CatalogWithFilterByGenre} from "../catalog/catalog.jsx";
 
-
-const CatalogWithFilterByGenre = withFilter(Catalog, FilterType.GENRE);
+import {promoMovie} from "../../mocks/promo-movie.js";
+import {movies} from "../../mocks/movies.js";
 
 export const MainPage = (props) => {
   const {
-    currentMovie,
-    filmsForCatalog,
-    onSmallMovieCardClick,
-    onCurrentMovieClick,
+    openMovieDetailsPage,
   } = props;
 
-  const handleSmallMovieCardClick = (newActiveMovie) => {
-    onSmallMovieCardClick(newActiveMovie);
+  const handleSmallMovieCardClick = (movie) => {
+    openMovieDetailsPage(movie);
   };
 
-  const handleCurrentMovieClick = () => {
-    onCurrentMovieClick();
+  const handlePromoMovieClick = () => {
+    openMovieDetailsPage(promoMovie);
   };
 
   return (
@@ -58,10 +53,9 @@ export const MainPage = (props) => {
       </div>
 
       <section className="movie-card">
-        <Header
-          movie={currentMovie}
-          activePage={PageType.MAIN}
-          onMovieClick={handleCurrentMovieClick}
+        <MainPageHeader
+          movie={promoMovie}
+          onMovieClick={handlePromoMovieClick}
         />
       </section>
 
@@ -72,7 +66,7 @@ export const MainPage = (props) => {
           </h2>
 
           <CatalogWithFilterByGenre
-            films={filmsForCatalog}
+            movies={movies}
             onSmallMovieCardClick={handleSmallMovieCardClick}
           />
         </section>
@@ -85,8 +79,5 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
-  currentMovie: MoviePropType.isRequired,
-  filmsForCatalog: PropTypes.arrayOf(MoviePropType).isRequired,
-  onSmallMovieCardClick: PropTypes.func.isRequired,
-  onCurrentMovieClick: PropTypes.func.isRequired,
+  openMovieDetailsPage: PropTypes.func.isRequired,
 };

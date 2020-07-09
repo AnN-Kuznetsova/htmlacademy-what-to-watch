@@ -4,10 +4,12 @@ import {DELAY_PLAYBACK_PREVIEW} from "../../const.js";
 import {MoviePropType} from "../../prop-types.js";
 import {VideoPlayerMode} from "../video-player/video-player.jsx";
 import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player.jsx";
+import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player.jsx";
 
 
 export const SmallMovieCard = (props) => {
-  const {movie,
+  const {
+    movie,
     onClick,
     renderVideoPlayer,
     currentVideoPlayerStatus,
@@ -67,6 +69,8 @@ export const SmallMovieCard = (props) => {
     </article>
   );
 };
+
+export const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
 
 
 SmallMovieCard.propTypes = {

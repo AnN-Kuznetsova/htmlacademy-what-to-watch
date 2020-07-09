@@ -8,7 +8,7 @@ export const FilterType = {
 };
 
 
-export const CatalogFilter = (props) => {
+export const Filter = (props) => {
   const {filterNames} = props;
 
   const handleGenreClick = () => {};
@@ -29,6 +29,6 @@ export const CatalogFilter = (props) => {
 };
 
 
-CatalogFilter.propTypes = {
+Filter.propTypes = {
   filterNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {CatalogFilter} from '../../components/catalog-filter/catalog-filter.jsx';
+import {Filter} from '../../components/filter/filter.jsx';
 
 
 export const withFilter = (Component) => {
@@ -21,7 +21,7 @@ export const withFilter = (Component) => {
       });
 
       return (
-        <CatalogFilter
+        <Filter
           filterNames={filterNames}
         />
       );

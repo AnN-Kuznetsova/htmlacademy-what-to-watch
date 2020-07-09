@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP} from "../../const.js";
-import {FilterType} from "../filter/filter.jsx";
 import {MoviePropType} from "../../prop-types.js";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
@@ -10,6 +9,7 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player.js
 
 
 const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
+
 
 export const Catalog = (props) => {
   const {
@@ -26,7 +26,7 @@ export const Catalog = (props) => {
 
   return (
     <React.Fragment>
-      {renderFilter && renderFilter(FilterType.GENRE, genreNames)}
+      {renderFilter && renderFilter(genreNames)}
 
       <div className="catalog__movies-list">
         {

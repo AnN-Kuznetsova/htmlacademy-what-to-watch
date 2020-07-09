@@ -1,29 +1,36 @@
 import React, {PureComponent} from 'react';
-import {Filter} from '../../components/filter/filter.jsx';
+import {FilterItem} from '../../components/filter-item/filter-item.jsx';
 
 
-export const withFilter = (Component) => {
+export const withFilter = (Component, filterType) => {
   class WithFilter extends PureComponent {
     constructor(props) {
       super(props);
 
       this.state = {
-        filterType: null,
+        filterType,
         activeFilter: null,
       };
 
       this.renderFilter = this.renderFilter.bind(this);
+      this.handleFilterItemClick = this.handleFilterItemClick.bind(this);
     }
 
-    renderFilter(filterType, filterNames) {
-      this.setState({
-        filterType,
-      });
+    handleFilterItemClick() {}
 
+    renderFilter(filterNames) {
       return (
-        <Filter
-          filterNames={filterNames}
-        />
+        <ul className="catalog__genres-list">
+          {
+            filterNames.map((filterName, index) =>
+              <FilterItem
+                key={filterName + index}
+                filterName={filterName}
+                onClick={this.handleFilterItemClick}
+              />
+            )
+          }
+        </ul>
       );
     }
 

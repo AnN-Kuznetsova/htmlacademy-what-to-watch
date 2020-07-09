@@ -8,11 +8,16 @@ const PageType = {
   MOVIE_DETAILS: `movie-details`,
 };
 
+const FilterType = {
+  GENRE: `genre`,
+};
+
 
 export {
   DELAY_PLAYBACK_PREVIEW,
   NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   NUMBER_OF_ELEMENTS_IN_LINE,
   NUMBER_OF_SIMILAR_FILMS,
+  FilterType,
   PageType,
 };

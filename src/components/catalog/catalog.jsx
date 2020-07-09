@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP, PageType} from "../../const.js";
-import {CatalogFilter} from "../catalog-filter/catalog-filter.jsx";
+import {FilterType} from "../catalog-filter/catalog-filter.jsx";
 import {MoviePropType} from "../../prop-types.js";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
@@ -15,7 +15,8 @@ export const Catalog = (props) => {
   const {
     films,
     activePage,
-    onSmallMovieCardClick
+    onSmallMovieCardClick,
+    renderFilter,
   } = props;
   const isMainPage = activePage === PageType.MAIN;
   const isMovieDetailsPage = activePage === PageType.MOVIE_DETAILS;
@@ -32,9 +33,7 @@ export const Catalog = (props) => {
         {isMovieDetailsPage ? `More like this` : `Catalog`}
       </h2>
 
-      {isMainPage && <CatalogFilter
-        filterNames={genreNames}
-      />}
+      {renderFilter && renderFilter(FilterType.GENRE, genreNames)}
 
       <div className="catalog__movies-list">
         {
@@ -61,4 +60,5 @@ Catalog.propTypes = {
   films: PropTypes.arrayOf(MoviePropType).isRequired,
   activePage: PropTypes.string.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
+  renderFilter: PropTypes.func,
 };

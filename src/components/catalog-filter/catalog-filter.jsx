@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {GenresItem} from "../genres-item/genres-item.jsx";
+import {FilterItem} from "../filter-item/filter-item.jsx";
+
+
+export const FilterType = {
+  GENRE: `genre`,
+};
 
 
 export const CatalogFilter = (props) => {
@@ -12,7 +17,7 @@ export const CatalogFilter = (props) => {
     <ul className="catalog__genres-list">
       {
         filterNames.map((filterName, index) =>
-          <GenresItem
+          <FilterItem
             key={filterName + index}
             filterName={filterName}
             onClick={handleGenreClick}

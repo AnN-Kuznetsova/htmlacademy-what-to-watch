@@ -5,7 +5,10 @@ import {Footer} from "../footer/footer.jsx";
 import {Header} from "../header/header.jsx";
 import {MoviePropType} from "../../prop-types.js";
 import {PageType} from "../../const.js";
+import {withFilter} from "../../hocs/with-filter/with-filter.jsx";
 
+
+const CatalogWithFilter = withFilter(Catalog);
 
 export const MainPage = (props) => {
   const {
@@ -63,7 +66,7 @@ export const MainPage = (props) => {
       </section>
 
       <div className="page-content">
-        <Catalog
+        <CatalogWithFilter
           films={filmsForCatalog}
           activePage={PageType.MAIN}
           onSmallMovieCardClick={handleSmallMovieCardClick}

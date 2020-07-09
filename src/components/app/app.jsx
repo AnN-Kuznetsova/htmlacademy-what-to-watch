@@ -57,7 +57,6 @@ export class App extends PureComponent {
           <MainPage
             currentMovie={activeMovie}
             filmsForCatalog={this.getFilmsForCatalog(films)}
-            activePage={activePage}
             onSmallMovieCardClick={this.handleSmallMovieCardClick}
             onCurrentMovieClick={this.handlePromoMovieClick}
           />
@@ -67,7 +66,6 @@ export class App extends PureComponent {
           <MovieDetailsPage
             currentMovie={activeMovie}
             filmsForCatalog={this.getFilmsForCatalog(films)}
-            activePage={activePage}
             onSmallMovieCardClick={this.handleSmallMovieCardClick}
           />
         );
@@ -90,7 +88,6 @@ export class App extends PureComponent {
             <MovieDetailsPage
               currentMovie={activeMovie}
               filmsForCatalog={this.getFilmsForCatalog(films)}
-              activePage={PageType.MOVIE_DETAILS}
               onSmallMovieCardClick={this.handleSmallMovieCardClick}
             />
           </Route>

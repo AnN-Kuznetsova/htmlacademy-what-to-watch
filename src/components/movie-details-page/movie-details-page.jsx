@@ -5,13 +5,13 @@ import {Footer} from "../footer/footer.jsx";
 import {Header} from "../header/header.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
 import {MoviePropType} from "../../prop-types.js";
+import {PageType} from "../../const.js";
 
 
 export const MovieDetailsPage = (props) => {
   const {
     currentMovie,
     filmsForCatalog,
-    activePage,
     onSmallMovieCardClick,
   } = props;
 
@@ -53,7 +53,7 @@ export const MovieDetailsPage = (props) => {
       <section className="movie-card movie-card--full">
         <Header
           movie={currentMovie}
-          activePage={activePage}
+          activePage={PageType.MOVIE_DETAILS}
           onMovieClick={null}
         />
 
@@ -65,7 +65,7 @@ export const MovieDetailsPage = (props) => {
       <div className="page-content">
         <Catalog
           films={filmsForCatalog}
-          activePage={activePage}
+          activePage={PageType.MOVIE_DETAILS}
           onSmallMovieCardClick={handleSmallMovieCardClick}
         />
 
@@ -79,6 +79,5 @@ export const MovieDetailsPage = (props) => {
 MovieDetailsPage.propTypes = {
   currentMovie: MoviePropType.isRequired,
   filmsForCatalog: PropTypes.arrayOf(MoviePropType).isRequired,
-  activePage: PropTypes.string.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
 };

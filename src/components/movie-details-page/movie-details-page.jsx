@@ -63,11 +63,16 @@ export const MovieDetailsPage = (props) => {
       </section>
 
       <div className="page-content">
-        <Catalog
-          films={filmsForCatalog}
-          activePage={PageType.MOVIE_DETAILS}
-          onSmallMovieCardClick={handleSmallMovieCardClick}
-        />
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">
+            More like this
+          </h2>
+
+          <Catalog
+            films={filmsForCatalog}
+            onSmallMovieCardClick={handleSmallMovieCardClick}
+          />
+        </section>
 
         <Footer />
       </div>

@@ -66,11 +66,16 @@ export const MainPage = (props) => {
       </section>
 
       <div className="page-content">
-        <CatalogWithFilter
-          films={filmsForCatalog}
-          activePage={PageType.MAIN}
-          onSmallMovieCardClick={handleSmallMovieCardClick}
-        />
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">
+            Catalog
+          </h2>
+
+          <CatalogWithFilter
+            films={filmsForCatalog}
+            onSmallMovieCardClick={handleSmallMovieCardClick}
+          />
+        </section>
 
         <Footer />
       </div>

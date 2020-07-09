@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP, PageType} from "../../const.js";
+import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP} from "../../const.js";
 import {FilterType} from "../catalog-filter/catalog-filter.jsx";
 import {MoviePropType} from "../../prop-types.js";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
@@ -14,12 +14,9 @@ const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
 export const Catalog = (props) => {
   const {
     films,
-    activePage,
     onSmallMovieCardClick,
     renderFilter,
   } = props;
-  const isMainPage = activePage === PageType.MAIN;
-  const isMovieDetailsPage = activePage === PageType.MOVIE_DETAILS;
 
   const handleSmallMovieCardClick = (newActiveMovie) => {
     onSmallMovieCardClick(newActiveMovie);
@@ -28,11 +25,7 @@ export const Catalog = (props) => {
   const handleShowMoreButtonClick = () => {};
 
   return (
-    <section className={`catalog ${isMovieDetailsPage ? `catalog--like-this` : ``}`}>
-      <h2 className={`catalog__title ${isMainPage ? `visually-hidden` : ``}`}>
-        {isMovieDetailsPage ? `More like this` : `Catalog`}
-      </h2>
-
+    <React.Fragment>
       {renderFilter && renderFilter(FilterType.GENRE, genreNames)}
 
       <div className="catalog__movies-list">
@@ -51,14 +44,13 @@ export const Catalog = (props) => {
         (films.length > NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP) &&
         <ShowMoreButton onClick={handleShowMoreButtonClick} />
       }
-    </section>
+    </React.Fragment>
   );
 };
 
 
 Catalog.propTypes = {
   films: PropTypes.arrayOf(MoviePropType).isRequired,
-  activePage: PropTypes.string.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
   renderFilter: PropTypes.func,
 };

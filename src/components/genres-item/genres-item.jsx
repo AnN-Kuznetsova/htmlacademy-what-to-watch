@@ -3,7 +3,7 @@ import React from "react";
 
 
 export const GenresItem = (props) => {
-  const {genreName, onClick} = props;
+  const {filterName, onClick} = props;
 
   return (
     <li className="catalog__genres-item">
@@ -11,13 +11,13 @@ export const GenresItem = (props) => {
         href="#"
         className="catalog__genres-link"
         onClick={onClick}
-      >{genreName}</a>
+      >{filterName}</a>
     </li>
   );
 };
 
 
 GenresItem.propTypes = {
-  genreName: PropTypes.string.isRequired,
+  filterName: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };

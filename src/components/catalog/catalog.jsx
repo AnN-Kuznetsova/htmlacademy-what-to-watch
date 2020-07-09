@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {GenresItem} from "../genres-item/genres-item.jsx";
-import {MoviePropType} from "../../prop-types.js";
 import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP, PageType} from "../../const.js";
+import {CatalogFilter} from "../catalog-filter/catalog-filter.jsx";
+import {MoviePropType} from "../../prop-types.js";
 import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
 import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
 import {genreNames} from "../../mocks/genre-names.js";
@@ -20,8 +20,6 @@ export const Catalog = (props) => {
   const isMainPage = activePage === PageType.MAIN;
   const isMovieDetailsPage = activePage === PageType.MOVIE_DETAILS;
 
-  const handleGenreClick = () => {};
-
   const handleSmallMovieCardClick = (newActiveMovie) => {
     onSmallMovieCardClick(newActiveMovie);
   };
@@ -34,18 +32,9 @@ export const Catalog = (props) => {
         {isMovieDetailsPage ? `More like this` : `Catalog`}
       </h2>
 
-      {isMainPage &&
-        <ul className="catalog__genres-list">
-          {
-            genreNames.map((genreName, index) =>
-              <GenresItem
-                key={genreName + index}
-                genreName={genreName}
-                onClick={handleGenreClick}
-              />
-            )
-          }
-        </ul>}
+      {isMainPage && <CatalogFilter
+        filterNames={genreNames}
+      />}
 
       <div className="catalog__movies-list">
         {

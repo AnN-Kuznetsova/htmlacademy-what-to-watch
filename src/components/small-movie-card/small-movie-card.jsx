@@ -16,7 +16,7 @@ export const SmallMovieCard = (props) => {
   const {title, smallPictureUrl, previewUrl} = movie;
   let timer = null;
 
-  const _lossHoverFromCard = () => {
+  const lossHoverFromCard = () => {
     if (timer) {
       clearTimeout(timer);
     }
@@ -26,29 +26,29 @@ export const SmallMovieCard = (props) => {
     }
   };
 
-  const _handleCardClick = (event) => {
+  const handleCardClick = (event) => {
     event.preventDefault();
-    _lossHoverFromCard();
+    lossHoverFromCard();
     onClick(movie);
   };
 
-  const _handleCardHover = () => {
+  const handleCardHover = () => {
     timer = setTimeout(
         setVideoPlayerStatus.bind(null, VideoPlayerStatus.ON_PLAY),
         DELAY_PLAYBACK_PREVIEW
     );
   };
 
-  const _handleCardLeave = () => {
-    _lossHoverFromCard();
+  const handleCardLeave = () => {
+    lossHoverFromCard();
   };
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={_handleCardHover}
-      onMouseLeave={_handleCardLeave}
-      onClick={_handleCardClick}
+      onMouseEnter={handleCardHover}
+      onMouseLeave={handleCardLeave}
+      onClick={handleCardClick}
     >
       <div className="small-movie-card__image">
         {renderVideoPlayer(previewUrl, smallPictureUrl, VideoPlayerMode.PREVIEW)}

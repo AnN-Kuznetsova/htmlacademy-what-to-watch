@@ -27,7 +27,7 @@ export class VideoPlayer extends PureComponent {
     video.src = src;
     video.muted = !isSound;
 
-    this._returnVideoElement.call(this, video);
+    this.returnVideoElement.call(this, video);
 
     video.oncanplaythrough = () => this.setState({
       isLoading: false,
@@ -56,7 +56,7 @@ export class VideoPlayer extends PureComponent {
     video.src = ``;
   }
 
-  _returnVideoElement(videoElement) {
+  returnVideoElement(videoElement) {
     this.props.getVideoElement(videoElement);
   }
 

@@ -23,7 +23,7 @@ export const withVideoPlayer = (Component) => {
       this._videoElement = null;
     }
 
-    _getPlayerOptions(playerMode) {
+    getPlayerOptions(playerMode) {
       switch (playerMode) {
         case VideoPlayerMode.PREVIEW:
           return {
@@ -37,7 +37,7 @@ export const withVideoPlayer = (Component) => {
       }
     }
 
-    _setVideoPlayerStatus(newPlayerStatus) {
+    setVideoPlayerStatus(newPlayerStatus) {
       this.setState({
         playerStatus: newPlayerStatus,
       }, () => {
@@ -50,14 +50,14 @@ export const withVideoPlayer = (Component) => {
       });
     }
 
-    _getVideoElement(videoElement) {
+    getVideoElement(videoElement) {
       this._videoElement = videoElement;
     }
 
-    _getPlayingValue() {
+    getPlayingValue() {
       switch (this.state.playerStatus) {
         case VideoPlayerStatus.ON_AUTOPLAY:
-          return this._getPlayerOptions(this._playerMode).isAutoPlay;
+          return this.getPlayerOptions(this._playerMode).isAutoPlay;
         case VideoPlayerStatus.ON_PLAY:
           return true;
         case VideoPlayerStatus.ON_PAUSE:
@@ -68,11 +68,11 @@ export const withVideoPlayer = (Component) => {
       }
     }
 
-    _renderPlayer(src, posterUrl, playerMode) {
+    renderPlayer(src, posterUrl, playerMode) {
       this._playerMode = playerMode;
 
-      const options = this._getPlayerOptions(playerMode);
-      const isPlaying = this._getPlayingValue();
+      const options = this.getPlayerOptions(playerMode);
+      const isPlaying = this.getPlayingValue();
 
       return (
         <VideoPlayer
@@ -82,7 +82,7 @@ export const withVideoPlayer = (Component) => {
           playerMode={playerMode}
           isPlaying={isPlaying}
           isSound={options.isSound}
-          getVideoElement={this._getVideoElement.bind(this)}
+          getVideoElement={this.getVideoElement.bind(this)}
         />
       );
     }
@@ -91,9 +91,9 @@ export const withVideoPlayer = (Component) => {
       return (
         <Component
           {...this.props}
-          renderVideoPlayer={this._renderPlayer.bind(this)}
+          renderVideoPlayer={this.renderPlayer.bind(this)}
           currentVideoPlayerStatus={this.state.playerStatus}
-          setVideoPlayerStatus={this._setVideoPlayerStatus.bind(this)}
+          setVideoPlayerStatus={this.setVideoPlayerStatus.bind(this)}
         />
       );
     }

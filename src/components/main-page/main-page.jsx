@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {MainPageHeader} from "../main-page-header/main-page-header";
 import {CatalogWithFilterByGenre} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
+import {MovieCardPromo} from "../movie-card-promo/movie-card-promo";
 
 import {promoMovie} from "../../mocks/promo-movie";
 import {movies} from "../../mocks/movies";
@@ -51,12 +51,10 @@ export const MainPage = (props) => {
         </svg>
       </div>
 
-      <section className="movie-card">
-        <MainPageHeader
-          movie={promoMovie}
-          onMovieClick={handlePromoMovieClick}
-        />
-      </section>
+      <MovieCardPromo
+        movie={promoMovie}
+        onMovieClick={handlePromoMovieClick}
+      />
 
       <div className="page-content">
         <section className="catalog">

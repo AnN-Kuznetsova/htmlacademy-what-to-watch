@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
+
 import {Catalog} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
-import {MovieCard} from "../movie-card/movie-card";
-import {MovieDetailsPageHeader} from "../movie-details-page-header/movie-details-page-header";
+import {MovieCardFull} from "../movie-card-full/movie-card-full";
 import {MoviePropType} from "../../prop-types";
 import {NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
@@ -57,16 +57,9 @@ export const MovieDetailsPage = (props) => {
         </svg>
       </div>
 
-      <section className="movie-card movie-card--full">
-        <MovieDetailsPageHeader
-          movie={activeMovie}
-          onMovieClick={null}
-        />
-
-        <MovieCard
-          movie={activeMovie}
-        />
-      </section>
+      <MovieCardFull
+        movie={activeMovie}
+      />
 
       <div className="page-content">
         <section className="catalog catalog--like-this">

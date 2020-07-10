@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {FilterItem} from '../../components/filter-item/filter-item.jsx';
+import {FilterItem} from '../../components/filter-item/filter-item';
 
 
 export const withFilter = (Component, filterType) => {

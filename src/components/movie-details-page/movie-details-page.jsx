@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Catalog} from "../catalog/catalog.jsx";
-import {Footer} from "../footer/footer.jsx";
-import {MovieCard} from "../movie-card/movie-card.jsx";
-import {MovieDetailsPageHeader} from "../movie-details-page-header/movie-details-page-header.jsx";
-import {MoviePropType} from "../../prop-types.js";
+import {Catalog} from "../catalog/catalog";
+import {Footer} from "../footer/footer";
+import {MovieCard} from "../movie-card/movie-card";
+import {MovieDetailsPageHeader} from "../movie-details-page-header/movie-details-page-header";
+import {MoviePropType} from "../../prop-types";
 import {NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
-import {movies} from "../../mocks/movies.js";
+import {movies} from "../../mocks/movies";
 
 
 function getFilteredMovies(moviesArray, currentMovie) {

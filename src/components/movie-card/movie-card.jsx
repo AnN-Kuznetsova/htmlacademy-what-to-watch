@@ -1,11 +1,10 @@
 import React from "react";
-import {MoviePropType} from "../../prop-types.js";
+import {MoviePropType} from "../../prop-types";
 import {
   getParticipantsLine,
   getFormattedScore,
   getRatingDescription,
-} from "../../utils/utils.js";
- // ToDo: настроить Eslint или/и WebPack чтобы импортировал без расширений в т.ч.
+} from "../../utils/utils";
 
 
 export const MovieCard = (props) => {

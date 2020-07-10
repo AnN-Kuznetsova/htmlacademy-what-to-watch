@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP} from "../../const.js";
-import {MoviePropType} from "../../prop-types.js";
-import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card.jsx";
-import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
-import {genreNames} from "../../mocks/genre-names.js";
-import {withFilter} from "../../hocs/with-filter/with-filter.jsx";
+import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP} from "../../const";
+import {MoviePropType} from "../../prop-types";
+import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
+import {ShowMoreButton} from "../show-more-button/show-more-button";
+import {genreNames} from "../../mocks/genre-names";
+import {withFilter} from "../../hocs/with-filter/with-filter";
 import {FilterType} from "../../const";
 
 

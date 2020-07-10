@@ -1,8 +1,8 @@
 import React, {PureComponent} from "react";
 
-import {MainPage} from "../main-page/main-page.jsx";
-import {MovieDetailsPage} from "../movie-details-page/movie-details-page.jsx";
-import {PageType} from "../../const.js";
+import {MainPage} from "../main-page/main-page";
+import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
+import {PageType} from "../../const";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 

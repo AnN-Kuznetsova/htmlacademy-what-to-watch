@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {MoviePropType} from "../../prop-types.js";
+import {MoviePropType} from "../../prop-types";
 
 
 export const MovieDetailsPageHeader = (props) => {

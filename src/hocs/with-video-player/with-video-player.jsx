@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {VideoPlayer, VideoPlayerMode} from '../../components/video-player/video-player.jsx';
+import {VideoPlayer, VideoPlayerMode} from '../../components/video-player/video-player';
 
 
 export const VideoPlayerStatus = {

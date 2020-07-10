@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {MainPageHeader} from "../main-page-header/main-page-header.jsx";
-import {CatalogWithFilterByGenre} from "../catalog/catalog.jsx";
-import {Footer} from "../footer/footer.jsx";
+import {MainPageHeader} from "../main-page-header/main-page-header";
+import {CatalogWithFilterByGenre} from "../catalog/catalog";
+import {Footer} from "../footer/footer";
 
-import {promoMovie} from "../../mocks/promo-movie.js";
-import {movies} from "../../mocks/movies.js";
+import {promoMovie} from "../../mocks/promo-movie";
+import {movies} from "../../mocks/movies";
 
 
 export const MainPage = (props) => {

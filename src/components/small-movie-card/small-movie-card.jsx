@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {DELAY_PLAYBACK_PREVIEW} from "../../const.js";
-import {MoviePropType} from "../../prop-types.js";
-import {VideoPlayerMode} from "../video-player/video-player.jsx";
-import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player.jsx";
-import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player.jsx";
+import {DELAY_PLAYBACK_PREVIEW} from "../../const";
+import {MoviePropType} from "../../prop-types";
+import {VideoPlayerMode} from "../video-player/video-player";
+import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player";
+import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
 export const SmallMovieCard = (props) => {

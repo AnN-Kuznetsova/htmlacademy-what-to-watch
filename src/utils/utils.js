@@ -1,4 +1,4 @@
-import {VISIBLE_PARTICIPANTS_COUNT} from "../const.js";
+import {VISIBLE_PARTICIPANTS_COUNT} from "../const";
 
 
 const getParticipantsLine = (participants, visibleParticipantsCount = VISIBLE_PARTICIPANTS_COUNT) => {

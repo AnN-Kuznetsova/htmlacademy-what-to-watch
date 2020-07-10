@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import {Header} from "../header/header";
 import {MoviePropType} from "../../prop-types";
 
 
@@ -13,23 +14,9 @@ export const MovieCardPromo = (props) => {
         <img src={movie.backgroundUrl} alt={movie.title} />
       </div>
 
-      <h1 className="visually-hidden">WTW</h1>
-
-      <header className="page-header movie-card__head">
-        <div className="logo">
-          <span className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </span>
-        </div>
-
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
-      </header>
+      <Header
+        isMainPageLink={false}
+      />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">

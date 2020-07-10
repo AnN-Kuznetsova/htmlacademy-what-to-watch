@@ -3,10 +3,12 @@ import React from "react";
 import {Catalog} from "../catalog/catalog.jsx";
 import {Footer} from "../footer/footer.jsx";
 import {MovieCard} from "../movie-card/movie-card.jsx";
+import {MovieDetailsPageHeader} from "../movie-details-page-header/movie-details-page-header.jsx";
 import {MoviePropType} from "../../prop-types.js";
 import {NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
 import {movies} from "../../mocks/movies.js";
+
 
 function getFilteredMovies(moviesArray, currentMovie) {
   return moviesArray.filter((movie) => movie !== currentMovie)
@@ -54,9 +56,17 @@ export const MovieDetailsPage = (props) => {
         </svg>
       </div>
 
-      <MovieCard
-        movie={activeMovie}
-      />
+      <section className="movie-card movie-card--full">
+        {/* ToDo: вынести в компонент MovieDetailsPage и удалить Header */}
+        <MovieDetailsPageHeader
+          movie={activeMovie}
+          onMovieClick={null}
+        />
+
+        <MovieCard
+          movie={activeMovie}
+        />
+      </section>
 
       <div className="page-content">
         <section className="catalog catalog--like-this">

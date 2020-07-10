@@ -2,22 +2,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import {MoviePropType} from "../../prop-types.js";
 
+
 export const MainPageHeader = (props) => {
   const {movie, onMovieClick} = props;
-  const {
-    title,
-    backgroundUrl,
-    posterUrl,
-    genres,
-    releaseDate,
-  } = movie;
-
-  const genre = genres[0];
 
   return (
     <React.Fragment>
       <div className="movie-card__bg">
-        <img src={backgroundUrl} alt={title} />
+        <img src={movie.backgroundUrl} alt={movie.title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -41,18 +33,18 @@ export const MainPageHeader = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster" onClick={onMovieClick}>
-            <img src={posterUrl} alt={title} width="218" height="327" />
+            <img src={movie.posterUrl} alt={movie.title} width="218" height="327" />
           </div>
           <div className="movie-card__desc">
             <h2
               className="movie-card__title"
               onClick={onMovieClick}
             >
-              {title}
+              {movie.title}
             </h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{releaseDate.getFullYear()}</span>
+              <span className="movie-card__genre">{movie.genres[0]}</span>
+              <span className="movie-card__year">{movie.releaseDate.getFullYear()}</span>
             </p>
 
             <div className="movie-card__buttons">

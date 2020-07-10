@@ -2,16 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {MainPageHeader} from "../main-page-header/main-page-header.jsx";
-import {Footer} from "../footer/footer.jsx";
 import {CatalogWithFilterByGenre} from "../catalog/catalog.jsx";
+import {Footer} from "../footer/footer.jsx";
 
 import {promoMovie} from "../../mocks/promo-movie.js";
 import {movies} from "../../mocks/movies.js";
 
+
 export const MainPage = (props) => {
-  const {
-    openMovieDetailsPage,
-  } = props;
+  const {openMovieDetailsPage} = props;
 
   const handleSmallMovieCardClick = (movie) => {
     openMovieDetailsPage(movie);

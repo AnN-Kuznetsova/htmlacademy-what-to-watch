@@ -5,13 +5,14 @@ import {MovieDetailsPage} from "../movie-details-page/movie-details-page.jsx";
 import {PageType} from "../../const.js";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
+
 export class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       activePage: PageType.MAIN,
-      activeMovie: undefined,
+      activeMovie: null,
     };
 
     this.openMovieDetailsPage = this.openMovieDetailsPage.bind(this);

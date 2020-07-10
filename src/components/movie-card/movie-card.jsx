@@ -4,8 +4,9 @@ import {
   getRatingDescription,
   getFormattedScore
 } from "../../utils/utils.js";
-import {Header} from "../header/header.jsx"; // ToDo: настроить Eslint или/и WebPack чтобы импортировал без расширений в т.ч.
-import {PageType} from "../../const";
+import {MovieDetailsPageHeader} from "../movie-details-page-header/movie-details-page-header.jsx";
+ // ToDo: настроить Eslint или/и WebPack чтобы импортировал без расширений в т.ч.
+
 
 const VISIBLE_PARTICIPANTS_COUNT = 4;
 
@@ -15,6 +16,7 @@ function getDirectorsLine(directors) {
   }
   return `Unknown`;
 }
+
 
 export const MovieCard = (props) => {
   const {movie} = props;
@@ -38,17 +40,8 @@ export const MovieCard = (props) => {
     <p key={descriptionItem + index}>{descriptionItem}</p>);
 
   return (
-    <section className="movie-card movie-card--full">
-
-      {/* ToDo: вынести в компонент MovieDetailsPage и удалить Header */}
-      <Header
-        movie={movie}
-        activePage={PageType.MOVIE_DETAILS}
-        onMovieClick={null}
-      />
-
-      <div className="movie-card__wrap movie-card__translate-top">
-        <div className="movie-card__info">
+    <div className="movie-card__wrap movie-card__translate-top">
+      <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
             <img src={posterUrl} alt={`${title} poster`} width="218" height="327" />
           </div>
@@ -85,9 +78,7 @@ export const MovieCard = (props) => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
+    </div>
   );
 };
 

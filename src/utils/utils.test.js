@@ -1,30 +1,28 @@
 import {
+  getParticipantsLine,
+  getFormattedScore,
   getRatingDescription,
-  getStringFromLimitedNumbersOfArrayElements,
-  getFormattedScore
 } from "./utils.js";
 
 
 describe(`Utils tests`, () => {
-  it(`Testing getStringFromLimitedNumbersOfArrayElements`, () => {
+  it(`Testing getParticipantsLine`, () => {
     const array = [
-      `first `,
-      `second `,
-      `third `,
-      `fourth `,
+      `first`,
+      `second`,
+      `third`,
+      `fourth`,
       `fifth`,
     ];
 
-    expect(getStringFromLimitedNumbersOfArrayElements([]))
+    expect(getParticipantsLine([]))
       .toEqual(``);
-    expect(getStringFromLimitedNumbersOfArrayElements(array, 1, ``, ``))
-      .toEqual(array[0]);
-    expect(getStringFromLimitedNumbersOfArrayElements(array, 3))
-      .toEqual(`${array[0]}, ${array[1]}, ${array[2]}`);
-    expect(getStringFromLimitedNumbersOfArrayElements(array, 3, `Begin: `, ` end...`))
-      .toEqual(`Begin: ${array[0]}, ${array[1]}, ${array[2]} end...`);
-    expect(getStringFromLimitedNumbersOfArrayElements(array, 7, `Begin: `, ` end...`))
-      .toEqual(`Begin: ${array[0]}, ${array[1]}, ${array[2]}, ${array[3]}, ${array[4]}`);
+    expect(getParticipantsLine(array, 1))
+      .toEqual(`first and other`);
+    expect(getParticipantsLine(array, 3))
+      .toEqual(`first, second, third and other`);
+    expect(getParticipantsLine(array, 7))
+      .toEqual(`first, second, third, fourth, fifth`);
   });
 
 

@@ -1,16 +1,13 @@
-const getStringFromLimitedNumbersOfArrayElements = (array, elementsCount = array.length, beginningOfLine = ``, endOfLine = ``) => {
-  if (array.length === 0) {
-    return ``;
-  }
+import {VISIBLE_PARTICIPANTS_COUNT} from "../const.js";
 
-  if (array.length <= elementsCount) {
-    endOfLine = ``;
-  }
 
-  return beginningOfLine
-          + array.slice(0, elementsCount)
-                 .reduce((accumulator, arrayItem) => `${accumulator}, ${arrayItem}`)
-          + endOfLine;
+const getParticipantsLine = (participants, visibleParticipantsCount = VISIBLE_PARTICIPANTS_COUNT) => {
+  if (participants.length > visibleParticipantsCount) {
+    return participants.slice(0, visibleParticipantsCount).join(`, `) + ` and other`;
+  } else if (participants.length > 0) {
+    return participants.slice().join(`, `);
+  }
+  return `Unknown`;
 };
 
 
@@ -18,7 +15,6 @@ const getFormattedScore = (score) => {
   if (score - Math.floor(score) !== 0) {
     return score.toString().replace(`.`, `,`);
   }
-
   return `${score.toString()},0`;
 };
 
@@ -42,7 +38,7 @@ const getRatingDescription = (score) => {
 
 
 export {
-  getStringFromLimitedNumbersOfArrayElements,
+  getParticipantsLine,
   getRatingDescription,
   getFormattedScore,
 };

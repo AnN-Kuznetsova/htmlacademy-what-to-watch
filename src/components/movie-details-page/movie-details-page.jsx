@@ -15,6 +15,7 @@ function getFilteredMovies(moviesArray, currentMovie) {
     .slice(0, NUMBER_OF_SIMILAR_FILMS);
 }
 
+
 export const MovieDetailsPage = (props) => {
   const {
     activeMovie,
@@ -57,7 +58,6 @@ export const MovieDetailsPage = (props) => {
       </div>
 
       <section className="movie-card movie-card--full">
-        {/* ToDo: вынести в компонент MovieDetailsPage и удалить Header */}
         <MovieDetailsPageHeader
           movie={activeMovie}
           onMovieClick={null}

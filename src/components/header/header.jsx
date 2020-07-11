@@ -1,10 +1,9 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 
-export const Header = (props) => {
-  const {isMainPageLink} = props;
-  const mainPageLink = isMainPageLink ? {href: `/`} : null;
+export const Header = () => {
+  const isMainPage = window.location.pathname === `/`;
+  const mainPageLink = isMainPage ? null : {href: `/`};
 
   return (
     <React.Fragment>
@@ -30,10 +29,4 @@ export const Header = (props) => {
 };
 
 
-Header.defaultProps = {
-  isMainPageLink: true,
-};
-
-Header.propTypes = {
-  isMainPageLink: PropTypes.bool.isRequired,
-};
+Header.propTypes = {};

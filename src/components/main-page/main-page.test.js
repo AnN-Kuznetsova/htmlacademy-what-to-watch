@@ -4,6 +4,13 @@ import renderer from "react-test-renderer";
 import {MainPage} from "./main-page.jsx";
 
 
+global.window = Object.create(window);
+Object.defineProperty(window, `location`, {
+  value: {
+    pathname: `/`
+  }
+});
+
 const props = {
   openMovieDetailsPage: () => {},
 };

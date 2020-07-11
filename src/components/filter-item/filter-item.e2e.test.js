@@ -1,23 +1,24 @@
 import React from "react";
-import {GenresItem} from "./genres-item.jsx";
-import {genreNames} from "../../__test-data__/test-mocks.js";
 import {shallow} from "enzyme";
+
+import {FilterItem} from "./filter-item.jsx";
 
 
 const onClick = jest.fn();
 
 const props = {
-  genreName: genreNames[6],
+  filterName: ``,
   onClick,
 };
 
-const genresItemElement = shallow(<GenresItem {...props} />);
+const filterItemElement = shallow(<FilterItem {...props} />);
 
 
-describe(`GenresItem e2e-tests`, () => {
-  it(`Should movie genre link be pressed`, () => {
-    const catalogGenresLinkElement = genresItemElement.find(`a.catalog__genres-link`);
-    catalogGenresLinkElement.simulate(`click`);
-    expect(onClick).toHaveBeenCalled();
+describe(`FilterItem e2e-tests`, () => {
+  it(`Filter item should be pressed`, () => {
+    const linkElement = filterItemElement.find(`a.catalog__genres-link`);
+    linkElement.simulate(`click`);
+
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

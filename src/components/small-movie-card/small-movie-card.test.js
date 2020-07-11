@@ -1,12 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {SmallMovieCard} from "./small-movie-card.jsx";
-import {films, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
 import {shallow} from "enzyme";
+
+import {SmallMovieCard} from "./small-movie-card.jsx";
+
+import {movies, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  movie: films[1],
+  movie: movies[1],
   onClick: () => {},
   onHover: () => {},
   renderVideoPlayer: () => {},

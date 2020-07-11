@@ -1,7 +1,9 @@
 import React from "react";
-import {SmallMovieCard} from "./small-movie-card.jsx";
 import {shallow} from "enzyme";
-import {films, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
+
+import {SmallMovieCard} from "./small-movie-card.jsx";
+
+import {movies, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {
@@ -9,14 +11,12 @@ const mockEvent = {
 };
 
 const onClick = jest.fn();
-const onHover = jest.fn();
 let renderVideoPlayer = null;
 let setVideoPlayerStatus = null;
 
 const props = {
-  movie: films[1],
+  movie: movies[1],
   onClick,
-  onHover,
   renderVideoPlayer,
   currentVideoPlayerStatus: VideoPlayerStatus.ON_PAUSE,
   setVideoPlayerStatus,
@@ -41,18 +41,11 @@ describe(`SmallMovieCard e2e-tests`, () => {
   });
 
 
-  it(`Should card be pressed`, () => {
+  it(`"onClick" should be called and movie data passed`, () => {
     smallMovieCardElement.simulate(`click`, mockEvent);
 
-    expect(onClick).toHaveBeenCalled();
-  });
-
-
-  it(`Should card be hover and pass to the callback the movie data from which was created`, () => {
-    smallMovieCardElement.simulate(`mouseEnter`, mockEvent);
-
-    expect(onHover).toHaveBeenCalled();
-    expect(onHover.mock.calls[0][0]).toMatchObject(props.movie);
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick.mock.calls[0][0]).toEqual(movies[1]);
   });
 
 
@@ -70,7 +63,7 @@ describe(`SmallMovieCard e2e-tests`, () => {
   });
 
 
-  it(`Should mouse leave the card in less than 1 second`, () => {
+  it(`Mouse leave in less than 1 second`, () => {
     smallMovieCardElement.simulate(`mouseEnter`, mockEvent);
     jest.runTimersToTime(500);
     smallMovieCardElement.simulate(`mouseLeave`);
@@ -80,7 +73,7 @@ describe(`SmallMovieCard e2e-tests`, () => {
   });
 
 
-  it(`Should mouse leave the card after more than 1 second`, () => {
+  it(`Mouse leave in more than 1 second`, () => {
     props.currentVideoPlayerStatus = VideoPlayerStatus.ON_PLAY;
     smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
 
@@ -96,6 +89,7 @@ describe(`SmallMovieCard e2e-tests`, () => {
 
   it(`Should pass the correct data when calling "renderVideoPlayer"`, () => {
     expect(renderVideoPlayer).toHaveBeenCalledTimes(1);
-    expect(renderVideoPlayer.mock.calls[0]).toEqual([films[1].previewUrl, films[1].smallPictureUrl, `preview`]);
+    expect(renderVideoPlayer.mock.calls[0])
+      .toEqual([movies[1].previewUrl, movies[1].smallPictureUrl, `preview`]);
   });
 });

@@ -7,7 +7,7 @@ import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player"
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
-export const SmallMovieCard = (props) => {
+const SmallMovieCard = (props) => {
   const {
     movie,
     onClick,
@@ -70,7 +70,14 @@ export const SmallMovieCard = (props) => {
   );
 };
 
-export const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
+
+const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
+
+
+export {
+  SmallMovieCard,
+  SmallMovieCardWithVideoPlayer,
+};
 
 
 SmallMovieCard.propTypes = {

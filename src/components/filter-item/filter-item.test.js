@@ -1,30 +1,37 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {GenresItem} from "./genres-item.jsx";
-import {genreNames} from "../../__test-data__/test-mocks.js";
 import {shallow} from "enzyme";
 
+import {FilterItem} from "./filter-item.jsx";
+
+
+const filterNames = [
+  `All genres`,
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+];
 
 const props = {
-  genreName: genreNames[6],
+  filterName: filterNames[2],
   onClick: () => {},
 };
 
-const genresItemElement = shallow(<GenresItem {...props} />);
+const filterItemElement = shallow(<FilterItem {...props} />);
 
 
-describe(`Render GenresItem`, () => {
+describe(`Render FilterItem`, () => {
   it(`Should match with snapshot`, () => {
     const genresItemSnapshot = renderer.create(
-        <GenresItem {...props} />
+        <FilterItem {...props} />
     ).toJSON();
 
     expect(genresItemSnapshot).toMatchSnapshot();
   });
 
 
-  it(`Should render correct movie genre`, () => {
-    expect(genresItemElement.find(`a.catalog__genres-link`).text())
-      .toEqual(props.genreName);
+  it(`Should render correct filter name`, () => {
+    expect(filterItemElement.find(`a.catalog__genres-link`).text())
+      .toEqual(`Crime`);
   });
 });

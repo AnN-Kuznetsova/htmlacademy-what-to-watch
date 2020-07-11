@@ -1,5 +1,6 @@
 import React from "react";
 import {mount} from "enzyme";
+
 import {VideoPlayer} from "./video-player.jsx";
 import {VideoPlayerMode} from "../../__test-data__/test-mocks.js";
 
@@ -36,7 +37,7 @@ describe(`VideoPlayer e2e-tests`, () => {
   });
 
 
-  it(`Should be called "play()" when isPlaying comes "true"`, () => {
+  it(`Should call "play()" when isPlaying comes "true"`, () => {
     props.isPlaying = true;
 
     const videoPlayerElement = mount(<VideoPlayer {...props} />, nodeMock);
@@ -49,7 +50,7 @@ describe(`VideoPlayer e2e-tests`, () => {
   });
 
 
-  it(`Should be called "pause()" when isPlaying comes "false"`, () => {
+  it(`Should call "pause()" when isPlaying comes "false"`, () => {
     props.isPlaying = false;
 
     const videoPlayerElement = mount(<VideoPlayer {...props} />, nodeMock);

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+
 import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP} from "../../const";
 import {MoviePropType} from "../../prop-types";
 import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
@@ -9,7 +10,7 @@ import {withFilter} from "../../hocs/with-filter/with-filter";
 import {FilterType} from "../../const";
 
 
-export const Catalog = (props) => {
+const Catalog = (props) => {
   const {
     movies,
     onSmallMovieCardClick,
@@ -42,7 +43,15 @@ export const Catalog = (props) => {
   );
 };
 
-export const CatalogWithFilterByGenre = withFilter(Catalog, FilterType.GENRE);
+
+const CatalogWithFilterByGenre = withFilter(Catalog, FilterType.GENRE);
+
+
+export {
+  Catalog,
+  CatalogWithFilterByGenre,
+};
+
 
 Catalog.propTypes = {
   movies: PropTypes.arrayOf(MoviePropType).isRequired,

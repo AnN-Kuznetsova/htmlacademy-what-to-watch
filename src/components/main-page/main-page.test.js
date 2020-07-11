@@ -1,17 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
+
 import {MainPage} from "./main-page.jsx";
-import {PageType} from "../../const.js";
-import {promoMovie, films} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  currentMovie: promoMovie,
-  films,
-  activePage: PageType.MAIN_INDEX,
-  onSmallMovieCardHover: () => {},
-  onSmallMovieCardClick: () => {},
-  onCurrentMovieClick: () => {},
+  openMovieDetailsPage: () => {},
 };
 
 const nodeMock = {
@@ -22,18 +16,7 @@ const nodeMock = {
 
 
 describe(`Render MainPage`, () => {
-  it(`Should match with snapshot when active page is MAIN_INDEX`, () => {
-    const mainPageSnapshot = renderer.create(
-        <MainPage {...props} />, nodeMock
-    ).toJSON();
-
-    expect(mainPageSnapshot).toMatchSnapshot();
-  });
-
-
-  it(`Should match with snapshot when active page is MAIN_MOVIE_DETAILS`, () => {
-    props.activePage = PageType.MAIN_MOVIE_DETAILS;
-
+  it(`Should match with snapshot`, () => {
     const mainPageSnapshot = renderer.create(
         <MainPage {...props} />, nodeMock
     ).toJSON();

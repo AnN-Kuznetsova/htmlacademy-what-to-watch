@@ -16,7 +16,7 @@ describe(`Utils tests`, () => {
     ];
 
     expect(getParticipantsLine([]))
-      .toEqual(``);
+      .toEqual(`Unknown`);
     expect(getParticipantsLine(array, 1))
       .toEqual(`first and other`);
     expect(getParticipantsLine(array, 3))

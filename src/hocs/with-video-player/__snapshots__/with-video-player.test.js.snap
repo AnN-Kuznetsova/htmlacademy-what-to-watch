@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render withVideoPlayer Should match with snapshot 1`] = `
-<withVideoPlayer
-  Component={[Function]}
+<div
+  currentVideoPlayerStatus="on-autoplay"
+  renderVideoPlayer={[Function]}
+  setVideoPlayerStatus={[Function]}
 />
 `;

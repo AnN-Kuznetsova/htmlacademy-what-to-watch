@@ -1,9 +1,9 @@
 import React, {PureComponent} from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {PageType} from "../../const";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 
 export class App extends PureComponent {

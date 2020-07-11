@@ -111,7 +111,7 @@ Array [
     </svg>
   </div>,
   <section
-    className="movie-card "
+    className="movie-card"
   >
     <div
       className="movie-card__bg"
@@ -253,7 +253,7 @@ Array [
     className="page-content"
   >
     <section
-      className="catalog "
+      className="catalog"
     >
       <h2
         className="catalog__title visually-hidden"
@@ -702,6 +702,88 @@ Array [
               href="movie-page.html"
             >
               Snatch
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <div
+              className=""
+            >
+              <video
+                autoPlay={false}
+                className="player__video"
+                poster="img/mindhunter.jpg"
+                style={
+                  Object {
+                    "height": 175,
+                  }
+                }
+              />
+            </div>
+            <img
+              alt="Mindhunter"
+              height="175"
+              src="img/mindhunter.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Mindhunter
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <div
+              className=""
+            >
+              <video
+                autoPlay={false}
+                className="player__video"
+                poster="img/war-of-the-worlds.jpg"
+                style={
+                  Object {
+                    "height": 175,
+                  }
+                }
+              />
+            </div>
+            <img
+              alt="War of the Worlds"
+              height="175"
+              src="img/war-of-the-worlds.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              War of the Worlds
             </a>
           </h3>
         </article>

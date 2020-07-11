@@ -1,6 +1,7 @@
 import React from "react";
-import {ShowMoreButton} from "./show-more-button.jsx";
 import {shallow} from "enzyme";
+
+import {ShowMoreButton} from "./show-more-button.jsx";
 
 
 const onCatalogButtonClick = jest.fn();

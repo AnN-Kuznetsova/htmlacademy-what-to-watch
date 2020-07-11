@@ -36,7 +36,7 @@ const promoMovie = {
   },
 };
 
-const films = [
+const movies = [
   {
     title: `Bohemian Rhapsody`,
     smallPictureUrl: `img/bohemian-rhapsody.jpg`,
@@ -416,6 +416,6 @@ export {
   VideoPlayerMode,
   VideoPlayerStatus,
   genreNames,
+  movies,
   promoMovie,
-  films,
 };

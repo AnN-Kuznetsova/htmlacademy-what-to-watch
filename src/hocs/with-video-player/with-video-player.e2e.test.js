@@ -1,7 +1,9 @@
 import React from "react";
-import {VideoPlayerStatus, VideoPlayerMode} from "../../__test-data__/test-mocks.js";
 import {mount} from "enzyme";
+
 import {withVideoPlayer} from "./with-video-player.jsx";
+
+import {VideoPlayerStatus, VideoPlayerMode} from "../../__test-data__/test-mocks.js";
 
 
 const Component = () => {
@@ -12,30 +14,30 @@ const Component = () => {
 
 
 describe(`withVideoPlayer e2e-tests`, () => {
-  describe(`Should correctly install the player status and set the value of "isPlayin"`, () => {
+  describe(`Set correct player status and value of "isPlaying"`, () => {
     const ComponentWithVideoPlayer = withVideoPlayer(Component);
     const componentWithPlayerElement = mount(<ComponentWithVideoPlayer />);
     const componentWithPlayerInstance = componentWithPlayerElement.instance();
 
 
-    it(`Player status "ON_AUTOPLAY", "isPlayin" is "false" when VideoPlayerMode is "PREVIEW"`, () => {
+    it(`Player status "ON_AUTOPLAY": "isPlaying" is "false" when VideoPlayerMode is "PREVIEW"`, () => {
       componentWithPlayerInstance._playerMode = VideoPlayerMode.PREVIEW;
 
       expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_AUTOPLAY);
-      expect(componentWithPlayerInstance._getPlayingValue()).toEqual(false);
+      expect(componentWithPlayerInstance.getPlayingValue()).toEqual(false);
     });
 
 
-    it(`Player status "ON_PLAY", "isPlaying" is "true"`, () => {
-      const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `_setVideoPlayerStatus`);
+    it(`Player status "ON_PLAY": "isPlaying" is "true"`, () => {
+      const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `setVideoPlayerStatus`);
       spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PLAY);
 
       expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_PLAY);
-      expect(componentWithPlayerInstance._getPlayingValue()).toEqual(true);
+      expect(componentWithPlayerInstance.getPlayingValue()).toEqual(true);
     });
 
 
-    it(`Player status "ON_PAUSE", "isPlaying" is "false" and should be called "video.load()"`, () => {
+    it(`Player status "ON_PAUSE": "isPlaying" is "false" and "video.load()" called`, () => {
       const load = jest.fn();
       const mockVideoElement = {
         load,
@@ -43,24 +45,24 @@ describe(`withVideoPlayer e2e-tests`, () => {
 
       componentWithPlayerInstance._playerMode = VideoPlayerMode.PREVIEW;
 
-      const spyOnGetVideoElement = jest.spyOn(componentWithPlayerInstance, `_getVideoElement`);
+      const spyOnGetVideoElement = jest.spyOn(componentWithPlayerInstance, `getVideoElement`);
       spyOnGetVideoElement.call(componentWithPlayerInstance, mockVideoElement);
 
-      const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `_setVideoPlayerStatus`);
+      const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `setVideoPlayerStatus`);
       spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PAUSE);
 
       expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_RESET);
-      expect(componentWithPlayerInstance._getPlayingValue()).toEqual(false);
+      expect(componentWithPlayerInstance.getPlayingValue()).toEqual(false);
       expect(load).toHaveBeenCalledTimes(1);
     });
   });
 
 
-  it(`Should correctly pass the correct props to the player when VideoPlayerMode is "PREVIEW"`, () => {
+  it(`Should pass the correct props to the player when VideoPlayerMode is "PREVIEW"`, () => {
     const ComponentWithVideoPlayer = withVideoPlayer(Component);
     const componentWithPlayerElement = mount(<ComponentWithVideoPlayer />);
     const componentWithPlayerInstance = componentWithPlayerElement.instance();
-    const spyOnRenderPlayer = jest.spyOn(componentWithPlayerInstance, `_renderPlayer`);
+    const spyOnRenderPlayer = jest.spyOn(componentWithPlayerInstance, `renderPlayer`);
     const src = `pathSrc`;
     const posterUrl = `pathPosterUrl`;
     const playerMode = VideoPlayerMode.PREVIEW;

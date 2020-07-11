@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+
 import {withVideoPlayer} from "./with-video-player";
 
 
@@ -9,11 +10,13 @@ const Component = (props) => {
   );
 };
 
+const ComponentWithVideoPlayer = withVideoPlayer(Component);
+
 
 describe(`Render withVideoPlayer`, () => {
   it(`Should match with snapshot`, () => {
     const withVideoPlayerSnapshot = renderer.create(
-        <withVideoPlayer Component={Component} />
+        <ComponentWithVideoPlayer />
     ).toJSON();
 
     expect(withVideoPlayerSnapshot).toMatchSnapshot();

@@ -22,10 +22,6 @@ export const MovieDetailsPage = (props) => {
     onSmallMovieCardClick,
   } = props;
 
-  const handleSmallMovieCardClick = (newActiveMovie) => {
-    onSmallMovieCardClick(newActiveMovie);
-  };
-
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -69,7 +65,7 @@ export const MovieDetailsPage = (props) => {
 
           <Catalog
             movies={getFilteredMovies(movies, activeMovie)}
-            onSmallMovieCardClick={handleSmallMovieCardClick}
+            onSmallMovieCardClick={onSmallMovieCardClick}
           />
         </section>
 

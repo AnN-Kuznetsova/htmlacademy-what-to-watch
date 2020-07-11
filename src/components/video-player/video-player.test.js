@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+
 import {VideoPlayer} from "./video-player";
 import {VideoPlayerMode} from "../../__test-data__/test-mocks.js";
 

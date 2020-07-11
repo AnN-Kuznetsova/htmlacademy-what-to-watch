@@ -1,431 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render Catalog Catalog should match with snapshot 1`] = `
-Array [
-  <div
-    className="catalog__movies-list"
+<div
+  className="catalog__movies-list"
+>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+    <div
+      className="small-movie-card__image"
     >
       <div
-        className="small-movie-card__image"
+        className=""
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/bohemian-rhapsody.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/bohemian-rhapsody.jpg"
+          style={
+            Object {
+              "height": 175,
             }
-          />
-        </div>
-        <img
-          alt="Bohemian Rhapsody"
-          height="175"
-          src="img/bohemian-rhapsody.jpg"
-          width="280"
+          }
         />
       </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Bohemian Rhapsody
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      <img
+        alt="Bohemian Rhapsody"
+        height="175"
+        src="img/bohemian-rhapsody.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
     >
-      <div
-        className="small-movie-card__image"
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/aviator.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Aviator"
-          height="175"
-          src="img/aviator.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Aviator
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/revenant.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Revenant"
-          height="175"
-          src="img/revenant.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Revenant
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/johnny-english.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Johnny English"
-          height="175"
-          src="img/johnny-english.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Johnny English
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/shutter-island.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Shutter Island"
-          height="175"
-          src="img/shutter-island.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Shutter Island
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/pulp-fiction.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Pulp Fiction"
-          height="175"
-          src="img/pulp-fiction.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Pulp Fiction
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/seven-years-in-tibet.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Seven Years in Tibet"
-          height="175"
-          src="img/seven-years-in-tibet.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Seven Years in Tibet
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/snatch.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Snatch"
-          height="175"
-          src="img/snatch.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Snatch
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/mindhunter.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="Mindhunter"
-          height="175"
-          src="img/mindhunter.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          Mindhunter
-        </a>
-      </h3>
-    </article>
-    <article
-      className="small-movie-card catalog__movies-card"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <div
-        className="small-movie-card__image"
-      >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/war-of-the-worlds.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
-        <img
-          alt="War of the Worlds"
-          height="175"
-          src="img/war-of-the-worlds.jpg"
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >
-          War of the Worlds
-        </a>
-      </h3>
-    </article>
-  </div>,
-  <div
-    className="catalog__more"
+        Bohemian Rhapsody
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <button
-      className="catalog__button"
-      onClick={[Function]}
-      type="button"
+    <div
+      className="small-movie-card__image"
     >
-      Show more
-    </button>
-  </div>,
-]
+      <div
+        className=""
+      >
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/aviator.jpg"
+          style={
+            Object {
+              "height": 175,
+            }
+          }
+        />
+      </div>
+      <img
+        alt="Aviator"
+        height="175"
+        src="img/aviator.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Aviator
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <div
+        className=""
+      >
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/revenant.jpg"
+          style={
+            Object {
+              "height": 175,
+            }
+          }
+        />
+      </div>
+      <img
+        alt="Revenant"
+        height="175"
+        src="img/revenant.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >
+        Revenant
+      </a>
+    </h3>
+  </article>
+</div>
 `;

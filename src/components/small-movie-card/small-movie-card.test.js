@@ -1,14 +1,25 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {SmallMovieCard} from "./small-movie-card.jsx";
-import {films} from "../../__test-data__/test-mocks.js";
 import {shallow} from "enzyme";
+
+import {SmallMovieCard} from "./small-movie-card.jsx";
+
+import {movies, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  movie: films[1],
+  movie: movies[1],
   onClick: () => {},
   onHover: () => {},
+  renderVideoPlayer: () => {},
+  currentVideoPlayerStatus: VideoPlayerStatus.ON_PAUSE,
+  setVideoPlayerStatus: () => {},
+};
+
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
 };
 
 const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
@@ -17,7 +28,7 @@ const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
 describe(`Render SmallMovieCard`, () => {
   it(`Should match with snapshot`, () => {
     const smallMovieCardSnapshot = renderer.create(
-        <SmallMovieCard {...props} />
+        <SmallMovieCard {...props} />, nodeMock
     ).toJSON();
 
     expect(smallMovieCardSnapshot).toMatchSnapshot();

@@ -1,28 +1,60 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {DELAY_PLAYBACK_PREVIEW} from "../../const";
 import {MoviePropType} from "../../prop-types";
+import {VideoPlayerMode} from "../video-player/video-player";
+import {VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player";
+import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
-export const SmallMovieCard = (props) => {
-  const {movie, onClick, onHover} = props;
-  const {title, smallPictureUrl} = movie;
+const SmallMovieCard = (props) => {
+  const {
+    movie,
+    onClick,
+    renderVideoPlayer,
+    currentVideoPlayerStatus,
+    setVideoPlayerStatus
+  } = props;
+  const {title, smallPictureUrl, previewUrl} = movie;
+  let timer = null;
+
+  const lossHoverFromCard = () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    if (currentVideoPlayerStatus === VideoPlayerStatus.ON_PLAY) {
+      setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
+    }
+  };
 
   const handleCardClick = (event) => {
     event.preventDefault();
-    onClick();
+    lossHoverFromCard();
+    onClick(movie);
   };
 
   const handleCardHover = () => {
-    onHover(movie);
+    timer = setTimeout(
+        setVideoPlayerStatus.bind(null, VideoPlayerStatus.ON_PLAY),
+        DELAY_PLAYBACK_PREVIEW
+    );
+  };
+
+  const handleCardLeave = () => {
+    lossHoverFromCard();
   };
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={handleCardHover}
+      onMouseLeave={handleCardLeave}
       onClick={handleCardClick}
     >
       <div className="small-movie-card__image">
+        {renderVideoPlayer(previewUrl, smallPictureUrl, VideoPlayerMode.PREVIEW)}
+
         <img
           src={smallPictureUrl}
           alt={title}
@@ -30,6 +62,7 @@ export const SmallMovieCard = (props) => {
           height="175"
         />
       </div>
+
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">{title}</a>
       </h3>
@@ -38,8 +71,19 @@ export const SmallMovieCard = (props) => {
 };
 
 
+const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
+
+
+export {
+  SmallMovieCard,
+  SmallMovieCardWithVideoPlayer,
+};
+
+
 SmallMovieCard.propTypes = {
   movie: MoviePropType.isRequired,
   onClick: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired,
+  renderVideoPlayer: PropTypes.func.isRequired,
+  currentVideoPlayerStatus: PropTypes.string.isRequired,
+  setVideoPlayerStatus: PropTypes.func.isRequired,
 };

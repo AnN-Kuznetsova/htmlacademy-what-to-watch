@@ -1,9 +1,12 @@
-export const films = [
+const mockVideoUrl = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
+
+export const movies = [
   {
     title: `Bohemian Rhapsody`,
     smallPictureUrl: `img/bohemian-rhapsody.jpg`,
     backgroundUrl: `img/bohemian-rhapsody.jpg`,
     posterUrl: `img/bohemian-rhapsody.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Drama`, `Biography`],
     releaseDate: new Date(2018, 0),
     description: [
@@ -42,6 +45,7 @@ export const films = [
     smallPictureUrl: `img/aviator.jpg`,
     backgroundUrl: `img/aviator.jpg`,
     posterUrl: `img/aviator.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Drama`, `Biography`],
     releaseDate: new Date(2004, 0),
     description: [
@@ -75,6 +79,7 @@ export const films = [
     smallPictureUrl: `img/revenant.jpg`,
     backgroundUrl: `img/revenant.jpg`,
     posterUrl: `img/revenant.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Drama`, `Biography`, `Adventure`, `Western`, `Action`],
     releaseDate: new Date(2015, 0),
     description: [
@@ -108,6 +113,7 @@ export const films = [
     smallPictureUrl: `img/johnny-english.jpg`,
     backgroundUrl: `img/johnny-english.jpg`,
     posterUrl: `img/johnny-english.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Comedy`, `Action`, `Comedy`, `Adventure`],
     releaseDate: new Date(2003, 0),
     description: [
@@ -141,6 +147,7 @@ export const films = [
     smallPictureUrl: `img/shutter-island.jpg`,
     backgroundUrl: `img/shutter-island.jpg`,
     posterUrl: `img/shutter-island.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Drama`, `Thriller`, `Detective`],
     releaseDate: new Date(2009, 0),
     description: [
@@ -173,6 +180,7 @@ export const films = [
     smallPictureUrl: `img/pulp-fiction.jpg`,
     backgroundUrl: `img/pulp-fiction.jpg`,
     posterUrl: `img/pulp-fiction.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Thriller`, `Comedy`, `Crime`],
     releaseDate: new Date(1994, 0),
     description: [
@@ -207,6 +215,7 @@ export const films = [
     smallPictureUrl: `img/seven-years-in-tibet.jpg`,
     backgroundUrl: `img/seven-years-in-tibet.jpg`,
     posterUrl: `img/seven-years-in-tibet.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Drama`, `Adventure`, `Military`, `Biography`, `History`],
     releaseDate: new Date(1997, 0),
     description: [
@@ -227,7 +236,7 @@ export const films = [
       `Ингеборга Дапкунайте`,
       `Цзямъян Цзямцо Ванчук`,
       `Лакпа Тсамшо`,
-      `Джетсун Пема      `,
+      `Джетсун Пема`,
     ],
     runTime: 136,
     reviews: [],
@@ -242,6 +251,7 @@ export const films = [
     smallPictureUrl: `img/snatch.jpg`,
     backgroundUrl: `img/snatch.jpg`,
     posterUrl: `img/snatch.jpg`,
+    previewUrl: mockVideoUrl,
     genres: [`Action`, `Comedy`, `Crime`],
     releaseDate: new Date(2000, 0),
     description: [
@@ -268,6 +278,74 @@ export const films = [
     rating: {
       score: 8.5,
       totalVotes: 343,
+    },
+  },
+
+  {
+    title: `Mindhunter`,
+    smallPictureUrl: `img/mindhunter.jpg`,
+    backgroundUrl: `img/mindhunter.jpg`,
+    posterUrl: `img/mindhunter.jpg`,
+    previewUrl: mockVideoUrl,
+    genres: [`Thriller`, `Drama`, `Crime`, `Detective`],
+    releaseDate: new Date(2017, 0),
+    description: [
+      `1979 год. Два агента ФБР опрашивают находящихся в заключении серийных убийц с целью понимания их образа мыслей, а также раскрытия текущих преступлений.`,
+    ],
+    directors: [`Дэвид Финчер`, `Карл Франклин`, `Эндрю Дуглас`],
+    starring: [
+      `Джонатан Грофф`,
+      `Холт Маккэллани`,
+      `Анна Торв`,
+      `Сонни Валиченти`,
+      `Стэйси Рока`,
+      `Ханна Гросс`,
+      `Джо Таттл`,
+      `Захари Скотт Росс`,
+      `Коттер Смит`,
+      `Альберт Джонс`,
+    ],
+    runTime: 60,
+    reviews: [],
+    rating: {
+      score: 8.1,
+      totalVotes: 372,
+    },
+  },
+
+  {
+    title: `War of the Worlds`,
+    smallPictureUrl: `img/war-of-the-worlds.jpg`,
+    backgroundUrl: `img/war-of-the-worlds.jpg`,
+    posterUrl: `img/war-of-the-worlds.jpg`,
+    previewUrl: mockVideoUrl,
+    genres: [`Fiction`, `Thriller`, `Adventure`],
+    releaseDate: new Date(2005, 0),
+    description: [
+      `Никто не поверил бы в начале 21 столетия, что за всем происходящим на Земле зорко и внимательно следят существа более развитые, чем человек; что в то время,
+      как люди занимались своими делами, их исследовали и изучали.`,
+      `С бесконечным самодовольством сновали люди по всему земному шару, занятые своими делишками, уверенные в своей власти над материей. А между тем через бездну
+      пространства на Землю смотрели глазами полными зависти, существа с высокоразвитым, холодным, бесчувственным интеллектом, и медленно, но верно вырабатывали свои
+      враждебные нам планы…`,
+    ],
+    directors: [`Стивен Спилберг`],
+    starring: [
+      `Том Круз`,
+      `Дакота Фаннинг`,
+      `Миранда Отто`,
+      `Джастин Чатвин`,
+      `Тим Роббинс`,
+      `Рик Гонсалес`,
+      `Юл Васкес`,
+      `Ленни Венито`,
+      `Лиза Энн Уолтер`,
+      `Энн Робинсон`,
+    ],
+    runTime: 116,
+    reviews: [],
+    rating: {
+      score: 7.0,
+      totalVotes: 152,
     },
   },
 ];

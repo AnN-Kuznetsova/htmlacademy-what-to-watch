@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render GenresItem Should match with snapshot 1`] = `
+exports[`Render FilterItem Should match with snapshot 1`] = `
 <li
   className="catalog__genres-item"
 >
@@ -9,7 +9,7 @@ exports[`Render GenresItem Should match with snapshot 1`] = `
     href="#"
     onClick={[Function]}
   >
-    Kids & Family
+    Crime
   </a>
 </li>
 `;

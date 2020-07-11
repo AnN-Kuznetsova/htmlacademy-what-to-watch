@@ -1,14 +1,8 @@
 import React from "react";
 import ReactDom from "react-dom";
-import {App} from "./components/app/app.jsx";
-import {films} from "./mocks/films.js";
-import {promoMovie} from "./mocks/promo-movie.js";
-
+import {App} from "./components/app/app";
 
 ReactDom.render(
-    <App
-      promoMovie={promoMovie}
-      films={films}
-    />,
+    <App />,
     document.querySelector(`#root`)
 );

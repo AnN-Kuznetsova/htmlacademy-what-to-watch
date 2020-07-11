@@ -20,6 +20,7 @@
     "enzyme-adapter-react-16": "1.15.2",
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",
+    "eslint-plugin-import": "2.22.0",
     "eslint-plugin-react": "7.20.0",
     "jest": "26.0.1",
     "react-test-renderer": "16.13.1",

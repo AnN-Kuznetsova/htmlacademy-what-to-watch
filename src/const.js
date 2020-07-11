@@ -1,12 +1,23 @@
-const NUMBER_OF_ELEMENTS_IN_LINE = 4;
+const NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP = 8;
+const NUMBER_OF_SIMILAR_FILMS = 4;
+const VISIBLE_PARTICIPANTS_COUNT = 4;
+const DELAY_PLAYBACK_PREVIEW = 1000;
 
 const PageType = {
-  MAIN_INDEX: `main-index`,
-  MAIN_MOVIE_DETAILS: `movie-details`,
+  MAIN: `main`,
+  MOVIE_DETAILS: `movie-details`,
+};
+
+const FilterType = {
+  GENRE: `genre`,
 };
 
 
 export {
-  NUMBER_OF_ELEMENTS_IN_LINE,
+  DELAY_PLAYBACK_PREVIEW,
+  NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
+  VISIBLE_PARTICIPANTS_COUNT,
+  NUMBER_OF_SIMILAR_FILMS,
+  FilterType,
   PageType,
 };

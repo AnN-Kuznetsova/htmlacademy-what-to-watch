@@ -1,71 +1,60 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {GenresItem} from "../genres-item/genres-item.jsx";
-import {MoviePropType} from "../../prop-types.js";
-import {PageType} from "../../const.js";
-import {SmallMovieCard} from "../small-movie-card/small-movie-card.jsx";
-import {ShowMoreButton} from "../show-more-button/show-more-button.jsx";
-import {genreNames} from "../../mocks/genre-names.js";
+
+import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP} from "../../const";
+import {MoviePropType} from "../../prop-types";
+import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
+import {ShowMoreButton} from "../show-more-button/show-more-button";
+import {genreNames} from "../../mocks/genre-names";
+import {withFilter} from "../../hocs/with-filter/with-filter";
+import {FilterType} from "../../const";
 
 
-export const Catalog = (props) => {
-  const {films, activePage, onSmallMovieCardHover, onSmallMovieCardClick} = props;
-  const isMainIndexPage = activePage === PageType.MAIN_INDEX;
-  const isMainMovieDetailsPage = activePage === PageType.MAIN_MOVIE_DETAILS;
-
-  const handleGenreClick = () => {};
-
-  const handleSmallMovieCardHover = (movie) => {
-    onSmallMovieCardHover(movie);
-  };
-
-  const handleSmallMovieCardClick = () => {
-    onSmallMovieCardClick();
-  };
+const Catalog = (props) => {
+  const {
+    movies,
+    onSmallMovieCardClick,
+    renderFilter,
+  } = props;
 
   const handleShowMoreButtonClick = () => {};
 
   return (
-    <section className={`catalog ${isMainMovieDetailsPage ? `catalog--like-this` : ``}`}>
-      <h2 className={`catalog__title ${isMainIndexPage ? `visually-hidden` : ``}`}>
-        {isMainMovieDetailsPage ? `More like this` : `Catalog`}
-      </h2>
-
-      {isMainIndexPage &&
-        <ul className="catalog__genres-list">
-          {
-            genreNames.map((genreName, index) =>
-              <GenresItem
-                key={genreName + index}
-                genreName={genreName}
-                onClick={handleGenreClick}
-              />
-            )
-          }
-        </ul>}
+    <React.Fragment>
+      {renderFilter && renderFilter(genreNames)}
 
       <div className="catalog__movies-list">
         {
-          films.map((movie, index) =>
-            <SmallMovieCard
+          movies.map((movie, index) =>
+            <SmallMovieCardWithVideoPlayer
               key={movie.title + index}
               movie={movie}
-              onClick={handleSmallMovieCardClick}
-              onHover={handleSmallMovieCardHover}
+              onClick={onSmallMovieCardClick}
             />
           )
         }
       </div>
 
-      {isMainIndexPage && <ShowMoreButton onClick={handleShowMoreButtonClick} />}
-    </section>
+      {
+        (movies.length > NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP) &&
+        <ShowMoreButton onClick={handleShowMoreButtonClick} />
+      }
+    </React.Fragment>
   );
 };
 
 
+const CatalogWithFilterByGenre = withFilter(Catalog, FilterType.GENRE);
+
+
+export {
+  Catalog,
+  CatalogWithFilterByGenre,
+};
+
+
 Catalog.propTypes = {
-  films: PropTypes.arrayOf(MoviePropType).isRequired,
-  activePage: PropTypes.string.isRequired,
-  onSmallMovieCardHover: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(MoviePropType).isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
+  renderFilter: PropTypes.func,
 };

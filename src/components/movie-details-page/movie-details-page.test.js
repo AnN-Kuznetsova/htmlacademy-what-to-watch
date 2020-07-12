@@ -13,6 +13,10 @@ Object.defineProperty(window, `location`, {
   }
 });
 
+const mockMath = Object.create(global.Math);
+mockMath.random = () => 0.5;
+global.Math = mockMath;
+
 const nodeMock = {
   createNodeMock: () => {
     return {};

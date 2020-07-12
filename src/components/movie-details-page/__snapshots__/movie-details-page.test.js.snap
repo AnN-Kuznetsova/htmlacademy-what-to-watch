@@ -274,26 +274,29 @@ Array [
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
                   Overview
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
                   Details
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
                   Reviews
                 </a>
@@ -385,7 +388,7 @@ Array [
               <video
                 autoPlay={false}
                 className="player__video"
-                poster="img/bohemian-rhapsody.jpg"
+                poster="img/shutter-island.jpg"
                 style={
                   Object {
                     "height": 175,
@@ -394,9 +397,9 @@ Array [
               />
             </div>
             <img
-              alt="Bohemian Rhapsody"
+              alt="Shutter Island"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="img/shutter-island.jpg"
               width="280"
             />
           </div>
@@ -407,48 +410,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <div
-              className=""
-            >
-              <video
-                autoPlay={false}
-                className="player__video"
-                poster="img/aviator.jpg"
-                style={
-                  Object {
-                    "height": 175,
-                  }
-                }
-              />
-            </div>
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/aviator.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
+              Shutter Island
             </a>
           </h3>
         </article>
@@ -508,7 +470,7 @@ Array [
               <video
                 autoPlay={false}
                 className="player__video"
-                poster="img/johnny-english.jpg"
+                poster="img/seven-years-in-tibet.jpg"
                 style={
                   Object {
                     "height": 175,
@@ -517,9 +479,9 @@ Array [
               />
             </div>
             <img
-              alt="Johnny English"
+              alt="Seven Years in Tibet"
               height="175"
-              src="img/johnny-english.jpg"
+              src="img/seven-years-in-tibet.jpg"
               width="280"
             />
           </div>
@@ -530,7 +492,48 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Johnny English
+              Seven Years in Tibet
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <div
+              className=""
+            >
+              <video
+                autoPlay={false}
+                className="player__video"
+                poster="img/aviator.jpg"
+                style={
+                  Object {
+                    "height": 175,
+                  }
+                }
+              />
+            </div>
+            <img
+              alt="Aviator"
+              height="175"
+              src="img/aviator.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Aviator
             </a>
           </h3>
         </article>

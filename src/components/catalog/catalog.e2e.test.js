@@ -1,7 +1,9 @@
 import React from "react";
-import {Catalog} from "./catalog.jsx";
-import {movies} from "../../__test-data__/test-mocks.js";
 import {mount} from "enzyme";
+
+import {Catalog} from "./catalog.jsx";
+
+import {movies} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {

@@ -3,7 +3,7 @@ import React from "react";
 import {MoviePropType} from "../../prop-types";
 import {
   getParticipantsLine,
-  getFormattedScore,
+  getFormatedScore,
   getRatingDescription,
 } from "../../utils/utils";
 
@@ -11,7 +11,7 @@ import {
 export const MovieOverview = (props) => {
   const {movie} = props;
 
-  const scoreValue = getFormattedScore(movie.rating.score);
+  const scoreValue = getFormatedScore(movie.rating.score);
   const ratingDescription = getRatingDescription(movie.rating.score);
 
   const descriptionMarkup = movie.description.map((descriptionItem, index) =>

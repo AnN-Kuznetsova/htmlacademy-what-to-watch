@@ -1,8 +1,17 @@
 import {
+  getExtremeIndexesForSlice,
+  getFormatedDate,
+  getFormatedRunTime,
+  getFormatedScore,
   getParticipantsLine,
-  getFormattedScore,
   getRatingDescription,
+  getRandomArrayElements,
 } from "./utils.js";
+
+
+const mockMath = Object.create(global.Math);
+mockMath.random = () => 0.5;
+global.Math = mockMath;
 
 
 describe(`Utils tests`, () => {
@@ -26,9 +35,9 @@ describe(`Utils tests`, () => {
   });
 
 
-  it(`Testing getFormattedScore`, () => {
-    expect(getFormattedScore(1)).toEqual(`1,0`);
-    expect(getFormattedScore(1.6)).toEqual(`1,6`);
+  it(`Testing getFormatedScore`, () => {
+    expect(getFormatedScore(1)).toEqual(`1,0`);
+    expect(getFormatedScore(1.6)).toEqual(`1,6`);
   });
 
 
@@ -43,5 +52,46 @@ describe(`Utils tests`, () => {
     expect(getRatingDescription(8)).toEqual(`Very good`);
     expect(getRatingDescription(9.9)).toEqual(`Very good`);
     expect(getRatingDescription(10)).toEqual(`Awesome`);
+  });
+
+
+  it(`Testing getFormatedRunTime`, () => {
+    expect(getFormatedRunTime(0)).toEqual(`0h 0m`);
+    expect(getFormatedRunTime(59)).toEqual(`0h 59m`);
+    expect(getFormatedRunTime(60)).toEqual(`1h 0m`);
+    expect(getFormatedRunTime(65)).toEqual(`1h 5m`);
+    expect(getFormatedRunTime(105)).toEqual(`1h 45m`);
+    expect(getFormatedRunTime(120)).toEqual(`2h 0m`);
+    expect(getFormatedRunTime(157)).toEqual(`2h 37m`);
+  });
+
+
+  it(`Testing getFormatedDate`, () => {
+    expect(getFormatedDate(new Date(2018, 11, 5))).toEqual(`December 5, 2018`);
+    expect(getFormatedDate(new Date(2018, 11, 5), true)).toEqual(`2018-12-5`);
+  });
+
+
+  it(`Testing getExtremeIndexesForSlice`, () => {
+    expect(getExtremeIndexesForSlice(7, 3, 0)).toEqual({
+      beginingIndex: 0,
+      endingIndex: 3,
+    });
+    expect(getExtremeIndexesForSlice(11, 3, 1)).toEqual({
+      beginingIndex: 4,
+      endingIndex: 8,
+    });
+    expect(getExtremeIndexesForSlice(5, 3, 2)).toEqual({
+      beginingIndex: 4,
+      endingIndex: 6,
+    });
+  });
+
+
+  it(`Testing getRandomArrayElements`, () => {
+    const array = [`one`, `two`, `three`, `four`, `five`];
+    expect(getRandomArrayElements(array, 1)).toEqual([`three`]);
+    expect(getRandomArrayElements(array, 2)).toEqual([`three`, `four`]);
+    expect(getRandomArrayElements(array, 4)).toEqual([`three`, `four`, `two`, `five`]);
   });
 });

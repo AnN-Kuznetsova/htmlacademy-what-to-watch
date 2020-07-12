@@ -29,7 +29,7 @@ const getParticipantsLine = (participants, visibleParticipantsCount = VISIBLE_PA
 };
 
 
-const getFormattedScore = (score) => {
+const getFormatedScore = (score) => {
   if (score - Math.floor(score) !== 0) {
     return score.toString().replace(`.`, `,`);
   }
@@ -120,7 +120,7 @@ export {
   getExtremeIndexesForSlice,
   getFormatedDate,
   getFormatedRunTime,
-  getFormattedScore,
+  getFormatedScore,
   getParticipantsLine,
   getRatingDescription,
   getRandomArrayElements,

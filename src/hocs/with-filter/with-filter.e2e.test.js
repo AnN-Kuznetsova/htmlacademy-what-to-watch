@@ -12,20 +12,20 @@ const Component = () => {
 
 const ComponentWithFilter = withFilter(Component, `filter-type`);
 const componentWithFilterElement = mount(<ComponentWithFilter />);
-const componentWithFilterElementInstance = componentWithFilterElement.instance();
+const componentWithFilterInstance = componentWithFilterElement.instance();
 
 
 describe(`withFilter e2e-tests`, () => {
   it(`Set correct filter type`, () => {
-    expect(componentWithFilterElementInstance.state.filterType).toEqual(`filter-type`);
+    expect(componentWithFilterInstance.state.filterType).toEqual(`filter-type`);
   });
 
 
   it(`Should pass the correct props to the "renderFilter"`, () => {
     const filterNames = [`One`, `Two`, `Three`];
-    const spyOnRenderFilter = jest.spyOn(componentWithFilterElementInstance, `renderFilter`);
+    const spyOnRenderFilter = jest.spyOn(componentWithFilterInstance, `renderFilter`);
 
-    const filter = spyOnRenderFilter.call(componentWithFilterElementInstance, filterNames);
+    const filter = spyOnRenderFilter.call(componentWithFilterInstance, filterNames);
 
     expect(filter.props.children.map((child) => child.props.filterName))
       .toEqual([`One`, `Two`, `Three`]);

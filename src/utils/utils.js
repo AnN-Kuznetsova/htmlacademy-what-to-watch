@@ -19,6 +19,13 @@ const getFormattedScore = (score) => {
 };
 
 
+const getFormatedRunTime = (runTime) => {
+  const hours = Math.floor(runTime / 60);
+  const minutes = runTime - hours * 60;
+  return `${hours}h ${minutes}m`;
+};
+
+
 const getRatingDescription = (score) => {
   switch (true) {
     case (score < 3):
@@ -40,5 +47,6 @@ const getRatingDescription = (score) => {
 export {
   getParticipantsLine,
   getRatingDescription,
+  getFormatedRunTime,
   getFormattedScore,
 };

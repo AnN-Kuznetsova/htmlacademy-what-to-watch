@@ -14,6 +14,12 @@ export const withTabs = (Component) => {
       this.renderTabNav = this.renderTabNav.bind(this);
     }
 
+    handleTabHeaderClick(tabId) {
+      this.setState({
+        activeTabId: tabId,
+      });
+    }
+
     renderTabNav(tabNames) {
       const {activeTabId} = this.state;
 
@@ -22,7 +28,11 @@ export const withTabs = (Component) => {
           <ul className="movie-nav__list">
             {tabNames.map((tabName, index) => (
               <li key={tabName + index} className={`movie-nav__item ${index === activeTabId ? `movie-nav__item--active` : ``}`}>
-                <a href="#" className="movie-nav__link">{tabName}</a>
+                <a
+                  href="#"
+                  className="movie-nav__link"
+                  onClick={this.handleTabHeaderClick.bind(this, index)}
+                >{tabName}</a>
               </li>
             ))}
           </ul>
@@ -35,7 +45,10 @@ export const withTabs = (Component) => {
 
       if (tabId === activeTabId) {
         return (
-          <TabComponent key={key} {...props} />
+          <TabComponent
+            {...props}
+            key={key}
+          />
         );
       }
 

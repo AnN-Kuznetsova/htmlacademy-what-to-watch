@@ -3,7 +3,7 @@ import React from "react";
 import {MoviePropType} from "../../prop-types";
 import {
   getExtremeIndexesForSlice,
-  getFormattedScore,
+  getFormatedScore,
   getFormatedDate,
 } from "../../utils/utils";
 
@@ -39,7 +39,7 @@ export const MovieReviews = (props) => {
                     </footer>
                   </blockquote>
 
-                  <div className="review__rating">{getFormattedScore(review.rating)}</div>
+                  <div className="review__rating">{getFormatedScore(review.rating)}</div>
                 </div>
               ))}
           </div>

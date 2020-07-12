@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 
-export const MoviePropType = PropTypes.shape({
+const MoviePropType = PropTypes.shape({
   title: PropTypes.string.isRequired,
   smallPictureUrl: PropTypes.string.isRequired,
   backgroundUrl: PropTypes.string.isRequired,
@@ -19,3 +19,16 @@ export const MoviePropType = PropTypes.shape({
     totalVotes: PropTypes.number.isRequired,
   }).isRequired,
 });
+
+const ReviewPropType = PropTypes.shape({
+  text: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  author: PropTypes.string.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
+});
+
+
+export {
+  MoviePropType,
+  ReviewPropType,
+};

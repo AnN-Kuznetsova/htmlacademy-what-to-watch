@@ -26,6 +26,49 @@ const getFormatedRunTime = (runTime) => {
 };
 
 
+const getFormatedMonth = (month) => {
+  switch (month) {
+    case 0:
+      return `January`;
+    case 1:
+      return `February`;
+    case 2:
+      return `March`;
+    case 3:
+      return `April`;
+    case 4:
+      return `May`;
+    case 5:
+      return `June`;
+    case 6:
+      return `July`;
+    case 7:
+      return `August`;
+    case 8:
+      return `September`;
+    case 9:
+      return `October`;
+    case 10:
+      return `November`;
+    case 11:
+      return `December`;
+    default:
+      return ``;
+  }
+};
+
+
+const getFormatedDate = (date, isForMachine = false) => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const monthValue = getFormatedMonth(month);
+  const day = date.getDate();
+
+  return isForMachine ? `${year}-${month + 1}-${day}` :
+    `${monthValue} ${day}, ${year}`;
+};
+
+
 const getRatingDescription = (score) => {
   switch (true) {
     case (score < 3):
@@ -44,9 +87,22 @@ const getRatingDescription = (score) => {
 };
 
 
+const getExtremeIndexesForSlice = (arrayLength, iterationCount, iterationIndex) => {
+  const beginingIndex = Math.ceil(arrayLength / iterationCount) * iterationIndex;
+  const endingIndex = beginingIndex + Math.ceil(arrayLength / iterationCount);
+
+  return {
+    beginingIndex,
+    endingIndex,
+  };
+};
+
+
 export {
-  getParticipantsLine,
-  getRatingDescription,
+  getExtremeIndexesForSlice,
+  getFormatedDate,
   getFormatedRunTime,
   getFormattedScore,
+  getParticipantsLine,
+  getRatingDescription,
 };

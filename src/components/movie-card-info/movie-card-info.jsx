@@ -4,6 +4,7 @@ import React from "react";
 import {MovieDetails} from "../movie-details/movie-details";
 import {MovieOverview} from "../movie-overview/movie-overview";
 import {MoviePropType} from "../../prop-types";
+import {MovieReviews} from "../movie-reviews/movie-reviews";
 import {withTabs} from "../../hocs/with-tabs/with-tabs";
 
 
@@ -18,7 +19,7 @@ const tabList = [
   },
   {
     name: `Reviews`,
-    component: null,
+    component: MovieReviews,
   },
 ];
 

@@ -1,6 +1,24 @@
 import {VISIBLE_PARTICIPANTS_COUNT} from "../const";
 
 
+const getRandomIntegerNumber = function (num) {
+  return Math.floor(Math.random() * (num + 1));
+};
+
+
+const getRandomArrayElements = function (array, count) {
+  const arrayElements = [];
+  const arrayCopy = array.slice();
+
+  for (let i = 0; i < count; i++) {
+    const index = getRandomIntegerNumber(arrayCopy.length - 1);
+    arrayElements.push(...arrayCopy.splice(index, 1));
+  }
+
+  return arrayElements;
+};
+
+
 const getParticipantsLine = (participants, visibleParticipantsCount = VISIBLE_PARTICIPANTS_COUNT) => {
   if (participants.length > visibleParticipantsCount) {
     return participants.slice(0, visibleParticipantsCount).join(`, `) + ` and other`;
@@ -105,4 +123,5 @@ export {
   getFormattedScore,
   getParticipantsLine,
   getRatingDescription,
+  getRandomArrayElements,
 };

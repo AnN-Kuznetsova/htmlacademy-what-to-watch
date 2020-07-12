@@ -5,15 +5,24 @@ import {Catalog} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
 import {MovieCardFull} from "../movie-card-full/movie-card-full";
 import {MoviePropType} from "../../prop-types";
-import {NUMBER_OF_SIMILAR_FILMS} from "../../const";
+import {NUMBER_OF_SIMILAR_FILMS, FilterType} from "../../const";
+import {getRandomArrayElements} from "../../utils/utils";
 
 import {movies} from "../../mocks/movies";
 
 
-function getFilteredMovies(moviesArray, currentMovie) {
-  return moviesArray.filter((movie) => movie !== currentMovie)
-    .slice(0, NUMBER_OF_SIMILAR_FILMS);
-}
+const getFilteredMovies = (moviesArray, currentMovie, filterProperty) => {
+  const moviesCount = NUMBER_OF_SIMILAR_FILMS;
+
+  switch (filterProperty) {
+    case FilterType.GENRE :
+      const filteredMovies = moviesArray.filter((movie) => movie !== currentMovie && movie.genres.includes(currentMovie.genres[0]));
+      return getRandomArrayElements(filteredMovies, moviesCount);
+
+    default:
+      return moviesArray;
+  }
+};
 
 
 export const MovieDetailsPage = (props) => {
@@ -64,7 +73,7 @@ export const MovieDetailsPage = (props) => {
           </h2>
 
           <Catalog
-            movies={getFilteredMovies(movies, activeMovie)}
+            movies={getFilteredMovies(movies, activeMovie, FilterType.GENRE)}
             onSmallMovieCardClick={onSmallMovieCardClick}
           />
         </section>

@@ -24,7 +24,7 @@ const CatalogComponent = (props) => {
 
   return (
     <React.Fragment>
-      {renderFilter && renderFilter(genreNames, onFilterClick)}
+      {renderFilter && renderFilter(genreNames, onFilterClick, activeFilter)}
 
       <div className="catalog__movies-list">
         {

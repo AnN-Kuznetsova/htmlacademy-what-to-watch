@@ -18,7 +18,7 @@ export const withFilter = (Component/* , filterType */) => {
 
     handleFilterItemClick() {} */
 
-    renderFilter(filterNames, onClick) {
+    renderFilter(filterNames, onClick, activeFilter) {
       return (
         <ul className="catalog__genres-list">
           {
@@ -27,6 +27,7 @@ export const withFilter = (Component/* , filterType */) => {
                 key={filterName + index}
                 filterName={filterName}
                 onClick={onClick} //{this.handleFilterItemClick}
+                isActive={filterName === activeFilter}
               />
             )
           }

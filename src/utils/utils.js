@@ -19,6 +19,11 @@ const getRandomArrayElements = function (array, count) {
 };
 
 
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+
 const getParticipantsLine = (participants, visibleParticipantsCount = VISIBLE_PARTICIPANTS_COUNT) => {
   if (participants.length > visibleParticipantsCount) {
     return participants.slice(0, visibleParticipantsCount).join(`, `) + ` and other`;
@@ -117,6 +122,7 @@ const getExtremeIndexesForSlice = (arrayLength, iterationCount, iterationIndex) 
 
 
 export {
+  extend,
   getExtremeIndexesForSlice,
   getFormatedDate,
   getFormatedRunTime,

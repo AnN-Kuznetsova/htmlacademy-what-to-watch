@@ -17,7 +17,7 @@ const getGenreFilterNames = (movies) => {
     movie.genres.forEach((genre) => filterNames.add(genre));
   });
 
-  return Array.from(filterNames);
+  return [`All genres`].concat(Array.from(filterNames));
 };
 
 

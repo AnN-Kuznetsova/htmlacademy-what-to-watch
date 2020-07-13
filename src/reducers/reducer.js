@@ -13,10 +13,23 @@ const initialState = {
   movieList: movies,
 };
 
+
 const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   GET_MOVIES: `GET_MOVIES`,
 };
+
+const ActionCreator = {
+  changeGenre: (value) => ({
+    type: ActionType.CHANGE_GENRE,
+    payload: value,
+  }),
+  getMovies: () => ({
+    type: ActionType.GET_MOVIES,
+    payload: null,
+  }),
+};
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -37,6 +50,7 @@ const reducer = (state = initialState, action) => {
 
 
 export {
+  ActionCreator,
   ActionType,
   reducer,
 };

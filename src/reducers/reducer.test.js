@@ -1,4 +1,4 @@
-import {reducer, ActionType} from "./reducer";
+import {reducer, ActionType, ActionCreator} from "./reducer";
 
 import {movies} from "../mocks/movies";
 import {movies as mockMovies} from "../__test-data__/test-mocks";
@@ -78,6 +78,24 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Adventure`,
       movieList: [mockMovies[2]],
+    });
+  });
+});
+
+
+describe(`Action creators should work correctly`, () => {
+  it(`Action creator for change genre returns correct action`, () => {
+    expect(ActionCreator.changeGenre(`All genres`)).toEqual({
+      type: ActionType.CHANGE_GENRE,
+      payload: `All genres`,
+    });
+  });
+
+
+  it(`Action creator for get movies returns correct action`, () => {
+    expect(ActionCreator.getMovies()).toEqual({
+      type: ActionType.GET_MOVIES,
+      payload: null,
     });
   });
 });

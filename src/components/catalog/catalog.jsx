@@ -7,13 +7,24 @@ import {ActionCreator} from "../../reducers/reducer";
 import {MoviePropType} from "../../prop-types";
 import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
 import {ShowMoreButton} from "../show-more-button/show-more-button";
-import {genreNames} from "../../mocks/genre-names";
 import {withFilter} from "../../hocs/with-filter/with-filter";
+
+
+const getGenreFilterNames = (movies) => {
+  const filterNames = new Set();
+
+  movies.forEach((movie) => {
+    movie.genres.forEach((genre) => filterNames.add(genre));
+  });
+
+  return Array.from(filterNames);
+};
 
 
 const CatalogComponent = (props) => {
   const {
     movies,
+    movieList,
     onSmallMovieCardClick,
     renderFilter,
     activeFilter,
@@ -24,11 +35,11 @@ const CatalogComponent = (props) => {
 
   return (
     <React.Fragment>
-      {renderFilter && renderFilter(genreNames, onFilterClick, activeFilter)}
+      {renderFilter && renderFilter(getGenreFilterNames(movies), onFilterClick, activeFilter)}
 
       <div className="catalog__movies-list">
         {
-          movies.map((movie, index) =>
+          movieList.map((movie, index) =>
             <SmallMovieCardWithVideoPlayer
               key={movie.title + index}
               movie={movie}
@@ -39,7 +50,7 @@ const CatalogComponent = (props) => {
       </div>
 
       {
-        (movies.length > NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP) &&
+        (movieList.length > NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP) &&
         <ShowMoreButton onClick={handleShowMoreButtonClick} />
       }
     </React.Fragment>
@@ -49,6 +60,7 @@ const CatalogComponent = (props) => {
 
 CatalogComponent.propTypes = {
   movies: PropTypes.arrayOf(MoviePropType).isRequired,
+  movieList: PropTypes.arrayOf(MoviePropType).isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
   renderFilter: PropTypes.func,
   activeFilter: PropTypes.string.isRequired,
@@ -58,6 +70,8 @@ CatalogComponent.propTypes = {
 
 const mapStateToProps = (state) => ({
   activeFilter: state.genre,
+  movies: state.movies,
+  movieList: state.movieList,
 });
 
 const mapDispatchToProps = (dispatch) => ({

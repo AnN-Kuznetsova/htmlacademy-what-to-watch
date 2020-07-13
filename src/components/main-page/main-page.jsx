@@ -6,7 +6,6 @@ import {Footer} from "../footer/footer";
 import {MovieCardPromo} from "../movie-card-promo/movie-card-promo";
 
 import {promoMovie} from "../../mocks/promo-movie";
-import {movies} from "../../mocks/movies";
 
 
 export const MainPage = (props) => {
@@ -63,7 +62,6 @@ export const MainPage = (props) => {
           </h2>
 
           <CatalogWithFilterByGenre
-            movies={movies}
             onSmallMovieCardClick={handleSmallMovieCardClick}
           />
         </section>

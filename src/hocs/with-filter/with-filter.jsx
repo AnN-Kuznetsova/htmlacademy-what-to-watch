@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react';
 import {FilterItem} from '../../components/filter-item/filter-item';
 
 
-export const withFilter = (Component, filterType) => {
+export const withFilter = (Component/* , filterType */) => {
   class WithFilter extends PureComponent {
-    constructor(props) {
+    /* constructor(props) {
       super(props);
 
       this.state = {
@@ -16,9 +16,9 @@ export const withFilter = (Component, filterType) => {
       this.handleFilterItemClick = this.handleFilterItemClick.bind(this);
     }
 
-    handleFilterItemClick() {}
+    handleFilterItemClick() {} */
 
-    renderFilter(filterNames) {
+    renderFilter(filterNames, onClick) {
       return (
         <ul className="catalog__genres-list">
           {
@@ -26,7 +26,7 @@ export const withFilter = (Component, filterType) => {
               <FilterItem
                 key={filterName + index}
                 filterName={filterName}
-                onClick={this.handleFilterItemClick}
+                onClick={onClick} //{this.handleFilterItemClick}
               />
             )
           }

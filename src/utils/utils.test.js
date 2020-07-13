@@ -1,13 +1,16 @@
 import {
   extend,
   getExtremeIndexesForSlice,
+  getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
   getFormatedScore,
   getParticipantsLine,
   getRatingDescription,
   getRandomArrayElements,
-} from "./utils.js";
+} from "./utils";
+
+import {movies} from "../__test-data__/test-mocks";
 
 
 const mockMath = Object.create(global.Math);
@@ -139,5 +142,15 @@ describe(`Utils tests`, () => {
       property1: `property one`,
       property2: `property 2`,
     });
+  });
+
+
+  it(`Testing getFilteredMovies`, () => {
+    expect(getFilteredMovies(movies, `genres`, `All genres`))
+      .toEqual(movies);
+    expect(getFilteredMovies(movies, `genres`, `Drama`))
+      .toEqual([movies[0], movies[1], movies[2]]);
+    expect(getFilteredMovies(movies, `genres`, `Adventure`))
+      .toEqual([movies[2]]);
   });
 });

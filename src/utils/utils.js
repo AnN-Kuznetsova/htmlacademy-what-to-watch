@@ -1,4 +1,4 @@
-import {VISIBLE_PARTICIPANTS_COUNT} from "../const";
+import {VISIBLE_PARTICIPANTS_COUNT, FilterType} from "../const";
 
 
 const getRandomIntegerNumber = function (num) {
@@ -121,9 +121,22 @@ const getExtremeIndexesForSlice = (arrayLength, iterationCount, iterationIndex) 
 };
 
 
+const getFilteredMovies = (movies, filterName, filterValue) => {
+  switch (filterName) {
+    case FilterType.GENRE:
+      return filterValue === `All genres` ? movies :
+        movies.filter((movie) => movie.genres.includes(filterValue));
+
+    default:
+      return movies;
+  }
+};
+
+
 export {
   extend,
   getExtremeIndexesForSlice,
+  getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
   getFormatedScore,

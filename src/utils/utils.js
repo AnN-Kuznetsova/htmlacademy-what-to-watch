@@ -134,11 +134,8 @@ const getFilteredMovies = (movies, filterName, filterValue, currentMovie, movies
       break;
   }
 
-  if (moviesCount) {
-    return getRandomArrayElements(filteredMovies, moviesCount);
-  }
-
-  return filteredMovies;
+  return moviesCount ? getRandomArrayElements(filteredMovies, moviesCount) :
+    filteredMovies;
 };
 
 

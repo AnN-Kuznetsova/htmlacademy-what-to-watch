@@ -6,6 +6,17 @@ import {MovieDetailsPage} from "./movie-details-page";
 import {promoMovie} from "../../__test-data__/test-mocks.js";
 
 
+global.window = Object.create(window);
+Object.defineProperty(window, `location`, {
+  value: {
+    pathname: `/page-name`
+  }
+});
+
+const mockMath = Object.create(global.Math);
+mockMath.random = () => 0.5;
+global.Math = mockMath;
+
 const nodeMock = {
   createNodeMock: () => {
     return {};

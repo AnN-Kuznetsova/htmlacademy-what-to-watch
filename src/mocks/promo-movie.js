@@ -1,3 +1,6 @@
+import {reviews} from "./reviews";
+
+
 export const promoMovie = {
   title: `The Grand Budapest Hotel`,
   smallPictureUrl: ``,
@@ -27,7 +30,7 @@ export const promoMovie = {
     `Jeff Goldblum`,
   ],
   runTime: 99,
-  reviews: [],
+  reviews,
   rating: {
     score: 8.9,
     totalVotes: 240,

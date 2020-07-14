@@ -9,7 +9,7 @@ const PageType = {
 };
 
 const FilterType = {
-  GENRE: `genre`,
+  GENRE: `genres`,
 };
 
 

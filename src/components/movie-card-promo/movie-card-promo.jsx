@@ -14,9 +14,7 @@ export const MovieCardPromo = (props) => {
         <img src={movie.backgroundUrl} alt={movie.title} />
       </div>
 
-      <Header
-        isMainPageLink={false}
-      />
+      <Header />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">

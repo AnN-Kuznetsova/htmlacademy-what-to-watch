@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 
 import {AppComponent} from "./app.jsx";
 
-import {promoMovie, movies} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 const nodeMock = {
@@ -17,13 +17,13 @@ const nodeMock = {
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  movies,
+  movies: mockMovies,
   genre: `All genres`,
-  movieList: movies,
+  movieList: mockMovies,
 });
 
 const props = {
-  activeMovie: promoMovie,
+  activeMovie: mockPromoMovie,
   onActiveMovieChange: () => {},
 };
 

@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import {CatalogComponent} from "./catalog.jsx";
 
-import {movies as mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 const props = {

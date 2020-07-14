@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 
 import {MainPage} from "./main-page.jsx";
 
-import {promoMovie, movies} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {
@@ -15,15 +15,15 @@ const mockEvent = {
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  movies,
+  movies: mockMovies,
   genre: `All genres`,
-  movieList: movies,
+  movieList: mockMovies,
 });
 
 const openMovieDetailsPage = jest.fn();
 
 const props = {
-  promoMovie,
+  promoMovie: mockPromoMovie,
   openMovieDetailsPage,
 };
 

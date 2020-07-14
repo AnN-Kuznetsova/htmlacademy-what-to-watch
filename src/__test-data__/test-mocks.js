@@ -1,6 +1,6 @@
 const mockVideoUrl = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 
-const promoMovie = {
+const mockPromoMovie = {
   title: `The Grand Budapest Hotel`,
   smallPictureUrl: ``,
   backgroundUrl: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -36,7 +36,7 @@ const promoMovie = {
   },
 };
 
-const movies = [
+const mockMovies = [
   {
     title: `Bohemian Rhapsody`,
     smallPictureUrl: `img/bohemian-rhapsody.jpg`,
@@ -157,24 +157,10 @@ const VideoPlayerStatus = {
   ON_RESET: `on-reset`,
 };
 
-const genreNames = [
-  `All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thrillers`,
-];
-
 
 export {
   VideoPlayerMode,
   VideoPlayerStatus,
-  genreNames,
-  movies,
-  promoMovie,
+  mockMovies,
+  mockPromoMovie,
 };

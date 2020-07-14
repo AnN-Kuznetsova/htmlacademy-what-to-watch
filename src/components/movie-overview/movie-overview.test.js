@@ -4,16 +4,16 @@ import {shallow} from "enzyme";
 
 import {MovieOverview} from "./movie-overview";
 
-import {promoMovie} from "../../__test-data__/test-mocks";
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
-const movieOverviewElement = shallow(<MovieOverview movie={promoMovie} />);
+const movieOverviewElement = shallow(<MovieOverview movie={mockPromoMovie} />);
 
 
 describe(`Render MovieOverview`, () => {
   it(`Should match with snapshot`, () => {
     const movieOverviewSnapshot = renderer.create(
-        <MovieOverview movie={promoMovie} />
+        <MovieOverview movie={mockPromoMovie} />
     ).toJSON();
 
     expect(movieOverviewSnapshot).toMatchSnapshot();
@@ -24,11 +24,11 @@ describe(`Render MovieOverview`, () => {
     let movieDescriptionElements = movieOverviewElement.find(`div.movie-card__text p`);
 
     expect(movieDescriptionElements.length)
-      .toEqual(promoMovie.description.length + 2);
+      .toEqual(mockPromoMovie.description.length + 2);
 
     movieDescriptionElements = [...movieDescriptionElements];
 
-    promoMovie.description.forEach((descriptionItem, index) => {
+    mockPromoMovie.description.forEach((descriptionItem, index) => {
       expect(movieDescriptionElements[index].props.children)
         .toEqual(descriptionItem);
     });
@@ -49,13 +49,13 @@ describe(`Render MovieOverview`, () => {
 
   it(`Should render correct movie score`, () => {
     expect(movieOverviewElement.find(`div.movie-rating__score`).text())
-      .toEqual(promoMovie.rating.score.toString().replace(`.`, `,`));
+      .toEqual(mockPromoMovie.rating.score.toString().replace(`.`, `,`));
   });
 
 
   it(`Should render correct movie total votes`, () => {
     expect(movieOverviewElement.find(`span.movie-rating__count`).text())
-      .toEqual(`${promoMovie.rating.totalVotes} ratings`);
+      .toEqual(`${mockPromoMovie.rating.totalVotes} ratings`);
   });
 
 

@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 
 import {MovieDetailsPage} from "./movie-details-page";
 
-import {promoMovie, movies} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 global.window = Object.create(window);
@@ -28,7 +28,7 @@ const nodeMock = {
 };
 
 const props = {
-  activeMovie: promoMovie,
+  activeMovie: mockPromoMovie,
   onSmallMovieCardClick: () => {},
 };
 
@@ -38,7 +38,7 @@ describe(`Render MovieDetailsPage`, () => {
     const store = mockStore({
       movies: [],
       genre: ``,
-      movieList: movies,
+      movieList: mockMovies,
     });
 
     const movieDetailsPageSnapshot = renderer.create(

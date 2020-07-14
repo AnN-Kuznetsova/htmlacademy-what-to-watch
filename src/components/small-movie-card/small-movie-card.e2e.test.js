@@ -3,7 +3,7 @@ import {shallow} from "enzyme";
 
 import {SmallMovieCard} from "./small-movie-card.jsx";
 
-import {movies, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
+import {mockMovies, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {
@@ -15,7 +15,7 @@ let renderVideoPlayer = null;
 let setVideoPlayerStatus = null;
 
 const props = {
-  movie: movies[1],
+  movie: mockMovies[1],
   onClick,
   renderVideoPlayer,
   currentVideoPlayerStatus: VideoPlayerStatus.ON_PAUSE,
@@ -45,7 +45,7 @@ describe(`SmallMovieCard e2e-tests`, () => {
     smallMovieCardElement.simulate(`click`, mockEvent);
 
     expect(onClick).toHaveBeenCalledTimes(1);
-    expect(onClick.mock.calls[0][0]).toEqual(movies[1]);
+    expect(onClick.mock.calls[0][0]).toEqual(mockMovies[1]);
   });
 
 
@@ -90,6 +90,6 @@ describe(`SmallMovieCard e2e-tests`, () => {
   it(`Should pass the correct data when calling "renderVideoPlayer"`, () => {
     expect(renderVideoPlayer).toHaveBeenCalledTimes(1);
     expect(renderVideoPlayer.mock.calls[0])
-      .toEqual([movies[1].previewUrl, movies[1].smallPictureUrl, `preview`]);
+      .toEqual([mockMovies[1].previewUrl, mockMovies[1].smallPictureUrl, `preview`]);
   });
 });

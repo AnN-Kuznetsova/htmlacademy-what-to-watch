@@ -3,7 +3,7 @@ import {reducer, ActionType, ActionCreator} from "./reducer";
 import {movies} from "../mocks/movies";
 import {promoMovie} from "../mocks/promo-movie";
 
-import {movies as mockMovies} from "../__test-data__/test-mocks";
+import {mockMovies} from "../__test-data__/test-mocks";
 
 
 describe(`Reduser should work correctly`, () => {

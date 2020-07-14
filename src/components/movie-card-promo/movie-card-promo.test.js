@@ -4,11 +4,11 @@ import {shallow} from "enzyme";
 
 import {MovieCardPromo} from "./movie-card-promo";
 
-import {promoMovie} from "../../__test-data__/test-mocks";
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 const props = {
-  movie: promoMovie,
+  movie: mockPromoMovie,
   onMovieClick: () => {},
 };
 
@@ -26,36 +26,36 @@ describe(`Render MovieCardPromo`, () => {
 
   it(`Should render correct promo-movie title`, () => {
     expect(movueCardPromoElement.find(`div.movie-card__bg img`).prop(`alt`))
-      .toEqual(promoMovie.title);
+      .toEqual(mockPromoMovie.title);
 
     expect(movueCardPromoElement.find(`div.movie-card__poster img`).prop(`alt`))
-      .toEqual(promoMovie.title);
+      .toEqual(mockPromoMovie.title);
 
     expect(movueCardPromoElement.find(`h2.movie-card__title`).text())
-      .toEqual(promoMovie.title);
+      .toEqual(mockPromoMovie.title);
   });
 
 
   it(`Should render correct promo-movie genre`, () => {
     expect(movueCardPromoElement.find(`span.movie-card__genre`).text())
-      .toEqual(promoMovie.genres[0]);
+      .toEqual(mockPromoMovie.genres[0]);
   });
 
 
   it(`Should render correct promo-movie release date`, () => {
     expect(movueCardPromoElement.find(`span.movie-card__year`).text())
-      .toEqual(promoMovie.releaseDate.getFullYear().toString());
+      .toEqual(mockPromoMovie.releaseDate.getFullYear().toString());
   });
 
 
   it(`Should render correct promo-movie poster`, () => {
     expect(movueCardPromoElement.find(`div.movie-card__poster img`).prop(`src`))
-      .toEqual(promoMovie.posterUrl);
+      .toEqual(mockPromoMovie.posterUrl);
   });
 
 
   it(`Should render correct movie card background`, () => {
     expect(movueCardPromoElement.find(`div.movie-card__bg img`).prop(`src`))
-      .toEqual(promoMovie.backgroundUrl);
+      .toEqual(mockPromoMovie.backgroundUrl);
   });
 });

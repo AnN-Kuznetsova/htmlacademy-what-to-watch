@@ -5,7 +5,7 @@ import {mount} from "enzyme";
 
 import {MovieDetailsPage} from "./movie-details-page";
 
-import {promoMovie, movies as mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 const mockStore = configureStore([]);
@@ -17,7 +17,7 @@ const mockEvent = {
 const onSmallMovieCardClick = jest.fn();
 
 const props = {
-  activeMovie: promoMovie,
+  activeMovie: mockPromoMovie,
   onSmallMovieCardClick,
 };
 

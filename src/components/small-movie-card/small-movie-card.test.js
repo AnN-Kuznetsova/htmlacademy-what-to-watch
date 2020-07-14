@@ -4,11 +4,11 @@ import {shallow} from "enzyme";
 
 import {SmallMovieCard} from "./small-movie-card.jsx";
 
-import {movies, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
+import {mockMovies, VideoPlayerStatus} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  movie: movies[1],
+  movie: mockMovies[1],
   onClick: () => {},
   onHover: () => {},
   renderVideoPlayer: () => {},

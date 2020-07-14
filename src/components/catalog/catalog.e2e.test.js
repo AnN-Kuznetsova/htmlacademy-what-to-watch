@@ -3,7 +3,7 @@ import {mount} from "enzyme";
 
 import {CatalogComponent} from "./catalog.jsx";
 
-import {movies as mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {

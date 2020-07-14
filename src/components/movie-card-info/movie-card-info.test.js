@@ -4,11 +4,11 @@ import {shallow} from "enzyme";
 
 import {MovieCardInfo} from "./movie-card-info";
 
-import {promoMovie} from "../../__test-data__/test-mocks";
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 const props = {
-  movie: promoMovie,
+  movie: mockPromoMovie,
   renderTabNav: () =>{},
   renderTab: () =>{},
 };
@@ -28,12 +28,12 @@ describe(`Render MovieCardInfo`, () => {
 
   it(`Should render correct movie title`, () => {
     expect(movieCardInfoElement.find(`div.movie-card__poster img`).prop(`alt`))
-      .toEqual(`${promoMovie.title} poster`);
+      .toEqual(`${mockPromoMovie.title} poster`);
   });
 
 
   it(`Should render correct movie poster`, () => {
     expect(movieCardInfoElement.find(`div.movie-card__poster img`).prop(`src`))
-      .toEqual(promoMovie.posterUrl);
+      .toEqual(mockPromoMovie.posterUrl);
   });
 });

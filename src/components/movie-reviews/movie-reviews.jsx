@@ -15,16 +15,16 @@ export const MovieReviews = (props) => {
   const {movie} = props;
   const {reviews} = movie;
 
-  const collumnsCount = COLUMNS_COUNT;
-  const collumns = Array(collumnsCount).fill(``);
+  const columnsCount = COLUMNS_COUNT;
+  const columns = Array(columnsCount).fill(``);
 
   return (
     <div className="movie-card__reviews movie-card__row">
-      {collumns.map((collumn, indexCollumn) => {
-        const {beginingIndex, endingIndex} = getExtremeIndexesForSlice(reviews.length, collumnsCount, indexCollumn);
+      {columns.map((column, indexColumn) => {
+        const {beginingIndex, endingIndex} = getExtremeIndexesForSlice(reviews.length, columnsCount, indexColumn);
 
         return (
-          <div key={indexCollumn} className="movie-card__reviews-col">
+          <div key={indexColumn} className="movie-card__reviews-col">
             {reviews.slice(beginingIndex, endingIndex)
               .map((review, index) => (
                 <div key={review.author + index} className="review">

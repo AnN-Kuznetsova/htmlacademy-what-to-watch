@@ -28,9 +28,9 @@ const ActionCreator = {
     type: ActionType.CHANGE_GENRE,
     payload: value,
   }),
-  getMovies: () => ({
+  getMovies: (moviesCount) => ({
     type: ActionType.GET_MOVIES,
-    payload: null,
+    payload: moviesCount,
   }),
   changeActiveMovie: (movie) => ({
     type: ActionType.CHANGE_ACTIVE_MOVIE,
@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.GET_MOVIES:
       return extend(state, {
-        movieList: getFilteredMovies(state.movies, FilterType.GENRE, state.genre),
+        movieList: getFilteredMovies(state.movies, FilterType.GENRE, state.genre, state.activeMovie, action.payload),
       });
 
     case ActionType.CHANGE_ACTIVE_MOVIE:

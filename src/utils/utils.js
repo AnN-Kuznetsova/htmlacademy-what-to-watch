@@ -121,15 +121,24 @@ const getExtremeIndexesForSlice = (arrayLength, iterationCount, iterationIndex) 
 };
 
 
-const getFilteredMovies = (movies, filterName, filterValue) => {
+const getFilteredMovies = (movies, filterName, filterValue, currentMovie, moviesCount = null) => {
+  let filteredMovies = null;
+
   switch (filterName) {
     case FilterType.GENRE:
-      return filterValue === `All genres` ? movies :
-        movies.filter((movie) => movie.genres.includes(filterValue));
-
+      filteredMovies = filterValue === `All genres` ? movies :
+        movies.filter((movie) => movie.genres.includes(filterValue) && movie !== currentMovie);
+      break;
     default:
-      return movies;
+      filteredMovies = movies;
+      break;
   }
+
+  if (moviesCount) {
+    return getRandomArrayElements(filteredMovies, moviesCount);
+  }
+
+  return filteredMovies;
 };
 
 

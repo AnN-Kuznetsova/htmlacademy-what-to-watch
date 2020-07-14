@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 import {CatalogWithFilterByGenre} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
 import {MovieCardPromo} from "../movie-card-promo/movie-card-promo";
-
-import {promoMovie} from "../../mocks/promo-movie";
+import {MoviePropType} from "../../prop-types";
 
 
 export const MainPage = (props) => {
-  const {openMovieDetailsPage} = props;
+  const {promoMovie, openMovieDetailsPage} = props;
 
   const handleSmallMovieCardClick = (movie) => {
     openMovieDetailsPage(movie);
@@ -74,5 +73,6 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
+  promoMovie: MoviePropType.isRequired,
   openMovieDetailsPage: PropTypes.func.isRequired,
 };

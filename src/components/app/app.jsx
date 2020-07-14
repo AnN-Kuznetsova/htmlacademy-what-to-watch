@@ -7,7 +7,7 @@ import {ActionCreator} from "../../reducers/reducer";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
-import {PageType} from "../../const";
+import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
 
 class AppComponent extends PureComponent {
@@ -39,6 +39,7 @@ class AppComponent extends PureComponent {
       case PageType.MAIN:
         return (
           <MainPage
+            promoMovie={activeMovie}
             openMovieDetailsPage={this.openMovieDetailsPage}
           />
         );
@@ -88,7 +89,7 @@ const mapDispatchToProps = (dispatch) => ({
   onActiveMovieChange(movie) {
     dispatch(ActionCreator.changeActiveMovie(movie));
     dispatch(ActionCreator.changeGenre(movie.genres[0]));
-    dispatch(ActionCreator.getMovies());
+    dispatch(ActionCreator.getMovies(NUMBER_OF_SIMILAR_FILMS));
   }
 });
 

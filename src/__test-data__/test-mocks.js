@@ -43,7 +43,7 @@ const mockMovies = [
     backgroundUrl: `img/bohemian-rhapsody.jpg`,
     posterUrl: `img/bohemian-rhapsody.jpg`,
     previewUrl: mockVideoUrl,
-    genres: [`Drama`, `Biography`],
+    genres: [`Drama`, `Biography`, `Crime`, `Detective`, `Military`, `History`],
     releaseDate: new Date(2018, 0),
     description: [
       `Сюжет картины охватывает период 1970—1985 года, рассказывая о жизни, творчестве и отношениях внутри группы Queen, а также о личной жизни фронтмена
@@ -82,7 +82,7 @@ const mockMovies = [
     backgroundUrl: `img/aviator.jpg`,
     posterUrl: `img/aviator.jpg`,
     previewUrl: mockVideoUrl,
-    genres: [`Drama`, `Biography`],
+    genres: [`Drama`, `Biography`, `Fiction`, `Thriller`],
     releaseDate: new Date(2004, 0),
     description: [
       `Получив от отца небольшую фабрику, Говард Хьюз превратил ее в гигантское, фантастически прибыльное предприятие. Став владельцем огромной кинокомпании,

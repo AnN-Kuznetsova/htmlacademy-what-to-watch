@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {connect} from "react-redux";
 
-import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP} from "../../const";
+import {NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP, MAX_FILTER_ELEMENTS_COUNT} from "../../const";
 import {ActionCreator} from "../../reducers/reducer";
 import {MoviePropType} from "../../prop-types";
 import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
@@ -11,13 +11,15 @@ import {withFilter} from "../../hocs/with-filter/with-filter";
 
 
 const getGenreFilterNames = (movies) => {
+  const filtersCount = MAX_FILTER_ELEMENTS_COUNT;
   const filterNames = new Set();
 
   movies.forEach((movie) => {
     movie.genres.forEach((genre) => filterNames.add(genre));
   });
 
-  return [`All genres`].concat(Array.from(filterNames));
+  return [`All genres`].concat(Array.from(filterNames))
+    .splice(0, filtersCount);
 };
 
 

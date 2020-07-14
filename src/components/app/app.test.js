@@ -42,4 +42,17 @@ describe(`Render App`, () => {
 
     expect(appSnapshot).toMatchSnapshot();
   });
+
+
+  it(`Should match with snapshot when page is "MOVIE_DETAILS"`, () => {
+    props.activePage = PageType.MOVIE_DETAILS;
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
 });

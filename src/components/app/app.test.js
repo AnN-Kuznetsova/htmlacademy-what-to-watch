@@ -5,6 +5,8 @@ import {Provider} from "react-redux";
 
 import {AppComponent} from "./app.jsx";
 
+import {PageType} from "../../const.js";
+
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
 
@@ -24,12 +26,14 @@ const store = mockStore({
 
 const props = {
   activeMovie: mockPromoMovie,
-  onActiveMovieChange: () => {},
+  onOpenMovieDetails: () => {},
 };
 
 
 describe(`Render App`, () => {
-  it(`Should match with snapshot`, () => {
+  it(`Should match with snapshot when page is "MAIN"`, () => {
+    props.activePage = PageType.MAIN;
+
     const appSnapshot = renderer.create(
         <Provider store={store}>
           <AppComponent {...props} />

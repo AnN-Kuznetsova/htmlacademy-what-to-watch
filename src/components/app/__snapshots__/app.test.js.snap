@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render App Should match with snapshot 1`] = `
+exports[`Render App Should match with snapshot when page is "MAIN" 1`] = `
 Array [
   <div
     className="visually-hidden"

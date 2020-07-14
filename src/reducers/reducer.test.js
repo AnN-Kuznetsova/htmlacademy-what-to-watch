@@ -1,5 +1,7 @@
 import {reducer, ActionType, ActionCreator} from "./reducer";
 
+import {PageType} from "../const";
+
 import {movies} from "../mocks/movies";
 import {promoMovie} from "../mocks/promo-movie";
 
@@ -13,6 +15,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `All genres`,
       movieList: movies,
       activeMovie: promoMovie,
+      activePage: PageType.MAIN,
     });
   });
 
@@ -23,6 +26,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `All genres`,
       movieList: [],
       activeMovie: {},
+      activePage: ``,
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Drama`,
@@ -31,6 +35,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `Drama`,
       movieList: [],
       activeMovie: {},
+      activePage: ``,
     });
 
     expect(reducer({
@@ -38,6 +43,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `Biography`,
       movieList: [],
       activeMovie: {},
+      activePage: ``,
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `All genres`,
@@ -46,6 +52,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `All genres`,
       movieList: [],
       activeMovie: {},
+      activePage: ``,
     });
   });
 
@@ -56,6 +63,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `All genres`,
       movieList: [],
       activeMovie: {},
+      activePage: ``,
     }, {
       type: ActionType.GET_MOVIES,
     })).toEqual({
@@ -63,6 +71,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `All genres`,
       movieList: mockMovies,
       activeMovie: {},
+      activePage: ``,
     });
 
     expect(reducer({
@@ -70,6 +79,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `Drama`,
       movieList: mockMovies,
       activeMovie: {},
+      activePage: ``,
     }, {
       type: ActionType.GET_MOVIES,
     })).toEqual({
@@ -77,6 +87,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `Drama`,
       movieList: [mockMovies[0], mockMovies[1], mockMovies[2]],
       activeMovie: {},
+      activePage: ``,
     });
 
     expect(reducer({
@@ -84,6 +95,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `Adventure`,
       movieList: [mockMovies[0], mockMovies[1]],
       activeMovie: {},
+      activePage: ``,
     }, {
       type: ActionType.GET_MOVIES,
     })).toEqual({
@@ -91,6 +103,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `Adventure`,
       movieList: [mockMovies[2]],
       activeMovie: {},
+      activePage: ``,
     });
   });
 
@@ -101,6 +114,7 @@ describe(`Reduser should work correctly`, () => {
       genre: `All genres`,
       movieList: [],
       activeMovie: {},
+      activePage: ``,
     }, {
       type: ActionType.CHANGE_ACTIVE_MOVIE,
       payload: mockMovies[1],
@@ -109,6 +123,44 @@ describe(`Reduser should work correctly`, () => {
       genre: `All genres`,
       movieList: [],
       activeMovie: mockMovies[1],
+      activePage: ``,
+    });
+  });
+
+
+  it(`Reducer should change active page by a given value`, () => {
+    expect(reducer({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      activeMovie: {},
+      activePage: PageType.MAIN,
+    }, {
+      type: ActionType.CHANGE_ACTIVE_PAGE,
+      payload: PageType.MOVIE_DETAILS,
+    })).toEqual({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      activeMovie: {},
+      activePage: PageType.MOVIE_DETAILS,
+    });
+
+    expect(reducer({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      activeMovie: {},
+      activePage: PageType.MOVIE_DETAILS,
+    }, {
+      type: ActionType.CHANGE_ACTIVE_PAGE,
+      payload: PageType.MAIN,
+    })).toEqual({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      activeMovie: {},
+      activePage: PageType.MAIN,
     });
   });
 });
@@ -140,6 +192,14 @@ describe(`Action creators should work correctly`, () => {
     expect(ActionCreator.changeActiveMovie(mockMovies[1])).toEqual({
       type: ActionType.CHANGE_ACTIVE_MOVIE,
       payload: mockMovies[1],
+    });
+  });
+
+
+  it(`Action creator for change active page returns correct action`, () => {
+    expect(ActionCreator.changeActivePage(PageType.MOVIE_DETAILS)).toEqual({
+      type: ActionType.CHANGE_ACTIVE_PAGE,
+      payload: PageType.MOVIE_DETAILS,
     });
   });
 });

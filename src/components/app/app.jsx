@@ -11,27 +11,12 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
 
 class AppComponent extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activePage: PageType.MAIN,
-    };
-
-    this.openMovieDetailsPage = this.openMovieDetailsPage.bind(this);
-  }
-
   openMovieDetailsPage(movie) {
-    this.props.onActiveMovieChange(movie);
-
-    this.setState({
-      activePage: PageType.MOVIE_DETAILS,
-    });
+    this.props.onOpenMovieDetails(movie);
   }
 
   renderPage() {
-    const {activePage} = this.state;
-    const {activeMovie} = this.props;
+    const {activePage, activeMovie} = this.props;
 
     window.scrollTo(0, 0);
 
@@ -40,14 +25,14 @@ class AppComponent extends PureComponent {
         return (
           <MainPage
             promoMovie={activeMovie}
-            openMovieDetailsPage={this.openMovieDetailsPage}
+            openMovieDetailsPage={this.openMovieDetailsPage.bind(this)}
           />
         );
       case PageType.MOVIE_DETAILS:
         return (
           <MovieDetailsPage
             activeMovie={activeMovie}
-            onSmallMovieCardClick={this.openMovieDetailsPage}
+            onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
           />
         );
       default:
@@ -65,7 +50,7 @@ class AppComponent extends PureComponent {
           {/* <Route exact path="/movie-details">
             <MovieDetailsPage
               activeMovie={activeMovie}
-              onSmallMovieCardClick={this.openMovieDetailsPage}
+              onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
             />
           </Route>*/}
         </Switch>
@@ -76,20 +61,23 @@ class AppComponent extends PureComponent {
 
 
 AppComponent.propTypes = {
+  activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType.isRequired,
-  onActiveMovieChange: PropTypes.func.isRequired,
+  onOpenMovieDetails: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
+  activePage: state.activePage,
   activeMovie: state.activeMovie,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onActiveMovieChange(movie) {
+  onOpenMovieDetails(movie) {
     dispatch(ActionCreator.changeActiveMovie(movie));
     dispatch(ActionCreator.changeGenre(movie.genres[0]));
     dispatch(ActionCreator.getMovies(NUMBER_OF_SIMILAR_FILMS));
+    dispatch(ActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   }
 });
 

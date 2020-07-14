@@ -152,5 +152,13 @@ describe(`Utils tests`, () => {
       .toEqual([movies[0], movies[1], movies[2]]);
     expect(getFilteredMovies(movies, `genres`, `Adventure`))
       .toEqual([movies[2]]);
+    expect(getFilteredMovies(movies, `genres`, `Drama`, movies[1]))
+      .toEqual([movies[0], movies[2]]);
+
+    const newMovies = [...movies, ...movies];
+    expect(getFilteredMovies(newMovies, `genres`, `Drama`, movies[1]))
+      .toEqual([newMovies[0], newMovies[2], newMovies[3], newMovies[5]]);
+    expect(getFilteredMovies(newMovies, `genres`, `Drama`, movies[1], 3))
+      .toEqual([newMovies[3], newMovies[2], newMovies[5]]);
   });
 });

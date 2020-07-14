@@ -14,9 +14,6 @@ export const MovieOverview = (props) => {
   const scoreValue = getFormatedScore(movie.rating.score);
   const ratingDescription = getRatingDescription(movie.rating.score);
 
-  const descriptionMarkup = movie.description.map((descriptionItem, index) =>
-    <p key={descriptionItem + index}>{descriptionItem}</p>);
-
   return (
     <React.Fragment>
       <div className="movie-rating">
@@ -28,7 +25,8 @@ export const MovieOverview = (props) => {
       </div>
 
       <div className="movie-card__text">
-        {descriptionMarkup}
+        {movie.description.map((descriptionItem, index) =>
+          <p key={descriptionItem + index}>{descriptionItem}</p>)}
 
         <p className="movie-card__director"><strong>Director: {getParticipantsLine(movie.directors)}</strong></p>
 

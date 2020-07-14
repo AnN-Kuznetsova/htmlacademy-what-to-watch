@@ -28,14 +28,14 @@ const CatalogComponent = (props) => {
     onSmallMovieCardClick,
     renderFilter,
     activeFilter,
-    onFilterClick,
+    onGenreFilterClick,
   } = props;
 
   const handleShowMoreButtonClick = () => {};
 
   return (
     <React.Fragment>
-      {renderFilter && renderFilter(getGenreFilterNames(movies), onFilterClick, activeFilter)}
+      {renderFilter && renderFilter(getGenreFilterNames(movies), onGenreFilterClick, activeFilter)}
 
       <div className="catalog__movies-list">
         {
@@ -64,7 +64,7 @@ CatalogComponent.propTypes = {
   onSmallMovieCardClick: PropTypes.func.isRequired,
   renderFilter: PropTypes.func,
   activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
+  onGenreFilterClick: PropTypes.func.isRequired,
 };
 
 
@@ -75,7 +75,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilterClick(newFilterValue) {
+  onGenreFilterClick(newFilterValue) {
     dispatch(ActionCreator.changeGenre(newFilterValue));
     dispatch(ActionCreator.getMovies());
   },

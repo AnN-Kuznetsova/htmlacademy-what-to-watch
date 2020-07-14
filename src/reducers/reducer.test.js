@@ -124,6 +124,11 @@ describe(`Action creators should work correctly`, () => {
 
 
   it(`Action creator for get movies returns correct action`, () => {
+    expect(ActionCreator.getMovies(3)).toEqual({
+      type: ActionType.GET_MOVIES,
+      payload: 3,
+    });
+
     expect(ActionCreator.getMovies()).toEqual({
       type: ActionType.GET_MOVIES,
       payload: null,
@@ -132,7 +137,7 @@ describe(`Action creators should work correctly`, () => {
 
 
   it(`Action creator for change active movie returns correct action`, () => {
-    expect(ActionCreator.getMovies(mockMovies[1])).toEqual({
+    expect(ActionCreator.changeActiveMovie(mockMovies[1])).toEqual({
       type: ActionType.CHANGE_ACTIVE_MOVIE,
       payload: mockMovies[1],
     });

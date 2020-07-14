@@ -1,10 +1,14 @@
 import React from "react";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 import {mount} from "enzyme";
 
 import {MovieDetailsPage} from "./movie-details-page";
 
-import {promoMovie} from "../../__test-data__/test-mocks.js";
+import {promoMovie, movies as mockMovies} from "../../__test-data__/test-mocks.js";
 
+
+const mockStore = configureStore([]);
 
 const mockEvent = {
   preventDefault() {}
@@ -17,7 +21,17 @@ const props = {
   onSmallMovieCardClick,
 };
 
-const movieDetailsPageElement = mount(<MovieDetailsPage {...props} />);
+const store = mockStore({
+  movies: [],
+  movieList: mockMovies,
+  genre: ``,
+});
+
+const movieDetailsPageElement = mount(
+    <Provider store={store}>
+      <MovieDetailsPage {...props} />
+    </Provider>
+);
 
 
 describe(`MovieDetailsPage e2e-tests`, () => {

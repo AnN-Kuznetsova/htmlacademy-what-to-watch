@@ -1,9 +1,11 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
 
 import {MovieDetailsPage} from "./movie-details-page";
 
-import {promoMovie} from "../../__test-data__/test-mocks.js";
+import {promoMovie, movies} from "../../__test-data__/test-mocks.js";
 
 
 global.window = Object.create(window);
@@ -16,6 +18,8 @@ Object.defineProperty(window, `location`, {
 const mockMath = Object.create(global.Math);
 mockMath.random = () => 0.5;
 global.Math = mockMath;
+
+const mockStore = configureStore([]);
 
 const nodeMock = {
   createNodeMock: () => {
@@ -31,8 +35,16 @@ const props = {
 
 describe(`Render MovieDetailsPage`, () => {
   it(`Should match with snapshot`, () => {
+    const store = mockStore({
+      movies: [],
+      genre: ``,
+      movieList: movies,
+    });
+
     const movieDetailsPageSnapshot = renderer.create(
-        <MovieDetailsPage {...props} />, nodeMock
+        <Provider store={store}>
+          <MovieDetailsPage {...props} />
+        </Provider>, nodeMock
     ).toJSON();
 
     expect(movieDetailsPageSnapshot).toMatchSnapshot();

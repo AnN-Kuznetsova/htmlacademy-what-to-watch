@@ -1,9 +1,9 @@
 import React from "react";
 import {mount} from "enzyme";
 
-import {Catalog} from "./catalog.jsx";
+import {CatalogComponent} from "./catalog.jsx";
 
-import {movies} from "../../__test-data__/test-mocks.js";
+import {movies as mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {
@@ -13,12 +13,15 @@ const mockEvent = {
 const onSmallMovieCardClick = jest.fn();
 
 const props = {
-  movies,
+  movies: [],
+  movieList: mockMovies,
   onSmallMovieCardClick,
   renderFilter: () => {},
+  activeFilter: ``,
+  onGenreFilterClick: () => {},
 };
 
-const catalogElement = mount(<Catalog {...props} />);
+const catalogElement = mount(<CatalogComponent {...props} />);
 const smallMovieCardElement = [...catalogElement.find(`article.small-movie-card`)][0];
 
 

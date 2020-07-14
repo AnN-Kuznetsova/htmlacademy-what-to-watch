@@ -1,7 +1,11 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
 
-import {App} from "./app.jsx";
+import {AppComponent} from "./app.jsx";
+
+import {promoMovie, movies} from "../../__test-data__/test-mocks.js";
 
 
 const nodeMock = {
@@ -10,11 +14,26 @@ const nodeMock = {
   }
 };
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  movies,
+  genre: `All genres`,
+  movieList: movies,
+});
+
+const props = {
+  activeMovie: promoMovie,
+  onActiveMovieChange: () => {},
+};
+
 
 describe(`Render App`, () => {
   it(`Should match with snapshot`, () => {
     const appSnapshot = renderer.create(
-        <App />, nodeMock
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
     ).toJSON();
 
     expect(appSnapshot).toMatchSnapshot();

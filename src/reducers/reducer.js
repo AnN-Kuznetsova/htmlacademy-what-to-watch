@@ -28,7 +28,7 @@ const ActionCreator = {
     type: ActionType.CHANGE_GENRE,
     payload: value,
   }),
-  getMovies: (moviesCount) => ({
+  getMovies: (moviesCount = null) => ({
     type: ActionType.GET_MOVIES,
     payload: moviesCount,
   }),

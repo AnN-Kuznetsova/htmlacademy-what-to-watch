@@ -1,6 +1,8 @@
 import {reducer, ActionType, ActionCreator} from "./reducer";
 
 import {movies} from "../mocks/movies";
+import {promoMovie} from "../mocks/promo-movie";
+
 import {movies as mockMovies} from "../__test-data__/test-mocks";
 
 
@@ -10,6 +12,7 @@ describe(`Reduser should work correctly`, () => {
       movies,
       genre: `All genres`,
       movieList: movies,
+      activeMovie: promoMovie,
     });
   });
 
@@ -19,6 +22,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
+      activeMovie: {},
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Drama`,
@@ -26,12 +30,14 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `Drama`,
       movieList: [],
+      activeMovie: {},
     });
 
     expect(reducer({
       movies: [],
       genre: `Biography`,
       movieList: [],
+      activeMovie: {},
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `All genres`,
@@ -39,6 +45,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
+      activeMovie: {},
     });
   });
 
@@ -48,36 +55,60 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `All genres`,
       movieList: [],
+      activeMovie: {},
     }, {
       type: ActionType.GET_MOVIES,
     })).toEqual({
       movies: mockMovies,
       genre: `All genres`,
       movieList: mockMovies,
+      activeMovie: {},
     });
 
     expect(reducer({
       movies: mockMovies,
       genre: `Drama`,
       movieList: mockMovies,
+      activeMovie: {},
     }, {
       type: ActionType.GET_MOVIES,
     })).toEqual({
       movies: mockMovies,
       genre: `Drama`,
       movieList: [mockMovies[0], mockMovies[1], mockMovies[2]],
+      activeMovie: {},
     });
 
     expect(reducer({
       movies: mockMovies,
       genre: `Adventure`,
       movieList: [mockMovies[0], mockMovies[1]],
+      activeMovie: {},
     }, {
       type: ActionType.GET_MOVIES,
     })).toEqual({
       movies: mockMovies,
       genre: `Adventure`,
       movieList: [mockMovies[2]],
+      activeMovie: {},
+    });
+  });
+
+
+  it(`Reducer should change active movie by a given value`, () => {
+    expect(reducer({
+      movies: [],
+      genre: `All genres`,
+      movieList: [],
+      activeMovie: {},
+    }, {
+      type: ActionType.CHANGE_ACTIVE_MOVIE,
+      payload: mockMovies[1],
+    })).toEqual({
+      movies: [],
+      genre: `All genres`,
+      movieList: [],
+      activeMovie: mockMovies[1],
     });
   });
 });
@@ -96,6 +127,14 @@ describe(`Action creators should work correctly`, () => {
     expect(ActionCreator.getMovies()).toEqual({
       type: ActionType.GET_MOVIES,
       payload: null,
+    });
+  });
+
+
+  it(`Action creator for change active movie returns correct action`, () => {
+    expect(ActionCreator.getMovies(mockMovies[1])).toEqual({
+      type: ActionType.CHANGE_ACTIVE_MOVIE,
+      payload: mockMovies[1],
     });
   });
 });

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -10,14 +10,14 @@ import {MoviePropType} from "../../prop-types";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
 
-class AppComponent extends PureComponent {
-  openMovieDetailsPage(movie) {
-    this.props.onOpenMovieDetails(movie);
-  }
+const AppComponent = (props) => {
+  const {
+    activePage,
+    activeMovie,
+    onOpenMovieDetails,
+  } = props;
 
-  renderPage() {
-    const {activePage, activeMovie} = this.props;
-
+  const renderPage = () => {
     window.scrollTo(0, 0);
 
     switch (activePage) {
@@ -25,39 +25,37 @@ class AppComponent extends PureComponent {
         return (
           <MainPage
             promoMovie={activeMovie}
-            openMovieDetailsPage={this.openMovieDetailsPage.bind(this)}
+            openMovieDetailsPage={onOpenMovieDetails}
           />
         );
       case PageType.MOVIE_DETAILS:
         return (
           <MovieDetailsPage
             activeMovie={activeMovie}
-            onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
+            onSmallMovieCardClick={onOpenMovieDetails}
           />
         );
       default:
         return null;
     }
-  }
+  };
 
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this.renderPage()}
-          </Route>
-          {/* <Route exact path="/movie-details">
-            <MovieDetailsPage
-              activeMovie={activeMovie}
-              onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
-            />
-          </Route>*/}
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderPage()}
+        </Route>
+        {/* <Route exact path="/movie-details">
+          <MovieDetailsPage
+            activeMovie={activeMovie}
+            onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
+          />
+        </Route>*/}
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 
 AppComponent.propTypes = {

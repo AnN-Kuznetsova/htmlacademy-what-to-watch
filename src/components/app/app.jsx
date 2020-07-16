@@ -14,7 +14,7 @@ const AppComponent = (props) => {
   const {
     activePage,
     activeMovie,
-    onOpenMovieDetails,
+    onOpenMovieDetailsPage,
   } = props;
 
   const renderPage = () => {
@@ -25,14 +25,14 @@ const AppComponent = (props) => {
         return (
           <MainPage
             promoMovie={activeMovie}
-            openMovieDetailsPage={onOpenMovieDetails}
+            openMovieDetailsPage={onOpenMovieDetailsPage}
           />
         );
       case PageType.MOVIE_DETAILS:
         return (
           <MovieDetailsPage
             activeMovie={activeMovie}
-            onSmallMovieCardClick={onOpenMovieDetails}
+            onSmallMovieCardClick={onOpenMovieDetailsPage}
           />
         );
       default:
@@ -61,7 +61,7 @@ const AppComponent = (props) => {
 AppComponent.propTypes = {
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType.isRequired,
-  onOpenMovieDetails: PropTypes.func.isRequired,
+  onOpenMovieDetailsPage: PropTypes.func.isRequired,
 };
 
 
@@ -71,7 +71,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onOpenMovieDetails(movie) {
+  onOpenMovieDetailsPage(movie) {
     dispatch(ActionCreator.changeActiveMovie(movie));
     dispatch(ActionCreator.changeGenre(movie.genres[0]));
     dispatch(ActionCreator.getMovies(NUMBER_OF_SIMILAR_FILMS));

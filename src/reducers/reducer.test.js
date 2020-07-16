@@ -14,6 +14,7 @@ describe(`Reduser should work correctly`, () => {
       movies,
       genre: `All genres`,
       movieList: movies,
+      visibleSmallCardCount: 8,
       activeMovie: promoMovie,
       activePage: PageType.MAIN,
     });
@@ -25,6 +26,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -34,6 +36,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `Drama`,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -42,6 +45,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `Biography`,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -51,6 +55,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -62,6 +67,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `All genres`,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -70,6 +76,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `All genres`,
       movieList: mockMovies,
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -78,6 +85,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Drama`,
       movieList: mockMovies,
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -86,6 +94,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Drama`,
       movieList: [mockMovies[0], mockMovies[1], mockMovies[2]],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -94,6 +103,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Adventure`,
       movieList: [mockMovies[0], mockMovies[1]],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -102,6 +112,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Adventure`,
       movieList: [mockMovies[2]],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -113,6 +124,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -122,6 +134,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: mockMovies[1],
       activePage: ``,
     });
@@ -133,6 +146,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: PageType.MAIN,
     }, {
@@ -142,6 +156,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: PageType.MOVIE_DETAILS,
     });
@@ -150,6 +165,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: PageType.MOVIE_DETAILS,
     }, {
@@ -159,8 +175,91 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
+      visibleSmallCardCount: 0,
       activeMovie: {},
       activePage: PageType.MAIN,
+    });
+  });
+
+
+  it(`Reducer should increment visible small movie card count by a given value`, () => {
+    expect(reducer({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 0,
+      activeMovie: {},
+      activePage: ``,
+    }, {
+      type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+      payload: 2,
+    })).toEqual({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 2,
+      activeMovie: {},
+      activePage: ``,
+    });
+
+    expect(reducer({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 2,
+      activeMovie: {},
+      activePage: ``,
+    }, {
+      type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+      payload: 8,
+    })).toEqual({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 10,
+      activeMovie: {},
+      activePage: ``,
+    });
+  });
+
+
+  it(`Reducer should reset visible small movie card count to the initial`, () => {
+    expect(reducer({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 0,
+      activeMovie: {},
+      activePage: ``,
+    }, {
+      type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+      payload: null,
+    })).toEqual({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 8,
+      activeMovie: {},
+      activePage: ``,
+    });
+
+    expect(reducer({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 15,
+      activeMovie: {},
+      activePage: ``,
+    }, {
+      type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+      payload: null,
+    })).toEqual({
+      movies: [],
+      genre: ``,
+      movieList: [],
+      visibleSmallCardCount: 8,
+      activeMovie: {},
+      activePage: ``,
     });
   });
 });
@@ -200,6 +299,22 @@ describe(`Action creators should work correctly`, () => {
     expect(ActionCreator.changeActivePage(PageType.MOVIE_DETAILS)).toEqual({
       type: ActionType.CHANGE_ACTIVE_PAGE,
       payload: PageType.MOVIE_DETAILS,
+    });
+  });
+
+
+  it(`Action creator for increment visible small card count returns correct action`, () => {
+    expect(ActionCreator.incrementVisibleSmallCardCount()).toEqual({
+      type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+      payload: 8,
+    });
+  });
+
+
+  it(`Action creator for reset visible small card count returns correct action`, () => {
+    expect(ActionCreator.resetVisibleSmallCardCount()).toEqual({
+      type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+      payload: null,
     });
   });
 });

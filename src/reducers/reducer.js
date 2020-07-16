@@ -1,9 +1,13 @@
 import {
+  NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
+  NUMBER_OF_CARDS_TO_INCREMENT,
+  PageType,
+  FilterType,
+} from "../const";
+import {
   extend,
   getFilteredMovies,
 } from "../utils/utils";
-
-import {PageType, FilterType} from "../const";
 
 import {movies} from "../mocks/movies";
 import {promoMovie} from "../mocks/promo-movie";
@@ -13,6 +17,8 @@ const initialState = {
   movies,
   genre: `All genres`,
   movieList: movies,
+  visibleSmallCardCount: movies.length <= NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP ? movies.length :
+    NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   activeMovie: promoMovie,
   activePage: PageType.MAIN,
 };
@@ -23,6 +29,8 @@ const ActionType = {
   GET_MOVIES: `GET_MOVIES`,
   CHANGE_ACTIVE_MOVIE: `CHANGE_ACTIVE_MOVIE`,
   CHANGE_ACTIVE_PAGE: `CHANGE_ACTIVE_PAGE`,
+  INCREMENT_VISIBLE_SMALL_CARD_COUNT: `INCREMENT_VISIBLE_SMALL_CARD_COUNT`,
+  RESET_VISIBLE_SMALL_CARD_COUNT: `RESET_VISIBLE_SMALL_CARD_COUNT`,
 };
 
 const ActionCreator = {
@@ -41,6 +49,14 @@ const ActionCreator = {
   changeActivePage: (page) => ({
     type: ActionType.CHANGE_ACTIVE_PAGE,
     payload: page,
+  }),
+  incrementVisibleSmallCardCount: () => ({
+    type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+    payload: NUMBER_OF_CARDS_TO_INCREMENT,
+  }),
+  resetVisibleSmallCardCount: () => ({
+    type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+    payload: null,
   }),
 };
 
@@ -65,6 +81,16 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_ACTIVE_PAGE:
       return extend(state, {
         activePage: action.payload,
+      });
+
+    case ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT:
+      return extend(state, {
+        visibleSmallCardCount: state.visibleSmallCardCount + action.payload,
+      });
+
+    case ActionType.RESET_VISIBLE_SMALL_CARD_COUNT:
+      return extend(state, {
+        visibleSmallCardCount: initialState.visibleSmallCardCount,
       });
 
     default:

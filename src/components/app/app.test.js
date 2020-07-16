@@ -26,7 +26,7 @@ const store = mockStore({
 
 const props = {
   activeMovie: mockPromoMovie,
-  onOpenMovieDetails: () => {},
+  onOpenMovieDetailsPage: () => {},
 };
 
 

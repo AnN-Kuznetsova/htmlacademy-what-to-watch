@@ -1,4 +1,20 @@
-import {VISIBLE_PARTICIPANTS_COUNT} from "../const";
+import {VISIBLE_PARTICIPANTS_COUNT, FilterType} from "../const";
+
+
+const months = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`,
+];
 
 
 const getRandomIntegerNumber = function (num) {
@@ -16,6 +32,11 @@ const getRandomArrayElements = function (array, count) {
   }
 
   return arrayElements;
+};
+
+
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
 };
 
 
@@ -44,42 +65,10 @@ const getFormatedRunTime = (runTime) => {
 };
 
 
-const getFormatedMonth = (month) => {
-  switch (month) {
-    case 0:
-      return `January`;
-    case 1:
-      return `February`;
-    case 2:
-      return `March`;
-    case 3:
-      return `April`;
-    case 4:
-      return `May`;
-    case 5:
-      return `June`;
-    case 6:
-      return `July`;
-    case 7:
-      return `August`;
-    case 8:
-      return `September`;
-    case 9:
-      return `October`;
-    case 10:
-      return `November`;
-    case 11:
-      return `December`;
-    default:
-      return ``;
-  }
-};
-
-
 const getFormatedDate = (date, isForMachine = false) => {
   const year = date.getFullYear();
   const month = date.getMonth();
-  const monthValue = getFormatedMonth(month);
+  const monthValue = months[month];
   const day = date.getDate();
 
   return isForMachine ? `${year}-${month + 1}-${day}` :
@@ -105,19 +94,27 @@ const getRatingDescription = (score) => {
 };
 
 
-const getExtremeIndexesForSlice = (arrayLength, iterationCount, iterationIndex) => {
-  const beginingIndex = Math.ceil(arrayLength / iterationCount) * iterationIndex;
-  const endingIndex = beginingIndex + Math.ceil(arrayLength / iterationCount);
+const getFilteredMovies = (movies, filterName, filterValue, currentMovie, moviesCount = null) => {
+  let filteredMovies = null;
 
-  return {
-    beginingIndex,
-    endingIndex,
-  };
+  switch (filterName) {
+    case FilterType.GENRE:
+      filteredMovies = filterValue === `All genres` ? movies :
+        movies.filter((movie) => movie.genres.includes(filterValue) && movie !== currentMovie);
+      break;
+    default:
+      filteredMovies = movies;
+      break;
+  }
+
+  return moviesCount ? getRandomArrayElements(filteredMovies, moviesCount) :
+    filteredMovies;
 };
 
 
 export {
-  getExtremeIndexesForSlice,
+  extend,
+  getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
   getFormatedScore,

@@ -3,13 +3,13 @@ import renderer from "react-test-renderer";
 
 import {MovieDetails} from "./movie-details";
 
-import {promoMovie} from "../../__test-data__/test-mocks";
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 describe(`Render MovieDetails`, () => {
   it(`Should match with snapshot`, () => {
     const movieDetailsSnapshot = renderer.create(
-        <MovieDetails movie={promoMovie} />
+        <MovieDetails movie={mockPromoMovie} />
     ).toJSON();
 
     expect(movieDetailsSnapshot).toMatchSnapshot();

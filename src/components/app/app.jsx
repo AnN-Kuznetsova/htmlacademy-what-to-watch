@@ -1,69 +1,88 @@
-import React, {PureComponent} from "react";
+import PropTypes from "prop-types";
+import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
+import {ActionCreator} from "../../reducers/reducer";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
-import {PageType} from "../../const";
+import {MoviePropType} from "../../prop-types";
+import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 
 
-export class App extends PureComponent {
-  constructor(props) {
-    super(props);
+const AppComponent = (props) => {
+  const {
+    activePage,
+    activeMovie,
+    onOpenMovieDetailsPage,
+  } = props;
 
-    this.state = {
-      activePage: PageType.MAIN,
-      activeMovie: null,
-    };
-
-    this.openMovieDetailsPage = this.openMovieDetailsPage.bind(this);
-  }
-
-  openMovieDetailsPage(movie) {
-    this.setState({
-      activeMovie: movie,
-      activePage: PageType.MOVIE_DETAILS,
-    });
-  }
-
-  renderPage() {
-    const {activePage, activeMovie} = this.state;
-
+  const renderPage = () => {
     window.scrollTo(0, 0);
 
     switch (activePage) {
       case PageType.MAIN:
         return (
           <MainPage
-            openMovieDetailsPage={this.openMovieDetailsPage}
+            promoMovie={activeMovie}
+            openMovieDetailsPage={onOpenMovieDetailsPage}
           />
         );
       case PageType.MOVIE_DETAILS:
         return (
           <MovieDetailsPage
             activeMovie={activeMovie}
-            onSmallMovieCardClick={this.openMovieDetailsPage}
+            onSmallMovieCardClick={onOpenMovieDetailsPage}
           />
         );
       default:
         return null;
     }
-  }
+  };
 
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this.renderPage()}
-          </Route>
-          {/* <Route exact path="/movie-details">
-            <MovieDetailsPage
-              activeMovie={activeMovie}
-              onSmallMovieCardClick={this.openMovieDetailsPage}
-            />
-          </Route>*/}
-        </Switch>
-      </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderPage()}
+        </Route>
+        {/* <Route exact path="/movie-details">
+          <MovieDetailsPage
+            activeMovie={activeMovie}
+            onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
+          />
+        </Route>*/}
+      </Switch>
+    </BrowserRouter>
+  );
+};
+
+
+AppComponent.propTypes = {
+  activePage: PropTypes.string.isRequired,
+  activeMovie: MoviePropType.isRequired,
+  onOpenMovieDetailsPage: PropTypes.func.isRequired,
+};
+
+
+const mapStateToProps = (state) => ({
+  activePage: state.activePage,
+  activeMovie: state.activeMovie,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onOpenMovieDetailsPage(movie) {
+    dispatch(ActionCreator.changeActiveMovie(movie));
+    dispatch(ActionCreator.changeGenre(movie.genres[0]));
+    dispatch(ActionCreator.getMovies(NUMBER_OF_SIMILAR_FILMS));
+    dispatch(ActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   }
-}
+});
+
+const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
+
+
+export {
+  AppComponent,
+  App,
+};

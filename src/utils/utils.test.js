@@ -1,12 +1,15 @@
 import {
-  getExtremeIndexesForSlice,
+  extend,
+  getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
   getFormatedScore,
   getParticipantsLine,
   getRatingDescription,
   getRandomArrayElements,
-} from "./utils.js";
+} from "./utils";
+
+import {mockMovies} from "../__test-data__/test-mocks";
 
 
 const mockMath = Object.create(global.Math);
@@ -72,26 +75,73 @@ describe(`Utils tests`, () => {
   });
 
 
-  it(`Testing getExtremeIndexesForSlice`, () => {
-    expect(getExtremeIndexesForSlice(7, 3, 0)).toEqual({
-      beginingIndex: 0,
-      endingIndex: 3,
-    });
-    expect(getExtremeIndexesForSlice(11, 3, 1)).toEqual({
-      beginingIndex: 4,
-      endingIndex: 8,
-    });
-    expect(getExtremeIndexesForSlice(5, 3, 2)).toEqual({
-      beginingIndex: 4,
-      endingIndex: 6,
-    });
-  });
-
-
   it(`Testing getRandomArrayElements`, () => {
     const array = [`one`, `two`, `three`, `four`, `five`];
     expect(getRandomArrayElements(array, 1)).toEqual([`three`]);
     expect(getRandomArrayElements(array, 2)).toEqual([`three`, `four`]);
     expect(getRandomArrayElements(array, 4)).toEqual([`three`, `four`, `two`, `five`]);
+  });
+
+
+  it(`"extend" should work correctly`, () => {
+    const a = {
+      property1: `property 1`,
+      property2: `property 2`,
+    };
+    let b = {
+      property3: `property 3`,
+      property4: `property 4`,
+    };
+    expect(extend(a, b)).toEqual({
+      property1: `property 1`,
+      property2: `property 2`,
+      property3: `property 3`,
+      property4: `property 4`,
+    });
+
+    b = {
+      property2: `property two`,
+      property3: `property 3`,
+    };
+    expect(extend(a, b)).toEqual({
+      property1: `property 1`,
+      property2: `property two`,
+      property3: `property 3`,
+    });
+
+    b = {
+      property1: `property one`,
+      property2: `property two`,
+    };
+    expect(extend(a, b)).toEqual({
+      property1: `property one`,
+      property2: `property two`,
+    });
+
+    b = {
+      property1: `property one`,
+    };
+    expect(extend(a, b)).toEqual({
+      property1: `property one`,
+      property2: `property 2`,
+    });
+  });
+
+
+  it(`Testing getFilteredMovies`, () => {
+    expect(getFilteredMovies(mockMovies, `genres`, `All genres`))
+      .toEqual(mockMovies);
+    expect(getFilteredMovies(mockMovies, `genres`, `Drama`))
+      .toEqual([mockMovies[0], mockMovies[1], mockMovies[2]]);
+    expect(getFilteredMovies(mockMovies, `genres`, `Adventure`))
+      .toEqual([mockMovies[2]]);
+    expect(getFilteredMovies(mockMovies, `genres`, `Drama`, mockMovies[1]))
+      .toEqual([mockMovies[0], mockMovies[2]]);
+
+    const newMovies = [...mockMovies, ...mockMovies];
+    expect(getFilteredMovies(newMovies, `genres`, `Drama`, mockMovies[1]))
+      .toEqual([newMovies[0], newMovies[2], newMovies[3], newMovies[5]]);
+    expect(getFilteredMovies(newMovies, `genres`, `Drama`, mockMovies[1], 3))
+      .toEqual([newMovies[3], newMovies[2], newMovies[5]]);
   });
 });

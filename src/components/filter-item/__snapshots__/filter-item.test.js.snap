@@ -1,8 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render FilterItem Should match with snapshot 1`] = `
+exports[`Render FilterItem Should match with snapshot when isActive is false 1`] = `
 <li
-  className="catalog__genres-item"
+  className="catalog__genres-item "
+>
+  <a
+    className="catalog__genres-link"
+    href="#"
+    onClick={[Function]}
+  >
+    Crime
+  </a>
+</li>
+`;
+
+exports[`Render FilterItem Should match with snapshot when isActive is true 1`] = `
+<li
+  className="catalog__genres-item catalog__genres-item--active"
 >
   <a
     className="catalog__genres-link"

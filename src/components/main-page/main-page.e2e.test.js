@@ -1,20 +1,37 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import {mount} from "enzyme";
+import {Provider} from "react-redux";
 
 import {MainPage} from "./main-page.jsx";
+
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {
   preventDefault() {}
 };
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  movies: mockMovies,
+  genre: `All genres`,
+  movieList: mockMovies,
+});
+
 const openMovieDetailsPage = jest.fn();
 
 const props = {
+  promoMovie: mockPromoMovie,
   openMovieDetailsPage,
 };
 
-const mainPageElement = mount(<MainPage {...props} />);
+const mainPageElement = mount(
+    <Provider store={store}>
+      <MainPage {...props} />
+    </Provider>
+);
 
 
 describe(`MainPage e2e-tests`, () => {

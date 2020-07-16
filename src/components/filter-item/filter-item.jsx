@@ -3,10 +3,10 @@ import React from "react";
 
 
 export const FilterItem = (props) => {
-  const {filterName, onClick} = props;
+  const {filterName, onClick, isActive} = props;
 
   return (
-    <li className="catalog__genres-item">
+    <li className={`catalog__genres-item ${isActive ? `catalog__genres-item--active` : ``}`}>
       <a
         href="#"
         className="catalog__genres-link"
@@ -20,4 +20,5 @@ export const FilterItem = (props) => {
 FilterItem.propTypes = {
   filterName: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
 };

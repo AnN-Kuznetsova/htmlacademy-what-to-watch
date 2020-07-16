@@ -1,14 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {Catalog} from "./catalog.jsx";
+import {CatalogComponent} from "./catalog";
 
-import {movies} from "../../__test-data__/test-mocks.js";
+import {mockMovies} from "../../__test-data__/test-mocks";
 
 
 const props = {
-  movies,
+  movies: [],
+  movieList: mockMovies,
   onSmallMovieCardClick: () => {},
+  renderFilter: () => {},
+  activeFilter: ``,
+  onGenreFilterClick: () => {},
 };
 
 const nodeMock = {
@@ -21,7 +25,7 @@ const nodeMock = {
 describe(`Render Catalog`, () => {
   it(`Catalog should match with snapshot`, () => {
     const catalogSnapshot = renderer.create(
-        <Catalog {...props} />, nodeMock
+        <CatalogComponent {...props} />, nodeMock
     ).toJSON();
 
     expect(catalogSnapshot).toMatchSnapshot();

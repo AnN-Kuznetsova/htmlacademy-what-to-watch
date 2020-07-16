@@ -1,6 +1,6 @@
 const mockVideoUrl = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 
-const promoMovie = {
+const mockPromoMovie = {
   title: `The Grand Budapest Hotel`,
   smallPictureUrl: ``,
   backgroundUrl: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -36,14 +36,14 @@ const promoMovie = {
   },
 };
 
-const movies = [
+const mockMovies = [
   {
     title: `Bohemian Rhapsody`,
     smallPictureUrl: `img/bohemian-rhapsody.jpg`,
     backgroundUrl: `img/bohemian-rhapsody.jpg`,
     posterUrl: `img/bohemian-rhapsody.jpg`,
     previewUrl: mockVideoUrl,
-    genres: [`Drama`, `Biography`],
+    genres: [`Drama`, `Biography`, `Crime`, `Detective`, `Military`, `History`],
     releaseDate: new Date(2018, 0),
     description: [
       `Сюжет картины охватывает период 1970—1985 года, рассказывая о жизни, творчестве и отношениях внутри группы Queen, а также о личной жизни фронтмена
@@ -82,7 +82,7 @@ const movies = [
     backgroundUrl: `img/aviator.jpg`,
     posterUrl: `img/aviator.jpg`,
     previewUrl: mockVideoUrl,
-    genres: [`Drama`, `Biography`],
+    genres: [`Drama`, `Biography`, `Fiction`, `Thriller`],
     releaseDate: new Date(2004, 0),
     description: [
       `Получив от отца небольшую фабрику, Говард Хьюз превратил ее в гигантское, фантастически прибыльное предприятие. Став владельцем огромной кинокомпании,
@@ -157,24 +157,10 @@ const VideoPlayerStatus = {
   ON_RESET: `on-reset`,
 };
 
-const genreNames = [
-  `All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thrillers`,
-];
-
 
 export {
   VideoPlayerMode,
   VideoPlayerStatus,
-  genreNames,
-  movies,
-  promoMovie,
+  mockMovies,
+  mockPromoMovie,
 };

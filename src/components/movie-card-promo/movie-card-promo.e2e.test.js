@@ -3,13 +3,13 @@ import {shallow} from "enzyme";
 
 import {MovieCardPromo} from "./movie-card-promo.jsx";
 
-import {promoMovie} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie} from "../../__test-data__/test-mocks.js";
 
 
 const onMovieClick = jest.fn();
 
 const props = {
-  movie: promoMovie,
+  movie: mockPromoMovie,
   onMovieClick,
 };
 

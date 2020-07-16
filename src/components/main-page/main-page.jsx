@@ -1,16 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {CatalogWithFilterByGenre} from "../catalog/catalog";
+import {Catalog} from "../catalog/catalog";
+import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
 import {Footer} from "../footer/footer";
 import {MovieCardPromo} from "../movie-card-promo/movie-card-promo";
-
-import {promoMovie} from "../../mocks/promo-movie";
-import {movies} from "../../mocks/movies";
+import {MoviePropType} from "../../prop-types";
 
 
 export const MainPage = (props) => {
-  const {openMovieDetailsPage} = props;
+  const {promoMovie, openMovieDetailsPage} = props;
 
   const handleSmallMovieCardClick = (movie) => {
     openMovieDetailsPage(movie);
@@ -62,8 +61,9 @@ export const MainPage = (props) => {
             Catalog
           </h2>
 
-          <CatalogWithFilterByGenre
-            movies={movies}
+          <FilterByGenre />
+
+          <Catalog
             onSmallMovieCardClick={handleSmallMovieCardClick}
           />
         </section>
@@ -76,5 +76,6 @@ export const MainPage = (props) => {
 
 
 MainPage.propTypes = {
+  promoMovie: MoviePropType.isRequired,
   openMovieDetailsPage: PropTypes.func.isRequired,
 };

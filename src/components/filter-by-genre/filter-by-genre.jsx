@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 
 import {MAX_FILTER_ELEMENTS_COUNT} from "../../const";
 import {ActionCreator} from "../../reducers/reducer";
-import {MoviePropType} from "../../prop-types";
 import {FilterItem} from '../filter-item/filter-item';
+import {MoviePropType} from "../../prop-types";
 
 
 const getGenreFilterNames = (movies) => {
@@ -62,6 +62,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onClick(newFilterValue) {
     dispatch(ActionCreator.changeGenre(newFilterValue));
+    dispatch(ActionCreator.getMovies());
   },
 });
 

@@ -21,4 +21,4 @@ describe(`Render FilterByGenre`, () => {
 
     expect(filterByGenreSnapshot).toMatchSnapshot();
   });
-})
+});

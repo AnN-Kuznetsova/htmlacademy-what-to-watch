@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {CatalogComponent} from "./catalog.jsx";
+import {CatalogComponent} from "./catalog";
 
-import {mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockMovies} from "../../__test-data__/test-mocks";
 
 
 const props = {

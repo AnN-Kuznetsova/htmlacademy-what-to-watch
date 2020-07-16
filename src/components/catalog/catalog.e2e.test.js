@@ -10,15 +10,19 @@ const mockEvent = {
   preventDefault() {}
 };
 
+let visibleCardCount = 1;
+
 const onSmallMovieCardClick = jest.fn();
+const onShowMoreButtonClick = jest.fn(() => {
+  visibleCardCount += 8;
+  catalogElement.setProps({visibleCardCount});
+});
 
 const props = {
-  movies: [],
   movieList: mockMovies,
+  visibleCardCount,
   onSmallMovieCardClick,
-  renderFilter: () => {},
-  activeFilter: ``,
-  onGenreFilterClick: () => {},
+  onShowMoreButtonClick,
 };
 
 const catalogElement = mount(<CatalogComponent {...props} />);
@@ -29,6 +33,14 @@ describe(`Catalog e2e-tests`, () => {
   it(`Should small movie card be pressed`, () => {
     smallMovieCardElement.props.onClick(mockEvent);
 
-    expect(onSmallMovieCardClick).toHaveBeenCalled();
+    expect(onSmallMovieCardClick).toHaveBeenCalledTimes(1);
+  });
+
+
+  it(`Clicking on the ShowMoreButton should increment visible small movie card count`, () => {
+    catalogElement.find(`button.catalog__button`).simulate(`click`);
+
+    expect(onShowMoreButtonClick).toHaveBeenCalledTimes(1);
+    expect(catalogElement.props().visibleCardCount).toEqual(9);
   });
 });

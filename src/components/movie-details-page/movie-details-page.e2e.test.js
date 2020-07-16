@@ -25,6 +25,7 @@ const store = mockStore({
   movies: [],
   movieList: mockMovies,
   genre: ``,
+  visibleSmallCardCount: 8,
 });
 
 const movieDetailsPageElement = mount(

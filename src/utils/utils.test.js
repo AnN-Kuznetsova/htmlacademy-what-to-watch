@@ -1,6 +1,5 @@
 import {
   extend,
-  getExtremeIndexesForSlice,
   getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
@@ -73,22 +72,6 @@ describe(`Utils tests`, () => {
   it(`Testing getFormatedDate`, () => {
     expect(getFormatedDate(new Date(2018, 11, 5))).toEqual(`December 5, 2018`);
     expect(getFormatedDate(new Date(2018, 11, 5), true)).toEqual(`2018-12-5`);
-  });
-
-
-  it(`Testing getExtremeIndexesForSlice`, () => {
-    expect(getExtremeIndexesForSlice(7, 3, 0)).toEqual({
-      beginingIndex: 0,
-      endingIndex: 3,
-    });
-    expect(getExtremeIndexesForSlice(11, 3, 1)).toEqual({
-      beginingIndex: 4,
-      endingIndex: 8,
-    });
-    expect(getExtremeIndexesForSlice(5, 3, 2)).toEqual({
-      beginingIndex: 4,
-      endingIndex: 6,
-    });
   });
 
 

@@ -94,17 +94,6 @@ const getRatingDescription = (score) => {
 };
 
 
-const getExtremeIndexesForSlice = (arrayLength, iterationCount, iterationIndex) => {
-  const beginingIndex = Math.ceil(arrayLength / iterationCount) * iterationIndex;
-  const endingIndex = beginingIndex + Math.ceil(arrayLength / iterationCount);
-
-  return {
-    beginingIndex,
-    endingIndex,
-  };
-};
-
-
 const getFilteredMovies = (movies, filterName, filterValue, currentMovie, moviesCount = null) => {
   let filteredMovies = null;
 
@@ -125,7 +114,6 @@ const getFilteredMovies = (movies, filterName, filterValue, currentMovie, movies
 
 export {
   extend,
-  getExtremeIndexesForSlice,
   getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,

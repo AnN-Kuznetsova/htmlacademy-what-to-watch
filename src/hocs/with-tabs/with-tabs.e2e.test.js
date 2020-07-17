@@ -9,17 +9,17 @@ const tabList = [
   {
     name: `One`,
     // eslint-disable-next-line react/display-name
-    component: () => <div className="tab-content 1" />,
+    component: () => <p className="tab-content-1" />,
   },
   {
     name: `Two`,
     // eslint-disable-next-line react/display-name
-    component: () => <div className="tab-content 2" />,
+    component: () => <p className="tab-content-2" />,
   },
   {
     name: `Three`,
     // eslint-disable-next-line react/display-name
-    component: () => <div className="tab-content 3" />,
+    component: () => <p className="tab-content-3" />,
   },
 ];
 
@@ -48,11 +48,10 @@ const componentWithTabsElement = mount(<ComponentWithTabs />);
 describe(`withTabs e2e-tests`, () => {
   it(`The default state is correct`, () => {
     expect(componentWithTabsElement.instance().state.activeTabId).toEqual(0);
-    expect(componentWithTabsElement.find(`a.movie-nav__link`).at(0).props().className)
+    expect(componentWithTabsElement.find(`li.movie-nav__item`).at(0).props().className)
       .toEqual(expect.stringContaining(`movie-nav__item--active`));
-    expect(componentWithTabsElement.find(`div.tab-content 1`)).toBeTruthy();
-    expect(componentWithTabsElement.find(`div.tab-content 2`)).toBeFalse();
-    expect(componentWithTabsElement.find(`div.tab-content 3`)).toBeFalse();
+    expect(componentWithTabsElement.find(`p`).length).toEqual(1);
+    expect(componentWithTabsElement.find(`p`).props().className).toEqual(`tab-content-1`);
   });
 
 
@@ -61,10 +60,9 @@ describe(`withTabs e2e-tests`, () => {
     secondTabHeader.simulate(`click`);
 
     expect(componentWithTabsElement.instance().state.activeTabId).toEqual(1);
-    expect(componentWithTabsElement.find(`a.movie-nav__link`).at(1).props().className)
+    expect(componentWithTabsElement.find(`li.movie-nav__item`).at(1).props().className)
       .toEqual(expect.stringContaining(`movie-nav__item--active`));
-    expect(componentWithTabsElement.find(`div.tab-content 1`)).toBeFalse();
-    expect(componentWithTabsElement.find(`div.tab-content 2`)).toBeTruthy();
-    expect(componentWithTabsElement.find(`div.tab-content 3`)).toBeFalse();
+    expect(componentWithTabsElement.find(`p`).length).toEqual(1);
+    expect(componentWithTabsElement.find(`p`).props().className).toEqual(`tab-content-2`);
   });
 });

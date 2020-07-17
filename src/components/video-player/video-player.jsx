@@ -34,7 +34,7 @@ export class VideoPlayer extends PureComponent {
     });
 
     video.ontimeupdate = () => this.setState({
-      progress: video.currentTime,
+      progress: Math.floor(video.currentTime),
     });
   }
 

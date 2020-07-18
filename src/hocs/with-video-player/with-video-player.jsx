@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {VideoPlayer, VideoPlayerMode} from '../../components/video-player/video-player';
+import {PlayerWithVideo, VideoPlayerMode} from '../../components/player/player';
 
 
 export const VideoPlayerStatus = {
@@ -20,7 +20,6 @@ export const withVideoPlayer = (Component) => {
       };
 
       this._playerMode = null;
-      this._videoElement = null;
     }
 
     getPlayerOptions(playerMode) {
@@ -42,16 +41,11 @@ export const withVideoPlayer = (Component) => {
         playerStatus: newPlayerStatus,
       }, () => {
         if (this.state.playerStatus === VideoPlayerStatus.ON_PAUSE && this._playerMode === VideoPlayerMode.PREVIEW) {
-          this._videoElement.load();
           this.setState({
             playerStatus: VideoPlayerStatus.ON_RESET,
           });
         }
       });
-    }
-
-    getVideoElement(videoElement) {
-      this._videoElement = videoElement;
     }
 
     getPlayingValue() {
@@ -75,14 +69,13 @@ export const withVideoPlayer = (Component) => {
       const isPlaying = this.getPlayingValue();
 
       return (
-        <VideoPlayer
+        <PlayerWithVideo
           src={src}
           posterUrl={posterUrl}
           videoHeight={options.videoHeight}
           playerMode={playerMode}
           isPlaying={isPlaying}
           isSound={options.isSound}
-          getVideoElement={this.getVideoElement.bind(this)}
         />
       );
     }

@@ -1,8 +1,8 @@
 import React from "react";
 import {mount} from "enzyme";
 
-import {VideoPlayer} from "./video-player.jsx";
-import {VideoPlayerMode} from "../../__test-data__/test-mocks.js";
+import {VideoPlayer} from "./player";
+import {VideoPlayerMode} from "../../__test-data__/test-mocks";
 
 
 const nodeMock = {

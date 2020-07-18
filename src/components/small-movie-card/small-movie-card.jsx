@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {DELAY_PLAYBACK_PREVIEW} from "../../const";
 import {MoviePropType} from "../../prop-types";
-import {VideoPlayerMode} from "../player/player";
+import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {withVideoPlayer, VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player";
 
 

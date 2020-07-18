@@ -1,7 +1,21 @@
 import PropTypes from "prop-types";
 import React, {PureComponent, createRef} from "react";
 
-import {VideoPlayerMode} from "../../components/player/player";
+
+export const VideoPlayerMode = {
+  PREVIEW: `preview`,
+  FULL_SCREEN: `full-screen`,
+};
+
+
+export const videoOptions = {
+  [VideoPlayerMode.PREVIEW]: {
+    isAutoPlay: false,
+    isSound: false,
+    videoHeight: 175,
+  },
+  [VideoPlayerMode.FULL_SCREEN]: {},
+};
 
 
 export const withVideo = (Component) => {
@@ -18,11 +32,10 @@ export const withVideo = (Component) => {
     }
 
     componentDidMount() {
-      const {src, isSound} = this.props;
+      const {src} = this.props;
       const video = this._videoRef.current;
 
       video.src = src;
-      video.muted = !isSound;
 
       video.oncanplaythrough = () => this.setState({
         isLoading: false,
@@ -57,7 +70,8 @@ export const withVideo = (Component) => {
     }
 
     render() {
-      const {posterUrl, videoHeight, playerMode, isPlaying} = this.props;
+      const {posterUrl, playerMode, isPlaying} = this.props;
+      const {videoHeight, isSound} = videoOptions[playerMode];
 
       return (
         <Component
@@ -70,6 +84,7 @@ export const withVideo = (Component) => {
             poster={posterUrl}
             autoPlay={isPlaying}
             style={{height: videoHeight}}
+            muted={!isSound}
           />
         </Component>
       );
@@ -80,10 +95,8 @@ export const withVideo = (Component) => {
   WithVideo.propTypes = {
     src: PropTypes.string.isRequired,
     posterUrl: PropTypes.string.isRequired,
-    videoHeight: PropTypes.number.isRequired,
     playerMode: PropTypes.string.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
-    isSound: PropTypes.bool.isRequired,
+    isPlaying: PropTypes.bool,
   };
 
 

@@ -1,13 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import {withVideo} from "../../hocs/with-video/with-video";
-
-
-export const VideoPlayerMode = {
-  PREVIEW: `preview`,
-  FULL_SCREEN: `full-screen`,
-};
+import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
 const Player = (props) => {
@@ -56,7 +50,6 @@ const Player = (props) => {
 Player.propTypes = {
   playerMode: PropTypes.string.isRequired,
   // isPlaying: PropTypes.bool.isRequired,
-  // isSound: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

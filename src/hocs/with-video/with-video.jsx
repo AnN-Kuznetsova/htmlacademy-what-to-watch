@@ -32,10 +32,12 @@ export const withVideo = (Component) => {
     }
 
     componentDidMount() {
-      const {src} = this.props;
+      const {src, playerMode} = this.props;
+      const {isSound} = videoOptions[playerMode];
       const video = this._videoRef.current;
 
       video.src = src;
+      video.muted = !isSound;
 
       video.oncanplaythrough = () => this.setState({
         isLoading: false,
@@ -71,7 +73,7 @@ export const withVideo = (Component) => {
 
     render() {
       const {posterUrl, playerMode, isPlaying} = this.props;
-      const {videoHeight, isSound} = videoOptions[playerMode];
+      const {videoHeight} = videoOptions[playerMode];
 
       return (
         <Component
@@ -84,7 +86,6 @@ export const withVideo = (Component) => {
             poster={posterUrl}
             autoPlay={isPlaying}
             style={{height: videoHeight}}
-            muted={!isSound}
           />
         </Component>
       );
@@ -96,7 +97,7 @@ export const withVideo = (Component) => {
     src: PropTypes.string.isRequired,
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
-    isPlaying: PropTypes.bool,
+    isPlaying: PropTypes.bool.isRequired,
   };
 
 

@@ -23,7 +23,7 @@ const tabList = [
   },
 ];
 
-const Component = (props) => {
+const MockComponent = (props) => {
   const {renderTabNav, renderTab} = props;
   const tabNames = tabList.map((tab) => tab.name);
 
@@ -37,12 +37,12 @@ const Component = (props) => {
   );
 };
 
-Component.propTypes = {
+MockComponent.propTypes = {
   renderTabNav: PropTypes.func.isRequired,
   renderTab: PropTypes.func.isRequired,
 };
 
-const ComponentWithTabs = withTabs(Component);
+const ComponentWithTabs = withTabs(MockComponent);
 
 
 describe(`Render withTabs`, () => {

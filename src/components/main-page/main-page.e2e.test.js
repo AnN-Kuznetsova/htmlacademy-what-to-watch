@@ -18,7 +18,7 @@ const store = mockStore({
   movies: mockMovies,
   genre: `All genres`,
   movieList: mockMovies,
-  visibleSmallCardCount: 8,
+  visibleMoviesCount: 8,
 });
 
 const openMovieDetailsPage = jest.fn();

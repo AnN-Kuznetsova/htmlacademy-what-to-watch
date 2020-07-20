@@ -17,7 +17,7 @@ const initialState = {
   movies,
   genre: `All genres`,
   movieList: movies,
-  visibleSmallCardCount: movies.length <= NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP ? movies.length :
+  visibleMoviesCount: movies.length <= NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP ? movies.length :
     NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   activeMovie: promoMovie,
   activePage: PageType.MAIN,
@@ -29,8 +29,8 @@ const ActionType = {
   GET_MOVIES: `GET_MOVIES`,
   CHANGE_ACTIVE_MOVIE: `CHANGE_ACTIVE_MOVIE`,
   CHANGE_ACTIVE_PAGE: `CHANGE_ACTIVE_PAGE`,
-  INCREMENT_VISIBLE_SMALL_CARD_COUNT: `INCREMENT_VISIBLE_SMALL_CARD_COUNT`,
-  RESET_VISIBLE_SMALL_CARD_COUNT: `RESET_VISIBLE_SMALL_CARD_COUNT`,
+  INCREMENT_VISIBLE_MOVIES_COUNT: `INCREMENT_VISIBLE_MOVIES_COUNT`,
+  RESET_VISIBLE_MOVIES_COUNT: `RESET_VISIBLE_MOVIES_COUNT`,
 };
 
 const ActionCreator = {
@@ -50,12 +50,12 @@ const ActionCreator = {
     type: ActionType.CHANGE_ACTIVE_PAGE,
     payload: page,
   }),
-  incrementVisibleSmallCardCount: () => ({
-    type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+  incrementVisibleMoviesCount: () => ({
+    type: ActionType.INCREMENT_VISIBLE_MOVIES_COUNT,
     payload: NUMBER_OF_CARDS_TO_INCREMENT,
   }),
-  resetVisibleSmallCardCount: () => ({
-    type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+  resetVisibleMoviesCount: () => ({
+    type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
     payload: null,
   }),
 };
@@ -83,14 +83,14 @@ const reducer = (state = initialState, action) => {
         activePage: action.payload,
       });
 
-    case ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT:
+    case ActionType.INCREMENT_VISIBLE_MOVIES_COUNT:
       return extend(state, {
-        visibleSmallCardCount: state.visibleSmallCardCount + action.payload,
+        visibleMoviesCount: state.visibleMoviesCount + action.payload,
       });
 
-    case ActionType.RESET_VISIBLE_SMALL_CARD_COUNT:
+    case ActionType.RESET_VISIBLE_MOVIES_COUNT:
       return extend(state, {
-        visibleSmallCardCount: initialState.visibleSmallCardCount,
+        visibleMoviesCount: initialState.visibleMoviesCount,
       });
 
     default:

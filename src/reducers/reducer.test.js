@@ -14,7 +14,7 @@ describe(`Reduser should work correctly`, () => {
       movies,
       genre: `All genres`,
       movieList: movies,
-      visibleSmallCardCount: 8,
+      visibleMoviesCount: 8,
       activeMovie: promoMovie,
       activePage: PageType.MAIN,
     });
@@ -26,7 +26,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -36,7 +36,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `Drama`,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -45,7 +45,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `Biography`,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -55,7 +55,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -67,7 +67,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `All genres`,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -76,7 +76,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `All genres`,
       movieList: mockMovies,
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -85,7 +85,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Drama`,
       movieList: mockMovies,
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -94,7 +94,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Drama`,
       movieList: [mockMovies[0], mockMovies[1], mockMovies[2]],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -103,7 +103,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Adventure`,
       movieList: [mockMovies[0], mockMovies[1]],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -112,7 +112,7 @@ describe(`Reduser should work correctly`, () => {
       movies: mockMovies,
       genre: `Adventure`,
       movieList: [mockMovies[2]],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     });
@@ -124,7 +124,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
@@ -134,7 +134,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: `All genres`,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: mockMovies[1],
       activePage: ``,
     });
@@ -146,7 +146,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MAIN,
     }, {
@@ -156,7 +156,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MOVIE_DETAILS,
     });
@@ -165,7 +165,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MOVIE_DETAILS,
     }, {
@@ -175,7 +175,7 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MAIN,
     });
@@ -187,17 +187,17 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
-      type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+      type: ActionType.INCREMENT_VISIBLE_MOVIES_COUNT,
       payload: 2,
     })).toEqual({
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 2,
+      visibleMoviesCount: 2,
       activeMovie: {},
       activePage: ``,
     });
@@ -206,17 +206,17 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 2,
+      visibleMoviesCount: 2,
       activeMovie: {},
       activePage: ``,
     }, {
-      type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+      type: ActionType.INCREMENT_VISIBLE_MOVIES_COUNT,
       payload: 8,
     })).toEqual({
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 10,
+      visibleMoviesCount: 10,
       activeMovie: {},
       activePage: ``,
     });
@@ -228,17 +228,17 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 0,
+      visibleMoviesCount: 0,
       activeMovie: {},
       activePage: ``,
     }, {
-      type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+      type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
       payload: null,
     })).toEqual({
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 8,
+      visibleMoviesCount: 8,
       activeMovie: {},
       activePage: ``,
     });
@@ -247,17 +247,17 @@ describe(`Reduser should work correctly`, () => {
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 15,
+      visibleMoviesCount: 15,
       activeMovie: {},
       activePage: ``,
     }, {
-      type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+      type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
       payload: null,
     })).toEqual({
       movies: [],
       genre: ``,
       movieList: [],
-      visibleSmallCardCount: 8,
+      visibleMoviesCount: 8,
       activeMovie: {},
       activePage: ``,
     });
@@ -304,16 +304,16 @@ describe(`Action creators should work correctly`, () => {
 
 
   it(`Action creator for increment visible small card count returns correct action`, () => {
-    expect(ActionCreator.incrementVisibleSmallCardCount()).toEqual({
-      type: ActionType.INCREMENT_VISIBLE_SMALL_CARD_COUNT,
+    expect(ActionCreator.incrementVisibleMoviesCount()).toEqual({
+      type: ActionType.INCREMENT_VISIBLE_MOVIES_COUNT,
       payload: 8,
     });
   });
 
 
   it(`Action creator for reset visible small card count returns correct action`, () => {
-    expect(ActionCreator.resetVisibleSmallCardCount()).toEqual({
-      type: ActionType.RESET_VISIBLE_SMALL_CARD_COUNT,
+    expect(ActionCreator.resetVisibleMoviesCount()).toEqual({
+      type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
       payload: null,
     });
   });

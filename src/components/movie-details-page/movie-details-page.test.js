@@ -39,6 +39,7 @@ describe(`Render MovieDetailsPage`, () => {
       movies: [],
       genre: ``,
       movieList: mockMovies,
+      visibleSmallCardCount: 8,
     });
 
     const movieDetailsPageSnapshot = renderer.create(

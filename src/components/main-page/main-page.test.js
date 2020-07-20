@@ -21,6 +21,7 @@ const store = mockStore({
   movies: mockMovies,
   genre: `All genres`,
   movieList: mockMovies,
+  visibleSmallCardCount: 8,
 });
 
 const props = {

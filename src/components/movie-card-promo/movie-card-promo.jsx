@@ -13,8 +13,6 @@ const MovieCardPromo = (props) => {
     onMovieClick,
     renderVideoPlayer,
     isPlayerVisible,
-    /* currentVideoPlayerStatus,
-    setVideoPlayerStatus, */
     onPlayButtonClick,
   } = props;
 
@@ -76,8 +74,6 @@ MovieCardPromo.propTypes = {
   onMovieClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,
-  /* currentVideoPlayerStatus: PropTypes.string.isRequired,
-  setVideoPlayerStatus: PropTypes.func.isRequired, */
   onPlayButtonClick: PropTypes.func.isRequired,
 };
 

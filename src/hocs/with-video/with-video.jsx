@@ -3,8 +3,9 @@ import React, {PureComponent, createRef} from "react";
 
 
 export const VideoPlayerMode = {
-  PREVIEW: `preview`,
-  FULL_SCREEN: `full-screen`,
+  PREVIEW: `PREVIEW`,
+  SMALL_SCREEN: `SMALL_SCREEN`,
+  FULL_SCREEN: `FULL_SCREEN`,
 };
 
 
@@ -12,10 +13,17 @@ export const videoOptions = {
   [VideoPlayerMode.PREVIEW]: {
     isAutoPlay: false,
     isSound: false,
+    isVisible: true,
+  },
+  [VideoPlayerMode.SMALL_SCREEN]: {
+    isAutoPlay: true,
+    isSound: true,
+    isVisible: false,
   },
   [VideoPlayerMode.FULL_SCREEN]: {
     isAutoPlay: true,
     isSound: true,
+    isVisible: true,
   },
 };
 
@@ -84,6 +92,8 @@ export const withVideo = (Component) => {
         playerMode,
         isPlaying,
         onPlayButtonClick,
+        onExitButtonClick,
+        onFullScreenButtonClick,
       } = this.props;
       const {
         progress
@@ -97,6 +107,8 @@ export const withVideo = (Component) => {
           duration={this._duration}
           progress={progress}
           onPlayButtonClick={onPlayButtonClick}
+          onExitButtonClick={onExitButtonClick}
+          onFullScreenButtonClick={onFullScreenButtonClick}
         >
           <video
             ref={this._videoRef}
@@ -116,6 +128,8 @@ export const withVideo = (Component) => {
     playerMode: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     onPlayButtonClick: PropTypes.func.isRequired,
+    onExitButtonClick: PropTypes.func.isRequired,
+    onFullScreenButtonClick: PropTypes.func.isRequired,
   };
 
 

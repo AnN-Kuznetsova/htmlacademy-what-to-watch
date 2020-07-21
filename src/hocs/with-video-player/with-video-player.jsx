@@ -1,4 +1,6 @@
+import PropTypes from "prop-types";
 import React, {PureComponent} from 'react';
+
 import {PlayerWithVideo} from '../../components/player/player';
 import {VideoPlayerMode, videoOptions} from "../with-video/with-video";
 
@@ -18,16 +20,32 @@ export const withVideoPlayer = (Component) => {
 
       this.state = {
         playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
+        playerMode: this.props.playerMode,
+        isPlayerVisible: false,
       };
+    }
 
-      this._playerMode = null;
+    componentDidMount() {
+
+    }
+
+    setVideoPlayerVisibility(newValue) {
+      this.setState({
+        isPlayerVisible: newValue,
+      });
+    }
+
+    setPlayerMode(newPlayerMode) {
+      this.setState({
+        playerMode: newPlayerMode,
+      });
     }
 
     setVideoPlayerStatus(newPlayerStatus) {
       this.setState({
         playerStatus: newPlayerStatus,
       }, () => {
-        if (this.state.playerStatus === VideoPlayerStatus.ON_PAUSE && this._playerMode === VideoPlayerMode.PREVIEW) {
+        if (this.state.playerStatus === VideoPlayerStatus.ON_PAUSE && this.state.playerMode === VideoPlayerMode.PREVIEW) {
           this.setState({
             playerStatus: VideoPlayerStatus.ON_RESET,
           });
@@ -38,7 +56,7 @@ export const withVideoPlayer = (Component) => {
     getPlayingValue() {
       switch (this.state.playerStatus) {
         case VideoPlayerStatus.ON_AUTOPLAY:
-          return videoOptions[this._playerMode].isAutoPlay;
+          return videoOptions[this.state.playerMode].isAutoPlay;
         case VideoPlayerStatus.ON_PLAY:
           return true;
         case VideoPlayerStatus.ON_PAUSE:
@@ -50,23 +68,32 @@ export const withVideoPlayer = (Component) => {
     }
 
     handlePlayButtonClick() {
-      if (this.state.playerStatus === VideoPlayerStatus.ON_PLAY) {
+      if (this.getPlayingValue()) {
         this.setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
       } else {
         this.setVideoPlayerStatus(VideoPlayerStatus.ON_PLAY);
       }
     }
 
-    renderPlayer(src, posterUrl, playerMode) {
-      this._playerMode = playerMode;
+    handleExitButtonClick() {
+      this.setVideoPlayerVisibility(false);
+      this.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
+    }
 
+    handleFullScreenButtonClick() {
+      this.setPlayerMode(VideoPlayerMode.FULL_SCREEN);
+    }
+
+    renderPlayer(src, posterUrl/* , playerMode */) {
       return (
         <PlayerWithVideo
           src={src}
           posterUrl={posterUrl}
-          playerMode={playerMode}
+          playerMode={this.state.playerMode}
           isPlaying={this.getPlayingValue()}
           onPlayButtonClick={this.handlePlayButtonClick.bind(this)}
+          onExitButtonClick={this.handleExitButtonClick.bind(this)}
+          onFullScreenButtonClick={this.handleFullScreenButtonClick.bind(this)}
         />
       );
     }
@@ -78,13 +105,17 @@ export const withVideoPlayer = (Component) => {
           renderVideoPlayer={this.renderPlayer.bind(this)}
           currentVideoPlayerStatus={this.state.playerStatus}
           setVideoPlayerStatus={this.setVideoPlayerStatus.bind(this)}
+          isPlayerVisible={this.state.isPlayerVisible}
+          onPlayButtonClick={this.setVideoPlayerVisibility.bind(this, true)}
         />
       );
     }
   }
 
 
-  WithVideoPlayer.propTypes = {};
+  WithVideoPlayer.propTypes = {
+    playerMode: PropTypes.string.isRequired,
+  };
 
 
   return WithVideoPlayer;

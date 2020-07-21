@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import {Catalog} from "../catalog/catalog";
 import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
 import {Footer} from "../footer/footer";
-import {MovieCardPromo} from "../movie-card-promo/movie-card-promo";
+import {MovieCardPromoWithPlayer} from "../movie-card-promo/movie-card-promo";
 import {MoviePropType} from "../../prop-types";
+import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
 export const MainPage = (props) => {
@@ -21,9 +22,10 @@ export const MainPage = (props) => {
 
   return (
     <React.Fragment>
-      <MovieCardPromo
+      <MovieCardPromoWithPlayer
         movie={promoMovie}
         onMovieClick={handlePromoMovieClick}
+        playerMode={VideoPlayerMode.SMALL_SCREEN}
       />
 
       <div className="page-content">

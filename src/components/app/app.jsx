@@ -8,6 +8,7 @@ import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
+import {VideoPlayerPage} from "../player-page/player-page";
 
 
 const AppComponent = (props) => {
@@ -35,6 +36,10 @@ const AppComponent = (props) => {
             onSmallMovieCardClick={onOpenMovieDetailsPage}
           />
         );
+      /* case PageType.PLAYER:
+        return (
+
+        ); */
       default:
         return null;
     }
@@ -52,6 +57,11 @@ const AppComponent = (props) => {
             onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
           />
         </Route>*/}
+        <Route exact path="/player">
+          <VideoPlayerPage
+            movie={activeMovie}
+          />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

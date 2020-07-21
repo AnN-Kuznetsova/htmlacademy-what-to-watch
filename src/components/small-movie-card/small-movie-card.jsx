@@ -70,19 +70,19 @@ const SmallMovieCard = (props) => {
 };
 
 
-const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
-
-
-export {
-  SmallMovieCard,
-  SmallMovieCardWithVideoPlayer,
-};
-
-
 SmallMovieCard.propTypes = {
   movie: MoviePropType.isRequired,
   onClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   currentVideoPlayerStatus: PropTypes.string.isRequired,
   setVideoPlayerStatus: PropTypes.func.isRequired,
+};
+
+
+const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
+
+
+export {
+  SmallMovieCard,
+  SmallMovieCardWithVideoPlayer,
 };

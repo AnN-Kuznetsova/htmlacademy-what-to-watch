@@ -14,7 +14,10 @@ export const videoOptions = {
     isSound: false,
     videoHeight: 175,
   },
-  [VideoPlayerMode.FULL_SCREEN]: {},
+  [VideoPlayerMode.FULL_SCREEN]: {
+    isAutoPlay: false,
+    isSound: true,
+  },
 };
 
 

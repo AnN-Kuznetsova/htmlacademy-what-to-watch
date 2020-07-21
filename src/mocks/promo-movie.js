@@ -3,7 +3,7 @@ import {reviews} from "./reviews";
 
 export const promoMovie = {
   title: `The Grand Budapest Hotel`,
-  smallPictureUrl: ``,
+  smallPictureUrl: `img/player-poster.jpg`,
   backgroundUrl: `img/bg-the-grand-budapest-hotel.jpg`,
   posterUrl: `img/the-grand-budapest-hotel-poster.jpg`,
   previewUrl: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,

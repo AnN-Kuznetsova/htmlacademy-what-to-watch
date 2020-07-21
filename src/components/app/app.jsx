@@ -8,8 +8,8 @@ import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
-import {VideoPlayerPage, PlayerPage} from "../player-page/player-page";
-import { VideoPlayerMode } from "../../hocs/with-video/with-video";
+import {VideoPlayerMode} from "../../hocs/with-video/with-video";
+import {VideoPlayerPage} from "../player-page/player-page";
 
 
 const AppComponent = (props) => {

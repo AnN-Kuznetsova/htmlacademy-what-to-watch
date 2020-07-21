@@ -23,8 +23,6 @@ const PlayerPage = (props) => {
 PlayerPage.propTypes = {
   movie: MoviePropType.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
-  /* currentVideoPlayerStatus: PropTypes.string.isRequired,
-  setVideoPlayerStatus: PropTypes.func.isRequired, */
 };
 
 

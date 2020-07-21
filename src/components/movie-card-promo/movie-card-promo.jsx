@@ -3,8 +3,8 @@ import React from "react";
 
 import {Header} from "../header/header";
 import {MoviePropType} from "../../prop-types";
-import { withVideoPlayer, VideoPlayerStatus } from "../../hocs/with-video-player/with-video-player";
-import { VideoPlayerMode } from "../../hocs/with-video/with-video";
+import {VideoPlayerMode} from "../../hocs/with-video/with-video";
+import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
 const MovieCardPromo = (props) => {
@@ -51,16 +51,16 @@ const MovieCardPromo = (props) => {
                   onClick={onPlayButtonClick}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s" />
-                </svg>
+                    <use xlinkHref="#play-s" />
+                  </svg>
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add" />
-                </svg>
-                <span>My list</span>
-              </button>
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add" />
+                  </svg>
+                  <span>My list</span>
+                </button>
               </div>
             </div>
           </div>

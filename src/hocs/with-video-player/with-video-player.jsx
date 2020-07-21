@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from 'react';
+import {connect} from "react-redux";
 
+import {ActionCreator} from "../../reducers/reducer";
+import {PageType} from "../../const";
 import {PlayerWithVideo} from '../../components/player/player';
 import {VideoPlayerMode, videoOptions} from "../with-video/with-video";
 
@@ -14,7 +17,7 @@ export const VideoPlayerStatus = {
 
 
 export const withVideoPlayer = (Component) => {
-  class WithVideoPlayer extends PureComponent {
+  class WithVideoPlayerComponent extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -76,12 +79,13 @@ export const withVideoPlayer = (Component) => {
     }
 
     handleExitButtonClick() {
+      this.props.onChangePage(PageType.MAIN);
       this.setVideoPlayerVisibility(false);
       this.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
     }
 
     handleFullScreenButtonClick() {
-      this.setPlayerMode(VideoPlayerMode.FULL_SCREEN);
+      this.props.onChangePage(PageType.PLAYER);
     }
 
     renderPlayer(src, posterUrl/* , playerMode */) {
@@ -113,9 +117,23 @@ export const withVideoPlayer = (Component) => {
   }
 
 
-  WithVideoPlayer.propTypes = {
+  WithVideoPlayerComponent.propTypes = {
     playerMode: PropTypes.string.isRequired,
+    prevPage: PropTypes.string.isRequired,
+    onChangePage: PropTypes.func.isRequired,
   };
+
+  const mapStateToProps = (state) => ({
+    prevPage: state.activePage,
+  });
+
+  const mapDispatchToProps = (dispatch) => ({
+    onChangePage(newPage) {
+      dispatch(ActionCreator.changeActivePage(newPage));
+    },
+  });
+
+  const WithVideoPlayer = connect(mapStateToProps, mapDispatchToProps)(WithVideoPlayerComponent);
 
 
   return WithVideoPlayer;

@@ -49,6 +49,14 @@ export const withVideoPlayer = (Component) => {
       }
     }
 
+    handlePlayButtonClick() {
+      if (this.state.playerStatus === VideoPlayerStatus.ON_PLAY) {
+        this.setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
+      } else {
+        this.setVideoPlayerStatus(VideoPlayerStatus.ON_PLAY);
+      }
+    }
+
     renderPlayer(src, posterUrl, playerMode) {
       this._playerMode = playerMode;
 
@@ -58,6 +66,7 @@ export const withVideoPlayer = (Component) => {
           posterUrl={posterUrl}
           playerMode={playerMode}
           isPlaying={this.getPlayingValue()}
+          onPlayButtonClick={this.handlePlayButtonClick.bind(this)}
         />
       );
     }

@@ -12,10 +12,9 @@ export const videoOptions = {
   [VideoPlayerMode.PREVIEW]: {
     isAutoPlay: false,
     isSound: false,
-    videoHeight: 175,
   },
   [VideoPlayerMode.FULL_SCREEN]: {
-    isAutoPlay: false,
+    isAutoPlay: true,
     isSound: true,
   },
 };
@@ -27,6 +26,7 @@ export const withVideo = (Component) => {
       super(props);
 
       this._videoRef = createRef();
+      this._duration = null;
 
       this.state = {
         progress: 0,
@@ -42,9 +42,13 @@ export const withVideo = (Component) => {
       video.src = src;
       video.muted = !isSound;
 
-      video.oncanplaythrough = () => this.setState({
-        isLoading: false,
-      });
+      video.oncanplaythrough = () => {
+        this.setState({
+          isLoading: false,
+        });
+
+        this._duration = video.duration;
+      };
 
       video.ontimeupdate = () => this.setState({
         progress: Math.floor(video.currentTime),
@@ -75,20 +79,30 @@ export const withVideo = (Component) => {
     }
 
     render() {
-      const {posterUrl, playerMode, isPlaying} = this.props;
-      const {videoHeight} = videoOptions[playerMode];
+      const {
+        posterUrl,
+        playerMode,
+        isPlaying,
+        onPlayButtonClick,
+      } = this.props;
+      const {
+        progress
+      } = this.state;
 
       return (
         <Component
           {...this.props}
           playerMode={playerMode}
+          isPlaying={isPlaying}
+          duration={this._duration}
+          progress={progress}
+          onPlayButtonClick={onPlayButtonClick}
         >
           <video
             ref={this._videoRef}
             className="player__video"
             poster={posterUrl}
             autoPlay={isPlaying}
-            style={{height: videoHeight}}
           />
         </Component>
       );
@@ -101,6 +115,7 @@ export const withVideo = (Component) => {
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
+    onPlayButtonClick: PropTypes.func.isRequired,
   };
 
 

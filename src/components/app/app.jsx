@@ -8,7 +8,7 @@ import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
-import {VideoPlayerPage} from "../player-page/player-page";
+import {PlayerPage} from "../player-page/player-page";
 
 
 const AppComponent = (props) => {
@@ -38,7 +38,7 @@ const AppComponent = (props) => {
         );
       case PageType.PLAYER:
         return (
-          <VideoPlayerPage
+          <PlayerPage
             movie={activeMovie}
           />
         );
@@ -60,7 +60,7 @@ const AppComponent = (props) => {
           />
         </Route>*/}
         {/* <Route exact path="/player">
-          <VideoPlayerPage
+          <PlayerPage
             movie={activeMovie}
           />
         </Route> */}

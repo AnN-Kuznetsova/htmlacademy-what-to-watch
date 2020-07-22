@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from 'react';
-import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/reducer";
 import {PageType} from "../../const";
 import {PlayerWithVideo} from '../../components/player/player';
 import {VideoPlayerMode, videoOptions} from "../with-video/with-video";
@@ -17,7 +15,7 @@ export const VideoPlayerStatus = {
 
 
 export const withVideoPlayer = (Component, playerMode) => {
-  class WithVideoPlayerComponent extends PureComponent {
+  class WithVideoPlayer extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -121,30 +119,13 @@ export const withVideoPlayer = (Component, playerMode) => {
   }
 
 
-  WithVideoPlayerComponent.propTypes = {
-    activePage: PropTypes.string.isRequired,
-    prevPage: PropTypes.string.isRequired,
-    progress: PropTypes.number.isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    setPlayerCurrentTime: PropTypes.func.isRequired,
+  WithVideoPlayer.propTypes = {
+    activePage: PropTypes.string,
+    prevPage: PropTypes.string,
+    progress: PropTypes.number,
+    onChangePage: PropTypes.func,
+    setPlayerCurrentTime: PropTypes.func,
   };
-
-  const mapStateToProps = (state) => ({
-    activePage: state.activePage,
-    prevPage: state.prevPage,
-    progress: state.playerCurrentTime,
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    onChangePage(newPage) {
-      dispatch(ActionCreator.changeActivePage(newPage));
-    },
-    setPlayerCurrentTime(currentTime) {
-      dispatch(ActionCreator.setPlayerCurrentTime(currentTime));
-    },
-  });
-
-  const WithVideoPlayer = connect(mapStateToProps, mapDispatchToProps)(WithVideoPlayerComponent);
 
 
   return WithVideoPlayer;

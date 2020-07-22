@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {connect} from "react-redux";
 
+import {ActionCreator} from "../../reducers/reducer";
 import {Header} from "../header/header";
 import {MovieCardInfoWithTabs} from "../movie-card-info/movie-card-info";
 import {MoviePropType} from "../../prop-types";
@@ -8,7 +10,7 @@ import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
-const MovieCardFull = (props) => {
+const MovieCardFullComponent = (props) => {
   const {
     movie,
     renderVideoPlayer,
@@ -73,18 +75,40 @@ const MovieCardFull = (props) => {
 };
 
 
-MovieCardFull.propTypes = {
+MovieCardFullComponent.propTypes = {
   movie: MoviePropType.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
+  activePage: PropTypes.string,
+  prevPage: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  setPlayerCurrentTime: PropTypes.func.isRequired,
 };
 
 
-const MovieCardFullWithPlayer = withVideoPlayer(MovieCardFull, VideoPlayerMode.SMALL_SCREEN);
+const mapStateToProps = (state) => ({
+  activePage: state.activePage,
+  prevPage: state.prevPage,
+  progress: state.playerCurrentTime,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangePage(newPage) {
+    dispatch(ActionCreator.changeActivePage(newPage));
+  },
+  setPlayerCurrentTime(currentTime) {
+    dispatch(ActionCreator.setPlayerCurrentTime(currentTime));
+  },
+});
+
+const MovieCardFullComponentWithPlayer = withVideoPlayer(MovieCardFullComponent, VideoPlayerMode.SMALL_SCREEN);
+const MovieCardFullWithPlayer = connect(mapStateToProps, mapDispatchToProps)(MovieCardFullComponentWithPlayer);
 
 
 export {
-  MovieCardFull,
+  MovieCardFullComponent,
+  MovieCardFullComponentWithPlayer,
   MovieCardFullWithPlayer,
 };

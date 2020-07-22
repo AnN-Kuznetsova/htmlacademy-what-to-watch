@@ -3,6 +3,8 @@
 exports[`Render withVideoPlayer Should match with snapshot 1`] = `
 <div
   currentVideoPlayerStatus="on-autoplay"
+  isPlayerVisible={false}
+  onPlayButtonClick={[Function]}
   renderVideoPlayer={[Function]}
   setVideoPlayerStatus={[Function]}
 />

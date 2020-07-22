@@ -116,7 +116,7 @@ export const withVideo = (Component) => {
           playerMode={playerMode}
           isPlaying={isPlaying}
           duration={this._duration}
-          progress={progress}
+          progress={progress || 0}
           onPlayButtonClick={onPlayButtonClick}
           onExitButtonClick={this.handleExitButtonClick.bind(this)}
           onFullScreenButtonClick={this.handleFullScreenButtonClick.bind(this)}
@@ -138,11 +138,11 @@ export const withVideo = (Component) => {
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
-    progress: PropTypes.number.isRequired,
+    progress: PropTypes.number,
     onPlayButtonClick: PropTypes.func.isRequired,
     onExitButtonClick: PropTypes.func.isRequired,
     onFullScreenButtonClick: PropTypes.func.isRequired,
-    setPlayerCurrentTime: PropTypes.func.isRequired,
+    setPlayerCurrentTime: PropTypes.func,
   };
 
 

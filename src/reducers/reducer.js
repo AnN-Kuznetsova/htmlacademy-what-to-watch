@@ -22,6 +22,7 @@ const initialState = {
   activeMovie: promoMovie,
   activePage: PageType.MAIN,
   prevPage: PageType.MAIN,
+  playerCurrentTime: 0,
 };
 
 
@@ -32,6 +33,7 @@ const ActionType = {
   CHANGE_ACTIVE_PAGE: `CHANGE_ACTIVE_PAGE`,
   INCREMENT_VISIBLE_MOVIES_COUNT: `INCREMENT_VISIBLE_MOVIES_COUNT`,
   RESET_VISIBLE_MOVIES_COUNT: `RESET_VISIBLE_MOVIES_COUNT`,
+  SET_PLAYER_CURRENT_TIME: `SET_PLAYER_CURRENT_TIME`,
 };
 
 const ActionCreator = {
@@ -58,6 +60,10 @@ const ActionCreator = {
   resetVisibleMoviesCount: () => ({
     type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
     payload: null,
+  }),
+  setPlayerCurrentTime: (currentTime) => ({
+    type: ActionType.SET_PLAYER_CURRENT_TIME,
+    payload: currentTime,
   }),
 };
 
@@ -96,6 +102,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.RESET_VISIBLE_MOVIES_COUNT:
       return extend(state, {
         visibleMoviesCount: initialState.visibleMoviesCount,
+      });
+
+    case ActionType.SET_PLAYER_CURRENT_TIME:
+      return extend(state, {
+        playerCurrentTime: action.payload,
       });
 
     default:

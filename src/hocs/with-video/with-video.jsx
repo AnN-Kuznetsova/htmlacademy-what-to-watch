@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import React, {PureComponent, createRef} from "react";
+import {connect} from "react-redux";
+
+import {ActionCreator} from "../../reducers/reducer";
 
 
 export const VideoPlayerMode = {
@@ -29,7 +32,7 @@ export const videoOptions = {
 
 
 export const withVideo = (Component) => {
-  class WithVideo extends PureComponent {
+  class WithVideoComponent extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -37,7 +40,7 @@ export const withVideo = (Component) => {
       this._duration = null;
 
       this.state = {
-        progress: 0,
+        progress: this.props.playerMode === VideoPlayerMode.PREVIEW ? 0 : this.props.progress,
         isLoading: true,
       };
     }
@@ -49,6 +52,7 @@ export const withVideo = (Component) => {
 
       video.src = src;
       video.muted = !isSound;
+      video.currentTime = this.state.progress;
 
       video.oncanplaythrough = () => {
         this.setState({
@@ -86,14 +90,24 @@ export const withVideo = (Component) => {
       video.src = ``;
     }
 
+    handleFullScreenButtonClick(event) {
+      event.preventDefault();
+      this.props.setPlayerCurrentTime(this.state.progress);
+      this.props.onFullScreenButtonClick();
+    }
+
+    handleExitButtonClick(event) {
+      event.preventDefault();
+      this.props.setPlayerCurrentTime(0);
+      this.props.onExitButtonClick();
+    }
+
     render() {
       const {
         posterUrl,
         playerMode,
         isPlaying,
         onPlayButtonClick,
-        onExitButtonClick,
-        onFullScreenButtonClick,
       } = this.props;
       const {
         progress
@@ -107,8 +121,8 @@ export const withVideo = (Component) => {
           duration={this._duration}
           progress={progress}
           onPlayButtonClick={onPlayButtonClick}
-          onExitButtonClick={onExitButtonClick}
-          onFullScreenButtonClick={onFullScreenButtonClick}
+          onExitButtonClick={this.handleExitButtonClick.bind(this)}
+          onFullScreenButtonClick={this.handleFullScreenButtonClick.bind(this)}
         >
           <video
             ref={this._videoRef}
@@ -122,15 +136,30 @@ export const withVideo = (Component) => {
   }
 
 
-  WithVideo.propTypes = {
+  WithVideoComponent.propTypes = {
     src: PropTypes.string.isRequired,
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
+    progress: PropTypes.number.isRequired,
     onPlayButtonClick: PropTypes.func.isRequired,
     onExitButtonClick: PropTypes.func.isRequired,
     onFullScreenButtonClick: PropTypes.func.isRequired,
+    setPlayerCurrentTime: PropTypes.func.isRequired,
   };
+
+
+  const mapStateToProps = (state) => ({
+    progress: state.playerCurrentTime,
+  });
+
+  const mapDispatchToProps = (dispatch) => ({
+    setPlayerCurrentTime(currentTime) {
+      dispatch(ActionCreator.setPlayerCurrentTime(currentTime));
+    },
+  });
+
+  const WithVideo = connect(mapStateToProps, mapDispatchToProps)(WithVideoComponent);
 
 
   return WithVideo;

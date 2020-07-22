@@ -34,6 +34,11 @@ const props = {
   posterUrl: `poster-url`,
   playerMode: null,
   isPlaying: false,
+  progress: 0,
+  onPlayButtonClick: () => {},
+  onExitButtonClick: () => {},
+  onFullScreenButtonClick: () => {},
+  setPlayerCurrentTime: () => {},
 };
 
 const PlayerWithVideo = withVideo(MockPlayer);
@@ -60,7 +65,6 @@ describe(`Render withVideo`, () => {
       expect([...videoElement][0].ref.current.src).toEqual(props.src);
       expect([...videoElement][0].props.poster).toEqual(props.posterUrl);
       expect([...videoElement][0].props.autoPlay).toEqual(false);
-      expect([...videoElement][0].props.style.height).toEqual(175);
       expect([...videoElement][0].ref.current.muted).toEqual(true);
     });
   });

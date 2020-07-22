@@ -100,6 +100,8 @@ export const withVideoPlayer = (Component, playerMode) => {
           onPlayButtonClick={this.handlePlayButtonClick.bind(this)}
           onExitButtonClick={this.handleExitButtonClick.bind(this)}
           onFullScreenButtonClick={this.handleFullScreenButtonClick.bind(this)}
+          progress={this.props.progress}
+          setPlayerCurrentTime={this.props.setPlayerCurrentTime}
         />
       );
     }
@@ -122,17 +124,23 @@ export const withVideoPlayer = (Component, playerMode) => {
   WithVideoPlayerComponent.propTypes = {
     activePage: PropTypes.string.isRequired,
     prevPage: PropTypes.string.isRequired,
+    progress: PropTypes.number.isRequired,
     onChangePage: PropTypes.func.isRequired,
+    setPlayerCurrentTime: PropTypes.func.isRequired,
   };
 
   const mapStateToProps = (state) => ({
     activePage: state.activePage,
     prevPage: state.prevPage,
+    progress: state.playerCurrentTime,
   });
 
   const mapDispatchToProps = (dispatch) => ({
     onChangePage(newPage) {
       dispatch(ActionCreator.changeActivePage(newPage));
+    },
+    setPlayerCurrentTime(currentTime) {
+      dispatch(ActionCreator.setPlayerCurrentTime(currentTime));
     },
   });
 

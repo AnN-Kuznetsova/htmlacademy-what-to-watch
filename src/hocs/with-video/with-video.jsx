@@ -1,8 +1,5 @@
 import PropTypes from "prop-types";
 import React, {PureComponent, createRef} from "react";
-import {connect} from "react-redux";
-
-import {ActionCreator} from "../../reducers/reducer";
 
 
 export const VideoPlayerMode = {
@@ -32,7 +29,7 @@ export const videoOptions = {
 
 
 export const withVideo = (Component) => {
-  class WithVideoComponent extends PureComponent {
+  class WithVideo extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -136,7 +133,7 @@ export const withVideo = (Component) => {
   }
 
 
-  WithVideoComponent.propTypes = {
+  WithVideo.propTypes = {
     src: PropTypes.string.isRequired,
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
@@ -147,19 +144,6 @@ export const withVideo = (Component) => {
     onFullScreenButtonClick: PropTypes.func.isRequired,
     setPlayerCurrentTime: PropTypes.func.isRequired,
   };
-
-
-  const mapStateToProps = (state) => ({
-    progress: state.playerCurrentTime,
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    setPlayerCurrentTime(currentTime) {
-      dispatch(ActionCreator.setPlayerCurrentTime(currentTime));
-    },
-  });
-
-  const WithVideo = connect(mapStateToProps, mapDispatchToProps)(WithVideoComponent);
 
 
   return WithVideo;

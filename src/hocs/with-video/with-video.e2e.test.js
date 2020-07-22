@@ -31,6 +31,11 @@ const props = {
   posterUrl: `poster-url`,
   playerMode: null,
   isPlaying: null,
+  progress: 0,
+  onPlayButtonClick: () => {},
+  onExitButtonClick: () => {},
+  onFullScreenButtonClick: () => {},
+  setPlayerCurrentTime: () => {},
 };
 
 const PlayerWithVideo = withVideo(MockPlayer);

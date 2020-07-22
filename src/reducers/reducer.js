@@ -21,6 +21,7 @@ const initialState = {
     NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   activeMovie: promoMovie,
   activePage: PageType.MAIN,
+  prevPage: PageType.MAIN,
 };
 
 
@@ -79,7 +80,11 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_ACTIVE_PAGE:
+      if (state.activePage === action.payload) {
+        return state;
+      }
       return extend(state, {
+        prevPage: state.activePage,
         activePage: action.payload,
       });
 

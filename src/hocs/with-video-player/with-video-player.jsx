@@ -28,10 +28,6 @@ export const withVideoPlayer = (Component, playerMode) => {
       };
     }
 
-    componentDidMount() {
-
-    }
-
     setVideoPlayerVisibility(newValue) {
       this.setState({
         isPlayerVisible: newValue,
@@ -79,7 +75,13 @@ export const withVideoPlayer = (Component, playerMode) => {
     }
 
     handleExitButtonClick() {
-      this.props.onChangePage(PageType.MAIN);
+      const {activePage, prevPage} = this.props;
+
+      if (activePage === PageType.PLAYER) {
+        this.props.onChangePage(prevPage);
+      } else {
+        this.props.onChangePage(activePage);
+      }
       this.setVideoPlayerVisibility(false);
       this.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
     }
@@ -118,12 +120,14 @@ export const withVideoPlayer = (Component, playerMode) => {
 
 
   WithVideoPlayerComponent.propTypes = {
+    activePage: PropTypes.string.isRequired,
     prevPage: PropTypes.string.isRequired,
     onChangePage: PropTypes.func.isRequired,
   };
 
   const mapStateToProps = (state) => ({
-    prevPage: state.activePage,
+    activePage: state.activePage,
+    prevPage: state.prevPage,
   });
 
   const mapDispatchToProps = (dispatch) => ({

@@ -16,14 +16,14 @@ export const VideoPlayerStatus = {
 };
 
 
-export const withVideoPlayer = (Component) => {
+export const withVideoPlayer = (Component, playerMode) => {
   class WithVideoPlayerComponent extends PureComponent {
     constructor(props) {
       super(props);
 
       this.state = {
         playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
-        playerMode: this.props.playerMode,
+        playerMode,
         isPlayerVisible: false,
       };
     }
@@ -88,7 +88,7 @@ export const withVideoPlayer = (Component) => {
       this.props.onChangePage(PageType.PLAYER);
     }
 
-    renderPlayer(src, posterUrl/* , playerMode */) {
+    renderPlayer(src, posterUrl) {
       return (
         <PlayerWithVideo
           src={src}
@@ -118,7 +118,6 @@ export const withVideoPlayer = (Component) => {
 
 
   WithVideoPlayerComponent.propTypes = {
-    playerMode: PropTypes.string.isRequired,
     prevPage: PropTypes.string.isRequired,
     onChangePage: PropTypes.func.isRequired,
   };

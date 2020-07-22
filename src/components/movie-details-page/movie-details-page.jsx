@@ -5,7 +5,6 @@ import {Catalog} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
 import {MovieCardFullWithPlayer} from "../movie-card-full/movie-card-full";
 import {MoviePropType} from "../../prop-types";
-import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
 export const MovieDetailsPage = (props) => {
@@ -18,7 +17,6 @@ export const MovieDetailsPage = (props) => {
     <React.Fragment>
       <MovieCardFullWithPlayer
         movie={activeMovie}
-        playerMode={VideoPlayerMode.SMALL_SCREEN}
       />
 
       <div className="page-content">

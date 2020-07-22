@@ -52,7 +52,7 @@ const SmallMovieCard = (props) => {
       onClick={handleCardClick}
     >
       <div className="small-movie-card__image">
-        {renderVideoPlayer(previewUrl, smallPictureUrl, VideoPlayerMode.PREVIEW)}
+        {renderVideoPlayer(previewUrl, smallPictureUrl)}
 
         <img
           src={smallPictureUrl}
@@ -79,7 +79,7 @@ SmallMovieCard.propTypes = {
 };
 
 
-const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
+const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard, VideoPlayerMode.PREVIEW);
 
 
 export {

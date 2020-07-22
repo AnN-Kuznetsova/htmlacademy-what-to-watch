@@ -14,7 +14,7 @@ const PlayerPage = (props) => {
 
   return (
     <React.Fragment>
-      {renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl, VideoPlayerMode.FULL_SCREEN)}
+      {renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl)}
     </React.Fragment>
   );
 };
@@ -26,7 +26,7 @@ PlayerPage.propTypes = {
 };
 
 
-const VideoPlayerPage = withVideoPlayer(PlayerPage);
+const VideoPlayerPage = withVideoPlayer(PlayerPage, VideoPlayerMode.FULL_SCREEN);
 
 
 export {

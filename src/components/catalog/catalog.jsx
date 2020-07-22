@@ -6,7 +6,6 @@ import {ActionCreator} from "../../reducers/reducer";
 import {MoviePropType} from "../../prop-types";
 import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
 import {ShowMoreButton} from "../show-more-button/show-more-button";
-import { VideoPlayerMode } from "../../hocs/with-video/with-video";
 
 
 const CatalogComponent = (props) => {
@@ -26,7 +25,6 @@ const CatalogComponent = (props) => {
               key={movie.title + index}
               movie={movie}
               onClick={onSmallMovieCardClick}
-              playerMode={VideoPlayerMode.PREVIEW}
             />
           )}
       </div>

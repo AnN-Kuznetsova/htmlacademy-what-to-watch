@@ -17,8 +17,11 @@ const MovieCardFull = (props) => {
   } = props;
 
   return (
-    <section className="movie-card movie-card--full">
-      {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl, VideoPlayerMode.SMALL_SCREEN)
+    <section
+      className={`movie-card ${isPlayerVisible || `movie-card--full`}`}
+      style={isPlayerVisible ? {backgroundColor: `#180202`} : {}}
+    >
+      {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl)
       ||
       <React.Fragment>
         <div className="movie-card__hero">
@@ -78,7 +81,7 @@ MovieCardFull.propTypes = {
 };
 
 
-const MovieCardFullWithPlayer = withVideoPlayer(MovieCardFull);
+const MovieCardFullWithPlayer = withVideoPlayer(MovieCardFull, VideoPlayerMode.SMALL_SCREEN);
 
 
 export {

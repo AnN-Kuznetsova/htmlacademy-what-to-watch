@@ -8,7 +8,6 @@ import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
-import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {VideoPlayerPage} from "../player-page/player-page";
 
 
@@ -41,7 +40,6 @@ const AppComponent = (props) => {
         return (
           <VideoPlayerPage
             movie={activeMovie}
-            playerMode={VideoPlayerMode.FULL_SCREEN}
           />
         );
       default:

@@ -6,7 +6,6 @@ import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
 import {Footer} from "../footer/footer";
 import {MovieCardPromoWithPlayer} from "../movie-card-promo/movie-card-promo";
 import {MoviePropType} from "../../prop-types";
-import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
 export const MainPage = (props) => {
@@ -25,7 +24,6 @@ export const MainPage = (props) => {
       <MovieCardPromoWithPlayer
         movie={promoMovie}
         onMovieClick={handlePromoMovieClick}
-        playerMode={VideoPlayerMode.SMALL_SCREEN}
       />
 
       <div className="page-content">

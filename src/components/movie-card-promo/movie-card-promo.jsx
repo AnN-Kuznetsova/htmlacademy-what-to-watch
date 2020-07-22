@@ -17,8 +17,11 @@ const MovieCardPromo = (props) => {
   } = props;
 
   return (
-    <section className="movie-card">
-      {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl, VideoPlayerMode.SMALL_SCREEN)
+    <section
+      className="movie-card"
+      style={isPlayerVisible ? {backgroundColor: `#180202`} : {}}
+    >
+      {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl)
       ||
       <React.Fragment>
         <div className="movie-card__bg">
@@ -78,7 +81,7 @@ MovieCardPromo.propTypes = {
 };
 
 
-const MovieCardPromoWithPlayer = withVideoPlayer(MovieCardPromo);
+const MovieCardPromoWithPlayer = withVideoPlayer(MovieCardPromo, VideoPlayerMode.SMALL_SCREEN);
 
 
 export {

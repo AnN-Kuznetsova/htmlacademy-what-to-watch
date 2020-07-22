@@ -68,6 +68,7 @@ const Player = (props) => {
                 </button>
                 <div className="player__name">Transpotting</div>
 
+                {playerMode === VideoPlayerMode.SMALL_SCREEN &&
                 <button
                   type="button"
                   className="player__full-screen"
@@ -77,7 +78,7 @@ const Player = (props) => {
                     <use xlinkHref="#full-screen" />
                   </svg>
                   <span>Full screen</span>
-                </button>
+                </button>}
               </div>
             </div>
           </div>

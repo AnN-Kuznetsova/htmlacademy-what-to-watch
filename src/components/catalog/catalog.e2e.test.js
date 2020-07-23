@@ -1,10 +1,20 @@
 import React from "react";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 import {mount} from "enzyme";
 
 import {CatalogComponent} from "./catalog.jsx";
 
 import {mockMovies} from "../../__test-data__/test-mocks.js";
 
+
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
+});
 
 const mockEvent = {
   preventDefault() {}
@@ -25,7 +35,11 @@ const props = {
   onShowMoreButtonClick,
 };
 
-const catalogElement = mount(<CatalogComponent {...props} />);
+const catalogElement = mount(
+    <Provider store={store}>
+      <CatalogComponent {...props} />
+    </Provider>
+);
 const smallMovieCardElement = [...catalogElement.find(`article.small-movie-card`)][0];
 
 

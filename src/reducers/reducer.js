@@ -17,8 +17,7 @@ const initialState = {
   movies,
   genre: `All genres`,
   movieList: movies,
-  visibleMoviesCount: movies.length <= NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP ? movies.length :
-    NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
+  visibleMoviesCount: NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   activeMovie: promoMovie,
   activePage: PageType.MAIN,
   prevPage: PageType.MAIN,

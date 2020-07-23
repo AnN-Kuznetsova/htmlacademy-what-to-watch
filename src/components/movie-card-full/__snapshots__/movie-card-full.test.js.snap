@@ -3,6 +3,7 @@
 exports[`Render MovieCardFull Should match with snapshot 1`] = `
 <section
   className="movie-card movie-card--full"
+  style={Object {}}
 >
   <div
     className="movie-card__hero"
@@ -92,6 +93,7 @@ exports[`Render MovieCardFull Should match with snapshot 1`] = `
         >
           <button
             className="btn btn--play movie-card__button"
+            onClick={[Function]}
             type="button"
           >
             <svg

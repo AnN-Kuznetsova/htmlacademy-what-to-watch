@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {mount} from "enzyme";
 
-import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
+import {withVideo, VideoPlayerMode, VideoPlayerStatus} from "../../hocs/with-video/with-video";
 
 
 window.HTMLMediaElement.prototype.play = () => {};
@@ -30,21 +30,23 @@ const props = {
   src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   posterUrl: `poster-url`,
   playerMode: null,
-  isPlaying: null,
-  progress: 0,
-  onPlayButtonClick: () => {},
-  onExitButtonClick: () => {},
-  onFullScreenButtonClick: () => {},
-  setPlayerCurrentTime: () => {},
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
+  onChangePage: () => {},
+  setPlayerStartTime: () => {},
+  setVideoPlayerVisibility: () => {},
+  setVideoPlayerStatus: () => {},
+  playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
 };
 
 const PlayerWithVideo = withVideo(MockPlayer);
 
 
 describe(`withVideo e2e-tests`, () => {
-  it(`Should call "play()" when isPlaying comes "true"`, () => {
+  it(`Should call "play()" when playerStatus comes "ON_PLAY"`, () => {
     props.playerMode = VideoPlayerMode.PREVIEW;
-    props.isPlaying = true;
+    props.playerStatus = VideoPlayerStatus.ON_PLAY;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
@@ -57,9 +59,9 @@ describe(`withVideo e2e-tests`, () => {
   });
 
 
-  it(`Should call "pause()" when isPlaying comes "false" and player mode is "FULL_SCREEN"`, () => {
+  it(`Should call "pause()" when playerStatus comes "ON_PAUSE" and player mode is "FULL_SCREEN"`, () => {
     props.playerMode = VideoPlayerMode.FULL_SCREEN;
-    props.isPlaying = false;
+    props.playerStatus = VideoPlayerStatus.ON_PAUSE;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
@@ -71,9 +73,9 @@ describe(`withVideo e2e-tests`, () => {
   });
 
 
-  it(`Should call "load()" when isPlaying comes "false" and player mode is "PREVIEW"`, () => {
+  it(`Should call "load()" when playerStatus comes "ON_PAUSE" and player mode is "PREVIEW"`, () => {
     props.playerMode = VideoPlayerMode.PREVIEW;
-    props.isPlaying = false;
+    props.playerStatus = VideoPlayerStatus.ON_PAUSE;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
@@ -87,7 +89,7 @@ describe(`withVideo e2e-tests`, () => {
 
   it(`Video element should be cleared when the component is unmounted`, () => {
     props.playerMode = VideoPlayerMode.PREVIEW;
-    props.isPlaying = false;
+    props.playerStatus = VideoPlayerStatus.ON_PAUSE;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
@@ -96,6 +98,5 @@ describe(`withVideo e2e-tests`, () => {
 
     expect(_videoRef.current.oncanplaythrough).toBeNull();
     expect(_videoRef.current.ontimeupdate).toBeNull();
-    expect(_videoRef.current.getAttribute(`src`)).toEqual(``);
   });
 });

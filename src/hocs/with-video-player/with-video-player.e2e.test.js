@@ -1,8 +1,10 @@
 import React from "react";
 import {mount} from "enzyme";
 
-import {VideoPlayerMode} from "../with-video/with-video";
-import {withVideoPlayer, VideoPlayerStatus} from "./with-video-player";
+import {VideoPlayerMode, VideoPlayerStatus} from "../with-video/with-video";
+import {withVideoPlayer} from "./with-video-player";
+
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 const MockComponent = () => {
@@ -13,41 +15,29 @@ const MockComponent = () => {
 
 
 describe(`withVideoPlayer e2e-tests`, () => {
-  describe(`Set correct player status and value of isPlaying`, () => {
+  it(`Set correct player status when VideoPlayerMode is "PREVIEW"`, () => {
     const ComponentWithVideoPlayer = withVideoPlayer(MockComponent, VideoPlayerMode.PREVIEW);
-    const componentWithPlayerElement = mount(<ComponentWithVideoPlayer />);
+    const componentWithPlayerElement = mount(<ComponentWithVideoPlayer movie={mockPromoMovie} />);
     const componentWithPlayerInstance = componentWithPlayerElement.instance();
 
+    expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_AUTOPLAY);
+    expect(componentWithPlayerInstance.state.playerMode).toEqual(VideoPlayerMode.PREVIEW);
 
-    it(`Player status "ON_AUTOPLAY": isPlaying is false when VideoPlayerMode is "PREVIEW"`, () => {
-      expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_AUTOPLAY);
-      expect(componentWithPlayerInstance.state.playerMode).toEqual(VideoPlayerMode.PREVIEW);
-      expect(componentWithPlayerInstance.getPlayingValue()).toEqual(false);
-    });
+    const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `setVideoPlayerStatus`);
 
+    spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PLAY);
+    expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_PLAY);
 
-    it(`Player status "ON_PLAY": "isPlaying" is "true"`, () => {
-      const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `setVideoPlayerStatus`);
-      spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PLAY);
-
-      expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_PLAY);
-      expect(componentWithPlayerInstance.getPlayingValue()).toEqual(true);
-    });
+    spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PAUSE);
+    expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_RESET);
 
 
-    it(`Player status "ON_PAUSE": "isPlaying" is "false" and player status is "ON_RESET"`, () => {
-      const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `setVideoPlayerStatus`);
-      spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PAUSE);
-
-      expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_RESET);
-      expect(componentWithPlayerInstance.getPlayingValue()).toEqual(false);
-    });
   });
 
 
-  it(`Should pass the correct props to the player when VideoPlayerMode is "PREVIEW"`, () => {
+  it(`Should pass the correct props to the player when playerMode is "PREVIEW"`, () => {
     const ComponentWithVideoPlayer = withVideoPlayer(MockComponent, VideoPlayerMode.PREVIEW);
-    const componentWithPlayerElement = mount(<ComponentWithVideoPlayer />);
+    const componentWithPlayerElement = mount(<ComponentWithVideoPlayer movie={mockPromoMovie} />);
     const componentWithPlayerInstance = componentWithPlayerElement.instance();
     const spyOnRenderPlayer = jest.spyOn(componentWithPlayerInstance, `renderPlayer`);
     const src = `pathSrc`;
@@ -57,6 +47,5 @@ describe(`withVideoPlayer e2e-tests`, () => {
 
     expect(videoPlayer.props.src).toEqual(src);
     expect(videoPlayer.props.posterUrl).toEqual(posterUrl);
-    expect(videoPlayer.props.isPlaying).toEqual(false);
   });
 });

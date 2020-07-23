@@ -14,13 +14,20 @@ Object.defineProperty(window, `location`, {
   }
 });
 
-const movieCardFullElement = shallow(<MovieCardFull movie={mockPromoMovie} />);
+const props = {
+  movie: mockPromoMovie,
+  renderVideoPlayer: () => {},
+  isPlayerVisible: false,
+  onPlayButtonClick: () => {},
+};
+
+const movieCardFullElement = shallow(<MovieCardFull {...props} />);
 
 
 describe(`Render MovieCardFull`, () => {
   it(`Should match with snapshot`, () => {
     const movieCardFulSnapshot = renderer.create(
-        <MovieCardFull movie={mockPromoMovie} />
+        <MovieCardFull {...props} />
     ).toJSON();
 
     expect(movieCardFulSnapshot).toMatchSnapshot();

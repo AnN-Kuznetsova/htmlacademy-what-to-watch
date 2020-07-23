@@ -3,7 +3,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {mount} from 'enzyme';
 
-import {withVideo, VideoPlayerMode} from "./with-video";
+import {withVideo, VideoPlayerMode, VideoPlayerStatus} from "./with-video";
 
 
 const MockPlayer = (props) => {
@@ -33,12 +33,14 @@ const props = {
   src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   posterUrl: `poster-url`,
   playerMode: null,
-  isPlaying: false,
-  progress: 0,
-  onPlayButtonClick: () => {},
-  onExitButtonClick: () => {},
-  onFullScreenButtonClick: () => {},
-  setPlayerCurrentTime: () => {},
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
+  onChangePage: () => {},
+  setPlayerStartTime: () => {},
+  setVideoPlayerVisibility: () => {},
+  setVideoPlayerStatus: () => {},
+  playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
 };
 
 const PlayerWithVideo = withVideo(MockPlayer);

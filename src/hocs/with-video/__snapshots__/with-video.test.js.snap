@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render VideoPlayer Should match with snapshot 1`] = `
-<div
-  className=""
->
+exports[`Render withVideo when player mode is "PREVIEW" Should match with snapshot 1`] = `
+<div>
   <video
     autoPlay={false}
     className="player__video"
-    poster="img/snatch.jpg"
+    poster="poster-url"
     style={
       Object {
         "height": 175,

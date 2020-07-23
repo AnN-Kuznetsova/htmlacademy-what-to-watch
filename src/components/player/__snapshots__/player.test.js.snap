@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Player Should match with snapshot when player mode is "PREVIEW" 1`] = `
+<div
+  className=""
+>
+  <video />
+</div>
+`;

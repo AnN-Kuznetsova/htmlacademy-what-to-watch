@@ -6,7 +6,7 @@ import {withVideoPlayer} from "./with-video-player.jsx";
 import {VideoPlayerStatus, VideoPlayerMode} from "../../__test-data__/test-mocks.js";
 
 
-const Component = () => {
+const MockComponent = () => {
   return (
     <div />
   );
@@ -15,7 +15,7 @@ const Component = () => {
 
 describe(`withVideoPlayer e2e-tests`, () => {
   describe(`Set correct player status and value of "isPlaying"`, () => {
-    const ComponentWithVideoPlayer = withVideoPlayer(Component);
+    const ComponentWithVideoPlayer = withVideoPlayer(MockComponent);
     const componentWithPlayerElement = mount(<ComponentWithVideoPlayer />);
     const componentWithPlayerInstance = componentWithPlayerElement.instance();
 
@@ -37,29 +37,18 @@ describe(`withVideoPlayer e2e-tests`, () => {
     });
 
 
-    it(`Player status "ON_PAUSE": "isPlaying" is "false" and "video.load()" called`, () => {
-      const load = jest.fn();
-      const mockVideoElement = {
-        load,
-      };
-
-      componentWithPlayerInstance._playerMode = VideoPlayerMode.PREVIEW;
-
-      const spyOnGetVideoElement = jest.spyOn(componentWithPlayerInstance, `getVideoElement`);
-      spyOnGetVideoElement.call(componentWithPlayerInstance, mockVideoElement);
-
+    it(`Player status "ON_PAUSE": "isPlaying" is "false" and player status is "ON_RESET"`, () => {
       const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `setVideoPlayerStatus`);
       spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PAUSE);
 
       expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_RESET);
       expect(componentWithPlayerInstance.getPlayingValue()).toEqual(false);
-      expect(load).toHaveBeenCalledTimes(1);
     });
   });
 
 
   it(`Should pass the correct props to the player when VideoPlayerMode is "PREVIEW"`, () => {
-    const ComponentWithVideoPlayer = withVideoPlayer(Component);
+    const ComponentWithVideoPlayer = withVideoPlayer(MockComponent);
     const componentWithPlayerElement = mount(<ComponentWithVideoPlayer />);
     const componentWithPlayerInstance = componentWithPlayerElement.instance();
     const spyOnRenderPlayer = jest.spyOn(componentWithPlayerInstance, `renderPlayer`);
@@ -71,10 +60,7 @@ describe(`withVideoPlayer e2e-tests`, () => {
 
     expect(videoPlayer.props.src).toEqual(src);
     expect(videoPlayer.props.posterUrl).toEqual(posterUrl);
-    expect(videoPlayer.props.videoHeight).toEqual(175);
     expect(videoPlayer.props.playerMode).toEqual(playerMode);
     expect(videoPlayer.props.isPlaying).toEqual(false);
-    expect(videoPlayer.props.isSound).toEqual(false);
-    expect(videoPlayer.props.getVideoElement).toBeInstanceOf(Function);
   });
 });

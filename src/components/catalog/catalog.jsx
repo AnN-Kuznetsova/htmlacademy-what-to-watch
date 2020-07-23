@@ -48,12 +48,12 @@ CatalogComponent.propTypes = {
 
 const mapStateToProps = (state) => ({
   movieList: state.movieList,
-  visibleCardCount: state.visibleSmallCardCount,
+  visibleCardCount: state.visibleMoviesCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onShowMoreButtonClick() {
-    dispatch(ActionCreator.incrementVisibleSmallCardCount());
+    dispatch(ActionCreator.incrementVisibleMoviesCount());
   },
 });
 

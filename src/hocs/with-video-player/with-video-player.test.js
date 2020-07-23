@@ -4,13 +4,13 @@ import renderer from "react-test-renderer";
 import {withVideoPlayer} from "./with-video-player";
 
 
-const Component = (props) => {
+const MockComponent = (props) => {
   return (
     <div {...props} />
   );
 };
 
-const ComponentWithVideoPlayer = withVideoPlayer(Component);
+const ComponentWithVideoPlayer = withVideoPlayer(MockComponent);
 
 
 describe(`Render withVideoPlayer`, () => {

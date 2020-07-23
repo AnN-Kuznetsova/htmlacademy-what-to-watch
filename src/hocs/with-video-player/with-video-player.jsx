@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
-import {VideoPlayer, VideoPlayerMode} from '../../components/video-player/video-player';
+import {PlayerWithVideo} from '../../components/player/player';
+import {VideoPlayerMode, videoOptions} from "../with-video/with-video";
 
 
 export const VideoPlayerStatus = {
@@ -20,21 +21,6 @@ export const withVideoPlayer = (Component) => {
       };
 
       this._playerMode = null;
-      this._videoElement = null;
-    }
-
-    getPlayerOptions(playerMode) {
-      switch (playerMode) {
-        case VideoPlayerMode.PREVIEW:
-          return {
-            isAutoPlay: false,
-            isSound: false,
-            videoHeight: 175,
-          };
-        case VideoPlayerMode.FULL_SCREEN:
-        default:
-          return null;
-      }
     }
 
     setVideoPlayerStatus(newPlayerStatus) {
@@ -42,7 +28,6 @@ export const withVideoPlayer = (Component) => {
         playerStatus: newPlayerStatus,
       }, () => {
         if (this.state.playerStatus === VideoPlayerStatus.ON_PAUSE && this._playerMode === VideoPlayerMode.PREVIEW) {
-          this._videoElement.load();
           this.setState({
             playerStatus: VideoPlayerStatus.ON_RESET,
           });
@@ -50,14 +35,10 @@ export const withVideoPlayer = (Component) => {
       });
     }
 
-    getVideoElement(videoElement) {
-      this._videoElement = videoElement;
-    }
-
     getPlayingValue() {
       switch (this.state.playerStatus) {
         case VideoPlayerStatus.ON_AUTOPLAY:
-          return this.getPlayerOptions(this._playerMode).isAutoPlay;
+          return videoOptions[this._playerMode].isAutoPlay;
         case VideoPlayerStatus.ON_PLAY:
           return true;
         case VideoPlayerStatus.ON_PAUSE:
@@ -71,18 +52,12 @@ export const withVideoPlayer = (Component) => {
     renderPlayer(src, posterUrl, playerMode) {
       this._playerMode = playerMode;
 
-      const options = this.getPlayerOptions(playerMode);
-      const isPlaying = this.getPlayingValue();
-
       return (
-        <VideoPlayer
+        <PlayerWithVideo
           src={src}
           posterUrl={posterUrl}
-          videoHeight={options.videoHeight}
           playerMode={playerMode}
-          isPlaying={isPlaying}
-          isSound={options.isSound}
-          getVideoElement={this.getVideoElement.bind(this)}
+          isPlaying={this.getPlayingValue()}
         />
       );
     }

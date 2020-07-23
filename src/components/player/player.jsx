@@ -25,7 +25,7 @@ const PlayerComponent = (props) => {
     onExitButtonClick,
     onFullScreenButtonClick,
   } = props;
-  const timeLeft = duration ? getFormatedTimeLeft(duration - progress) : ``;
+  const timeLeft = duration ? getFormatedTimeLeft(duration - progress) : 0;
   const progressValue = duration ? progress * 100 / duration : 0;
 
   const getPlayer = () => {
@@ -42,7 +42,9 @@ const PlayerComponent = (props) => {
               onClick={onExitButtonClick}
             >Exit</button>
 
-            <div className="player__controls">
+            <div
+              className="player__controls"
+              style={{position: `${playerMode === VideoPlayerMode.FULL_SCREEN ? `absolute` : `relative`}`}}>
               <div className="player__controls-row">
                 <div className="player__time">
                   <progress className="player__progress" value={progressValue} max="100" />

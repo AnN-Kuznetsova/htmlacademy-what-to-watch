@@ -21,23 +21,18 @@ const MovieCardFull = (props) => {
       className={`movie-card ${isPlayerVisible || `movie-card--full`}`}
       style={isPlayerVisible ? {backgroundColor: `#180202`} : {}}
     >
-      {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl)
-      ||
-      <React.Fragment>
-        <div className="movie-card__hero">
-          <div className="movie-card__bg">
-            <img src={movie.backgroundUrl} alt={movie.title} />
-          </div>
+      <div className="movie-card__hero">
+        <div className="movie-card__bg">
+          <img src={movie.backgroundUrl} alt={movie.title} />
+        </div>
 
-          <Header />
+        <Header />
 
-          <div className="movie-card__wrap">
+        <div className="movie-card__wrap">
+          {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl) ||
+
             <div className="movie-card__desc">
-              <h2
-                className="movie-card__title"
-              >
-                {movie.title}
-              </h2>
+              <h2 className="movie-card__title">{movie.title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{movie.genres[0]}</span>
                 <span className="movie-card__year">{movie.releaseDate.getFullYear()}</span>
@@ -62,12 +57,11 @@ const MovieCardFull = (props) => {
                 </button>
                 <a href="add-review.html" className="btn movie-card__button">Add review</a>
               </div>
-            </div>
-          </div>
+            </div>}
         </div>
+      </div>
 
-        <MovieCardInfoWithTabs movie={movie} />
-      </React.Fragment>}
+      {isPlayerVisible || <MovieCardInfoWithTabs movie={movie} />}
     </section>
   );
 };

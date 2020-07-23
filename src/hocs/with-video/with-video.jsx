@@ -150,7 +150,6 @@ export const withVideo = (Component) => {
       const {
         progress,
       } = this.state;
-
       const isPlaying = this.getPlayingValue();
 
       return (

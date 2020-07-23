@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {connect} from "react-redux";
 
+import {ActionCreator} from "../../reducers/reducer";
 import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
@@ -12,7 +14,7 @@ const getFormatedTimeLeft = (time) => {
 };
 
 
-const Player = (props) => {
+const PlayerComponent = (props) => {
   const {
     playerMode,
     isPlaying,
@@ -98,25 +100,44 @@ const Player = (props) => {
 };
 
 
-Player.propTypes = {
+PlayerComponent.propTypes = {
   playerMode: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   duration: PropTypes.number,
   progress: PropTypes.number.isRequired,
+  activePage: PropTypes.string,
+  prevPage: PropTypes.string.isRequired,
+  playerStartTime: PropTypes.number.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  setPlayerStartTime: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  onExitButtonClick: PropTypes.func.isRequired,
-  onFullScreenButtonClick: PropTypes.func.isRequired,
 };
 
 
-const PlayerWithVideo = withVideo(Player);
+const mapStateToProps = (state) => ({
+  activePage: state.activePage,
+  prevPage: state.prevPage,
+  playerStartTime: state.playerStartTime,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangePage(newPage) {
+    dispatch(ActionCreator.changeActivePage(newPage));
+  },
+  setPlayerStartTime(currentTime) {
+    dispatch(ActionCreator.setPlayerStartTime(currentTime));
+  },
+});
+
+const PlayerComponentWithVideo = withVideo(PlayerComponent);
+const PlayerWithVideo = connect(mapStateToProps, mapDispatchToProps)(PlayerComponentWithVideo);
 
 
 export {
-  Player,
+  PlayerComponent,
+  PlayerComponentWithVideo,
   PlayerWithVideo,
 };

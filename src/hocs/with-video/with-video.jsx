@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React, {PureComponent, createRef} from "react";
 
+import {PageType} from "../../const";
+
 
 export const VideoPlayerMode = {
   PREVIEW: `PREVIEW`,
@@ -27,6 +29,13 @@ export const videoOptions = {
   },
 };
 
+export const VideoPlayerStatus = {
+  ON_AUTOPLAY: `on-autoplay`,
+  ON_PLAY: `on-play`,
+  ON_PAUSE: `on-pause`,
+  ON_RESET: `on-reset`,
+};
+
 
 export const withVideo = (Component) => {
   class WithVideo extends PureComponent {
@@ -37,7 +46,8 @@ export const withVideo = (Component) => {
       this._duration = null;
 
       this.state = {
-        progress: this.props.playerMode === VideoPlayerMode.PREVIEW ? 0 : this.props.progress,
+        playerStartTime: this.props.playerMode === VideoPlayerMode.PREVIEW ? 0 : this.props.playerStartTime,
+        progress: 0,
         isLoading: true,
       };
     }
@@ -49,7 +59,7 @@ export const withVideo = (Component) => {
 
       video.src = src;
       video.muted = !isSound;
-      video.currentTime = this.state.progress;
+      video.currentTime = this.state.playerStartTime;
 
       video.oncanplaythrough = () => {
         this.setState({
@@ -68,7 +78,7 @@ export const withVideo = (Component) => {
       const video = this._videoRef.current;
       const {playerMode} = this.props;
 
-      if (this.props.isPlaying) {
+      if (this.getPlayingValue()) {
         video.play();
       } else {
         if (playerMode === VideoPlayerMode.PREVIEW) {
@@ -87,28 +97,61 @@ export const withVideo = (Component) => {
       video.src = ``;
     }
 
-    handleFullScreenButtonClick(event) {
-      event.preventDefault();
-      this.props.setPlayerCurrentTime(this.state.progress);
-      this.props.onFullScreenButtonClick();
+    getPlayingValue() {
+      switch (this.props.playerStatus) {
+        case VideoPlayerStatus.ON_AUTOPLAY:
+          return videoOptions[this.props.playerMode].isAutoPlay;
+        case VideoPlayerStatus.ON_PLAY:
+          return true;
+        case VideoPlayerStatus.ON_PAUSE:
+        case VideoPlayerStatus.ON_RESET:
+          return false;
+        default:
+          throw new Error(`Unknown type of playing state.`);
+      }
+    }
+
+    handlePlayButtonClick() {
+      if (this.getPlayingValue()) {
+        this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
+      } else {
+        this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_PLAY);
+      }
     }
 
     handleExitButtonClick(event) {
       event.preventDefault();
-      this.props.setPlayerCurrentTime(0);
-      this.props.onExitButtonClick();
+      this.props.setPlayerStartTime(0);
+
+      const {activePage, prevPage} = this.props;
+
+      if (activePage === PageType.PLAYER) {
+        this.props.onChangePage(prevPage);
+      } else {
+        this.props.onChangePage(activePage);
+      }
+      this.props.setVideoPlayerVisibility(false);
+      this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
+    }
+
+    handleFullScreenButtonClick(event) {
+      event.preventDefault();
+
+      const video = this._videoRef.current;
+      this.props.setPlayerStartTime(video.currentTime);
+      this.props.onChangePage(PageType.PLAYER);
     }
 
     render() {
       const {
         posterUrl,
         playerMode,
-        isPlaying,
-        onPlayButtonClick,
       } = this.props;
       const {
-        progress
+        progress,
       } = this.state;
+
+      const isPlaying = this.getPlayingValue();
 
       return (
         <Component
@@ -117,7 +160,7 @@ export const withVideo = (Component) => {
           isPlaying={isPlaying}
           duration={this._duration}
           progress={progress || 0}
-          onPlayButtonClick={onPlayButtonClick}
+          onPlayButtonClick={this.handlePlayButtonClick.bind(this)}
           onExitButtonClick={this.handleExitButtonClick.bind(this)}
           onFullScreenButtonClick={this.handleFullScreenButtonClick.bind(this)}
         >
@@ -137,12 +180,14 @@ export const withVideo = (Component) => {
     src: PropTypes.string.isRequired,
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
-    progress: PropTypes.number,
-    onPlayButtonClick: PropTypes.func.isRequired,
-    onExitButtonClick: PropTypes.func.isRequired,
-    onFullScreenButtonClick: PropTypes.func.isRequired,
-    setPlayerCurrentTime: PropTypes.func,
+    activePage: PropTypes.string,
+    prevPage: PropTypes.string.isRequired,
+    playerStartTime: PropTypes.number.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    setPlayerStartTime: PropTypes.func,
+    setVideoPlayerVisibility: PropTypes.func.isRequired,
+    setVideoPlayerStatus: PropTypes.func.isRequired,
+    playerStatus: PropTypes.string.isRequired,
   };
 
 

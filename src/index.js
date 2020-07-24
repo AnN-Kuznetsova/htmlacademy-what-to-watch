@@ -6,11 +6,9 @@ import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 
 import {App} from "./components/app/app";
-import {ActionCreator as ApplicationActionCreator} from "./reducers/application/application";
 import {Operation as DataOperation} from "./reducers/data/data";
 import {Operation as UserOperation, ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducers/user/user";
 import {createAPI} from "./api.js";
-import {getPromoMovie} from "./reducers/data/selectors";
 import {reducer} from "./reducers/reducer";
 
 
@@ -30,10 +28,6 @@ const store = createStore(
 store.dispatch(DataOperation.loadMovies());
 store.dispatch(DataOperation.loadPromoMovie());
 store.dispatch(UserOperation.checkAuth());
-
-store.dispatch(ApplicationActionCreator.changeActiveMovie(
-    getPromoMovie(store)
-));
 
 
 ReactDom.render(

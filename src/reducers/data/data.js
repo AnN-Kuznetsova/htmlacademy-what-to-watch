@@ -1,5 +1,8 @@
 import {extend} from "../../utils/utils";
 
+import {createMovies, createMovie} from "../../adapters/movie";
+import {ActionCreator as ApplicationActionCreator} from "../application/application";
+
 
 const initialState = {
   movies: [],
@@ -29,15 +32,21 @@ const ActionCreator = {
 const Operation = {
   loadMovies: () => (dispatch, getState, api) => {
     return api.get(`/films`)
+      .then((response) => createMovies(response.data))
       .then((response) => {
-        dispatch(ActionCreator.loadMovies(response.data));
+        dispatch(ActionCreator.loadMovies(response));
       });
   },
 
   loadPromoMovie: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
+      .then((response) => createMovie(response.data))
       .then((response) => {
-        dispatch(ActionCreator.loadPromoMovie(response.data));
+        dispatch(ActionCreator.loadPromoMovie(response));
+        return response;
+      })
+      .then((response) => {
+        dispatch(ApplicationActionCreator.changeActiveMovie(response));
       });
   },
 };

@@ -114,7 +114,7 @@ const getFilteredMovies = (movies, filterName, filterValue, currentMovie, movies
 
 export {
   extend,
-  getFilteredMovies,
+  //getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
   getFormatedScore,

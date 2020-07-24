@@ -2,20 +2,17 @@ import {reducer, ActionType, ActionCreator} from "./reducer";
 
 import {PageType} from "../const";
 
-import {movies} from "../mocks/movies";
-import {promoMovie} from "../mocks/promo-movie";
-
 import {mockMovies} from "../__test-data__/test-mocks";
 
 
 describe(`Reduser should work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      movies,
+      movies: [],
       genre: `All genres`,
-      movieList: movies,
+      movieList: [],
       visibleMoviesCount: 8,
-      activeMovie: promoMovie,
+      activeMovie: {},
       activePage: PageType.MAIN,
       prevPage: PageType.MAIN,
       playerStartTime: 0,

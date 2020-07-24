@@ -9,16 +9,16 @@ import {
   getFilteredMovies,
 } from "../utils/utils";
 
-import {movies} from "../mocks/movies";
-import {promoMovie} from "../mocks/promo-movie";
+//import {movies} from "../mocks/movies";
+//import {promoMovie} from "../mocks/promo-movie";
 
 
 const initialState = {
-  movies,
+  movies: [],
   genre: `All genres`,
-  movieList: movies,
+  movieList: [],
   visibleMoviesCount: NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
-  activeMovie: promoMovie,
+  activeMovie: {},
   activePage: PageType.MAIN,
   prevPage: PageType.MAIN,
   playerStartTime: 0,

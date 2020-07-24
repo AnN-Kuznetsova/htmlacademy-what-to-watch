@@ -1,7 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 
-import {createAPI} from "../../api.js";
-import {reducer, ActionType, ActionCreator, AuthorizationStatus, Operation} from "./user.js";
+import {createAPI} from "../../api";
+import {reducer, ActionType, ActionCreator, AuthorizationStatus, Operation} from "./user";
 
 
 describe(`User reducer should work correctly`, () => {

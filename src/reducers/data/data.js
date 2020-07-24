@@ -12,15 +12,34 @@ const ActionType = {
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
 };
 
+
 const ActionCreator = {
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
     payload: movies,
   }),
+
   loadPromoMovie: (movie) => ({
     type: ActionType.LOAD_PROMO_MOVIE,
     payload: movie,
   }),
+};
+
+
+const Operation = {
+  loadMovies: () => (dispatch, getState, api) => {
+    return api.get(`/films`)
+      .then((response) => {
+        dispatch(ActionCreator.loadMovies(response.data));
+      });
+  },
+
+  loadPromoMovie: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`)
+      .then((response) => {
+        dispatch(ActionCreator.loadPromoMovie(response.data));
+      });
+  },
 };
 
 
@@ -45,5 +64,6 @@ const reducer = (state = initialState, action) => {
 export {
   ActionCreator,
   ActionType,
+  Operation,
   reducer,
 };

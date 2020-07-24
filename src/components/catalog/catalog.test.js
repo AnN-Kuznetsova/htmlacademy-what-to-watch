@@ -1,10 +1,20 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
 
 import {CatalogComponent} from "./catalog";
 
 import {mockMovies} from "../../__test-data__/test-mocks";
 
+
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
+});
 
 const props = {
   movieList: [],
@@ -25,7 +35,9 @@ describe(`Render Catalog`, () => {
     props.movieList = [].concat(mockMovies, mockMovies, mockMovies);
 
     const catalogSnapshot = renderer.create(
-        <CatalogComponent {...props} />, nodeMock
+        <Provider store={store}>
+          <CatalogComponent {...props} />
+        </Provider>, nodeMock
     ).toJSON();
 
     expect(catalogSnapshot).toMatchSnapshot();
@@ -36,7 +48,9 @@ describe(`Render Catalog`, () => {
     props.movieList = mockMovies;
 
     const catalogSnapshot = renderer.create(
-        <CatalogComponent {...props} />, nodeMock
+        <Provider store={store}>
+          <CatalogComponent {...props} />
+        </Provider>, nodeMock
     ).toJSON();
 
     expect(catalogSnapshot).toMatchSnapshot();

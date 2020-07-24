@@ -23,6 +23,9 @@ const store = mockStore({
   genre: `All genres`,
   movieList: mockMovies,
   visibleMoviesCount: 8,
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
 });
 
 const props = {
@@ -47,6 +50,19 @@ describe(`Render App`, () => {
 
   it(`Should match with snapshot when page is "MOVIE_DETAILS"`, () => {
     props.activePage = PageType.MOVIE_DETAILS;
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when page is "PLAYER"`, () => {
+    props.activePage = PageType.PLAYER;
 
     const appSnapshot = renderer.create(
         <Provider store={store}>

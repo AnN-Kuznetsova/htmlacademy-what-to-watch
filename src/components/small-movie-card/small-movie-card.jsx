@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import {DELAY_PLAYBACK_PREVIEW} from "../../const";
 import {MoviePropType} from "../../prop-types";
-import {VideoPlayerMode} from "../../hocs/with-video/with-video";
-import {withVideoPlayer, VideoPlayerStatus} from "../../hocs/with-video-player/with-video-player";
+import {VideoPlayerMode, VideoPlayerStatus} from "../../hocs/with-video/with-video";
+import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
 const SmallMovieCard = (props) => {
@@ -12,7 +12,7 @@ const SmallMovieCard = (props) => {
     onClick,
     renderVideoPlayer,
     currentVideoPlayerStatus,
-    setVideoPlayerStatus
+    setVideoPlayerStatus,
   } = props;
   const {title, smallPictureUrl, previewUrl} = movie;
   let timer = null;
@@ -52,7 +52,7 @@ const SmallMovieCard = (props) => {
       onClick={handleCardClick}
     >
       <div className="small-movie-card__image">
-        {renderVideoPlayer(previewUrl, smallPictureUrl, VideoPlayerMode.PREVIEW)}
+        {renderVideoPlayer(previewUrl, smallPictureUrl)}
 
         <img
           src={smallPictureUrl}
@@ -70,19 +70,19 @@ const SmallMovieCard = (props) => {
 };
 
 
-const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard);
-
-
-export {
-  SmallMovieCard,
-  SmallMovieCardWithVideoPlayer,
-};
-
-
 SmallMovieCard.propTypes = {
   movie: MoviePropType.isRequired,
   onClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   currentVideoPlayerStatus: PropTypes.string.isRequired,
   setVideoPlayerStatus: PropTypes.func.isRequired,
+};
+
+
+const SmallMovieCardWithVideoPlayer = withVideoPlayer(SmallMovieCard, VideoPlayerMode.PREVIEW);
+
+
+export {
+  SmallMovieCard,
+  SmallMovieCardWithVideoPlayer,
 };

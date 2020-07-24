@@ -14,20 +14,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/bohemian-rhapsody.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/bohemian-rhapsody.jpg"
+        />
         <img
           alt="Bohemian Rhapsody"
           height="175"
@@ -55,20 +46,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/aviator.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/aviator.jpg"
+        />
         <img
           alt="Aviator"
           height="175"
@@ -96,20 +78,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/revenant.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/revenant.jpg"
+        />
         <img
           alt="Revenant"
           height="175"
@@ -137,20 +110,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/bohemian-rhapsody.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/bohemian-rhapsody.jpg"
+        />
         <img
           alt="Bohemian Rhapsody"
           height="175"
@@ -178,20 +142,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/aviator.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/aviator.jpg"
+        />
         <img
           alt="Aviator"
           height="175"
@@ -219,20 +174,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/revenant.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/revenant.jpg"
+        />
         <img
           alt="Revenant"
           height="175"
@@ -260,20 +206,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/bohemian-rhapsody.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/bohemian-rhapsody.jpg"
+        />
         <img
           alt="Bohemian Rhapsody"
           height="175"
@@ -301,20 +238,11 @@ Array [
       <div
         className="small-movie-card__image"
       >
-        <div
-          className=""
-        >
-          <video
-            autoPlay={false}
-            className="player__video"
-            poster="img/aviator.jpg"
-            style={
-              Object {
-                "height": 175,
-              }
-            }
-          />
-        </div>
+        <video
+          autoPlay={false}
+          className="player__video"
+          poster="img/aviator.jpg"
+        />
         <img
           alt="Aviator"
           height="175"
@@ -361,20 +289,11 @@ exports[`Render Catalog Catalog should match with snapshot without ShowMoreButto
     <div
       className="small-movie-card__image"
     >
-      <div
-        className=""
-      >
-        <video
-          autoPlay={false}
-          className="player__video"
-          poster="img/bohemian-rhapsody.jpg"
-          style={
-            Object {
-              "height": 175,
-            }
-          }
-        />
-      </div>
+      <video
+        autoPlay={false}
+        className="player__video"
+        poster="img/bohemian-rhapsody.jpg"
+      />
       <img
         alt="Bohemian Rhapsody"
         height="175"
@@ -402,20 +321,11 @@ exports[`Render Catalog Catalog should match with snapshot without ShowMoreButto
     <div
       className="small-movie-card__image"
     >
-      <div
-        className=""
-      >
-        <video
-          autoPlay={false}
-          className="player__video"
-          poster="img/aviator.jpg"
-          style={
-            Object {
-              "height": 175,
-            }
-          }
-        />
-      </div>
+      <video
+        autoPlay={false}
+        className="player__video"
+        poster="img/aviator.jpg"
+      />
       <img
         alt="Aviator"
         height="175"
@@ -443,20 +353,11 @@ exports[`Render Catalog Catalog should match with snapshot without ShowMoreButto
     <div
       className="small-movie-card__image"
     >
-      <div
-        className=""
-      >
-        <video
-          autoPlay={false}
-          className="player__video"
-          poster="img/revenant.jpg"
-          style={
-            Object {
-              "height": 175,
-            }
-          }
-        />
-      </div>
+      <video
+        autoPlay={false}
+        className="player__video"
+        poster="img/revenant.jpg"
+      />
       <img
         alt="Revenant"
         height="175"

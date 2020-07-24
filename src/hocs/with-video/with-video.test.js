@@ -3,7 +3,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {mount} from 'enzyme';
 
-import {withVideo, VideoPlayerMode} from "./with-video";
+import {withVideo, VideoPlayerMode, VideoPlayerStatus} from "./with-video";
 
 
 const MockPlayer = (props) => {
@@ -33,7 +33,14 @@ const props = {
   src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   posterUrl: `poster-url`,
   playerMode: null,
-  isPlaying: false,
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
+  onChangePage: () => {},
+  setPlayerStartTime: () => {},
+  setVideoPlayerVisibility: () => {},
+  setVideoPlayerStatus: () => {},
+  playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
 };
 
 const PlayerWithVideo = withVideo(MockPlayer);
@@ -60,7 +67,6 @@ describe(`Render withVideo`, () => {
       expect([...videoElement][0].ref.current.src).toEqual(props.src);
       expect([...videoElement][0].props.poster).toEqual(props.posterUrl);
       expect([...videoElement][0].props.autoPlay).toEqual(false);
-      expect([...videoElement][0].props.style.height).toEqual(175);
       expect([...videoElement][0].ref.current.muted).toEqual(true);
     });
   });

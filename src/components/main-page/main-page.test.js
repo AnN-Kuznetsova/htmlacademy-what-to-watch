@@ -22,6 +22,8 @@ const store = mockStore({
   genre: `All genres`,
   movieList: mockMovies,
   visibleMoviesCount: 8,
+  prevPage: ``,
+  playerStartTime: 0,
 });
 
 const props = {

@@ -17,10 +17,11 @@ const initialState = {
   movies,
   genre: `All genres`,
   movieList: movies,
-  visibleMoviesCount: movies.length <= NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP ? movies.length :
-    NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
+  visibleMoviesCount: NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   activeMovie: promoMovie,
   activePage: PageType.MAIN,
+  prevPage: PageType.MAIN,
+  playerStartTime: 0,
 };
 
 
@@ -31,6 +32,7 @@ const ActionType = {
   CHANGE_ACTIVE_PAGE: `CHANGE_ACTIVE_PAGE`,
   INCREMENT_VISIBLE_MOVIES_COUNT: `INCREMENT_VISIBLE_MOVIES_COUNT`,
   RESET_VISIBLE_MOVIES_COUNT: `RESET_VISIBLE_MOVIES_COUNT`,
+  SET_PLAYER_START_TIME: `SET_PLAYER_START_TIME`,
 };
 
 const ActionCreator = {
@@ -58,6 +60,10 @@ const ActionCreator = {
     type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
     payload: null,
   }),
+  setPlayerStartTime: (currentTime) => ({
+    type: ActionType.SET_PLAYER_START_TIME,
+    payload: currentTime,
+  }),
 };
 
 
@@ -79,7 +85,11 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_ACTIVE_PAGE:
+      if (state.activePage === action.payload) {
+        return state;
+      }
       return extend(state, {
+        prevPage: state.activePage,
         activePage: action.payload,
       });
 
@@ -91,6 +101,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.RESET_VISIBLE_MOVIES_COUNT:
       return extend(state, {
         visibleMoviesCount: initialState.visibleMoviesCount,
+      });
+
+    case ActionType.SET_PLAYER_START_TIME:
+      return extend(state, {
+        playerStartTime: action.payload,
       });
 
     default:

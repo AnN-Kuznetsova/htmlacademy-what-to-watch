@@ -90,6 +90,6 @@ describe(`SmallMovieCard e2e-tests`, () => {
   it(`Should pass the correct data when calling "renderVideoPlayer"`, () => {
     expect(renderVideoPlayer).toHaveBeenCalledTimes(1);
     expect(renderVideoPlayer.mock.calls[0])
-      .toEqual([mockMovies[1].previewUrl, mockMovies[1].smallPictureUrl, `preview`]);
+      .toEqual([mockMovies[1].previewUrl, mockMovies[1].smallPictureUrl]);
   });
 });

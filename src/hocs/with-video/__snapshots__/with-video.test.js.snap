@@ -6,11 +6,6 @@ exports[`Render withVideo when player mode is "PREVIEW" Should match with snapsh
     autoPlay={false}
     className="player__video"
     poster="poster-url"
-    style={
-      Object {
-        "height": 175,
-      }
-    }
   />
 </div>
 `;

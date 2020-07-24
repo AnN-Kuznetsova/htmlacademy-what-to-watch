@@ -21,6 +21,16 @@ global.Math = mockMath;
 
 const mockStore = configureStore([]);
 
+const store = mockStore({
+  movies: [],
+  genre: ``,
+  movieList: mockMovies,
+  visibleMoviesCount: 8,
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
+});
+
 const nodeMock = {
   createNodeMock: () => {
     return {};
@@ -35,12 +45,6 @@ const props = {
 
 describe(`Render MovieDetailsPage`, () => {
   it(`Should match with snapshot`, () => {
-    const store = mockStore({
-      movies: [],
-      genre: ``,
-      movieList: mockMovies,
-      visibleMoviesCount: 8,
-    });
 
     const movieDetailsPageSnapshot = renderer.create(
         <Provider store={store}>

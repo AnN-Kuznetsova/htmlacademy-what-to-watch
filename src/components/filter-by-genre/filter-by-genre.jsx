@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
   onClick(newFilterValue) {
     dispatch(ActionCreator.changeGenre(newFilterValue));
     dispatch(ActionCreator.getMovies());
-    dispatch(ActionCreator.resetVisibleSmallCardCount());
+    dispatch(ActionCreator.resetVisibleMoviesCount());
   },
 });
 

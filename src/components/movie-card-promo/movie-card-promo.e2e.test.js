@@ -11,6 +11,9 @@ const onMovieClick = jest.fn();
 const props = {
   movie: mockPromoMovie,
   onMovieClick,
+  renderVideoPlayer: () => {},
+  isPlayerVisible: false,
+  onPlayButtonClick: () => {},
 };
 
 const movieCardPromoElement = shallow(<MovieCardPromo {...props} />);

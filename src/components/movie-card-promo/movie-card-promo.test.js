@@ -10,6 +10,9 @@ import {mockPromoMovie} from "../../__test-data__/test-mocks";
 const props = {
   movie: mockPromoMovie,
   onMovieClick: () => {},
+  renderVideoPlayer: () => {},
+  isPlayerVisible: false,
+  onPlayButtonClick: () => {},
 };
 
 const movueCardPromoElement = shallow(<MovieCardPromo {...props} />);

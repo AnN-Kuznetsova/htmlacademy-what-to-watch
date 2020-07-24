@@ -26,6 +26,9 @@ const store = mockStore({
   movieList: mockMovies,
   genre: ``,
   visibleMoviesCount: 8,
+  activePage: ``,
+  prevPage: ``,
+  playerStartTime: 0,
 });
 
 const movieDetailsPageElement = mount(

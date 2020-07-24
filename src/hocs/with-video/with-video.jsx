@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import React, {PureComponent, createRef} from "react";
 
+import {PageType} from "../../const";
+
 
 export const VideoPlayerMode = {
-  PREVIEW: `preview`,
-  FULL_SCREEN: `full-screen`,
+  PREVIEW: `PREVIEW`,
+  SMALL_SCREEN: `SMALL_SCREEN`,
+  FULL_SCREEN: `FULL_SCREEN`,
 };
 
 
@@ -12,9 +15,25 @@ export const videoOptions = {
   [VideoPlayerMode.PREVIEW]: {
     isAutoPlay: false,
     isSound: false,
-    videoHeight: 175,
+    isVisible: true,
   },
-  [VideoPlayerMode.FULL_SCREEN]: {},
+  [VideoPlayerMode.SMALL_SCREEN]: {
+    isAutoPlay: true,
+    isSound: true,
+    isVisible: false,
+  },
+  [VideoPlayerMode.FULL_SCREEN]: {
+    isAutoPlay: true,
+    isSound: true,
+    isVisible: true,
+  },
+};
+
+export const VideoPlayerStatus = {
+  ON_AUTOPLAY: `on-autoplay`,
+  ON_PLAY: `on-play`,
+  ON_PAUSE: `on-pause`,
+  ON_RESET: `on-reset`,
 };
 
 
@@ -24,8 +43,10 @@ export const withVideo = (Component) => {
       super(props);
 
       this._videoRef = createRef();
+      this._duration = null;
 
       this.state = {
+        playerStartTime: this.props.playerMode === VideoPlayerMode.PREVIEW ? 0 : this.props.playerStartTime,
         progress: 0,
         isLoading: true,
       };
@@ -38,10 +59,15 @@ export const withVideo = (Component) => {
 
       video.src = src;
       video.muted = !isSound;
+      video.currentTime = this.state.playerStartTime;
 
-      video.oncanplaythrough = () => this.setState({
-        isLoading: false,
-      });
+      video.oncanplaythrough = () => {
+        this.setState({
+          isLoading: false,
+        });
+
+        this._duration = video.duration;
+      };
 
       video.ontimeupdate = () => this.setState({
         progress: Math.floor(video.currentTime),
@@ -52,7 +78,7 @@ export const withVideo = (Component) => {
       const video = this._videoRef.current;
       const {playerMode} = this.props;
 
-      if (this.props.isPlaying) {
+      if (this.getPlayingValue()) {
         video.play();
       } else {
         if (playerMode === VideoPlayerMode.PREVIEW) {
@@ -71,21 +97,77 @@ export const withVideo = (Component) => {
       video.src = ``;
     }
 
+    getPlayingValue() {
+      switch (this.props.playerStatus) {
+        case VideoPlayerStatus.ON_AUTOPLAY:
+          return videoOptions[this.props.playerMode].isAutoPlay;
+        case VideoPlayerStatus.ON_PLAY:
+          return true;
+        case VideoPlayerStatus.ON_PAUSE:
+        case VideoPlayerStatus.ON_RESET:
+          return false;
+        default:
+          throw new Error(`Unknown type of playing state.`);
+      }
+    }
+
+    handlePlayButtonClick() {
+      if (this.getPlayingValue()) {
+        this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
+      } else {
+        this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_PLAY);
+      }
+    }
+
+    handleExitButtonClick(event) {
+      event.preventDefault();
+      this.props.setPlayerStartTime(0);
+
+      const {activePage, prevPage} = this.props;
+
+      if (activePage === PageType.PLAYER) {
+        this.props.onChangePage(prevPage);
+      } else {
+        this.props.onChangePage(activePage);
+      }
+      this.props.setVideoPlayerVisibility(false);
+      this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
+    }
+
+    handleFullScreenButtonClick(event) {
+      event.preventDefault();
+
+      const video = this._videoRef.current;
+      this.props.setPlayerStartTime(video.currentTime);
+      this.props.onChangePage(PageType.PLAYER);
+    }
+
     render() {
-      const {posterUrl, playerMode, isPlaying} = this.props;
-      const {videoHeight} = videoOptions[playerMode];
+      const {
+        posterUrl,
+        playerMode,
+      } = this.props;
+      const {
+        progress,
+      } = this.state;
+      const isPlaying = this.getPlayingValue();
 
       return (
         <Component
           {...this.props}
           playerMode={playerMode}
+          isPlaying={isPlaying}
+          duration={this._duration}
+          progress={progress || 0}
+          onPlayButtonClick={this.handlePlayButtonClick.bind(this)}
+          onExitButtonClick={this.handleExitButtonClick.bind(this)}
+          onFullScreenButtonClick={this.handleFullScreenButtonClick.bind(this)}
         >
           <video
             ref={this._videoRef}
             className="player__video"
             poster={posterUrl}
             autoPlay={isPlaying}
-            style={{height: videoHeight}}
           />
         </Component>
       );
@@ -97,7 +179,14 @@ export const withVideo = (Component) => {
     src: PropTypes.string.isRequired,
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
+    activePage: PropTypes.string,
+    prevPage: PropTypes.string.isRequired,
+    playerStartTime: PropTypes.number.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    setPlayerStartTime: PropTypes.func,
+    setVideoPlayerVisibility: PropTypes.func.isRequired,
+    setVideoPlayerStatus: PropTypes.func.isRequired,
+    playerStatus: PropTypes.string.isRequired,
   };
 
 

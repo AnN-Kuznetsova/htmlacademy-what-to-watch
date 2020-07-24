@@ -8,6 +8,7 @@ const DELAY_PLAYBACK_PREVIEW = 1000;
 const PageType = {
   MAIN: `main`,
   MOVIE_DETAILS: `movie-details`,
+  PLAYER: `player`,
 };
 
 const FilterType = {

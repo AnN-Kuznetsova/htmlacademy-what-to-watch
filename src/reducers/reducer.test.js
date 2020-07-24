@@ -17,6 +17,8 @@ describe(`Reduser should work correctly`, () => {
       visibleMoviesCount: 8,
       activeMovie: promoMovie,
       activePage: PageType.MAIN,
+      prevPage: PageType.MAIN,
+      playerStartTime: 0,
     });
   });
 
@@ -141,7 +143,7 @@ describe(`Reduser should work correctly`, () => {
   });
 
 
-  it(`Reducer should change active page by a given value`, () => {
+  it(`Reducer should change active and prev pages by a given value`, () => {
     expect(reducer({
       movies: [],
       genre: ``,
@@ -149,6 +151,8 @@ describe(`Reduser should work correctly`, () => {
       visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MAIN,
+      prevPage: PageType.MAIN,
+      playerStartTime: 0,
     }, {
       type: ActionType.CHANGE_ACTIVE_PAGE,
       payload: PageType.MOVIE_DETAILS,
@@ -159,6 +163,8 @@ describe(`Reduser should work correctly`, () => {
       visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MOVIE_DETAILS,
+      prevPage: PageType.MAIN,
+      playerStartTime: 0,
     });
 
     expect(reducer({
@@ -168,6 +174,8 @@ describe(`Reduser should work correctly`, () => {
       visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MOVIE_DETAILS,
+      prevPage: PageType.MAIN,
+      playerStartTime: 0,
     }, {
       type: ActionType.CHANGE_ACTIVE_PAGE,
       payload: PageType.MAIN,
@@ -178,6 +186,19 @@ describe(`Reduser should work correctly`, () => {
       visibleMoviesCount: 0,
       activeMovie: {},
       activePage: PageType.MAIN,
+      prevPage: PageType.MOVIE_DETAILS,
+      playerStartTime: 0,
+    });
+
+    expect(reducer({
+      activePage: PageType.MOVIE_DETAILS,
+      prevPage: PageType.MAIN,
+    }, {
+      type: ActionType.CHANGE_ACTIVE_PAGE,
+      payload: PageType.MOVIE_DETAILS,
+    })).toEqual({
+      activePage: PageType.MOVIE_DETAILS,
+      prevPage: PageType.MAIN,
     });
   });
 
@@ -262,6 +283,27 @@ describe(`Reduser should work correctly`, () => {
       activePage: ``,
     });
   });
+
+
+  it(`Reducer should change playerStartTime by a given value`, () => {
+    expect(reducer({
+      playerStartTime: 0,
+    }, {
+      type: ActionType.SET_PLAYER_START_TIME,
+      payload: 15,
+    })).toEqual({
+      playerStartTime: 15,
+    });
+
+    expect(reducer({
+      playerStartTime: 0,
+    }, {
+      type: ActionType.SET_PLAYER_START_TIME,
+      payload: 123,
+    })).toEqual({
+      playerStartTime: 123,
+    });
+  });
 });
 
 
@@ -315,6 +357,14 @@ describe(`Action creators should work correctly`, () => {
     expect(ActionCreator.resetVisibleMoviesCount()).toEqual({
       type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
       payload: null,
+    });
+  });
+
+
+  it(`Action creator for set player start time returns correct action`, () => {
+    expect(ActionCreator.setPlayerStartTime(321)).toEqual({
+      type: ActionType.SET_PLAYER_START_TIME,
+      payload: 321,
     });
   });
 });

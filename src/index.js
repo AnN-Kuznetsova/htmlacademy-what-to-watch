@@ -11,12 +11,20 @@ import {createAPI} from "./api.js";
 import {reducer} from "./reducers/reducer";
 
 
-const api = createAPI(() => {});
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
     applyMiddleware(thunk.withExtraArgument(api))
 );
+
+store.dispatch(DataOperation.loadMovies());
+store.dispatch(DataOperation.loadPromoMovie());
+store.dispatch(UserOperation.checkAuth());
 
 
 ReactDom.render(

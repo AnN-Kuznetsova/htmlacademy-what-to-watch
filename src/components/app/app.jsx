@@ -3,16 +3,22 @@ import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/reducer";
+import {ActionCreator} from "../../reducers/application/application";
+// import {AuthorizationStatus} from "../../reducers/user/user";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
+import {Operation as UserOperation} from "../../reducers/user/user";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
+import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
+import {getAuthorizationStatus} from "../../reducers/user/selectors";
 
 
 const AppComponent = (props) => {
   const {
+    /* authorizationStatus,
+    login, */
     activePage,
     activeMovie,
     onOpenMovieDetailsPage,
@@ -71,6 +77,8 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType.isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
@@ -78,11 +86,15 @@ AppComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  activePage: state.activePage,
-  activeMovie: state.activeMovie,
+  authorizationStatus: getAuthorizationStatus(state),
+  activePage: getActivePage(state),
+  activeMovie: getActiveMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
   onOpenMovieDetailsPage(movie) {
     dispatch(ActionCreator.changeActiveMovie(movie));
     dispatch(ActionCreator.changeGenre(movie.genres[0]));

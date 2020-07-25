@@ -7,7 +7,6 @@ import {extend} from "../../utils/utils";
 
 
 const initialState = {
-  //movieList: [],
   genre: `All genres`,
   activeMovie: {},
   visibleMoviesCount: NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
@@ -31,22 +30,27 @@ const ActionCreator = {
     type: ActionType.CHANGE_GENRE,
     payload: value,
   }),
+
   changeActiveMovie: (movie) => ({
     type: ActionType.CHANGE_ACTIVE_MOVIE,
     payload: movie,
   }),
+
   changeActivePage: (page) => ({
     type: ActionType.CHANGE_ACTIVE_PAGE,
     payload: page,
   }),
+
   incrementVisibleMoviesCount: () => ({
     type: ActionType.INCREMENT_VISIBLE_MOVIES_COUNT,
     payload: NUMBER_OF_CARDS_TO_INCREMENT,
   }),
+
   resetVisibleMoviesCount: () => ({
     type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
     payload: null,
   }),
+
   setPlayerStartTime: (currentTime) => ({
     type: ActionType.SET_PLAYER_START_TIME,
     payload: currentTime,

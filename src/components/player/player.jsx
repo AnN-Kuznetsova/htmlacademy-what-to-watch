@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/reducer";
+import {ActionCreator} from "../../reducers/application/application";
+import {getActivePage, getPrevPage, getPlayerStartTime} from "../../reducers/application/selectors";
 import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
@@ -120,9 +121,9 @@ PlayerComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  activePage: state.activePage,
-  prevPage: state.prevPage,
-  playerStartTime: state.playerStartTime,
+  activePage: getActivePage(state),
+  prevPage: getPrevPage(state),
+  playerStartTime: getPlayerStartTime(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

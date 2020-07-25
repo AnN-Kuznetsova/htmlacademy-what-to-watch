@@ -17,7 +17,7 @@ const store = mockStore({
 });
 
 const props = {
-  movieList: [],
+  movies: [],
   visibleCardCount: 8,
   onSmallMovieCardClick: () => {},
   onShowMoreButtonClick: () => {},
@@ -32,7 +32,7 @@ const nodeMock = {
 
 describe(`Render Catalog`, () => {
   it(`Catalog should match with snapshot with ShowMoreButton`, () => {
-    props.movieList = [].concat(mockMovies, mockMovies, mockMovies);
+    props.movies = [].concat(mockMovies, mockMovies, mockMovies);
 
     const catalogSnapshot = renderer.create(
         <Provider store={store}>
@@ -45,7 +45,7 @@ describe(`Render Catalog`, () => {
 
 
   it(`Catalog should match with snapshot without ShowMoreButton`, () => {
-    props.movieList = mockMovies;
+    props.movies = mockMovies;
 
     const catalogSnapshot = renderer.create(
         <Provider store={store}>

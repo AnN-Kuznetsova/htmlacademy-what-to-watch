@@ -29,7 +29,7 @@ const onShowMoreButtonClick = jest.fn(() => {
 });
 
 const props = {
-  movieList: mockMovies,
+  movies: mockMovies,
   visibleCardCount,
   onSmallMovieCardClick,
   onShowMoreButtonClick,

@@ -7,12 +7,14 @@ import {ActionCreator as ApplicationActionCreator} from "../application/applicat
 const initialState = {
   movies: [],
   promoMovie: {},
+  maxMoviesCount: null,
 };
 
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
+  SET_MAX_MOVIES_COUNT: `SET_MAX_MOVIES_COUNT`,
 };
 
 
@@ -26,6 +28,11 @@ const ActionCreator = {
     type: ActionType.LOAD_PROMO_MOVIE,
     payload: movie,
   }),
+
+  setMaxMoviesCount: (count) => ({
+    type: ActionType.SET_MAX_MOVIES_COUNT,
+    payload: count,
+  }),
 };
 
 
@@ -35,6 +42,7 @@ const Operation = {
       .then((response) => createMovies(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadMovies(response));
+        return true;
       });
   },
 
@@ -43,10 +51,8 @@ const Operation = {
       .then((response) => createMovie(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadPromoMovie(response));
-        return response;
-      })
-      .then((response) => {
         dispatch(ApplicationActionCreator.changeActiveMovie(response));
+        return true;
       });
   },
 };
@@ -62,6 +68,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return extend(state, {
         promoMovie: action.payload,
+      });
+
+    case ActionType.SET_MAX_MOVIES_COUNT:
+      return extend(state, {
+        maxMoviesCount: action.payload,
       });
 
     default:

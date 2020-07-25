@@ -19,7 +19,7 @@ const MovieCardPromo = (props) => {
   return (
     <section
       className="movie-card"
-      style={isPlayerVisible ? {backgroundColor: `#180202`} : {}}
+      style={isPlayerVisible ? {backgroundColor: `#180202`} : {backgroundColor: movie.backgroundColor}}
     >
       <div className="movie-card__bg">
         <img src={movie.backgroundUrl} alt={movie.title} />
@@ -28,7 +28,7 @@ const MovieCardPromo = (props) => {
       <Header />
 
       <div className="movie-card__wrap">
-        {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl) ||
+        {isPlayerVisible && renderVideoPlayer(movie.videoUrl, movie.smallPictureUrl) ||
 
         <div className="movie-card__info">
           <div className="movie-card__poster" onClick={onMovieClick}>

@@ -25,14 +25,16 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.loadMovies());
-store.dispatch(DataOperation.loadPromoMovie());
+const loadMovies = store.dispatch(DataOperation.loadMovies());
+const loadPromoMovie = store.dispatch(DataOperation.loadPromoMovie());
 store.dispatch(UserOperation.checkAuth());
 
 
-ReactDom.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+if (loadMovies && loadPromoMovie) {
+  ReactDom.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+}

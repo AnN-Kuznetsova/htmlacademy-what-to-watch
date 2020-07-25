@@ -1,4 +1,4 @@
-import {VISIBLE_PARTICIPANTS_COUNT, FilterType} from "../const";
+import {VISIBLE_PARTICIPANTS_COUNT} from "../const";
 
 
 const months = [
@@ -94,27 +94,8 @@ const getRatingDescription = (score) => {
 };
 
 
-const getFilteredMovies = (movies, filterName, filterValue, currentMovie, moviesCount = null) => {
-  let filteredMovies = null;
-
-  switch (filterName) {
-    case FilterType.GENRE:
-      filteredMovies = filterValue === `All genres` ? movies :
-        movies.filter((movie) => movie.genres.includes(filterValue) && movie !== currentMovie);
-      break;
-    default:
-      filteredMovies = movies;
-      break;
-  }
-
-  return moviesCount ? getRandomArrayElements(filteredMovies, moviesCount) :
-    filteredMovies;
-};
-
-
 export {
   extend,
-  //getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
   getFormatedScore,

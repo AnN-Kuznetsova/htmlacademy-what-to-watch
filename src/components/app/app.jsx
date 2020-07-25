@@ -3,7 +3,8 @@ import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/application/application";
+import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
+import {ActionCreator as DataActionCtrator} from "../../reducers/data/data";
 // import {AuthorizationStatus} from "../../reducers/user/user";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
@@ -13,6 +14,7 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
+import {getMovies} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
@@ -21,6 +23,7 @@ const AppComponent = (props) => {
     login, */
     activePage,
     activeMovie,
+    movies,
     onOpenMovieDetailsPage,
   } = props;
 
@@ -57,15 +60,15 @@ const AppComponent = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {renderPage()}
+          {activeMovie.id && movies.length && renderPage()}
         </Route>
         {/* <Route exact path="/movie-details">
           <MovieDetailsPage
             activeMovie={activeMovie}
             onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
           />
-        </Route>*/}
-        {/* <Route exact path="/player">
+        </Route>
+        <Route exact path="/player">
           <PlayerPage
             movie={activeMovie}
           />
@@ -81,6 +84,7 @@ AppComponent.propTypes = {
   login: PropTypes.func.isRequired,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType.isRequired,
+  movies: PropTypes.arrayOf(MoviePropType).isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
 };
 
@@ -89,6 +93,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
+  movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -96,10 +101,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(UserOperation.login(authData));
   },
   onOpenMovieDetailsPage(movie) {
-    dispatch(ActionCreator.changeActiveMovie(movie));
-    dispatch(ActionCreator.changeGenre(movie.genres[0]));
-    dispatch(ActionCreator.getMovies(NUMBER_OF_SIMILAR_FILMS));
-    dispatch(ActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
+    dispatch(DataActionCtrator.setMaxMoviesCount(NUMBER_OF_SIMILAR_FILMS));
+    dispatch(ApplicationActionCreator.changeActiveMovie(movie));
+    dispatch(ApplicationActionCreator.changeGenre(movie.genres[0]));
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   }
 });
 

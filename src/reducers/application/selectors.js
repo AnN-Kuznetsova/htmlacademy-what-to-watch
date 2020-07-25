@@ -32,8 +32,8 @@ const getPlayerStartTime = (state) => {
 export {
   getActiveGenre,
   getActiveMovie,
-  getVisibleMoviesCount,
   getActivePage,
-  getPrevPage,
   getPlayerStartTime,
+  getPrevPage,
+  getVisibleMoviesCount,
 };

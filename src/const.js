@@ -9,6 +9,7 @@ const PageType = {
   MAIN: `main`,
   MOVIE_DETAILS: `movie-details`,
   PLAYER: `player`,
+  ERROR: `error`,
 };
 
 

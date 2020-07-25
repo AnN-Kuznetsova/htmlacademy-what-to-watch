@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCtrator} from "../../reducers/data/data";
 // import {AuthorizationStatus} from "../../reducers/user/user";
+import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
@@ -14,16 +15,16 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
-import {getMovies} from "../../reducers/data/selectors";
+import {getMovies, getError} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
   const {
     /* authorizationStatus,
     login, */
+    isError,
     activePage,
     activeMovie,
-    movies,
     onOpenMovieDetailsPage,
   } = props;
 
@@ -51,6 +52,12 @@ const AppComponent = (props) => {
             movie={activeMovie}
           />
         );
+      case PageType.ERROR:
+        return (
+          <ErrorPage
+            isError={isError}
+          />
+        );
       default:
         return null;
     }
@@ -60,7 +67,7 @@ const AppComponent = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {activeMovie.id && movies.length && renderPage()}
+          {/* activeMovie.id && movies.length &&  */renderPage()}
         </Route>
         {/* <Route exact path="/movie-details">
           <MovieDetailsPage
@@ -82,15 +89,16 @@ const AppComponent = (props) => {
 AppComponent.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired,
   activePage: PropTypes.string.isRequired,
-  activeMovie: MoviePropType.isRequired,
-  movies: PropTypes.arrayOf(MoviePropType).isRequired,
+  activeMovie: MoviePropType,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  isError: getError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
   movies: getMovies(state),
@@ -105,7 +113,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));
     dispatch(ApplicationActionCreator.changeGenre(movie.genres[0]));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
-  }
+  },
 });
 
 const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);

@@ -1,13 +1,15 @@
 import {extend} from "../../utils/utils";
 
-import {createMovies, createMovie} from "../../adapters/movie";
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
+import {PageType} from "../../const";
+import {createMovies, createMovie} from "../../adapters/movie";
 
 
 const initialState = {
   movies: [],
   promoMovie: {},
   maxMoviesCount: null,
+  isError: false,
 };
 
 
@@ -15,6 +17,7 @@ const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   SET_MAX_MOVIES_COUNT: `SET_MAX_MOVIES_COUNT`,
+  SET_ERROR: `SET_ERROR`,
 };
 
 
@@ -33,6 +36,11 @@ const ActionCreator = {
     type: ActionType.SET_MAX_MOVIES_COUNT,
     payload: count,
   }),
+
+  setError: () => ({
+    type: ActionType.SET_ERROR,
+    payload: true,
+  }),
 };
 
 
@@ -42,7 +50,6 @@ const Operation = {
       .then((response) => createMovies(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadMovies(response));
-        return true;
       });
   },
 
@@ -52,7 +59,7 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadPromoMovie(response));
         dispatch(ApplicationActionCreator.changeActiveMovie(response));
-        return true;
+        dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
       });
   },
 };
@@ -73,6 +80,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_MAX_MOVIES_COUNT:
       return extend(state, {
         maxMoviesCount: action.payload,
+      });
+
+    case ActionType.SET_ERROR:
+      return extend(state, {
+        isError: action.payload,
       });
 
     default:

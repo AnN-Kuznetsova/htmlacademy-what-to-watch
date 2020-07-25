@@ -8,10 +8,10 @@ import {extend} from "../../utils/utils";
 
 const initialState = {
   genre: `All genres`,
-  activeMovie: {},
+  activeMovie: null,
   visibleMoviesCount: NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
-  activePage: PageType.MAIN,
-  prevPage: PageType.MAIN,
+  activePage: PageType.ERROR,
+  prevPage: PageType.ERROR,
   playerStartTime: 0,
 };
 

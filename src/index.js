@@ -35,18 +35,14 @@ const store = createStore(
     )
 );
 
-const moviesLoaded = store.dispatch(DataOperation.loadMovies());
-const promoMoviesLoaded = store.dispatch(DataOperation.loadPromoMovie());
+store.dispatch(DataOperation.loadMovies());
+store.dispatch(DataOperation.loadPromoMovie());
 store.dispatch(UserOperation.checkAuth());
 
 
-Promise.allSettled([moviesLoaded, promoMoviesLoaded])
-      .then(() => {
-        ReactDom.render(
-            <Provider store={store}>
-              <App />
-            </Provider>,
-            document.querySelector(`#root`)
-        );
-      });
-
+ReactDom.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.querySelector(`#root`)
+);

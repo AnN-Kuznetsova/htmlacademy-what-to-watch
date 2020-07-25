@@ -4,6 +4,7 @@ import {mount} from "enzyme";
 import {Provider} from "react-redux";
 
 import {MainPage} from "./main-page.jsx";
+import {NameSpace} from "../../reducers/name-space";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
@@ -15,12 +16,15 @@ const mockEvent = {
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  movies: mockMovies,
-  genre: `All genres`,
-  movieList: mockMovies,
-  visibleMoviesCount: 8,
-  prevPage: ``,
-  playerStartTime: 0,
+  [NameSpace.DATA]: {
+    movies: mockMovies,
+  },
+  [NameSpace.APPLICATION]: {
+    genre: `All genres`,
+    visibleMoviesCount: 8,
+    prevPage: ``,
+    playerStartTime: 0,
+  },
 });
 
 const openMovieDetailsPage = jest.fn();

@@ -4,8 +4,9 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {MovieDetailsPage} from "./movie-details-page";
+import {NameSpace} from "../../reducers/name-space";
 
-import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
 
 global.window = Object.create(window);
@@ -22,13 +23,16 @@ global.Math = mockMath;
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  movies: [],
-  genre: ``,
-  movieList: mockMovies,
-  visibleMoviesCount: 8,
-  activePage: ``,
-  prevPage: ``,
-  playerStartTime: 0,
+  [NameSpace.DATA]: {
+    movies: mockMovies,
+  },
+  [NameSpace.APPLICATION]: {
+    genre: `All genres`,
+    visibleMoviesCount: 8,
+    activePage: ``,
+    prevPage: ``,
+    playerStartTime: 0,
+  },
 });
 
 const nodeMock = {

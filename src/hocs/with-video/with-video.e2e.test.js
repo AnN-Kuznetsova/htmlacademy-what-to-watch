@@ -51,6 +51,14 @@ describe(`withVideo e2e-tests`, () => {
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
 
+    window.HTMLMediaElement.prototype.canplaythrough = () => {
+      videoPlayerElement.instance().setState({
+        isLoading: false,
+      });
+    };
+
+    _videoRef.current.canplaythrough();
+
     jest.spyOn(_videoRef.current, `play`);
     videoPlayerElement.instance().componentDidMount();
     videoPlayerElement.instance().componentDidUpdate();
@@ -66,6 +74,14 @@ describe(`withVideo e2e-tests`, () => {
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
 
+    window.HTMLMediaElement.prototype.canplaythrough = () => {
+      videoPlayerElement.instance().setState({
+        isLoading: false,
+      });
+    };
+
+    _videoRef.current.canplaythrough();
+
     jest.spyOn(_videoRef.current, `pause`);
     videoPlayerElement.instance().componentDidUpdate();
 
@@ -80,6 +96,14 @@ describe(`withVideo e2e-tests`, () => {
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
 
+    window.HTMLMediaElement.prototype.canplaythrough = () => {
+      videoPlayerElement.instance().setState({
+        isLoading: false,
+      });
+    };
+
+    _videoRef.current.canplaythrough();
+
     jest.spyOn(_videoRef.current, `load`);
     videoPlayerElement.instance().componentDidUpdate();
 
@@ -93,6 +117,14 @@ describe(`withVideo e2e-tests`, () => {
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
     const {_videoRef} = videoPlayerElement.instance();
+
+    window.HTMLMediaElement.prototype.canplaythrough = () => {
+      videoPlayerElement.instance().setState({
+        isLoading: false,
+      });
+    };
+
+    _videoRef.current.canplaythrough();
 
     videoPlayerElement.instance().componentWillUnmount();
 

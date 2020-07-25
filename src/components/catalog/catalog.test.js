@@ -4,6 +4,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {CatalogComponent} from "./catalog";
+import {NameSpace} from "../../reducers/name-space";
 
 import {mockMovies} from "../../__test-data__/test-mocks";
 
@@ -11,9 +12,11 @@ import {mockMovies} from "../../__test-data__/test-mocks";
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  activePage: ``,
-  prevPage: ``,
-  playerStartTime: 0,
+  [NameSpace.APPLICATION]: {
+    activePage: ``,
+    prevPage: ``,
+    playerStartTime: 0,
+  },
 });
 
 const props = {

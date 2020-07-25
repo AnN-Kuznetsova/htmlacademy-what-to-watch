@@ -4,7 +4,11 @@ exports[`Render App Should match with snapshot when page is "MAIN" 1`] = `
 Array [
   <section
     className="movie-card"
-    style={Object {}}
+    style={
+      Object {
+        "backgroundColor": "black",
+      }
+    }
   >
     <div
       className="movie-card__bg"
@@ -411,7 +415,11 @@ exports[`Render App Should match with snapshot when page is "MOVIE_DETAILS" 1`] 
 Array [
   <section
     className="movie-card movie-card--full"
-    style={Object {}}
+    style={
+      Object {
+        "backgroundColor": "black",
+      }
+    }
   >
     <div
       className="movie-card__hero"
@@ -866,6 +874,7 @@ exports[`Render App Should match with snapshot when page is "PLAYER" 1`] = `
     >
       <button
         className="player__play"
+        disabled={true}
         onClick={[Function]}
         type="button"
       >

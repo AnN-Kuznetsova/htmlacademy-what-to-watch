@@ -4,7 +4,11 @@ exports[`Render MainPage Should match with snapshot 1`] = `
 Array [
   <section
     className="movie-card"
-    style={Object {}}
+    style={
+      Object {
+        "backgroundColor": "black",
+      }
+    }
   >
     <div
       className="movie-card__bg"

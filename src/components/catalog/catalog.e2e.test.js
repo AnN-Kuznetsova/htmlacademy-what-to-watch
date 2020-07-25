@@ -4,6 +4,7 @@ import {Provider} from "react-redux";
 import {mount} from "enzyme";
 
 import {CatalogComponent} from "./catalog.jsx";
+import {NameSpace} from "../../reducers/name-space";
 
 import {mockMovies} from "../../__test-data__/test-mocks.js";
 
@@ -11,9 +12,11 @@ import {mockMovies} from "../../__test-data__/test-mocks.js";
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  activePage: ``,
-  prevPage: ``,
-  playerStartTime: 0,
+  [NameSpace.APPLICATION]: {
+    activePage: ``,
+    prevPage: ``,
+    playerStartTime: 0,
+  },
 });
 
 const mockEvent = {

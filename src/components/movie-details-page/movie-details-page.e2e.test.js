@@ -4,11 +4,25 @@ import {Provider} from "react-redux";
 import {mount} from "enzyme";
 
 import {MovieDetailsPage} from "./movie-details-page";
+import {NameSpace} from "../../reducers/name-space";
 
-import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
 
 const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.DATA]: {
+    movies: mockMovies,
+  },
+  [NameSpace.APPLICATION]: {
+    genre: `All genres`,
+    visibleMoviesCount: 8,
+    activePage: ``,
+    prevPage: ``,
+    playerStartTime: 0,
+  },
+});
 
 const mockEvent = {
   preventDefault() {}
@@ -20,16 +34,6 @@ const props = {
   activeMovie: mockPromoMovie,
   onSmallMovieCardClick,
 };
-
-const store = mockStore({
-  movies: [],
-  movieList: mockMovies,
-  genre: ``,
-  visibleMoviesCount: 8,
-  activePage: ``,
-  prevPage: ``,
-  playerStartTime: 0,
-});
 
 const movieDetailsPageElement = mount(
     <Provider store={store}>

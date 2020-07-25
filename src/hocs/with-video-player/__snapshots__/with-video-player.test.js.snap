@@ -6,6 +6,7 @@ exports[`Render withVideoPlayer Should match with snapshot 1`] = `
   isPlayerVisible={false}
   movie={
     Object {
+      "backgroundColor": "black",
       "backgroundUrl": "img/bg-the-grand-budapest-hotel.jpg",
       "description": Array [
         "In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy,
@@ -20,6 +21,8 @@ exports[`Render withVideoPlayer Should match with snapshot 1`] = `
         "Drama",
         "Comedy",
       ],
+      "id": 1,
+      "isFavorite": false,
       "posterUrl": "img/the-grand-budapest-hotel-poster.jpg",
       "previewUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
       "rating": Object {
@@ -45,6 +48,7 @@ exports[`Render withVideoPlayer Should match with snapshot 1`] = `
         "Jeff Goldblum",
       ],
       "title": "The Grand Budapest Hotel",
+      "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
     }
   }
   onPlayButtonClick={[Function]}

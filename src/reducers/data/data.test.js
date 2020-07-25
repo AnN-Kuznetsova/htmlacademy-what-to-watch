@@ -1,9 +1,10 @@
 import MockAdapter from "axios-mock-adapter";
 
-import {createAPI} from "../../api.js";
-import {reducer, ActionType, ActionCreator, Operation} from "./data";
+import {createAPI} from "../../api";
+import {reducer, ActionType as DataActionType, ActionCreator, Operation} from "./data";
+import {ActionType as ApplicationActionType} from "../application/application";
 
-import {mockMovies, mockPromoMovie} from "../../__test-data__/test-mocks";
+import {mockMovies, mockPromoMovie, mockRawFilm, mockRawFilmToMovie} from "../../__test-data__/test-mocks";
 
 
 describe(`Data reduser should work correctly`, () => {
@@ -11,6 +12,7 @@ describe(`Data reduser should work correctly`, () => {
     expect(reducer(void 0, {})).toEqual({
       movies: [],
       promoMovie: {},
+      maxMoviesCount: null,
     });
   });
 
@@ -19,7 +21,7 @@ describe(`Data reduser should work correctly`, () => {
     expect(reducer({
       movies: [],
     }, {
-      type: ActionType.LOAD_MOVIES,
+      type: DataActionType.LOAD_MOVIES,
       payload: mockMovies,
     })).toEqual({
       movies: mockMovies,
@@ -31,10 +33,22 @@ describe(`Data reduser should work correctly`, () => {
     expect(reducer({
       promoMovie: {},
     }, {
-      type: ActionType.LOAD_PROMO_MOVIE,
+      type: DataActionType.LOAD_PROMO_MOVIE,
       payload: mockPromoMovie,
     })).toEqual({
       promoMovie: mockPromoMovie,
+    });
+  });
+
+
+  it(`Data reducer should update max movies count by a given value`, () => {
+    expect(reducer({
+      maxMoviesCount: {},
+    }, {
+      type: DataActionType.SET_MAX_MOVIES_COUNT,
+      payload: 8,
+    })).toEqual({
+      maxMoviesCount: 8,
     });
   });
 });
@@ -43,7 +57,7 @@ describe(`Data reduser should work correctly`, () => {
 describe(`Data action creators should work correctly`, () => {
   it(`Data action creator for load movies returns correct action`, () => {
     expect(ActionCreator.loadMovies(mockMovies)).toEqual({
-      type: ActionType.LOAD_MOVIES,
+      type: DataActionType.LOAD_MOVIES,
       payload: mockMovies,
     });
   });
@@ -51,8 +65,16 @@ describe(`Data action creators should work correctly`, () => {
 
   it(`Data action creator for load promo movie returns correct action`, () => {
     expect(ActionCreator.loadPromoMovie(mockPromoMovie)).toEqual({
-      type: ActionType.LOAD_PROMO_MOVIE,
+      type: DataActionType.LOAD_PROMO_MOVIE,
       payload: mockPromoMovie,
+    });
+  });
+
+
+  it(`Data action creator for set max movies count returns correct action`, () => {
+    expect(ActionCreator.setMaxMoviesCount(5)).toEqual({
+      type: DataActionType.SET_MAX_MOVIES_COUNT,
+      payload: 5,
     });
   });
 });
@@ -67,14 +89,14 @@ describe(`Data operation work correctly`, () => {
 
     apiMock
       .onGet(`/films`)
-      .reply(200, [{fake: true}]);
+      .reply(200, [mockRawFilm]);
 
     return moviesLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_MOVIES,
-          payload: [{fake: true}],
+          type: DataActionType.LOAD_MOVIES,
+          payload: [mockRawFilmToMovie],
         });
       });
   });
@@ -88,14 +110,18 @@ describe(`Data operation work correctly`, () => {
 
     apiMock
       .onGet(`/films/promo`)
-      .reply(200, [{fake: true}]);
+      .reply(200, mockRawFilm);
 
     return promoMovieLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_PROMO_MOVIE,
-          payload: [{fake: true}],
+          type: DataActionType.LOAD_PROMO_MOVIE,
+          payload: mockRawFilmToMovie,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ApplicationActionType.CHANGE_ACTIVE_MOVIE,
+          payload: mockRawFilmToMovie,
         });
       });
   });

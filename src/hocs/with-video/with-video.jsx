@@ -77,14 +77,17 @@ export const withVideo = (Component) => {
     componentDidUpdate() {
       const video = this._videoRef.current;
       const {playerMode} = this.props;
+      const {isLoading} = this.state;
 
-      if (this.getPlayingValue()) {
-        video.play();
-      } else {
-        if (playerMode === VideoPlayerMode.PREVIEW) {
-          video.load();
+      if (!isLoading) {
+        if (this.getPlayingValue()) {
+          video.play();
         } else {
-          video.pause();
+          if (playerMode === VideoPlayerMode.PREVIEW) {
+            video.load();
+          } else {
+            video.pause();
+          }
         }
       }
     }
@@ -148,6 +151,7 @@ export const withVideo = (Component) => {
         playerMode,
       } = this.props;
       const {
+        isLoading,
         progress,
       } = this.state;
       const isPlaying = this.getPlayingValue();
@@ -156,6 +160,7 @@ export const withVideo = (Component) => {
         <Component
           {...this.props}
           playerMode={playerMode}
+          isLoading={isLoading}
           isPlaying={isPlaying}
           duration={this._duration}
           progress={progress || 0}

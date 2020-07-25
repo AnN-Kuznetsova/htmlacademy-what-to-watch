@@ -18,6 +18,7 @@ const getFormatedTimeLeft = (time) => {
 const PlayerComponent = (props) => {
   const {
     playerMode,
+    isLoading,
     isPlaying,
     duration,
     progress,
@@ -58,6 +59,7 @@ const PlayerComponent = (props) => {
                 <button
                   type="button"
                   className="player__play"
+                  disabled={isLoading}
                   onClick={onPlayButtonClick}
                 >
                   {isPlaying &&
@@ -105,6 +107,7 @@ const PlayerComponent = (props) => {
 
 PlayerComponent.propTypes = {
   playerMode: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   duration: PropTypes.number,
   progress: PropTypes.number.isRequired,

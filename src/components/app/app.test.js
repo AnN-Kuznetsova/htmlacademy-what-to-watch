@@ -35,6 +35,7 @@ const store = mockStore({
 
 const props = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isError: false,
   activeMovie: mockPromoMovie,
   movies: mockMovies,
   onOpenMovieDetailsPage: () => {},
@@ -71,6 +72,20 @@ describe(`Render App`, () => {
 
   it(`Should match with snapshot when page is "PLAYER"`, () => {
     props.activePage = PageType.PLAYER;
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when page is "ERROR"`, () => {
+    props.activePage = PageType.ERROR;
+    props.isError = true;
 
     const appSnapshot = renderer.create(
         <Provider store={store}>

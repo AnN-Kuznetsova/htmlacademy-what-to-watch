@@ -9,10 +9,10 @@ describe(`Application reduser should work correctly`, () => {
   it(`Application reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       genre: `All genres`,
-      activeMovie: {},
+      activeMovie: null,
       visibleMoviesCount: 8,
-      activePage: PageType.MAIN,
-      prevPage: PageType.MAIN,
+      activePage: PageType.ERROR,
+      prevPage: PageType.ERROR,
       playerStartTime: 0,
     });
   });
@@ -40,6 +40,15 @@ describe(`Application reduser should work correctly`, () => {
 
 
   it(`Application reducer should change active movie by a given value`, () => {
+    expect(reducer({
+      activeMovie: null,
+    }, {
+      type: ActionType.CHANGE_ACTIVE_MOVIE,
+      payload: mockMovies[1],
+    })).toEqual({
+      activeMovie: mockMovies[1],
+    });
+
     expect(reducer({
       activeMovie: {},
     }, {

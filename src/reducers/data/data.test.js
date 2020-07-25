@@ -1,8 +1,9 @@
 import MockAdapter from "axios-mock-adapter";
 
+import {ActionType as ApplicationActionType} from "../application/application";
+import {PageType} from "../../const";
 import {createAPI} from "../../api";
 import {reducer, ActionType as DataActionType, ActionCreator, Operation} from "./data";
-import {ActionType as ApplicationActionType} from "../application/application";
 
 import {mockMovies, mockPromoMovie, mockRawFilm, mockRawFilmToMovie} from "../../__test-data__/test-mocks";
 
@@ -13,6 +14,7 @@ describe(`Data reduser should work correctly`, () => {
       movies: [],
       promoMovie: {},
       maxMoviesCount: null,
+      isError: false,
     });
   });
 
@@ -51,6 +53,18 @@ describe(`Data reduser should work correctly`, () => {
       maxMoviesCount: 8,
     });
   });
+
+
+  it(`Data reducer should set isError in true`, () => {
+    expect(reducer({
+      isError: false,
+    }, {
+      type: DataActionType.SET_ERROR,
+      payload: true,
+    })).toEqual({
+      isError: true,
+    });
+  });
 });
 
 
@@ -75,6 +89,14 @@ describe(`Data action creators should work correctly`, () => {
     expect(ActionCreator.setMaxMoviesCount(5)).toEqual({
       type: DataActionType.SET_MAX_MOVIES_COUNT,
       payload: 5,
+    });
+  });
+
+
+  it(`Data action creator for set isError returns correct action`, () => {
+    expect(ActionCreator.setError()).toEqual({
+      type: DataActionType.SET_ERROR,
+      payload: true,
     });
   });
 });
@@ -114,7 +136,7 @@ describe(`Data operation work correctly`, () => {
 
     return promoMovieLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: DataActionType.LOAD_PROMO_MOVIE,
           payload: mockRawFilmToMovie,
@@ -122,6 +144,10 @@ describe(`Data operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ApplicationActionType.CHANGE_ACTIVE_MOVIE,
           payload: mockRawFilmToMovie,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
+          payload: PageType.MAIN,
         });
       });
   });

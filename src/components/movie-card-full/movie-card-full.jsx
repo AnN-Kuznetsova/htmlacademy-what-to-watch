@@ -22,9 +22,10 @@ const MovieCardFull = (props) => {
       style={isPlayerVisible ? {backgroundColor: `#180202`} : {backgroundColor: movie.backgroundColor}}
     >
       <div className="movie-card__hero">
-        <div className="movie-card__bg">
-          <img src={movie.backgroundUrl} alt={movie.title} />
-        </div>
+        {!isPlayerVisible &&
+          <div className="movie-card__bg">
+            <img src={movie.backgroundUrl} alt={movie.title} />
+          </div>}
 
         <Header />
 

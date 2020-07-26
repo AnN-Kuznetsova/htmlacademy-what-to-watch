@@ -1,7 +1,17 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 
-export const Header = () => {
+export const HeaderMode = {
+  SIGN_IN: `SIGN_IN`,
+  NO_AUTH: `NO_AUTH`,
+  AUTH: `AUTH`,
+};
+
+
+export const Header = (props) => {
+  const {mode} = props;
+
   const isMainPage = window.location.pathname === `/`;
   const mainPageLink = isMainPage ? null : {href: `/`};
 
@@ -18,15 +28,28 @@ export const Header = () => {
           </a>
         </div>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        {mode === HeaderMode.AUTH &&
+          <div className="user-block">
+            <div className="user-block__avatar">
+              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            </div>
+          </div>}
+
+        {mode === HeaderMode.NO_AUTH &&
+          <div className="user-block">
+            <a href="sign-in.html" className="user-block__link"
+              onClick={() => {}}
+            >Sign in</a>
+          </div>}
+
+        {mode === HeaderMode.SIGN_IN &&
+          <h1 className="page-title user-page__title">Sign in</h1>}
       </header>
     </React.Fragment>
   );
 };
 
 
-Header.propTypes = {};
+Header.propTypes = {
+  mode: PropTypes.string.isRequired,
+};

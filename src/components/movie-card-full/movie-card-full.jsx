@@ -11,6 +11,7 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 const MovieCardFull = (props) => {
   const {
     movie,
+    authorizationStatus,
     renderVideoPlayer,
     isPlayerVisible,
     onPlayButtonClick,
@@ -27,7 +28,7 @@ const MovieCardFull = (props) => {
             <img src={movie.backgroundUrl} alt={movie.title} />
           </div>}
 
-        <Header />
+        <Header mode={authorizationStatus} />
 
         <div className="movie-card__wrap">
           {isPlayerVisible && renderVideoPlayer(movie.videoUrl, movie.smallPictureUrl) ||
@@ -70,6 +71,7 @@ const MovieCardFull = (props) => {
 
 MovieCardFull.propTypes = {
   movie: MoviePropType.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,

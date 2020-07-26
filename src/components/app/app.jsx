@@ -20,8 +20,8 @@ import {getMovies, getError} from "../../reducers/data/selectors";
 
 const AppComponent = (props) => {
   const {
-    /* authorizationStatus,
-    login, */
+    authorizationStatus,
+    // login,
     isError,
     activePage,
     activeMovie,
@@ -36,6 +36,7 @@ const AppComponent = (props) => {
         return (
           <MainPage
             promoMovie={activeMovie}
+            authorizationStatus={authorizationStatus}
             openMovieDetailsPage={onOpenMovieDetailsPage}
           />
         );
@@ -43,6 +44,7 @@ const AppComponent = (props) => {
         return (
           <MovieDetailsPage
             activeMovie={activeMovie}
+            authorizationStatus={authorizationStatus}
             onSmallMovieCardClick={onOpenMovieDetailsPage}
           />
         );
@@ -67,7 +69,7 @@ const AppComponent = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {/* activeMovie.id && movies.length &&  */renderPage()}
+          {renderPage()}
         </Route>
         {/* <Route exact path="/movie-details">
           <MovieDetailsPage

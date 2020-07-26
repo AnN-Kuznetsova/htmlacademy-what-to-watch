@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import {Header} from "../header/header";
+import {Header, HeaderMode} from "../header/header";
 import {MoviePropType} from "../../prop-types";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
@@ -10,6 +10,7 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 const MovieCardPromo = (props) => {
   const {
     movie,
+    authorizationStatus,
     onMovieClick,
     renderVideoPlayer,
     isPlayerVisible,
@@ -26,7 +27,7 @@ const MovieCardPromo = (props) => {
           <img src={movie.backgroundUrl} alt={movie.title} />
         </div>}
 
-      <Header />
+      <Header mode={authorizationStatus} />
 
       <div className="movie-card__wrap">
         {isPlayerVisible && renderVideoPlayer(movie.videoUrl, movie.smallPictureUrl) ||
@@ -73,6 +74,7 @@ const MovieCardPromo = (props) => {
 
 MovieCardPromo.propTypes = {
   movie: MoviePropType.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onMovieClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,

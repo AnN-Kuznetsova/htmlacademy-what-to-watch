@@ -1,5 +1,8 @@
 import {extend} from "../../utils/utils";
 
+import {ActionCreator as ApplicationActionCreator} from "../application/application";
+import {PageType} from "../../const";
+
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -46,6 +49,7 @@ const Operation = {
     .then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.setLoginError(null));
+      dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
     })
     .catch((error) => {
       dispatch(ActionCreator.setLoginError(error));

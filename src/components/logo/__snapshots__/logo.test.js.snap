@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Logo Logo should match with snapshot when logo mode is "LIGHT" 1`] = `
+<div
+  className="logo"
+>
+  <a
+    className="logo__link logo__link--light"
+  >
+    <span
+      className="logo__letter logo__letter--1"
+    >
+      W
+    </span>
+    <span
+      className="logo__letter logo__letter--2"
+    >
+      T
+    </span>
+    <span
+      className="logo__letter logo__letter--3"
+    >
+      W
+    </span>
+  </a>
+</div>
+`;
+
+exports[`Render Logo Logo should match with snapshot when logo mode is "NORMAL" 1`] = `
+<div
+  className="logo"
+>
+  <a
+    className="logo__link false"
+  >
+    <span
+      className="logo__letter logo__letter--1"
+    >
+      W
+    </span>
+    <span
+      className="logo__letter logo__letter--2"
+    >
+      T
+    </span>
+    <span
+      className="logo__letter logo__letter--3"
+    >
+      W
+    </span>
+  </a>
+</div>
+`;

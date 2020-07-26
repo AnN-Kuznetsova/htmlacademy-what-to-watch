@@ -13,12 +13,14 @@ export const HeaderMode = {
 
 export const Header = (props) => {
   const {mode} = props;
+  const isAuth = mode === HeaderMode.AUTH;
+  const isSignIn = mode === HeaderMode.SIGN_IN;
 
   return (
     <React.Fragment>
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className="page-header movie-card__head">
+      <header className={`page-header ${isAuth && `movie-card__head`} ${isSignIn && `user-page__head`}`}>
         <Logo mode={LogoMode.NORMAL} />
 
         {mode === HeaderMode.AUTH &&

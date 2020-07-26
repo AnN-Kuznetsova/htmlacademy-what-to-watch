@@ -14,13 +14,15 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
+import {getLoginError} from "../../reducers/user/selectors";
 import {getMovies, getError} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
   const {
     login,
-    isError,
+    dataError,
+    loginError,
     activePage,
     activeMovie,
     onOpenMovieDetailsPage,
@@ -53,13 +55,14 @@ const AppComponent = (props) => {
       case PageType.SIGN_IN:
         return (
           <SignIn
+            loginError={loginError}
             onSubmit={login}
           />
         );
       case PageType.ERROR:
         return (
           <ErrorPage
-            isError={isError}
+            dataError={dataError}
           />
         );
       default:
@@ -90,7 +93,8 @@ const AppComponent = (props) => {
 
 AppComponent.propTypes = {
   login: PropTypes.func.isRequired,
-  isError: PropTypes.bool.isRequired,
+  dataError: PropTypes.bool.isRequired,
+  loginError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
@@ -98,7 +102,8 @@ AppComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  isError: getError(state),
+  dataError: getError(state),
+  loginError: getLoginError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
   movies: getMovies(state),

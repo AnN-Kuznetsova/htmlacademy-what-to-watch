@@ -5,18 +5,18 @@ import {ErrorPage} from "./error-page";
 
 
 describe(`Render ErrorPage`, () => {
-  it(`ErrorPage should match with snapshot when isError is false`, () => {
+  it(`ErrorPage should match with snapshot when dataError is false`, () => {
     const errorPageSnapshot = renderer.create(
-        <ErrorPage isError={false} />
+        <ErrorPage dataError={false} />
     ).toJSON();
 
     expect(errorPageSnapshot).toMatchSnapshot();
   });
 
 
-  it(`ErrorPage should match with snapshot when isError is true`, () => {
+  it(`ErrorPage should match with snapshot when dataError is true`, () => {
     const errorPageSnapshot = renderer.create(
-        <ErrorPage isError={true} />
+        <ErrorPage dataError={true} />
     ).toJSON();
 
     expect(errorPageSnapshot).toMatchSnapshot();

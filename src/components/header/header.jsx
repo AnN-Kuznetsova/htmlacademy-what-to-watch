@@ -19,6 +19,7 @@ const HeaderComponent = (props) => {
 
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
   const isSignIn = activePage === PageType.SIGN_IN;
+  const isError = activePage === PageType.ERROR;
 
   const handleSignInClick = (event) => {
     event.preventDefault();
@@ -32,14 +33,14 @@ const HeaderComponent = (props) => {
       <header className={`page-header ${isAuth && !isSignIn && `movie-card__head`} ${isSignIn && `user-page__head`}`}>
         <Logo mode={LogoMode.NORMAL} />
 
-        {isAuth && !isSignIn &&
+        {isAuth && !isSignIn && !isError &&
           <div className="user-block">
             <div className="user-block__avatar">
               <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
             </div>
           </div>}
 
-        {!isAuth && !isSignIn &&
+        {!isAuth && !isSignIn && !isError &&
           <div className="user-block">
             <a href="sign-in.html" className="user-block__link"
               onClick={handleSignInClick}

@@ -14,7 +14,7 @@ describe(`Data reduser should work correctly`, () => {
       movies: [],
       promoMovie: {},
       maxMoviesCount: null,
-      isError: false,
+      dataError: false,
     });
   });
 
@@ -55,14 +55,14 @@ describe(`Data reduser should work correctly`, () => {
   });
 
 
-  it(`Data reducer should set isError in true`, () => {
+  it(`Data reducer should set dataError in true`, () => {
     expect(reducer({
-      isError: false,
+      dataError: false,
     }, {
-      type: DataActionType.SET_ERROR,
+      type: DataActionType.SET_DATA_ERROR,
       payload: true,
     })).toEqual({
-      isError: true,
+      dataError: true,
     });
   });
 });
@@ -93,9 +93,9 @@ describe(`Data action creators should work correctly`, () => {
   });
 
 
-  it(`Data action creator for set isError returns correct action`, () => {
-    expect(ActionCreator.setError()).toEqual({
-      type: DataActionType.SET_ERROR,
+  it(`Data action creator for set dataError returns correct action`, () => {
+    expect(ActionCreator.setDataError()).toEqual({
+      type: DataActionType.SET_DATA_ERROR,
       payload: true,
     });
   });

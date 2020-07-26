@@ -1,15 +1,32 @@
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
 
+import {Error} from "../../api";
 import {Header} from "../header/header";
 import {Footer} from "../footer/footer";
 
 
+const getErrorMessage = (errorStatus) => {
+  switch (errorStatus) {
+    case Error.BAD_REQUEST:
+      return (`We can’t recognize this email
+and password combination. Please try again.`);
+    default:
+      return null;
+  }
+};
+
+
 export const SignIn = (props) => {
-  const {onSubmit} = props;
+  const {
+    onSubmit,
+    loginError,
+  } = props;
 
   const emailRef = createRef();
   const passwordRef = createRef();
+
+  const errorMessage = loginError ? getErrorMessage(loginError.response.status) : null;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,9 +47,10 @@ export const SignIn = (props) => {
           className="sign-in__form"
           onSubmit={handleSubmit}>
 
-          {/* <div className="sign-in__message">
-            <p>We can’t recognize this email <br/> and password combination. Please try again.</p>
-          </div> */}
+          {errorMessage &&
+            <div className="sign-in__message">
+              <p style={{whiteSpace: `pre-wrap`}}>{errorMessage}</p>
+            </div>}
 
           <div className="sign-in__fields">
             <div className="sign-in__field">
@@ -58,5 +76,6 @@ export const SignIn = (props) => {
 
 
 SignIn.propTypes = {
+  loginError: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
 };

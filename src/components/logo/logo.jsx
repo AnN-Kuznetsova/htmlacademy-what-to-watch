@@ -11,8 +11,10 @@ export const LogoMode = {
 export const Logo = (props) => {
   const {mode} = props;
 
-  const isMainPage = window.location.pathname === `/`;
-  const mainPageLink = isMainPage ? null : {href: `/`};
+  // TO DO: Исправить, конда будут подключены пути
+  /* const isMainPage = window.location.pathname === `/`;
+  const mainPageLink = isMainPage ? null : {href: `/`}; */
+  const mainPageLink = {href: `/`};
 
   return (
     <div className="logo">

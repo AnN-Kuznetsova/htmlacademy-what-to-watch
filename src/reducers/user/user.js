@@ -45,6 +45,7 @@ const Operation = {
     })
     .then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.setLoginError(null));
     })
     .catch((error) => {
       dispatch(ActionCreator.setLoginError(error));

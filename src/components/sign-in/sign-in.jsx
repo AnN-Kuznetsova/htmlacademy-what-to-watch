@@ -28,7 +28,8 @@ and password combination. Please try again.`);
 };
 
 const getEmailValidation = (emailValue) => {
-  return Boolean(emailValue);
+  const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  return re.test(String(emailValue).toLowerCase());
 };
 
 

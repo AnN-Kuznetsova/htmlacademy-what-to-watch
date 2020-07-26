@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCtrator} from "../../reducers/data/data";
-// import {AuthorizationStatus} from "../../reducers/user/user";
 import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
@@ -15,14 +14,12 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
-import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getMovies, getError} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
   const {
-    authorizationStatus,
-    // login,
+    login,
     isError,
     activePage,
     activeMovie,
@@ -37,7 +34,6 @@ const AppComponent = (props) => {
         return (
           <MainPage
             promoMovie={activeMovie}
-            authorizationStatus={authorizationStatus}
             openMovieDetailsPage={onOpenMovieDetailsPage}
           />
         );
@@ -45,7 +41,6 @@ const AppComponent = (props) => {
         return (
           <MovieDetailsPage
             activeMovie={activeMovie}
-            authorizationStatus={authorizationStatus}
             onSmallMovieCardClick={onOpenMovieDetailsPage}
           />
         );
@@ -53,6 +48,12 @@ const AppComponent = (props) => {
         return (
           <PlayerPage
             movie={activeMovie}
+          />
+        );
+      case PageType.SIGN_IN:
+        return (
+          <SignIn
+            onSubmit={login}
           />
         );
       case PageType.ERROR:
@@ -77,10 +78,10 @@ const AppComponent = (props) => {
             activeMovie={activeMovie}
             onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
           />
-  </Route>*/}
-        <Route exact path="/sign-in">
-          <SignIn />
         </Route>
+        <Route exact path="/sign-in">
+          <SignIn onSubmit={() => {}} />
+        </Route>*/}
       </Switch>
     </BrowserRouter>
   );
@@ -88,7 +89,6 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
   isError: PropTypes.bool.isRequired,
   activePage: PropTypes.string.isRequired,
@@ -98,7 +98,6 @@ AppComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
   isError: getError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),

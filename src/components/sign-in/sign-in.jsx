@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
 
-import {Header, HeaderMode} from "../header/header";
+import {Header} from "../header/header";
 import {Footer} from "../footer/footer";
 
 
@@ -22,13 +22,14 @@ export const SignIn = (props) => {
 
   return (
     <div className="user-page">
-      <Header mode={HeaderMode.SIGN_IN} />
+      <Header />
 
       <div className="sign-in user-page__content">
         <form
           action="#"
           className="sign-in__form"
           onSubmit={handleSubmit}>
+
           {/* <div className="sign-in__message">
             <p>We can’t recognize this email <br/> and password combination. Please try again.</p>
           </div> */}

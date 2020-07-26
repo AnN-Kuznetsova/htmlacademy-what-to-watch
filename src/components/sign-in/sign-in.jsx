@@ -1,40 +1,62 @@
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
+import {connect} from "react-redux";
 
-import {Error} from "../../api";
 import {Header} from "../header/header";
 import {Footer} from "../footer/footer";
+import {Operation as UserOperation, ActionCreator} from "../../reducers/user/user";
+import {getLoginError} from "../../reducers/user/selectors";
 
 
-const getErrorMessage = (errorStatus) => {
-  switch (errorStatus) {
-    case Error.BAD_REQUEST:
+const SignInError = {
+  BAD_REQUEST: 400,
+  EMAIL_VALIDATION: `EMAIL_VALIDATION`,
+};
+
+const getErrorMessage = (loginError) => {
+  switch (true) {
+    case loginError.response && loginError.response.status === SignInError.BAD_REQUEST:
       return (`We can’t recognize this email
 and password combination. Please try again.`);
+
+    case loginError.response === SignInError.EMAIL_VALIDATION:
+      return `Please enter a valid email address`;
+
     default:
       return null;
   }
 };
 
+const getEmailValidation = (emailValue) => {
+  return Boolean(emailValue);
+};
 
-export const SignIn = (props) => {
+
+const SignInComponent = (props) => {
   const {
-    onSubmit,
+    login,
     loginError,
+    setLoginError,
   } = props;
 
   const emailRef = createRef();
   const passwordRef = createRef();
 
-  const errorMessage = loginError ? getErrorMessage(loginError.response.status) : null;
+  const errorMessage = loginError ? getErrorMessage(loginError) : null;
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onSubmit({
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    });
+    if (getEmailValidation(emailRef.current.value)) {
+      login({
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      });
+    } else {
+      setLoginError({
+        response: SignInError.EMAIL_VALIDATION,
+      });
+    }
   };
 
   return (
@@ -53,7 +75,7 @@ export const SignIn = (props) => {
             </div>}
 
           <div className="sign-in__fields">
-            <div className="sign-in__field">
+            <div className={`sign-in__field ${loginError && loginError.response === SignInError.EMAIL_VALIDATION && `sign-in__field--error`}`}>
               <input ref={emailRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
@@ -75,7 +97,30 @@ export const SignIn = (props) => {
 };
 
 
-SignIn.propTypes = {
+SignInComponent.propTypes = {
   loginError: PropTypes.object,
-  onSubmit: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  setLoginError: PropTypes.func.isRequired,
+};
+
+
+const mapStateToProps = (state) => ({
+  loginError: getLoginError(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
+  setLoginError(error) {
+    dispatch(ActionCreator.setLoginError(error));
+  },
+});
+
+const SignIn = connect(mapStateToProps, mapDispatchToProps)(SignInComponent);
+
+
+export {
+  SignInComponent,
+  SignIn,
 };

@@ -9,20 +9,16 @@ import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
-import {Operation as UserOperation} from "../../reducers/user/user";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
-import {getLoginError} from "../../reducers/user/selectors";
 import {getMovies, getError} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
   const {
-    login,
     dataError,
-    loginError,
     activePage,
     activeMovie,
     onOpenMovieDetailsPage,
@@ -54,10 +50,7 @@ const AppComponent = (props) => {
         );
       case PageType.SIGN_IN:
         return (
-          <SignIn
-            loginError={loginError}
-            onSubmit={login}
-          />
+          <SignIn />
         );
       case PageType.ERROR:
         return (
@@ -92,9 +85,7 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
-  login: PropTypes.func.isRequired,
   dataError: PropTypes.bool.isRequired,
-  loginError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
@@ -103,16 +94,12 @@ AppComponent.propTypes = {
 
 const mapStateToProps = (state) => ({
   dataError: getError(state),
-  loginError: getLoginError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
   movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
-    dispatch(UserOperation.login(authData));
-  },
   onOpenMovieDetailsPage(movie) {
     dispatch(DataActionCtrator.setMaxMoviesCount(NUMBER_OF_SIMILAR_FILMS));
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));

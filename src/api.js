@@ -3,7 +3,6 @@ import axios from "axios";
 
 export const Error = {
   UNAUTHORIZED: 401,
-  BAD_REQUEST: 400,
 };
 
 

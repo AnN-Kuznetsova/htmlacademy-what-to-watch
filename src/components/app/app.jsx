@@ -13,6 +13,7 @@ import {MoviePropType} from "../../prop-types";
 import {Operation as UserOperation} from "../../reducers/user/user";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
+import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getMovies, getError} from "../../reducers/data/selectors";
@@ -76,12 +77,10 @@ const AppComponent = (props) => {
             activeMovie={activeMovie}
             onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
           />
+  </Route>*/}
+        <Route exact path="/sign-in">
+          <SignIn />
         </Route>
-        <Route exact path="/player">
-          <PlayerPage
-            movie={activeMovie}
-          />
-        </Route> */}
       </Switch>
     </BrowserRouter>
   );

@@ -1,7 +1,9 @@
 import {extend} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
+import {ActionCreator as DataActionCreator} from "../data/data";
 import {PageType} from "../../const";
+import {getPromoMovie} from "../data/selectors";
 
 
 const AuthorizationStatus = {
@@ -49,6 +51,10 @@ const Operation = {
     .then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.setLoginError(null));
+      dispatch(DataActionCreator.setMaxMoviesCount(null));
+      dispatch(ApplicationActionCreator.changeActiveMovie(getPromoMovie(getState())));
+      dispatch(ApplicationActionCreator.changeGenre(`All genres`));
+      dispatch(ApplicationActionCreator.resetVisibleMoviesCount());
       dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
     })
     .catch((error) => {

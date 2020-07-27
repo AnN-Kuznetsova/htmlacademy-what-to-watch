@@ -1,9 +1,20 @@
 import MockAdapter from "axios-mock-adapter";
+// import configureStore from "redux-mock-store";
 
 import {ActionType as ApplicationActionType} from "../application/application";
-import {PageType} from "../../const";
+import {ActionType as DataActionType} from "../data/data";
+/* import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const"; */
 import {createAPI} from "../../api";
 import {reducer, ActionType, ActionCreator, AuthorizationStatus, Operation} from "./user";
+
+/* const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.DATA]: {
+    activeMovie: {},
+  },
+}); */
 
 
 describe(`User reducer should work correctly`, () => {
@@ -158,7 +169,7 @@ describe(`User operation work correctly`, () => {
 
     return loginSender(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: AuthorizationStatus.AUTH,
@@ -168,9 +179,25 @@ describe(`User operation work correctly`, () => {
           payload: null,
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: DataActionType.SET_MAX_MOVIES_COUNT,
+          payload: null,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
+          type: ApplicationActionType.CHANGE_ACTIVE_MOVIE,
+          payload: {},
+        });
+        /* expect(dispatch).toHaveBeenNthCalledWith(4, {
+          type: ApplicationActionType.CHANGE_GENRE,
+          payload: `All genres`,
+        }); */
+        /* expect(dispatch).toHaveBeenNthCalledWith(6, {
+          type: ApplicationActionType.RESET_VISIBLE_MOVIES_COUNT,
+          payload: null,
+        }); */
+        /* expect(dispatch).toHaveBeenNthCalledWith(7, {
           type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
           payload: PageType.MAIN,
-        });
+        }); */
       });
   });
 });

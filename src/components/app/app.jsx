@@ -102,7 +102,7 @@ const mapDispatchToProps = (dispatch) => ({
   onOpenMovieDetailsPage(movie) {
     dispatch(DataActionCtrator.setMaxMoviesCount(NUMBER_OF_SIMILAR_FILMS));
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));
-    dispatch(Operation.loadActiveMovieComments(movie.id));
+    dispatch(Operation.loadActiveMovieReviews(movie.id));
     dispatch(ApplicationActionCreator.changeGenre(movie.genres[0]));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   },

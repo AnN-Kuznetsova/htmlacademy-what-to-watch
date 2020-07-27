@@ -1,20 +1,12 @@
 import MockAdapter from "axios-mock-adapter";
-// import configureStore from "redux-mock-store";
+import configureStore from "redux-mock-store";
 
 import {ActionType as ApplicationActionType} from "../application/application";
 import {ActionType as DataActionType} from "../data/data";
-/* import {NameSpace} from "../../reducers/name-space";
-import {PageType} from "../../const"; */
+import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const";
 import {createAPI} from "../../api";
 import {reducer, ActionType, ActionCreator, AuthorizationStatus, Operation} from "./user";
-
-/* const mockStore = configureStore([]);
-
-const store = mockStore({
-  [NameSpace.DATA]: {
-    activeMovie: {},
-  },
-}); */
 
 
 describe(`User reducer should work correctly`, () => {
@@ -151,9 +143,17 @@ describe(`User operation work correctly`, () => {
 
 
   it(`Should make a correct API call to /login with post request`, () => {
+    const mockStore = configureStore([]);
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        promoMovie: {},
+      },
+    });
+
     const api = createAPI(() => {});
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+
     const authData = {
       email: `email`,
       password: `password`,
@@ -167,9 +167,9 @@ describe(`User operation work correctly`, () => {
       })
       .reply(200);
 
-    return loginSender(dispatch, () => {}, api)
+    return loginSender(dispatch, store.getState, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenCalledTimes(7);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: AuthorizationStatus.AUTH,
@@ -186,18 +186,18 @@ describe(`User operation work correctly`, () => {
           type: ApplicationActionType.CHANGE_ACTIVE_MOVIE,
           payload: {},
         });
-        /* expect(dispatch).toHaveBeenNthCalledWith(4, {
+        expect(dispatch).toHaveBeenNthCalledWith(5, {
           type: ApplicationActionType.CHANGE_GENRE,
           payload: `All genres`,
-        }); */
-        /* expect(dispatch).toHaveBeenNthCalledWith(6, {
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(6, {
           type: ApplicationActionType.RESET_VISIBLE_MOVIES_COUNT,
           payload: null,
-        }); */
-        /* expect(dispatch).toHaveBeenNthCalledWith(7, {
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(7, {
           type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
           payload: PageType.MAIN,
-        }); */
+        });
       });
   });
 });

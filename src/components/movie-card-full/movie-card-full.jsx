@@ -14,7 +14,13 @@ const MovieCardFull = (props) => {
     renderVideoPlayer,
     isPlayerVisible,
     onPlayButtonClick,
+    onAddReviewButtonClick,
   } = props;
+
+  const handleAddReviewButtonClick = (event) => {
+    event.preventDefault();
+    onAddReviewButtonClick();
+  };
 
   return (
     <section
@@ -56,7 +62,11 @@ const MovieCardFull = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <a
+                  href="add-review.html"
+                  className="btn movie-card__button"
+                  onClick={handleAddReviewButtonClick}
+                >Add review</a>
               </div>
             </div>}
         </div>
@@ -73,6 +83,7 @@ MovieCardFull.propTypes = {
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
+  onAddReviewButtonClick: PropTypes.func.isRequired,
 };
 
 

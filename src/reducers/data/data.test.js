@@ -174,7 +174,7 @@ describe(`Data operation work correctly`, () => {
   });
 
 
-  it(`Should make a correct API call to /comments/: film_id`, () => {
+  /* it(`Should make a correct API call to /comments/: film_id`, () => {
     const api = createAPI(() => {});
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -196,5 +196,5 @@ describe(`Data operation work correctly`, () => {
           payload: null,
         });
       });
-  });
+  }); */
 });

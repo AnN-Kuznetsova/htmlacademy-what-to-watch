@@ -11,12 +11,14 @@ export const MovieDetailsPage = (props) => {
   const {
     activeMovie,
     onSmallMovieCardClick,
+    onAddReviewButtonClick,
   } = props;
 
   return (
     <React.Fragment>
       <MovieCardFullWithPlayer
         movie={activeMovie}
+        onAddReviewButtonClick={onAddReviewButtonClick}
       />
 
       <div className="page-content">
@@ -40,4 +42,5 @@ export const MovieDetailsPage = (props) => {
 MovieDetailsPage.propTypes = {
   activeMovie: MoviePropType.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
+  onAddReviewButtonClick: PropTypes.func.isRequired,
 };

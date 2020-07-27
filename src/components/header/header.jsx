@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {ActionCreator} from "../../reducers/application/application";
+import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
 import {PageType} from "../../const";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
@@ -11,6 +12,7 @@ import {getActivePage} from "../../reducers/application/selectors";
 
 
 const HeaderMode = {
+  ADD_REVIEW_PAGE: `ADD_REVIEW_PAGE`,
   ERROR_PAGE: `ERROR_PAGE`,
   SIGN_IN_PAGE: `SIGN_IN_PAGE`,
   MOVIE_CARD_AUTH: `MOVIE_CARD_AUTH`,
@@ -19,6 +21,8 @@ const HeaderMode = {
 
 const getHeaderMode = (activePage, authorizationStatus) => {
   switch (true) {
+    case activePage === PageType.ADD_REVIEW:
+      return HeaderMode.ADD_REVIEW_PAGE;
     case activePage === PageType.ERROR:
       return HeaderMode.ERROR_PAGE;
     case activePage === PageType.SIGN_IN:
@@ -52,6 +56,9 @@ const HeaderComponent = (props) => {
 
       <header className={`page-header ${headerMode === HeaderMode.MOVIE_CARD_AUTH && `movie-card__head`} ${headerMode === HeaderMode.SIGN_IN_PAGE && `user-page__head`}`}>
         <Logo mode={LogoMode.NORMAL} />
+
+        {headerMode === HeaderMode.ADD_REVIEW_PAGE &&
+          <Breadcrumbs />}
 
         {headerMode === HeaderMode.MOVIE_CARD_AUTH &&
           <div className="user-block">

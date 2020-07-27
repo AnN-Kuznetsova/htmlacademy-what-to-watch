@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCtrator, Operation} from "../../reducers/data/data";
+import {AddReviewPage} from "../add-review-page/add-review-page";
 import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
@@ -15,6 +16,8 @@ import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getError} from "../../reducers/data/selectors";
 
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
+
 
 const AppComponent = (props) => {
   const {
@@ -22,6 +25,7 @@ const AppComponent = (props) => {
     activePage,
     activeMovie,
     onOpenMovieDetailsPage,
+    onAddReviewButtonClick,
   } = props;
 
   const renderPage = () => {
@@ -40,6 +44,7 @@ const AppComponent = (props) => {
           <MovieDetailsPage
             activeMovie={activeMovie}
             onSmallMovieCardClick={onOpenMovieDetailsPage}
+            onAddReviewButtonClick={onAddReviewButtonClick}
           />
         );
       case PageType.PLAYER:
@@ -51,6 +56,12 @@ const AppComponent = (props) => {
       case PageType.SIGN_IN:
         return (
           <SignIn />
+        );
+      case PageType.ADD_REVIEW:
+        return (
+          <AddReviewPage
+            movie={activeMovie}
+          />
         );
       case PageType.ERROR:
         return (
@@ -77,6 +88,9 @@ const AppComponent = (props) => {
         </Route>
         <Route exact path="/sign-in">
           <SignIn onSubmit={() => {}} />
+        </Route>
+        <Route exact path="/dev-review">
+          <AddReviewPage movie={mockPromoMovie} />
         </Route>*/}
       </Switch>
     </BrowserRouter>
@@ -89,6 +103,7 @@ AppComponent.propTypes = {
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
+  onAddReviewButtonClick: PropTypes.func.isRequired,
 };
 
 
@@ -106,6 +121,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ApplicationActionCreator.changeGenre(movie.genres[0]));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   },
+  onAddReviewButtonClick() {
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.ADD_REVIEW));
+  }
 });
 
 const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);

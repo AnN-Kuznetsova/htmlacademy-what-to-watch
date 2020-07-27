@@ -11,6 +11,7 @@ const PageType = {
   PLAYER: `player`,
   ERROR: `error`,
   SIGN_IN: `sign-in`,
+  ADD_REVIEW: `add-review`,
 };
 
 

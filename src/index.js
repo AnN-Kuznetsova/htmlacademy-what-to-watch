@@ -21,7 +21,7 @@ const onFailRequest = (error) => {
       break;
 
     default:
-      store.dispatch(DataActionCreator.setDataError());
+      store.dispatch(DataActionCreator.setDataError(error));
       break;
   }
 };

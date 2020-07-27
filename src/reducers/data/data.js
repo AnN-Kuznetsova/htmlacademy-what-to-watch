@@ -11,7 +11,7 @@ const initialState = {
   promoMovie: {},
   maxMoviesCount: null,
   activeMovieReviews: [],
-  dataError: false,
+  dataError: null,
 };
 
 
@@ -45,9 +45,9 @@ const ActionCreator = {
     payload: count,
   }),
 
-  setDataError: () => ({
+  setDataError: (error) => ({
     type: ActionType.SET_DATA_ERROR,
-    payload: true,
+    payload: error,
   }),
 };
 
@@ -76,8 +76,11 @@ const Operation = {
       .then((response) => createReviews(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadActiveMovieComments(response));
+        dispatch(ActionCreator.setDataError(null));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        dispatch(ActionCreator.setDataError(error));
+      });
   },
 };
 

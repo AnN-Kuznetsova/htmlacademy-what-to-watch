@@ -43,5 +43,5 @@ export const ErrorPage = (props) => {
 
 
 ErrorPage.propTypes = {
-  dataError: PropTypes.bool.isRequired,
+  dataError: PropTypes.object,
 };

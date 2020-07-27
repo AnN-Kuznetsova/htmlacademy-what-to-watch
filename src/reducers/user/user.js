@@ -26,6 +26,7 @@ const ActionCreator = {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
   }),
+
   setLoginError: (error) => ({
     type: ActionType.SET_LOGIN_ERROR,
     payload: error,

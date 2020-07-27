@@ -85,7 +85,7 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
-  dataError: PropTypes.bool.isRequired,
+  dataError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,

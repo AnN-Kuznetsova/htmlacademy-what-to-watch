@@ -6,6 +6,7 @@ exports[`Render Logo Logo should match with snapshot when logo mode is "LIGHT" 1
 >
   <a
     className="logo__link logo__link--light"
+    href="/"
   >
     <span
       className="logo__letter logo__letter--1"
@@ -32,6 +33,7 @@ exports[`Render Logo Logo should match with snapshot when logo mode is "NORMAL" 
 >
   <a
     className="logo__link false"
+    href="/"
   >
     <span
       className="logo__letter logo__letter--1"

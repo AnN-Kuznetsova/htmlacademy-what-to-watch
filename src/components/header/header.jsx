@@ -18,8 +18,8 @@ const HeaderComponent = (props) => {
   } = props;
 
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
-  const isSignIn = activePage === PageType.SIGN_IN;
-  const isError = activePage === PageType.ERROR;
+  const isSignInPage = activePage === PageType.SIGN_IN;
+  const isErrorPage = activePage === PageType.ERROR;
 
   const handleSignInClick = (event) => {
     event.preventDefault();
@@ -30,24 +30,24 @@ const HeaderComponent = (props) => {
     <React.Fragment>
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className={`page-header ${isAuth && !isSignIn && `movie-card__head`} ${isSignIn && `user-page__head`}`}>
+      <header className={`page-header ${isAuth && !isSignInPage && `movie-card__head`} ${isSignInPage && `user-page__head`}`}>
         <Logo mode={LogoMode.NORMAL} />
 
-        {isAuth && !isSignIn && !isError &&
+        {isAuth && !isSignInPage && !isErrorPage &&
           <div className="user-block">
             <div className="user-block__avatar">
               <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
             </div>
           </div>}
 
-        {!isAuth && !isSignIn && !isError &&
+        {!isAuth && !isSignInPage && !isErrorPage &&
           <div className="user-block">
             <a href="sign-in.html" className="user-block__link"
               onClick={handleSignInClick}
             >Sign in</a>
           </div>}
 
-        {isSignIn &&
+        {isSignInPage &&
           <h1 className="page-title user-page__title">Sign in</h1>}
       </header>
     </React.Fragment>

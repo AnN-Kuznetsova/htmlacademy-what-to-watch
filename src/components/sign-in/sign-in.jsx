@@ -8,7 +8,7 @@ import {Operation as UserOperation, ActionCreator} from "../../reducers/user/use
 import {getLoginError} from "../../reducers/user/selectors";
 
 
-const SignInError = {
+export const SignInError = {
   BAD_REQUEST: 400,
   EMAIL_VALIDATION: `EMAIL_VALIDATION`,
 };

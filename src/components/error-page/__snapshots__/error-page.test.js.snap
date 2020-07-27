@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render ErrorPage ErrorPage should match with snapshot when isError is false 1`] = `
+exports[`Render ErrorPage ErrorPage should match with snapshot when dataError is false 1`] = `
 Array [
   <section
     className="movie-card"
@@ -16,13 +16,14 @@ Array [
       WTW
     </h1>
     <header
-      className="page-header movie-card__head"
+      className="page-header false false"
     >
       <div
         className="logo"
       >
         <a
-          className="logo__link"
+          className="logo__link false"
+          href="/"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -40,20 +41,6 @@ Array [
             W
           </span>
         </a>
-      </div>
-      <div
-        className="user-block"
-      >
-        <div
-          className="user-block__avatar"
-        >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
       </div>
     </header>
     <div
@@ -83,6 +70,7 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="/"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -113,7 +101,7 @@ Array [
 ]
 `;
 
-exports[`Render ErrorPage ErrorPage should match with snapshot when isError is true 1`] = `
+exports[`Render ErrorPage ErrorPage should match with snapshot when dataError is true 1`] = `
 Array [
   <section
     className="movie-card"
@@ -129,13 +117,14 @@ Array [
       WTW
     </h1>
     <header
-      className="page-header movie-card__head"
+      className="page-header false false"
     >
       <div
         className="logo"
       >
         <a
-          className="logo__link"
+          className="logo__link false"
+          href="/"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -153,20 +142,6 @@ Array [
             W
           </span>
         </a>
-      </div>
-      <div
-        className="user-block"
-      >
-        <div
-          className="user-block__avatar"
-        >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
       </div>
     </header>
     <div
@@ -198,6 +173,7 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="/"
         >
           <span
             className="logo__letter logo__letter--1"

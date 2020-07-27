@@ -1,10 +1,14 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
+import {Provider} from "react-redux";
 
-import {MovieCardFull} from "./movie-card-full.jsx";
+import {AuthorizationStatus} from "../../reducers/user/user";
+import {MovieCardFull} from "./movie-card-full";
+import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const";
 
-import {mockPromoMovie} from "../../__test-data__/test-mocks.js";
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 global.window = Object.create(window);
@@ -14,6 +18,17 @@ Object.defineProperty(window, `location`, {
   }
 });
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.APPLICATION]: {
+    activePage: PageType.MOVIE_DETAILS,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+  },
+});
+
 const props = {
   movie: mockPromoMovie,
   renderVideoPlayer: () => {},
@@ -21,42 +36,15 @@ const props = {
   onPlayButtonClick: () => {},
 };
 
-const movieCardFullElement = shallow(<MovieCardFull {...props} />);
-
 
 describe(`Render MovieCardFull`, () => {
   it(`Should match with snapshot`, () => {
     const movieCardFulSnapshot = renderer.create(
-        <MovieCardFull {...props} />
+        <Provider store={store}>
+          <MovieCardFull {...props} />
+        </Provider>
     ).toJSON();
 
     expect(movieCardFulSnapshot).toMatchSnapshot();
-  });
-
-
-  it(`Should render correct movie title`, () => {
-    expect(movieCardFullElement.find(`div.movie-card__bg img`).prop(`alt`))
-      .toEqual(mockPromoMovie.title);
-
-    expect(movieCardFullElement.find(`h2.movie-card__title`).text())
-      .toEqual(mockPromoMovie.title);
-  });
-
-
-  it(`Should render correct movie genre`, () => {
-    expect(movieCardFullElement.find(`span.movie-card__genre`).text())
-      .toEqual(mockPromoMovie.genres[0]);
-  });
-
-
-  it(`Should render correct movie release date`, () => {
-    expect(movieCardFullElement.find(`span.movie-card__year`).text())
-      .toEqual(mockPromoMovie.releaseDate.getFullYear().toString());
-  });
-
-
-  it(`Should render correct movie page background`, () => {
-    expect(movieCardFullElement.find(`div.movie-card__bg img`).prop(`src`))
-      .toEqual(mockPromoMovie.backgroundUrl);
   });
 });

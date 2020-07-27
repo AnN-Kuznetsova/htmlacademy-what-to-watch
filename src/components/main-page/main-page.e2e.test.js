@@ -3,8 +3,10 @@ import configureStore from "redux-mock-store";
 import {mount} from "enzyme";
 import {Provider} from "react-redux";
 
+import {AuthorizationStatus} from "../../reducers/user/user.js";
 import {MainPage} from "./main-page.jsx";
 import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const.js";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
@@ -22,8 +24,12 @@ const store = mockStore({
   [NameSpace.APPLICATION]: {
     genre: `All genres`,
     visibleMoviesCount: 8,
+    activePage: PageType.MAIN,
     prevPage: ``,
     playerStartTime: 0,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
   },
 });
 

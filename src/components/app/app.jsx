@@ -13,7 +13,7 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
-import {getMovies, getError} from "../../reducers/data/selectors";
+import {getError} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
@@ -96,7 +96,6 @@ const mapStateToProps = (state) => ({
   dataError: getError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
-  movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

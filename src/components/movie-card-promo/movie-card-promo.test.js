@@ -1,11 +1,26 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
+import {Provider} from "react-redux";
 
+import {AuthorizationStatus} from "../../reducers/user/user";
 import {MovieCardPromo} from "./movie-card-promo";
+import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
+
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.APPLICATION]: {
+    activePage: PageType.MAIN,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+  },
+});
 
 const props = {
   movie: mockPromoMovie,
@@ -15,50 +30,15 @@ const props = {
   onPlayButtonClick: () => {},
 };
 
-const movueCardPromoElement = shallow(<MovieCardPromo {...props} />);
 
 describe(`Render MovieCardPromo`, () => {
   it(`Should match with snapshot`, () => {
     const movieCardPromoSnapshot = renderer.create(
-        <MovieCardPromo {...props} />
+        <Provider store={store} >
+          <MovieCardPromo {...props} />
+        </Provider>
     ).toJSON();
 
     expect(movieCardPromoSnapshot).toMatchSnapshot();
-  });
-
-
-  it(`Should render correct promo-movie title`, () => {
-    expect(movueCardPromoElement.find(`div.movie-card__bg img`).prop(`alt`))
-      .toEqual(mockPromoMovie.title);
-
-    expect(movueCardPromoElement.find(`div.movie-card__poster img`).prop(`alt`))
-      .toEqual(mockPromoMovie.title);
-
-    expect(movueCardPromoElement.find(`h2.movie-card__title`).text())
-      .toEqual(mockPromoMovie.title);
-  });
-
-
-  it(`Should render correct promo-movie genre`, () => {
-    expect(movueCardPromoElement.find(`span.movie-card__genre`).text())
-      .toEqual(mockPromoMovie.genres[0]);
-  });
-
-
-  it(`Should render correct promo-movie release date`, () => {
-    expect(movueCardPromoElement.find(`span.movie-card__year`).text())
-      .toEqual(mockPromoMovie.releaseDate.getFullYear().toString());
-  });
-
-
-  it(`Should render correct promo-movie poster`, () => {
-    expect(movueCardPromoElement.find(`div.movie-card__poster img`).prop(`src`))
-      .toEqual(mockPromoMovie.posterUrl);
-  });
-
-
-  it(`Should render correct movie card background`, () => {
-    expect(movueCardPromoElement.find(`div.movie-card__bg img`).prop(`src`))
-      .toEqual(mockPromoMovie.backgroundUrl);
   });
 });

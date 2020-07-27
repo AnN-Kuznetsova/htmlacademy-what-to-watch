@@ -26,13 +26,13 @@ exports[`Render MovieCardFull Should match with snapshot 1`] = `
       WTW
     </h1>
     <header
-      className="page-header movie-card__head"
+      className="page-header movie-card__head false"
     >
       <div
         className="logo"
       >
         <a
-          className="logo__link"
+          className="logo__link false"
           href="/"
         >
           <span

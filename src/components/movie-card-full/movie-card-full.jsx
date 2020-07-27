@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import {AuthorizationStatus} from "../../reducers/user/user";
 import {Header} from "../header/header";
 import {MovieCardInfoWithTabs} from "../movie-card-info/movie-card-info";
 import {MoviePropType} from "../../prop-types";
@@ -11,6 +12,7 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 const MovieCardFull = (props) => {
   const {
     movie,
+    authorizationStatus,
     renderVideoPlayer,
     isPlayerVisible,
     onPlayButtonClick,
@@ -62,11 +64,12 @@ const MovieCardFull = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a
-                  href="add-review.html"
-                  className="btn movie-card__button"
-                  onClick={handleAddReviewButtonClick}
-                >Add review</a>
+                {authorizationStatus === AuthorizationStatus.AUTH &&
+                  <a
+                    href="add-review.html"
+                    className="btn movie-card__button"
+                    onClick={handleAddReviewButtonClick}
+                  >Add review</a>}
               </div>
             </div>}
         </div>
@@ -80,10 +83,11 @@ const MovieCardFull = (props) => {
 
 MovieCardFull.propTypes = {
   movie: MoviePropType.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  onAddReviewButtonClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  onAddReviewButtonClick: PropTypes.func.isRequired,
 };
 
 

@@ -17,6 +17,7 @@ import {getActivePage, getActiveMovie} from "../../reducers/application/selector
 import {getError} from "../../reducers/data/selectors";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
+import { getAuthorizationStatus } from "../../reducers/user/selectors";
 
 
 const AppComponent = (props) => {
@@ -24,6 +25,7 @@ const AppComponent = (props) => {
     dataError,
     activePage,
     activeMovie,
+    authorizationStatus,
     onOpenMovieDetailsPage,
     onAddReviewButtonClick,
   } = props;
@@ -43,6 +45,7 @@ const AppComponent = (props) => {
         return (
           <MovieDetailsPage
             activeMovie={activeMovie}
+            authorizationStatus={authorizationStatus}
             onSmallMovieCardClick={onOpenMovieDetailsPage}
             onAddReviewButtonClick={onAddReviewButtonClick}
           />
@@ -102,6 +105,7 @@ AppComponent.propTypes = {
   dataError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
+  authorizationStatus: PropTypes.string.isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
 };
@@ -111,6 +115,7 @@ const mapStateToProps = (state) => ({
   dataError: getError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

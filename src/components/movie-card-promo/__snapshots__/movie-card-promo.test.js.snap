@@ -3,7 +3,11 @@
 exports[`Render MovieCardPromo Should match with snapshot 1`] = `
 <section
   className="movie-card"
-  style={Object {}}
+  style={
+    Object {
+      "backgroundColor": "black",
+    }
+  }
 >
   <div
     className="movie-card__bg"

@@ -13,6 +13,7 @@ const nodeMock = {
 
 const props = {
   playerMode: ``,
+  isLoading: false,
   isPlaying: false,
   duration: 105,
   progress: 0,

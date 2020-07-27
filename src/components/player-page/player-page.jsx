@@ -14,7 +14,7 @@ const PlayerPageComponent = (props) => {
 
   return (
     <React.Fragment>
-      {renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl)}
+      {renderVideoPlayer(movie.videoUrl, movie.smallPictureUrl)}
     </React.Fragment>
   );
 };

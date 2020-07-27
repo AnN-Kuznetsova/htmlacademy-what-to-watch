@@ -4,10 +4,13 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {AppComponent} from "./app.jsx";
+import {NameSpace} from "../../reducers/name-space";
 
 import {PageType} from "../../const.js";
 
-import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
+import {AuthorizationStatus} from "../../reducers/user/user";
+
+import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
 
 const nodeMock = {
@@ -19,18 +22,24 @@ const nodeMock = {
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  movies: mockMovies,
-  genre: `All genres`,
-  movieList: mockMovies,
-  visibleMoviesCount: 8,
-  activePage: ``,
-  prevPage: ``,
-  playerStartTime: 0,
+  [NameSpace.DATA]: {
+    movies: mockMovies,
+  },
+  [NameSpace.APPLICATION]: {
+    genre: `All genres`,
+    visibleMoviesCount: 8,
+    prevPage: ``,
+    playerStartTime: 0,
+  },
 });
 
 const props = {
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isError: false,
   activeMovie: mockPromoMovie,
+  movies: mockMovies,
   onOpenMovieDetailsPage: () => {},
+  login: () => {},
 };
 
 
@@ -63,6 +72,20 @@ describe(`Render App`, () => {
 
   it(`Should match with snapshot when page is "PLAYER"`, () => {
     props.activePage = PageType.PLAYER;
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when page is "ERROR"`, () => {
+    props.activePage = PageType.ERROR;
+    props.isError = true;
 
     const appSnapshot = renderer.create(
         <Provider store={store}>

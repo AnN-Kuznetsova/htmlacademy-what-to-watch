@@ -4,6 +4,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {CatalogComponent} from "./catalog";
+import {NameSpace} from "../../reducers/name-space";
 
 import {mockMovies} from "../../__test-data__/test-mocks";
 
@@ -11,13 +12,15 @@ import {mockMovies} from "../../__test-data__/test-mocks";
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  activePage: ``,
-  prevPage: ``,
-  playerStartTime: 0,
+  [NameSpace.APPLICATION]: {
+    activePage: ``,
+    prevPage: ``,
+    playerStartTime: 0,
+  },
 });
 
 const props = {
-  movieList: [],
+  movies: [],
   visibleCardCount: 8,
   onSmallMovieCardClick: () => {},
   onShowMoreButtonClick: () => {},
@@ -32,7 +35,7 @@ const nodeMock = {
 
 describe(`Render Catalog`, () => {
   it(`Catalog should match with snapshot with ShowMoreButton`, () => {
-    props.movieList = [].concat(mockMovies, mockMovies, mockMovies);
+    props.movies = [].concat(mockMovies, mockMovies, mockMovies);
 
     const catalogSnapshot = renderer.create(
         <Provider store={store}>
@@ -45,7 +48,7 @@ describe(`Render Catalog`, () => {
 
 
   it(`Catalog should match with snapshot without ShowMoreButton`, () => {
-    props.movieList = mockMovies;
+    props.movies = mockMovies;
 
     const catalogSnapshot = renderer.create(
         <Provider store={store}>

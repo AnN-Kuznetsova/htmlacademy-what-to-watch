@@ -19,17 +19,18 @@ const MovieCardFull = (props) => {
   return (
     <section
       className={`movie-card ${isPlayerVisible || `movie-card--full`}`}
-      style={isPlayerVisible ? {backgroundColor: `#180202`} : {}}
+      style={isPlayerVisible ? {backgroundColor: `#180202`} : {backgroundColor: movie.backgroundColor}}
     >
       <div className="movie-card__hero">
-        <div className="movie-card__bg">
-          <img src={movie.backgroundUrl} alt={movie.title} />
-        </div>
+        {!isPlayerVisible &&
+          <div className="movie-card__bg">
+            <img src={movie.backgroundUrl} alt={movie.title} />
+          </div>}
 
         <Header />
 
         <div className="movie-card__wrap">
-          {isPlayerVisible && renderVideoPlayer(movie.previewUrl, movie.smallPictureUrl) ||
+          {isPlayerVisible && renderVideoPlayer(movie.videoUrl, movie.smallPictureUrl) ||
 
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{movie.title}</h2>

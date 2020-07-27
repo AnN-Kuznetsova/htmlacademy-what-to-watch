@@ -3,9 +3,11 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import {MAX_FILTER_ELEMENTS_COUNT} from "../../const";
-import {ActionCreator} from "../../reducers/reducer";
+import {ActionCreator} from "../../reducers/application/application";
 import {FilterItem} from '../filter-item/filter-item';
 import {MoviePropType} from "../../prop-types";
+import {getMovies} from "../../reducers/data/selectors";
+import {getActiveGenre} from "../../reducers/application/selectors";
 
 
 const getGenreFilterNames = (movies) => {
@@ -55,14 +57,13 @@ FilterByGenreComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  activeFilter: state.genre,
+  movies: getMovies(state),
+  activeFilter: getActiveGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(newFilterValue) {
     dispatch(ActionCreator.changeGenre(newFilterValue));
-    dispatch(ActionCreator.getMovies());
     dispatch(ActionCreator.resetVisibleMoviesCount());
   },
 });

@@ -2,15 +2,17 @@ import PropTypes from "prop-types";
 import React from "react";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/reducer";
+import {ActionCreator} from "../../reducers/application/application";
 import {MoviePropType} from "../../prop-types";
 import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
 import {ShowMoreButton} from "../show-more-button/show-more-button";
+import {getFilteredMoviesByGenre} from "../../reducers/data/selectors";
+import {getVisibleMoviesCount} from "../../reducers/application/selectors";
 
 
 const CatalogComponent = (props) => {
   const {
-    movieList,
+    movies,
     visibleCardCount,
     onSmallMovieCardClick,
     onShowMoreButtonClick,
@@ -19,7 +21,7 @@ const CatalogComponent = (props) => {
   return (
     <React.Fragment>
       <div className="catalog__movies-list">
-        {movieList.slice(0, visibleCardCount)
+        {movies.slice(0, visibleCardCount)
           .map((movie, index) =>
             <SmallMovieCardWithVideoPlayer
               key={movie.title + index}
@@ -30,7 +32,7 @@ const CatalogComponent = (props) => {
       </div>
 
       {
-        (movieList.length > visibleCardCount) &&
+        (movies.length > visibleCardCount) &&
         <ShowMoreButton onClick={onShowMoreButtonClick} />
       }
     </React.Fragment>
@@ -39,7 +41,7 @@ const CatalogComponent = (props) => {
 
 
 CatalogComponent.propTypes = {
-  movieList: PropTypes.arrayOf(MoviePropType).isRequired,
+  movies: PropTypes.arrayOf(MoviePropType).isRequired,
   visibleCardCount: PropTypes.number.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
@@ -47,8 +49,8 @@ CatalogComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  movieList: state.movieList,
-  visibleCardCount: state.visibleMoviesCount,
+  movies: getFilteredMoviesByGenre(state),
+  visibleCardCount: getVisibleMoviesCount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

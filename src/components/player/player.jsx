@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/reducer";
+import {ActionCreator} from "../../reducers/application/application";
+import {getActivePage, getPrevPage, getPlayerStartTime} from "../../reducers/application/selectors";
 import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
@@ -17,6 +18,7 @@ const getFormatedTimeLeft = (time) => {
 const PlayerComponent = (props) => {
   const {
     playerMode,
+    isLoading,
     isPlaying,
     duration,
     progress,
@@ -57,6 +59,7 @@ const PlayerComponent = (props) => {
                 <button
                   type="button"
                   className="player__play"
+                  disabled={isLoading}
                   onClick={onPlayButtonClick}
                 >
                   {isPlaying &&
@@ -104,6 +107,7 @@ const PlayerComponent = (props) => {
 
 PlayerComponent.propTypes = {
   playerMode: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   duration: PropTypes.number,
   progress: PropTypes.number.isRequired,
@@ -120,9 +124,9 @@ PlayerComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  activePage: state.activePage,
-  prevPage: state.prevPage,
-  playerStartTime: state.playerStartTime,
+  activePage: getActivePage(state),
+  prevPage: getPrevPage(state),
+  playerStartTime: getPlayerStartTime(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

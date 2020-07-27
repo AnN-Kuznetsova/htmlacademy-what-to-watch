@@ -1,10 +1,13 @@
 const mockVideoUrl = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
 
 const mockPromoMovie = {
+  id: 1,
   title: `The Grand Budapest Hotel`,
   smallPictureUrl: ``,
   backgroundUrl: `img/bg-the-grand-budapest-hotel.jpg`,
+  backgroundColor: `black`,
   posterUrl: `img/the-grand-budapest-hotel-poster.jpg`,
+  videoUrl: mockVideoUrl,
   previewUrl: mockVideoUrl,
   genres: [`Drama`, `Comedy`],
   releaseDate: new Date(`Wed Jan 01 2014 00:00:00 GMT+0`),
@@ -34,14 +37,18 @@ const mockPromoMovie = {
     score: 8.9,
     totalVotes: 240,
   },
+  isFavorite: false,
 };
 
 const mockMovies = [
   {
+    id: 2,
     title: `Bohemian Rhapsody`,
     smallPictureUrl: `img/bohemian-rhapsody.jpg`,
     backgroundUrl: `img/bohemian-rhapsody.jpg`,
+    backgroundColor: `black`,
     posterUrl: `img/bohemian-rhapsody.jpg`,
+    videoUrl: mockVideoUrl,
     previewUrl: mockVideoUrl,
     genres: [`Drama`, `Biography`, `Crime`, `Detective`, `Military`, `History`],
     releaseDate: new Date(2018, 0),
@@ -74,13 +81,17 @@ const mockMovies = [
       score: 8.0,
       totalVotes: 350,
     },
+    isFavorite: true,
   },
 
   {
+    id: 3,
     title: `Aviator`,
     smallPictureUrl: `img/aviator.jpg`,
     backgroundUrl: `img/aviator.jpg`,
+    backgroundColor: `black`,
     posterUrl: `img/aviator.jpg`,
+    videoUrl: mockVideoUrl,
     previewUrl: mockVideoUrl,
     genres: [`Drama`, `Biography`, `Fiction`, `Thriller`],
     releaseDate: new Date(2004, 0),
@@ -108,13 +119,17 @@ const mockMovies = [
       score: 7.6,
       totalVotes: 120,
     },
+    isFavorite: false,
   },
 
   {
+    id: 4,
     title: `Revenant`,
     smallPictureUrl: `img/revenant.jpg`,
     backgroundUrl: `img/revenant.jpg`,
+    backgroundColor: `black`,
     posterUrl: `img/revenant.jpg`,
+    videoUrl: mockVideoUrl,
     previewUrl: mockVideoUrl,
     genres: [`Drama`, `Biography`, `Adventure`, `Western`, `Action`],
     releaseDate: new Date(2015, 0),
@@ -142,25 +157,57 @@ const mockMovies = [
       score: 7.8,
       totalVotes: 263,
     },
+    isFavorite: true,
   },
 ];
 
-const VideoPlayerMode = {
-  PREVIEW: `preview`,
-  FULL_SCREEN: `full-screen`,
+const mockRawFilm = {
+  [`name`]: `Gangs of new york`,
+  [`poster_image`]: `https://htmlacademy-react-3.a…oster.jpg`,
+  [`preview_image`]: `https://htmlacademy-react-3.a…_york.jpg`,
+  [`background_image`]: `https://htmlacademy-react-3.a…_york.jpg`,
+  [`background_color`]: `#A6B7AC`,
+  [`description`]: `In 1862, Amsterdam Vallon ret…s killer.`,
+  [`rating`]: 8.8,
+  [`scores_count`]: 370881,
+  [`director`]: `Martin Scorsese`,
+  [`starring`]: [`Leonardo DiCaprio`, `Cameron …ay-Lewis`],
+  [`run_time`]: 167,
+  [`genre`]: `Crime`,
+  [`released`]: 2002,
+  [`id`]: 1,
+  [`is_favorite`]: false,
+  [`video_link`]: `http://peach.themazzone.com/d…round.mp4`,
+  [`preview_video_link`]: `https://download.blender.org/…-480p.mp4`,
 };
 
-const VideoPlayerStatus = {
-  ON_AUTOPLAY: `on-autoplay`,
-  ON_PLAY: `on-play`,
-  ON_PAUSE: `on-pause`,
-  ON_RESET: `on-reset`,
+const mockRawFilmToMovie = {
+  id: 1,
+  title: `Gangs of new york`,
+  smallPictureUrl: `https://htmlacademy-react-3.a…_york.jpg`,
+  backgroundUrl: `https://htmlacademy-react-3.a…_york.jpg`,
+  backgroundColor: `#A6B7AC`,
+  posterUrl: `https://htmlacademy-react-3.a…oster.jpg`,
+  videoUrl: `http://peach.themazzone.com/d…round.mp4`,
+  previewUrl: `https://download.blender.org/…-480p.mp4`,
+  genres: [`Crime`],
+  releaseDate: new Date(2002, 0),
+  description: [`In 1862, Amsterdam Vallon ret…s killer.`],
+  directors: [`Martin Scorsese`],
+  starring: [`Leonardo DiCaprio`, `Cameron …ay-Lewis`],
+  runTime: 167,
+  reviews: [],
+  rating: {
+    score: 8.8,
+    totalVotes: 370881,
+  },
+  isFavorite: false,
 };
 
 
 export {
-  VideoPlayerMode,
-  VideoPlayerStatus,
   mockMovies,
   mockPromoMovie,
+  mockRawFilm,
+  mockRawFilmToMovie,
 };

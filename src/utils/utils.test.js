@@ -1,6 +1,5 @@
 import {
   extend,
-  getFilteredMovies,
   getFormatedDate,
   getFormatedRunTime,
   getFormatedScore,
@@ -8,8 +7,6 @@ import {
   getRatingDescription,
   getRandomArrayElements,
 } from "./utils";
-
-import {mockMovies} from "../__test-data__/test-mocks";
 
 
 const mockMath = Object.create(global.Math);
@@ -125,23 +122,5 @@ describe(`Utils tests`, () => {
       property1: `property one`,
       property2: `property 2`,
     });
-  });
-
-
-  it(`Testing getFilteredMovies`, () => {
-    expect(getFilteredMovies(mockMovies, `genres`, `All genres`))
-      .toEqual(mockMovies);
-    expect(getFilteredMovies(mockMovies, `genres`, `Drama`))
-      .toEqual([mockMovies[0], mockMovies[1], mockMovies[2]]);
-    expect(getFilteredMovies(mockMovies, `genres`, `Adventure`))
-      .toEqual([mockMovies[2]]);
-    expect(getFilteredMovies(mockMovies, `genres`, `Drama`, mockMovies[1]))
-      .toEqual([mockMovies[0], mockMovies[2]]);
-
-    const newMovies = [...mockMovies, ...mockMovies];
-    expect(getFilteredMovies(newMovies, `genres`, `Drama`, mockMovies[1]))
-      .toEqual([newMovies[0], newMovies[2], newMovies[3], newMovies[5]]);
-    expect(getFilteredMovies(newMovies, `genres`, `Drama`, mockMovies[1], 3))
-      .toEqual([newMovies[3], newMovies[2], newMovies[5]]);
   });
 });

@@ -9,10 +9,7 @@ const PageType = {
   MAIN: `main`,
   MOVIE_DETAILS: `movie-details`,
   PLAYER: `player`,
-};
-
-const FilterType = {
-  GENRE: `genres`,
+  ERROR: `error`,
 };
 
 
@@ -23,6 +20,5 @@ export {
   NUMBER_OF_CARDS_TO_INCREMENT,
   NUMBER_OF_SIMILAR_FILMS,
   VISIBLE_PARTICIPANTS_COUNT,
-  FilterType,
   PageType,
 };

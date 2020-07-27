@@ -228,11 +228,22 @@ const mockRawFilmToMovie = {
   isFavorite: false,
 };
 
+const mockRawReview = {
+  [`comment`]: `This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.`,
+  [`date`]: `2020-07-06T16:06:01.831Z`,
+  [`id`]: 1,
+  [`rating`]: 4.3,
+  [`user`]: {
+    [`id`]: 11,
+    [`name`]: `Jack`,
+  },
+};
 
 export {
   mockMovies,
   mockPromoMovie,
   mockRawFilm,
   mockRawFilmToMovie,
+  mockRawReview,
   mockReviews,
 };

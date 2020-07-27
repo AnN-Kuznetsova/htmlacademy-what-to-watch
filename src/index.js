@@ -38,7 +38,7 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadMovies());
 store.dispatch(DataOperation.loadPromoMovie())
-  .then(() => store.dispatch(DataOperation.loadActiveMovieComments(getPromoMovie(store.getState()).id)));
+  .then(() => store.dispatch(DataOperation.loadActiveMovieReviews(getPromoMovie(store.getState()).id)));
 
 store.dispatch(UserOperation.checkAuth());
 

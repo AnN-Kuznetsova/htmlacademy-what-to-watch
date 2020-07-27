@@ -38,7 +38,7 @@ const store = mockStore({
 });
 
 const props = {
-  dataError: false,
+  dataError: null,
   activeMovie: mockPromoMovie,
   activePage: ``,
   onOpenMovieDetailsPage: () => {},
@@ -87,7 +87,7 @@ describe(`Render App`, () => {
 
   it(`Should match with snapshot when page is "ERROR"`, () => {
     props.activePage = PageType.ERROR;
-    props.dataError = true;
+    props.dataError = {request: true};
 
     const appSnapshot = renderer.create(
         <Provider store={store}>

@@ -35,7 +35,7 @@ const ActionCreator = {
     payload: movie,
   }),
 
-  loadActiveMovieComments: (comments) => ({
+  loadActiveMovieReviews: (comments) => ({
     type: ActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
     payload: comments,
   }),
@@ -71,11 +71,11 @@ const Operation = {
       });
   },
 
-  loadActiveMovieComments: (activeMovieId) => (dispatch, getState, api) => {
+  loadActiveMovieReviews: (activeMovieId) => (dispatch, getState, api) => {
     return api.get(`/comments/${activeMovieId}`)
       .then((response) => createReviews(response.data))
       .then((response) => {
-        dispatch(ActionCreator.loadActiveMovieComments(response));
+        dispatch(ActionCreator.loadActiveMovieReviews(response));
         dispatch(ActionCreator.setDataError(null));
       })
       .catch((error) => {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render ErrorPage ErrorPage should match with snapshot when dataError is false 1`] = `
+exports[`Render ErrorPage ErrorPage should match with snapshot when dataError is null 1`] = `
 Array [
   <section
     className="movie-card"

@@ -200,4 +200,40 @@ describe(`User operation work correctly`, () => {
         });
       });
   });
+
+
+  it(`Should make a correct API call to /login with  bad post request`, () => {
+    /* const mockStore = configureStore([]);
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        promoMovie: {},
+      },
+    }); */
+
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const authData = {
+      email: `email`,
+      password: `password`,
+    };
+    const loginSender = Operation.login(authData);
+
+    apiMock
+      .onPost(`/login`, {
+        email: authData.email,
+        password: authData.password,
+      })
+      .reply(400);
+
+    return loginSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_LOGIN_ERROR,
+          payload: new Error(`Request failed with status code 400`),
+        });
+      });
+  });
 });

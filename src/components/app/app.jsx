@@ -4,7 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
-import {ActionCreator as DataActionCtrator} from "../../reducers/data/data";
+import {ActionCreator as DataActionCtrator, Operation} from "../../reducers/data/data";
 import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
@@ -102,6 +102,7 @@ const mapDispatchToProps = (dispatch) => ({
   onOpenMovieDetailsPage(movie) {
     dispatch(DataActionCtrator.setMaxMoviesCount(NUMBER_OF_SIMILAR_FILMS));
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));
+    dispatch(Operation.loadActiveMovieComments(movie.id));
     dispatch(ApplicationActionCreator.changeGenre(movie.genres[0]));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   },

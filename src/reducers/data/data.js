@@ -2,6 +2,7 @@ import {extend} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
 import {PageType} from "../../const";
+import {createReviews} from "../../adapters/review";
 import {createMovies, createMovie} from "../../adapters/movie";
 
 
@@ -9,6 +10,7 @@ const initialState = {
   movies: [],
   promoMovie: {},
   maxMoviesCount: null,
+  activeMovieReviews: [],
   dataError: false,
 };
 
@@ -16,6 +18,7 @@ const initialState = {
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
+  LOAD_ACTIVE_MOVIE_REVIEWS: `LOAD_ACTIVE_MOVIE_REVIEWS`,
   SET_MAX_MOVIES_COUNT: `SET_MAX_MOVIES_COUNT`,
   SET_DATA_ERROR: `SET_DATA_ERROR`,
 };
@@ -30,6 +33,11 @@ const ActionCreator = {
   loadPromoMovie: (movie) => ({
     type: ActionType.LOAD_PROMO_MOVIE,
     payload: movie,
+  }),
+
+  loadActiveMovieComments: (comments) => ({
+    type: ActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
+    payload: comments,
   }),
 
   setMaxMoviesCount: (count) => ({
@@ -62,6 +70,15 @@ const Operation = {
         dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
       });
   },
+
+  loadActiveMovieComments: (activeMovieId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${activeMovieId}`)
+      .then((response) => createReviews(response.data))
+      .then((response) => {
+        dispatch(ActionCreator.loadActiveMovieComments(response));
+      })
+      .catch((error) => console.log(error));
+  },
 };
 
 
@@ -75,6 +92,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return extend(state, {
         promoMovie: action.payload,
+      });
+
+    case ActionType.LOAD_ACTIVE_MOVIE_REVIEWS:
+      return extend(state, {
+        activeMovieReviews: action.payload,
       });
 
     case ActionType.SET_MAX_MOVIES_COUNT:

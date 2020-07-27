@@ -1,6 +1,9 @@
+import PropTypes from "prop-types";
 import React from "react";
+import {connect} from "react-redux";
 
-import {MoviePropType} from "../../prop-types";
+import {ReviewPropType} from "../../prop-types";
+import {getActiveMovieReviews} from "../../reducers/data/selectors";
 import {
   getFormatedScore,
   getFormatedDate,
@@ -10,9 +13,8 @@ import {
 const COLUMNS_COUNT = 2;
 
 
-export const MovieReviews = (props) => {
-  const {movie} = props;
-  const {reviews} = movie;
+const MovieReviewsComponent = (props) => {
+  const {reviews} = props;
 
   const columns = [];
 
@@ -48,6 +50,20 @@ export const MovieReviews = (props) => {
 };
 
 
-MovieReviews.propTypes = {
-  movie: MoviePropType.isRequired,
+MovieReviewsComponent.propTypes = {
+  reviews: PropTypes.arrayOf(ReviewPropType),
+};
+
+
+const mapStateToProps = (state) => ({
+  reviews: getActiveMovieReviews(state),
+});
+
+
+const MovieReviews = connect(mapStateToProps)(MovieReviewsComponent);
+
+
+export {
+  MovieReviewsComponent,
+  MovieReviews,
 };

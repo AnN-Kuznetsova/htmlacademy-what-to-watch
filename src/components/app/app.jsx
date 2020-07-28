@@ -14,10 +14,8 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
+import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getError} from "../../reducers/data/selectors";
-
-import {mockPromoMovie} from "../../__test-data__/test-mocks";
-import { getAuthorizationStatus } from "../../reducers/user/selectors";
 
 
 const AppComponent = (props) => {

@@ -6,9 +6,10 @@ import {AuthorizationStatus} from "../../reducers/user/user";
 import {ActionCreator} from "../../reducers/application/application";
 import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
+import {MoviePropType} from "../../prop-types";
 import {PageType} from "../../const";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
-import {getActivePage} from "../../reducers/application/selectors";
+import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 
 
 const HeaderMode = {
@@ -39,8 +40,10 @@ const getHeaderMode = (activePage, authorizationStatus) => {
 const HeaderComponent = (props) => {
   const {
     authorizationStatus,
+    activeMovie,
     activePage,
     onOpenSignInPage,
+    onBreadcrambsLinkClick,
   } = props;
 
   const headerMode = getHeaderMode(activePage, authorizationStatus);
@@ -50,6 +53,17 @@ const HeaderComponent = (props) => {
     onOpenSignInPage();
   };
 
+  const breadcrambsList = activeMovie ? [
+    {
+      link: `#`,
+      onLinkClick: onBreadcrambsLinkClick,
+      title: activeMovie.title
+    },
+    {
+      title: `Add review`,
+    }
+  ] : [];
+
   return (
     <React.Fragment>
       <h1 className="visually-hidden">WTW</h1>
@@ -58,7 +72,7 @@ const HeaderComponent = (props) => {
         <Logo mode={LogoMode.NORMAL} />
 
         {headerMode === HeaderMode.ADD_REVIEW_PAGE &&
-          <Breadcrumbs />}
+          <Breadcrumbs breadcrambsList={breadcrambsList} />}
 
         {headerMode === HeaderMode.MOVIE_CARD_AUTH &&
           <div className="user-block">
@@ -84,19 +98,25 @@ const HeaderComponent = (props) => {
 
 HeaderComponent.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
+  activeMovie: MoviePropType,
   activePage: PropTypes.string.isRequired,
   onOpenSignInPage: PropTypes.func.isRequired,
+  onBreadcrambsLinkClick: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  activeMovie: getActiveMovie(state),
   activePage: getActivePage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onOpenSignInPage() {
     dispatch(ActionCreator.changeActivePage(PageType.SIGN_IN));
+  },
+  onBreadcrambsLinkClick() {
+    dispatch(ActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   },
 });
 

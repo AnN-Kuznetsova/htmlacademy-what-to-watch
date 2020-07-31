@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import React, {createRef} from "react";
 import {connect} from "react-redux";
 
-import {MIN_REVIEW_TEXT_LEMGTH, MAX_REVIEW_TEXT_LEMGTH} from "../../const";
+import {MIN_REVIEW_TEXT_LEMGTH, MAX_REVIEW_TEXT_LEMGTH, RATING_RANGE} from "../../const";
 import {Header} from "../header/header";
 import {MoviePropType} from "../../prop-types";
 import {Operation, ActionCreator} from "../../reducers/data/data";
+import {RatingItem} from "../../rating-item/rating-item";
 import {getActiveMovie} from "../../reducers/application/selectors";
 import {getError} from "../../reducers/data/selectors";
 
@@ -25,9 +26,14 @@ const getErrorMessage = (dataError) => {
       return (`Only authorized users can leave a review. Please register.`);
 
     case dataError.response === AddReviewError.REVIEW_VALIDATION:
-      return (`Please enter correct data:
-${dataError.data.reviewTextValueError ? `Review text must be at least 50 and no more than 400 characters.` : ``}
-${dataError.data.ratingValueError ? `The rating of the film must be at least 1 star.` : ``}`);
+      const errorTexts = [`Please enter correct data:`];
+      if (dataError.data.ratingValueError) {
+        errorTexts.push(`The rating of the film must be at least 1 star.`);
+      }
+      if (dataError.data.reviewTextValueError) {
+        errorTexts.push(`Review text must be at least 50 and no more than 400 characters.`);
+      }
+      return errorTexts.join(`\n`);
 
     case dataError.response && dataError.response.status === AddReviewError.BAD_REQUEST:
     default:
@@ -36,12 +42,12 @@ ${dataError.data.ratingValueError ? `The rating of the film must be at least 1 s
 };
 
 const getReviewRatingValidation = (ratingContainer) => {
-  /* const rating = ratingContainer.querySelector(`.rating__input[checked]`);
-  console.log(rating);
+  const ratingElement = Array.from(ratingContainer.querySelectorAll(`input`))
+    .filter((ratingItem) => ratingItem.checked)[0];
 
-  return ratingContainer.querySelectorAll(`.rating__input`)[0]; */
+  const rating = ratingElement ? ratingElement.value : null;
 
-  return 2;
+  return rating ? rating : false;
 };
 
 const getReviewTextValidation = (reviewTextValue) => {
@@ -119,21 +125,17 @@ const AddReviewPageComponent = (props) => {
           onSubmit={handleSubmit}
         >
           <div className="rating">
-            <div ref={ratingRef} className="rating__stars">
-              <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
-              <label className="rating__label" htmlFor="star-1">Rating 1</label>
-
-              <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
-              <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-              <input className="rating__input" id="star-3" type="radio" name="rating" value="3" />
-              <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-              <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
-              <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-              <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
-              <label className="rating__label" htmlFor="star-5">Rating 5</label>
+            <div
+              ref={ratingRef}
+              className="rating__stars"
+              style={dataError && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+              {new Array(RATING_RANGE).fill(``).map((ratingItem, index) => (
+                <RatingItem
+                  key={ratingItem + index}
+                  id={index + 1}
+                  onClick={handleDataReviewChange}
+                />
+              ))}
             </div>
           </div>
 
@@ -144,7 +146,7 @@ const AddReviewPageComponent = (props) => {
               name="review-text" id="review-text"
               placeholder="Review text"
               onChange={handleDataReviewChange}
-              style={errorMessage ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+              style={dataError && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
             </textarea>
             <div className="add-review__submit">
               <button

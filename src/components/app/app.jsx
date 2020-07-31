@@ -60,9 +60,7 @@ const AppComponent = (props) => {
         );
       case PageType.ADD_REVIEW:
         return (
-          <AddReviewPage
-            //movie={activeMovie}
-          />
+          <AddReviewPage />
         );
       case PageType.ERROR:
         return (

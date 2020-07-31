@@ -61,7 +61,7 @@ const AppComponent = (props) => {
       case PageType.ADD_REVIEW:
         return (
           <AddReviewPage
-            movie={activeMovie}
+            //movie={activeMovie}
           />
         );
       case PageType.ERROR:
@@ -91,7 +91,7 @@ const AppComponent = (props) => {
           <SignIn onSubmit={() => {}} />
         </Route>
         <Route exact path="/dev-review">
-          <AddReviewPage movie={mockPromoMovie} />
+          <AddReviewPage />
         </Route>*/}
       </Switch>
     </BrowserRouter>

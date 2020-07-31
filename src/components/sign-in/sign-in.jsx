@@ -15,15 +15,16 @@ export const SignInError = {
 
 const getErrorMessage = (loginError) => {
   switch (true) {
-    case loginError.response && loginError.response.status === SignInError.BAD_REQUEST:
-      return (`We can’t recognize this email
-and password combination. Please try again.`);
+    case loginError === null:
+      return null;
 
     case loginError.response === SignInError.EMAIL_VALIDATION:
       return `Please enter a valid email address`;
 
+    case loginError.response && loginError.response.status === SignInError.BAD_REQUEST:
     default:
-      return null;
+      return (`We can’t recognize this email
+and password combination. Please try again.`);
   }
 };
 

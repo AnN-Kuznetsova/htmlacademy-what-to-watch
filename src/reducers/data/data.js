@@ -82,6 +82,21 @@ const Operation = {
         dispatch(ActionCreator.setDataError(error));
       });
   },
+
+  sendReview: (reviewData) => (dispatch, getState, api) => {
+    return api.post(`/comments/${reviewData.movieId}`, {
+      rating: reviewData.rating,
+      comment: reviewData.comment,
+    })
+    .then((response) => createReviews(response.data))
+    .then((response) => {
+      dispatch(ActionCreator.loadActiveMovieReviews(response));
+      dispatch(ActionCreator.setDataError(null));
+    })
+    .catch((error) => {
+      dispatch(ActionCreator.setDataError(error));
+    });
+  },
 };
 
 

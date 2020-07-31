@@ -128,7 +128,7 @@ const AddReviewPageComponent = (props) => {
             <div
               ref={ratingRef}
               className="rating__stars"
-              style={dataError && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+              style={dataError && dataError.response === AddReviewError.REVIEW_VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
               {new Array(RATING_RANGE).fill(``).map((ratingItem, index) => (
                 <RatingItem
                   key={ratingItem + index}
@@ -146,7 +146,7 @@ const AddReviewPageComponent = (props) => {
               name="review-text" id="review-text"
               placeholder="Review text"
               onChange={handleDataReviewChange}
-              style={dataError && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+              style={dataError && dataError.response === AddReviewError.REVIEW_VALIDATION && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
             </textarea>
             <div className="add-review__submit">
               <button

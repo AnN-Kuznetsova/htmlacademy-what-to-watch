@@ -92,6 +92,7 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.loadActiveMovieReviews(response));
       dispatch(ActionCreator.setDataError(null));
+      dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
     })
     .catch((error) => {
       dispatch(ActionCreator.setDataError(error));

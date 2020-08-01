@@ -2,27 +2,22 @@ import PropTypes from "prop-types";
 import React, {createRef} from "react";
 
 import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE} from "../../const";
+import {Error} from "../../api";
 import {Header} from "../header/header";
 import {MoviePropType} from "../../prop-types";
 import {RatingItem} from "../../rating-item/rating-item";
 import {withNewReview} from "../../hocs/with-new-review/with-new-review";
 
 
-export const AddReviewError = {
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  REVIEW_VALIDATION: `REVIEW_VALIDATION`,
-};
-
 const getErrorMessage = (dataError) => {
   switch (true) {
     case dataError === null:
       return null;
 
-    case dataError.response && dataError.response.status === AddReviewError.UNAUTHORIZED:
+    case dataError.response && dataError.response.status === Error.UNAUTHORIZED:
       return (`Only authorized users can leave a review. Please register.`);
 
-    case dataError.response === AddReviewError.REVIEW_VALIDATION:
+    case dataError.response === Error.VALIDATION:
       const errorTexts = [`Please enter correct data:`];
       if (dataError.data.ratingValueError) {
         errorTexts.push(`The rating of the film must be at least 1 star.`);
@@ -32,7 +27,7 @@ const getErrorMessage = (dataError) => {
       }
       return errorTexts.join(`\n`);
 
-    case dataError.response && dataError.response.status === AddReviewError.BAD_REQUEST:
+    case dataError.response && dataError.response.status === Error.BAD_REQUEST:
     default:
       return (`Sorry, your review could not be submitted. Please try again.`);
   }
@@ -84,7 +79,7 @@ const AddReviewPage = (props) => {
       addReviewButtonRef.current.disabled = true;
       addReviewButtonRef.current.style.opacity = 0.5;
       setDataError({
-        response: AddReviewError.REVIEW_VALIDATION,
+        response: Error.VALIDATION,
         data: {
           reviewTextValueError: reviewTextValue ? null : true,
           ratingValueError: ratingValue ? null : true,
@@ -130,7 +125,7 @@ const AddReviewPage = (props) => {
             <div
               ref={ratingRef}
               className="rating__stars"
-              style={dataError && dataError.response === AddReviewError.REVIEW_VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+              style={dataError && dataError.response === Error.VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
               {new Array(RATING_RANGE).fill(``).map((ratingItem, index) => (
                 <RatingItem
                   key={ratingItem + index}
@@ -148,7 +143,7 @@ const AddReviewPage = (props) => {
               name="review-text" id="review-text"
               placeholder="Review text"
               onChange={handleDataReviewChange}
-              style={dataError && dataError.response === AddReviewError.REVIEW_VALIDATION && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+              style={dataError && dataError.response === Error.VALIDATION && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
             </textarea>
             <div className="add-review__submit">
               <button

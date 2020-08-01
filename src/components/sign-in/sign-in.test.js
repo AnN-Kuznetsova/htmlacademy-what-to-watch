@@ -4,9 +4,10 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
+import {Error} from "../../api";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
-import {SignInComponent, SignInError} from "./sign-in";
+import {SignInComponent} from "./sign-in";
 
 
 const mockStore = configureStore([]);
@@ -41,7 +42,7 @@ describe(`Render SignIn`, () => {
 
   it(`SignIn should match with snapshot when loginError is "EMAIL_VALIDATION"`, () => {
     props.loginError = {
-      response: SignInError.EMAIL_VALIDATION,
+      response: Error.VALIDATION,
     };
 
     const signInSnapshot = renderer.create(

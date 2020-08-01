@@ -37,7 +37,9 @@ const onSmallMovieCardClick = jest.fn();
 
 const props = {
   activeMovie: mockPromoMovie,
+  authorizationStatus: AuthorizationStatus.AUTH,
   onSmallMovieCardClick,
+  onAddReviewButtonClick: () => {},
 };
 
 const movieDetailsPageElement = mount(

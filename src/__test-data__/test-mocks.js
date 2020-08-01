@@ -228,15 +228,23 @@ const mockRawFilmToMovie = {
   isFavorite: false,
 };
 
-const mockRawReview = {
+const mockRawComment = {
   [`comment`]: `This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.`,
   [`date`]: `2020-07-06T16:06:01.831Z`,
   [`id`]: 1,
-  [`rating`]: 4.3,
+  [`rating`]: 4,
   [`user`]: {
     [`id`]: 11,
     [`name`]: `Jack`,
   },
+};
+
+const mockRawCommentToReview = {
+  id: 1,
+  text: `This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.`,
+  rating: 4,
+  author: `Jack`,
+  date: new Date(`2020-07-06T16:06:01.831Z`),
 };
 
 export {
@@ -244,6 +252,7 @@ export {
   mockPromoMovie,
   mockRawFilm,
   mockRawFilmToMovie,
-  mockRawReview,
+  mockRawComment,
+  mockRawCommentToReview,
   mockReviews,
 };

@@ -19,7 +19,7 @@ const breadcrambsList = [
 describe(`Render Breadcrambs`, () => {
   it(`Breadcrambs should match with snapshot`, () => {
     const breadcrambsSnapshot = renderer.create(
-        <Breadcrumbs breadcrambsList={breadcrambsList} />,
+        <Breadcrumbs breadcrambsList={breadcrambsList} />
     ).toJSON();
 
     expect(breadcrambsSnapshot).toMatchSnapshot();

@@ -5,6 +5,8 @@ import {AuthorizationStatus} from "../../reducers/user/user";
 import {HeaderComponent} from "./header";
 import {PageType} from "../../const";
 
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
+
 
 global.window = Object.create(window);
 
@@ -43,6 +45,7 @@ describe(`Render Header`, () => {
       authorizationStatus: AuthorizationStatus.AUTH,
       activePage: PageType.MAIN,
       onOpenSignInPage: () => {},
+      onBreadcrambsLinkClick: () => {},
     };
 
     const headerSnapshot = renderer.create(
@@ -58,6 +61,7 @@ describe(`Render Header`, () => {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       activePage: PageType.MAIN,
       onOpenSignInPage: () => {},
+      onBreadcrambsLinkClick: () => {},
     };
 
     const headerSnapshot = renderer.create(
@@ -73,6 +77,7 @@ describe(`Render Header`, () => {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       activePage: PageType.SIGN_IN,
       onOpenSignInPage: () => {},
+      onBreadcrambsLinkClick: () => {},
     };
 
     const headerSnapshot = renderer.create(
@@ -88,6 +93,24 @@ describe(`Render Header`, () => {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       activePage: PageType.ERROR,
       onOpenSignInPage: () => {},
+      onBreadcrambsLinkClick: () => {},
+    };
+
+    const headerSnapshot = renderer.create(
+        <HeaderComponent {...props} />
+    ).toJSON();
+
+    expect(headerSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when active page is "ADD_REVIEW"`, () => {
+    const props = {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      activeMovie: mockPromoMovie,
+      activePage: PageType.ADD_REVIEW,
+      onOpenSignInPage: () => {},
+      onBreadcrambsLinkClick: () => {},
     };
 
     const headerSnapshot = renderer.create(

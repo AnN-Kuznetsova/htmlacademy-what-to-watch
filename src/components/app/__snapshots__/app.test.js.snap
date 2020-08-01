@@ -1,5 +1,213 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Render App Should match with snapshot when page is "ADD_REVIEW" 1`] = `
+<section
+  className="movie-card movie-card--full"
+  style={
+    Object {
+      "backgroundColor": "black",
+    }
+  }
+>
+  <div
+    className="movie-card__header"
+  >
+    <div
+      className="movie-card__bg"
+    >
+      <img
+        alt="The Grand Budapest Hotel"
+        src="img/bg-the-grand-budapest-hotel.jpg"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      className="page-header movie-card__head false"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link false"
+          href="/"
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        className="user-block"
+      >
+        <div
+          className="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            src="img/avatar.jpg"
+            width="63"
+          />
+        </div>
+      </div>
+    </header>
+    <div
+      className="movie-card__poster movie-card__poster--small"
+    >
+      <img
+        alt="The Grand Budapest Hotel poster"
+        height="327"
+        src="img/the-grand-budapest-hotel-poster.jpg"
+        width="218"
+      />
+    </div>
+  </div>
+  <div
+    className="add-review"
+  >
+    <form
+      action="#"
+      className="add-review__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="rating"
+      >
+        <div
+          className="rating__stars"
+          style={Object {}}
+        >
+          <input
+            className="rating__input"
+            id="star-1"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value={1}
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-1"
+          >
+            Rating 
+            1
+          </label>
+          <input
+            className="rating__input"
+            id="star-2"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value={2}
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-2"
+          >
+            Rating 
+            2
+          </label>
+          <input
+            className="rating__input"
+            id="star-3"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value={3}
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-3"
+          >
+            Rating 
+            3
+          </label>
+          <input
+            className="rating__input"
+            id="star-4"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value={4}
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-4"
+          >
+            Rating 
+            4
+          </label>
+          <input
+            className="rating__input"
+            id="star-5"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value={5}
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-5"
+          >
+            Rating 
+            5
+          </label>
+        </div>
+      </div>
+      <div
+        className="add-review__text"
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.3)",
+          }
+        }
+      >
+        <textarea
+          className="add-review__textarea"
+          id="review-text"
+          name="review-text"
+          onChange={[Function]}
+          placeholder="Review text"
+          style={Object {}}
+        />
+        <div
+          className="add-review__submit"
+        >
+          <button
+            className="add-review__btn"
+            disabled={true}
+            style={
+              Object {
+                "opacity": 0.5,
+              }
+            }
+            type="submit"
+          >
+            Post
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+`;
+
 exports[`Render App Should match with snapshot when page is "ERROR" 1`] = `
 Array [
   <section
@@ -664,6 +872,7 @@ Array [
             <a
               className="btn movie-card__button"
               href="add-review.html"
+              onClick={[Function]}
             >
               Add review
             </a>
@@ -1019,5 +1228,152 @@ exports[`Render App Should match with snapshot when page is "PLAYER" 1`] = `
       </div>
     </div>
   </div>
+</div>
+`;
+
+exports[`Render App Should match with snapshot when page is "SIGN_IN" 1`] = `
+<div
+  className="user-page"
+>
+  <h1
+    className="visually-hidden"
+  >
+    WTW
+  </h1>
+  <header
+    className="page-header movie-card__head false"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link false"
+        href="/"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="user-block"
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="img/avatar.jpg"
+          width="63"
+        />
+      </div>
+    </div>
+  </header>
+  <div
+    className="sign-in user-page__content"
+  >
+    <form
+      action="#"
+      className="sign-in__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="sign-in__fields"
+      >
+        <div
+          className="sign-in__field undefined"
+        >
+          <input
+            className="sign-in__input"
+            id="user-email"
+            name="user-email"
+            placeholder="Email address"
+            type="email"
+          />
+          <label
+            className="sign-in__label visually-hidden"
+            htmlFor="user-email"
+          >
+            Email address
+          </label>
+        </div>
+        <div
+          className="sign-in__field"
+        >
+          <input
+            className="sign-in__input"
+            id="user-password"
+            name="user-password"
+            placeholder="Password"
+            type="password"
+          />
+          <label
+            className="sign-in__label visually-hidden"
+            htmlFor="user-password"
+          >
+            Password
+          </label>
+        </div>
+      </div>
+      <div
+        className="sign-in__submit"
+      >
+        <button
+          className="sign-in__btn"
+          type="submit"
+        >
+          Sign in
+        </button>
+      </div>
+    </form>
+  </div>
+  <footer
+    className="page-footer"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link logo__link--light"
+        href="/"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="copyright"
+    >
+      <p>
+        © 2019 What to watch Ltd.
+      </p>
+    </div>
+  </footer>
 </div>
 `;

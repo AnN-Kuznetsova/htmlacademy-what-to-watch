@@ -31,6 +31,8 @@ const store = mockStore({
 
 const props = {
   movie: mockPromoMovie,
+  authorizationStatus: AuthorizationStatus.AUTH,
+  onAddReviewButtonClick: () => {},
   renderVideoPlayer: () => {},
   isPlayerVisible: false,
   onPlayButtonClick: () => {},
@@ -38,7 +40,20 @@ const props = {
 
 
 describe(`Render MovieCardFull`, () => {
-  it(`Should match with snapshot`, () => {
+  it(`Should match with snapshot when authorizationStatus is "AUTH`, () => {
+    const movieCardFulSnapshot = renderer.create(
+        <Provider store={store}>
+          <MovieCardFull {...props} />
+        </Provider>
+    ).toJSON();
+
+    expect(movieCardFulSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when authorizationStatus is "NO_AUTH`, () => {
+    props.authorizationStatus = AuthorizationStatus.NO_AUTH;
+
     const movieCardFulSnapshot = renderer.create(
         <Provider store={store}>
           <MovieCardFull {...props} />

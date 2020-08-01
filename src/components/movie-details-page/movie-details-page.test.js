@@ -48,12 +48,26 @@ const nodeMock = {
 
 const props = {
   activeMovie: mockPromoMovie,
+  authorizationStatus: AuthorizationStatus.AUTH,
   onSmallMovieCardClick: () => {},
+  onAddReviewButtonClick: () => {},
 };
 
 
 describe(`Render MovieDetailsPage`, () => {
-  it(`Should match with snapshot`, () => {
+  it(`Should match with snapshot when authorizationStatus is "AUTH"`, () => {
+    const movieDetailsPageSnapshot = renderer.create(
+        <Provider store={store}>
+          <MovieDetailsPage {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(movieDetailsPageSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when authorizationStatus is "NO_AUTH"`, () => {
+    props.authorizationStatus = AuthorizationStatus.NO_AUTH;
 
     const movieDetailsPageSnapshot = renderer.create(
         <Provider store={store}>

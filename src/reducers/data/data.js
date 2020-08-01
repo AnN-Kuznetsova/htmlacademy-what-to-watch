@@ -1,4 +1,4 @@
-import {extend} from "../../utils/utils";
+import {extend, disableForm} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
 import {PageType} from "../../const";
@@ -84,17 +84,21 @@ const Operation = {
   },
 
   sendReview: (reviewData) => (dispatch, getState, api) => {
+    disableForm(reviewData.addReviewFormElements);
+
     return api.post(`/comments/${reviewData.movieId}`, {
       rating: reviewData.rating,
       comment: reviewData.comment,
     })
     .then((response) => createReviews(response.data))
     .then((response) => {
+      disableForm(reviewData.addReviewFormElements, false);
       dispatch(ActionCreator.loadActiveMovieReviews(response));
       dispatch(ActionCreator.setDataError(null));
       dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
     })
     .catch((error) => {
+      disableForm(reviewData.addReviewFormElements, false);
       dispatch(ActionCreator.setDataError(error));
     });
   },

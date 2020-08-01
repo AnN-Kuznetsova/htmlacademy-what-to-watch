@@ -66,6 +66,7 @@ const AddReviewPageComponent = (props) => {
   const ratingRef = createRef();
   const reviewTextRef = createRef();
   const addReviewButtonRef = createRef();
+  const addReviewFormRef = createRef();
 
   let errorMessage = dataError ? getErrorMessage(dataError) : null;
 
@@ -100,6 +101,7 @@ const AddReviewPageComponent = (props) => {
       movieId: movie.id,
       rating: ratingValue,
       comment: reviewTextValue,
+      addReviewFormElements: addReviewFormRef.current.elements,
     });
   };
 
@@ -123,6 +125,7 @@ const AddReviewPageComponent = (props) => {
           action="#"
           className="add-review__form"
           onSubmit={handleSubmit}
+          ref={addReviewFormRef}
         >
           <div className="rating">
             <div

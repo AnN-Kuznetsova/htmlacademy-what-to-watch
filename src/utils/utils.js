@@ -94,7 +94,16 @@ const getRatingDescription = (score) => {
 };
 
 
+const disableForm = (formElements, isDisabled = true) => {
+  for (const element of formElements) {
+    element.disabled = isDisabled;
+    element.style.opacity = isDisabled ? 0.5 : 1;
+  }
+};
+
+
 export {
+  disableForm,
   extend,
   getFormatedDate,
   getFormatedRunTime,

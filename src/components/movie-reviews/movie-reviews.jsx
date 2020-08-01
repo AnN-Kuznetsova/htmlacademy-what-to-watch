@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {ReviewPropType} from "../../prop-types";
-import {getActiveMovieReviews, getError} from "../../reducers/data/selectors";
+import {getActiveMovieReviews, getDataError} from "../../reducers/data/selectors";
 import {
   getFormatedScore,
   getFormatedDate,
@@ -65,7 +65,7 @@ MovieReviewsComponent.propTypes = {
 
 const mapStateToProps = (state) => ({
   reviews: getActiveMovieReviews(state),
-  dataError: getError(state),
+  dataError: getDataError(state),
 });
 
 

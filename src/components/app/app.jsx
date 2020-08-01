@@ -15,7 +15,7 @@ import {PlayerPage} from "../player-page/player-page";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
-import {getError} from "../../reducers/data/selectors";
+import {getDataError} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
@@ -117,7 +117,7 @@ AppComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  dataError: getError(state),
+  dataError: getDataError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
   authorizationStatus: getAuthorizationStatus(state),

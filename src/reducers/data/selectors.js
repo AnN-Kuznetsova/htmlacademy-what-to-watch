@@ -38,14 +38,14 @@ const getFilteredMoviesByGenre = createSelector(
     }
 );
 
-const getError = (state) => {
+const getDataError = (state) => {
   return state[NAME_SPASE].dataError;
 };
 
 
 export {
   getActiveMovieReviews,
-  getError,
+  getDataError,
   getMovies,
   getPromoMovie,
   getFilteredMoviesByGenre,

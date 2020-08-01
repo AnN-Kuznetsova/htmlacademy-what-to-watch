@@ -10,6 +10,7 @@ const PageType = {
   MOVIE_DETAILS: `movie-details`,
   PLAYER: `player`,
   ERROR: `error`,
+  SIGN_IN: `sign-in`,
 };
 
 

@@ -1,22 +1,43 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
 
+import {AuthorizationStatus} from "../../reducers/user/user";
 import {ErrorPage} from "./error-page";
+import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const";
+
+
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+  },
+  [NameSpace.APPLICATION]: {
+    activePage: PageType.ERROR,
+  },
+});
 
 
 describe(`Render ErrorPage`, () => {
-  it(`ErrorPage should match with snapshot when isError is false`, () => {
+  it(`ErrorPage should match with snapshot when dataError is false`, () => {
     const errorPageSnapshot = renderer.create(
-        <ErrorPage isError={false} />
+        <Provider store={store} >
+          <ErrorPage dataError={false} />
+        </Provider>
     ).toJSON();
 
     expect(errorPageSnapshot).toMatchSnapshot();
   });
 
 
-  it(`ErrorPage should match with snapshot when isError is true`, () => {
+  it(`ErrorPage should match with snapshot when dataError is true`, () => {
     const errorPageSnapshot = renderer.create(
-        <ErrorPage isError={true} />
+        <Provider store={store} >
+          <ErrorPage dataError={true} />
+        </Provider>
     ).toJSON();
 
     expect(errorPageSnapshot).toMatchSnapshot();

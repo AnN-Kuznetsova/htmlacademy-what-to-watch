@@ -9,7 +9,7 @@ const initialState = {
   movies: [],
   promoMovie: {},
   maxMoviesCount: null,
-  isError: false,
+  dataError: false,
 };
 
 
@@ -17,7 +17,7 @@ const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   SET_MAX_MOVIES_COUNT: `SET_MAX_MOVIES_COUNT`,
-  SET_ERROR: `SET_ERROR`,
+  SET_DATA_ERROR: `SET_DATA_ERROR`,
 };
 
 
@@ -37,8 +37,8 @@ const ActionCreator = {
     payload: count,
   }),
 
-  setError: () => ({
-    type: ActionType.SET_ERROR,
+  setDataError: () => ({
+    type: ActionType.SET_DATA_ERROR,
     payload: true,
   }),
 };
@@ -82,9 +82,9 @@ const reducer = (state = initialState, action) => {
         maxMoviesCount: action.payload,
       });
 
-    case ActionType.SET_ERROR:
+    case ActionType.SET_DATA_ERROR:
       return extend(state, {
-        isError: action.payload,
+        dataError: action.payload,
       });
 
     default:

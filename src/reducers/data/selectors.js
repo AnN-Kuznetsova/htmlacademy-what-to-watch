@@ -35,7 +35,7 @@ const getFilteredMoviesByGenre = createSelector(
 );
 
 const getError = (state) => {
-  return state[NAME_SPASE].isError;
+  return state[NAME_SPASE].dataError;
 };
 
 

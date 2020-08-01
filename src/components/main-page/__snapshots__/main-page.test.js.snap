@@ -24,13 +24,14 @@ Array [
       WTW
     </h1>
     <header
-      className="page-header movie-card__head"
+      className="page-header movie-card__head false"
     >
       <div
         className="logo"
       >
         <a
-          className="logo__link"
+          className="logo__link false"
+          href="/"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -381,6 +382,7 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="/"
         >
           <span
             className="logo__letter logo__letter--1"

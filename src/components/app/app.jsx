@@ -5,24 +5,20 @@ import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCtrator} from "../../reducers/data/data";
-// import {AuthorizationStatus} from "../../reducers/user/user";
 import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
-import {Operation as UserOperation} from "../../reducers/user/user";
 import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
+import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
-import {getAuthorizationStatus} from "../../reducers/user/selectors";
-import {getMovies, getError} from "../../reducers/data/selectors";
+import {getError} from "../../reducers/data/selectors";
 
 
 const AppComponent = (props) => {
   const {
-    /* authorizationStatus,
-    login, */
-    isError,
+    dataError,
     activePage,
     activeMovie,
     onOpenMovieDetailsPage,
@@ -52,10 +48,14 @@ const AppComponent = (props) => {
             movie={activeMovie}
           />
         );
+      case PageType.SIGN_IN:
+        return (
+          <SignIn />
+        );
       case PageType.ERROR:
         return (
           <ErrorPage
-            isError={isError}
+            dataError={dataError}
           />
         );
       default:
@@ -67,7 +67,7 @@ const AppComponent = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {/* activeMovie.id && movies.length &&  */renderPage()}
+          {renderPage()}
         </Route>
         {/* <Route exact path="/movie-details">
           <MovieDetailsPage
@@ -75,11 +75,9 @@ const AppComponent = (props) => {
             onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
           />
         </Route>
-        <Route exact path="/player">
-          <PlayerPage
-            movie={activeMovie}
-          />
-        </Route> */}
+        <Route exact path="/sign-in">
+          <SignIn onSubmit={() => {}} />
+        </Route>*/}
       </Switch>
     </BrowserRouter>
   );
@@ -87,9 +85,7 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
-  isError: PropTypes.bool.isRequired,
+  dataError: PropTypes.bool.isRequired,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
@@ -97,17 +93,12 @@ AppComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-  isError: getError(state),
+  dataError: getError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
-  movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
-    dispatch(UserOperation.login(authData));
-  },
   onOpenMovieDetailsPage(movie) {
     dispatch(DataActionCtrator.setMaxMoviesCount(NUMBER_OF_SIMILAR_FILMS));
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));

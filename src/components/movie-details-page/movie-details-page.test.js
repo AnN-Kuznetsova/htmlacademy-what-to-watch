@@ -3,8 +3,10 @@ import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
+import {AuthorizationStatus} from "../../reducers/user/user";
 import {MovieDetailsPage} from "./movie-details-page";
 import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
@@ -29,9 +31,12 @@ const store = mockStore({
   [NameSpace.APPLICATION]: {
     genre: `All genres`,
     visibleMoviesCount: 8,
-    activePage: ``,
+    activePage: PageType.MOVIE_DETAILS,
     prevPage: ``,
     playerStartTime: 0,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
   },
 });
 

@@ -9,7 +9,10 @@ import {MoviePropType} from "../../prop-types";
 
 
 export const MainPage = (props) => {
-  const {promoMovie, openMovieDetailsPage} = props;
+  const {
+    promoMovie,
+    openMovieDetailsPage,
+  } = props;
 
   const handleSmallMovieCardClick = (movie) => {
     openMovieDetailsPage(movie);

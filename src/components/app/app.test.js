@@ -28,18 +28,20 @@ const store = mockStore({
   [NameSpace.APPLICATION]: {
     genre: `All genres`,
     visibleMoviesCount: 8,
+    activePage: PageType.MAIN,
     prevPage: ``,
     playerStartTime: 0,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
   },
 });
 
 const props = {
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
-  isError: false,
+  dataError: false,
   activeMovie: mockPromoMovie,
-  movies: mockMovies,
+  activePage: ``,
   onOpenMovieDetailsPage: () => {},
-  login: () => {},
 };
 
 
@@ -85,7 +87,7 @@ describe(`Render App`, () => {
 
   it(`Should match with snapshot when page is "ERROR"`, () => {
     props.activePage = PageType.ERROR;
-    props.isError = true;
+    props.dataError = true;
 
     const appSnapshot = renderer.create(
         <Provider store={store}>

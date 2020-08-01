@@ -5,12 +5,8 @@ import {Header} from "../header/header";
 import {Footer} from "../footer/footer";
 
 
-export const Error = {
-  UNAUTHORIZED: 401,
-};
-
-const getErrorMessage = (isError) => {
-  if (isError) {
+const getErrorMessage = (dataError) => {
+  if (dataError) {
     return `The request failed`;
   }
 
@@ -19,7 +15,7 @@ const getErrorMessage = (isError) => {
 
 
 export const ErrorPage = (props) => {
-  const {isError} = props;
+  const {dataError} = props;
 
   return (
     <React.Fragment>
@@ -32,7 +28,7 @@ export const ErrorPage = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{getErrorMessage(isError)}</h2>
+              <h2 className="movie-card__title">{getErrorMessage(dataError)}</h2>
             </div>
           </div>
         </div>
@@ -47,5 +43,5 @@ export const ErrorPage = (props) => {
 
 
 ErrorPage.propTypes = {
-  isError: PropTypes.bool.isRequired,
+  dataError: PropTypes.bool.isRequired,
 };

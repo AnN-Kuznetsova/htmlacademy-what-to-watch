@@ -1,5 +1,10 @@
 import {extend} from "../../utils/utils";
 
+import {ActionCreator as ApplicationActionCreator} from "../application/application";
+import {ActionCreator as DataActionCreator} from "../data/data";
+import {PageType} from "../../const";
+import {getPromoMovie} from "../data/selectors";
+
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -8,16 +13,22 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  loginError: null,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_LOGIN_ERROR: `SET_LOGIN_ERROR`,
 };
 
 const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
+  }),
+  setLoginError: (error) => ({
+    type: ActionType.SET_LOGIN_ERROR,
+    payload: error,
   }),
 };
 
@@ -34,11 +45,20 @@ const Operation = {
 
   login: (authData) => (dispatch, getState, api) => {
     return api.post(`/login`, {
-      email: authData.login,
+      email: authData.email,
       password: authData.password,
     })
     .then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.setLoginError(null));
+      dispatch(DataActionCreator.setMaxMoviesCount(null));
+      dispatch(ApplicationActionCreator.changeActiveMovie(getPromoMovie(getState())));
+      dispatch(ApplicationActionCreator.changeGenre(`All genres`));
+      dispatch(ApplicationActionCreator.resetVisibleMoviesCount());
+      dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
+    })
+    .catch((error) => {
+      dispatch(ActionCreator.setLoginError(error));
     });
   },
 };
@@ -48,6 +68,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+
+    case ActionType.SET_LOGIN_ERROR:
+      return extend(state, {
+        loginError: action.payload
       });
 
     default:

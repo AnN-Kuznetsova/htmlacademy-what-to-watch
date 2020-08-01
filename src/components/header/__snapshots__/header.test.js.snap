@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Header Should match with snapshot when window.location is MainPage 1`] = `
+exports[`Render Header Should match with snapshot when active page is "ERROR" 1`] = `
 Array [
   <h1
     className="visually-hidden"
@@ -8,13 +8,95 @@ Array [
     WTW
   </h1>,
   <header
-    className="page-header movie-card__head"
+    className="page-header false false"
   >
     <div
       className="logo"
     >
       <a
-        className="logo__link"
+        className="logo__link false"
+        href="/"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+  </header>,
+]
+`;
+
+exports[`Render Header Should match with snapshot when active page is "SIGN_IN" 1`] = `
+Array [
+  <h1
+    className="visually-hidden"
+  >
+    WTW
+  </h1>,
+  <header
+    className="page-header false user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link false"
+        href="/"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      Sign in
+    </h1>
+  </header>,
+]
+`;
+
+exports[`Render Header Should match with snapshot when authorizationStatus is "AUTH" 1`] = `
+Array [
+  <h1
+    className="visually-hidden"
+  >
+    WTW
+  </h1>,
+  <header
+    className="page-header movie-card__head false"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link false"
+        href="/"
       >
         <span
           className="logo__letter logo__letter--1"
@@ -51,7 +133,7 @@ Array [
 ]
 `;
 
-exports[`Render Header Should match with snapshot when window.location is not MainPage 1`] = `
+exports[`Render Header Should match with snapshot when authorizationStatus is "NO_AUTH" 1`] = `
 Array [
   <h1
     className="visually-hidden"
@@ -59,13 +141,13 @@ Array [
     WTW
   </h1>,
   <header
-    className="page-header movie-card__head"
+    className="page-header false false"
   >
     <div
       className="logo"
     >
       <a
-        className="logo__link"
+        className="logo__link false"
         href="/"
       >
         <span
@@ -88,16 +170,13 @@ Array [
     <div
       className="user-block"
     >
-      <div
-        className="user-block__avatar"
+      <a
+        className="user-block__link"
+        href="sign-in.html"
+        onClick={[Function]}
       >
-        <img
-          alt="User avatar"
-          height="63"
-          src="img/avatar.jpg"
-          width="63"
-        />
-      </div>
+        Sign in
+      </a>
     </div>
   </header>,
 ]

@@ -1,14 +1,11 @@
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
-import {connect} from "react-redux";
 
-import {MIN_REVIEW_TEXT_LEMGTH, MAX_REVIEW_TEXT_LEMGTH, RATING_RANGE} from "../../const";
+import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE} from "../../const";
 import {Header} from "../header/header";
 import {MoviePropType} from "../../prop-types";
-import {Operation, ActionCreator} from "../../reducers/data/data";
 import {RatingItem} from "../../rating-item/rating-item";
-import {getActiveMovie} from "../../reducers/application/selectors";
-import {getError} from "../../reducers/data/selectors";
+import {withNewReview} from "../../hocs/with-new-review/with-new-review";
 
 
 export const AddReviewError = {
@@ -45,22 +42,25 @@ const getReviewRatingValidation = (ratingContainer) => {
   const ratingElement = Array.from(ratingContainer.querySelectorAll(`input`))
     .filter((ratingItem) => ratingItem.checked)[0];
 
-  const rating = ratingElement ? ratingElement.value : null;
+  const rating = ratingElement ? +(ratingElement.value) : null;
 
   return rating ? rating : false;
 };
 
 const getReviewTextValidation = (reviewTextValue) => {
-  return reviewTextValue.length >= MIN_REVIEW_TEXT_LEMGTH && reviewTextValue.length <= MAX_REVIEW_TEXT_LEMGTH ? reviewTextValue : false;
+  return reviewTextValue.length >= MIN_REVIEW_TEXT_LENGTH && reviewTextValue.length <= MAX_REVIEW_TEXT_LENGTH ? reviewTextValue : false;
 };
 
 
-const AddReviewPageComponent = (props) => {
+const AddReviewPage = (props) => {
   const {
     movie,
     dataError,
     sendReview,
     setDataError,
+    reviewRating,
+    reviewText,
+    onChange,
   } = props;
 
   const ratingRef = createRef();
@@ -68,14 +68,13 @@ const AddReviewPageComponent = (props) => {
   const addReviewButtonRef = createRef();
   const addReviewFormRef = createRef();
 
-  let errorMessage = dataError ? getErrorMessage(dataError) : null;
-
-  let ratingValue = null;
-  let reviewTextValue = null;
+  const errorMessage = dataError ? getErrorMessage(dataError) : null;
 
   const handleDataReviewChange = () => {
-    ratingValue = getReviewRatingValidation(ratingRef.current);
-    reviewTextValue = getReviewTextValidation(reviewTextRef.current.value);
+    const ratingValue = getReviewRatingValidation(ratingRef.current) || null;
+    const reviewTextValue = getReviewTextValidation(reviewTextRef.current.value) || null;
+
+    onChange(ratingValue, reviewTextValue);
 
     if (ratingValue && reviewTextValue) {
       addReviewButtonRef.current.disabled = false;
@@ -99,8 +98,8 @@ const AddReviewPageComponent = (props) => {
 
     sendReview({
       movieId: movie.id,
-      rating: ratingValue,
-      comment: reviewTextValue,
+      rating: reviewRating,
+      comment: reviewText,
       addReviewFormElements: addReviewFormRef.current.elements,
     });
   };
@@ -171,32 +170,21 @@ const AddReviewPageComponent = (props) => {
 };
 
 
-AddReviewPageComponent.propTypes = {
+AddReviewPage.propTypes = {
   movie: MoviePropType.isRequired,
   dataError: PropTypes.object,
   sendReview: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
+  reviewRating: PropTypes.number,
+  reviewText: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 
-const mapStateToProps = (state) => ({
-  movie: getActiveMovie(state),
-  dataError: getError(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sendReview(reviewData) {
-    dispatch(Operation.sendReview(reviewData));
-  },
-  setDataError(error) {
-    dispatch(ActionCreator.setDataError(error));
-  },
-});
-
-const AddReviewPage = connect(mapStateToProps, mapDispatchToProps)(AddReviewPageComponent);
+const AddReviewPageWithNewReview = withNewReview(AddReviewPage);
 
 
 export {
-  AddReviewPageComponent,
   AddReviewPage,
+  AddReviewPageWithNewReview,
 };

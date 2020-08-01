@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCtrator, Operation} from "../../reducers/data/data";
-import {AddReviewPage} from "../add-review-page/add-review-page";
+import {AddReviewPageWithNewReview} from "../add-review-page/add-review-page";
 import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
@@ -26,6 +26,8 @@ const AppComponent = (props) => {
     authorizationStatus,
     onOpenMovieDetailsPage,
     onAddReviewButtonClick,
+    setDataError,
+    sendReview,
   } = props;
 
   const renderPage = () => {
@@ -60,7 +62,12 @@ const AppComponent = (props) => {
         );
       case PageType.ADD_REVIEW:
         return (
-          <AddReviewPage />
+          <AddReviewPageWithNewReview
+            movie={activeMovie}
+            dataError={dataError}
+            setDataError={setDataError}
+            sendReview={sendReview}
+          />
         );
       case PageType.ERROR:
         return (
@@ -104,6 +111,8 @@ AppComponent.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
+  setDataError: PropTypes.func.isRequired,
+  sendReview: PropTypes.func.isRequired,
 };
 
 
@@ -124,7 +133,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onAddReviewButtonClick() {
     dispatch(ApplicationActionCreator.changeActivePage(PageType.ADD_REVIEW));
-  }
+  },
+  setDataError(error) {
+    dispatch(DataActionCtrator.setDataError(error));
+  },
+  sendReview(reviewData) {
+    dispatch(Operation.sendReview(reviewData));
+  },
 });
 
 const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);

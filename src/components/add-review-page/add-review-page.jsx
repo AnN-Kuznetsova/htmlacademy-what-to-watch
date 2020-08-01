@@ -5,7 +5,7 @@ import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE} from "../.
 import {Error} from "../../api";
 import {Header} from "../header/header";
 import {MoviePropType} from "../../prop-types";
-import {RatingItem} from "../../rating-item/rating-item";
+import {RatingItem} from "../rating-item/rating-item";
 import {withNewReview} from "../../hocs/with-new-review/with-new-review";
 
 

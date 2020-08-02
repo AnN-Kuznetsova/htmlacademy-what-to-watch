@@ -20,10 +20,10 @@ const PrivateRouteComponent = (props) => {
     <Route
       path={path}
       exact={exact}
-      render={() => {
+      render={(routeProps) => {
         return (
           authorizationStatus === AuthorizationStatus.AUTH
-            ? render()
+            ? render(routeProps)
             : <Redirect to={AppRoute.SIGN_IN} />
         );
       }}

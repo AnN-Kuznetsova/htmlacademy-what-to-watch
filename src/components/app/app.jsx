@@ -57,7 +57,7 @@ const AppComponent = (props) => {
         return (<Redirect to={AppRoute.SIGN_IN} />);
 
       case PageType.ADD_REVIEW:
-        return (<Redirect to={AppRoute.ADD_REVIEW} />);
+        return (<Redirect to={AppRoute.ADD_REVIEW.replace(`:id`, activeMovie.id)} />);
 
       case PageType.ERROR:
         return (
@@ -115,20 +115,22 @@ const AppComponent = (props) => {
           }}
         />
 
-        {/* <PrivateRoute
-          exact
-          path={AppRoute.ADD_REVIEW}
-          render={() => {
+        <PrivateRoute exact path={AppRoute.ADD_REVIEW}
+          render={(routeProps) => {
+            const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
+            changeActiveMovie(newActiveMovie);
+            changeActivePage(PageType.ADD_REVIEW);
+
             return (
               <AddReviewPageWithNewReview
-                movie={activeMovie}
+                movie={newActiveMovie}
                 dataError={dataError}
                 setDataError={setDataError}
                 sendReview={sendReview}
               />
             );
           }}
-        /> */}
+        />
       </Switch>
     </Router>
   );

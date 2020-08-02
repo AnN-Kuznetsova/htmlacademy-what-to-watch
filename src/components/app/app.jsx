@@ -51,7 +51,7 @@ const AppComponent = (props) => {
         return (<Redirect to={AppRoute.FILM.replace(`:id`, activeMovie.id)} />);
 
       case PageType.PLAYER:
-        return (<Redirect to={AppRoute.PLAYER} />);
+        return (<Redirect to={AppRoute.PLAYER.replace(`:id`, activeMovie.id)} />);
 
       case PageType.SIGN_IN:
         return (<Redirect to={AppRoute.SIGN_IN} />);
@@ -78,7 +78,7 @@ const AppComponent = (props) => {
           {renderPage()}
         </Route>
 
-        <Route path={AppRoute.FILM}
+        <Route exact path={AppRoute.FILM}
           render={(routeProps) => {
             const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
             onOpenMovieDetailsPage(newActiveMovie);
@@ -94,11 +94,19 @@ const AppComponent = (props) => {
           }}
         />
 
-        {/* <Route exact path={AppRoute.PLAYER}>
-          <PlayerPage
-            movie={activeMovie}
-          />
-        </Route> */}
+        <Route exact path={AppRoute.PLAYER}
+          render={(routeProps) => {
+            const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
+            changeActiveMovie(newActiveMovie);
+            changeActivePage(PageType.PLAYER);
+
+            return (
+              <PlayerPage
+                movie={newActiveMovie}
+              />
+            );
+          }}
+        />
 
         <Route exact path={AppRoute.SIGN_IN}
           render={() => {

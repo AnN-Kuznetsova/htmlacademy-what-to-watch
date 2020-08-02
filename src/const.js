@@ -15,6 +15,7 @@ const PageType = {
   ERROR: `error`,
   SIGN_IN: `sign-in`,
   ADD_REVIEW: `add-review`,
+  MY_LIST: `MY_LIST`,
 };
 
 const AppRoute = {

@@ -36,16 +36,20 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.loadMovies());
-store.dispatch(DataOperation.loadPromoMovie())
+
+const moviesLoaded = store.dispatch(DataOperation.loadMovies());
+const promoMoviesLoaded = store.dispatch(DataOperation.loadPromoMovie())
   .then(() => store.dispatch(DataOperation.loadActiveMovieReviews(getPromoMovie(store.getState()).id)));
 
 store.dispatch(UserOperation.checkAuth());
 
 
-ReactDom.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+Promise.allSettled([moviesLoaded, promoMoviesLoaded])
+      .then(() => {
+        ReactDom.render(
+            <Provider store={store}>
+              <App />
+            </Provider>,
+            document.querySelector(`#root`)
+        );
+      });

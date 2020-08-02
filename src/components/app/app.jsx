@@ -16,7 +16,7 @@ import {PrivateRoute} from "../private-route/private-route";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
-import {getDataError} from "../../reducers/data/selectors";
+import {getDataError, getMovies} from "../../reducers/data/selectors";
 import {history} from "../../history";
 
 
@@ -25,11 +25,14 @@ const AppComponent = (props) => {
     dataError,
     activePage,
     activeMovie,
+    movies,
     authorizationStatus,
     onOpenMovieDetailsPage,
     onAddReviewButtonClick,
     setDataError,
     sendReview,
+    changeActivePage,
+    changeActiveMovie,
   } = props;
 
   const renderPage = () => {
@@ -45,7 +48,7 @@ const AppComponent = (props) => {
         );
 
       case PageType.MOVIE_DETAILS:
-        return (<Redirect to={AppRoute.FILM} />);
+        return (<Redirect to={AppRoute.FILM.replace(`:id`, activeMovie.id)} />);
 
       case PageType.PLAYER:
         return (<Redirect to={AppRoute.PLAYER} />);
@@ -75,28 +78,36 @@ const AppComponent = (props) => {
           {renderPage()}
         </Route>
 
-        <Route exact path={AppRoute.FILM}
-          render={(props) => (
-            <MovieDetailsPage
-              activeMovie={activeMovie}
-              authorizationStatus={authorizationStatus}
-              onSmallMovieCardClick={onOpenMovieDetailsPage}
-              onAddReviewButtonClick={onAddReviewButtonClick}
-            />
-          )}
+        <Route path={AppRoute.FILM}
+          render={(routeProps) => {
+            const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
+            onOpenMovieDetailsPage(newActiveMovie);
+
+            return (
+              <MovieDetailsPage
+                activeMovie={newActiveMovie}
+                authorizationStatus={authorizationStatus}
+                onSmallMovieCardClick={onOpenMovieDetailsPage}
+                onAddReviewButtonClick={onAddReviewButtonClick}
+              />
+            );
+          }}
         />
 
-        <Route exact path={AppRoute.PLAYER}>
+        {/* <Route exact path={AppRoute.PLAYER}>
           <PlayerPage
             movie={activeMovie}
           />
-        </Route>
+        </Route> */}
 
-        <Route exact path={AppRoute.SIGN_IN}>
-          <SignIn />
-        </Route>
+        {/* <Route exact path={AppRoute.SIGN_IN}
+          render={() => {
+            changeActivePage(PageType.SIGN_IN);
+            return (<SignIn />);
+          }}
+        /> */}
 
-        <PrivateRoute
+        {/* <PrivateRoute
           exact
           path={AppRoute.ADD_REVIEW}
           render={() => {
@@ -109,7 +120,7 @@ const AppComponent = (props) => {
               />
             );
           }}
-        />
+        /> */}
       </Switch>
     </Router>
   );
@@ -120,11 +131,14 @@ AppComponent.propTypes = {
   dataError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
+  movies: PropTypes.arrayOf(MoviePropType),
   authorizationStatus: PropTypes.string.isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
   sendReview: PropTypes.func.isRequired,
+  changeActivePage: PropTypes.func.isRequired,
+  changeActiveMovie: PropTypes.func.isRequired,
 };
 
 
@@ -133,6 +147,7 @@ const mapStateToProps = (state) => ({
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
   authorizationStatus: getAuthorizationStatus(state),
+  movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -151,6 +166,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   sendReview(reviewData) {
     dispatch(Operation.sendReview(reviewData));
+  },
+  changeActivePage(page) {
+    dispatch(ApplicationActionCreator.changeActivePage(page));
+  },
+  changeActiveMovie(movie) {
+    dispatch(ApplicationActionCreator.changeActiveMovie(movie));
   },
 });
 

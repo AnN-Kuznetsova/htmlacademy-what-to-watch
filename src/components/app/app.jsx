@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Switch, Route, Router} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
@@ -43,40 +43,26 @@ const AppComponent = (props) => {
             openMovieDetailsPage={onOpenMovieDetailsPage}
           />
         );
+
       case PageType.MOVIE_DETAILS:
-        return (
-          <MovieDetailsPage
-            activeMovie={activeMovie}
-            authorizationStatus={authorizationStatus}
-            onSmallMovieCardClick={onOpenMovieDetailsPage}
-            onAddReviewButtonClick={onAddReviewButtonClick}
-          />
-        );
+        return (<Redirect to={AppRoute.FILM} />);
+
       case PageType.PLAYER:
-        return (
-          <PlayerPage
-            movie={activeMovie}
-          />
-        );
+        return (<Redirect to={AppRoute.PLAYER} />);
+
       case PageType.SIGN_IN:
-        return (
-          <SignIn />
-        );
+        return (<Redirect to={AppRoute.SIGN_IN} />);
+
       case PageType.ADD_REVIEW:
-        return (
-          <AddReviewPageWithNewReview
-            movie={activeMovie}
-            dataError={dataError}
-            setDataError={setDataError}
-            sendReview={sendReview}
-          />
-        );
+        return (<Redirect to={AppRoute.ADD_REVIEW} />);
+
       case PageType.ERROR:
         return (
           <ErrorPage
             dataError={dataError}
           />
         );
+
       default:
         return null;
     }
@@ -89,14 +75,16 @@ const AppComponent = (props) => {
           {renderPage()}
         </Route>
 
-        <Route exact path={AppRoute.FILM}>
-          <MovieDetailsPage
-            activeMovie={activeMovie}
-            authorizationStatus={authorizationStatus}
-            onSmallMovieCardClick={onOpenMovieDetailsPage}
-            onAddReviewButtonClick={onAddReviewButtonClick}
-          />
-        </Route>
+        <Route exact path={AppRoute.FILM}
+          render={(props) => (
+            <MovieDetailsPage
+              activeMovie={activeMovie}
+              authorizationStatus={authorizationStatus}
+              onSmallMovieCardClick={onOpenMovieDetailsPage}
+              onAddReviewButtonClick={onAddReviewButtonClick}
+            />
+          )}
+        />
 
         <Route exact path={AppRoute.PLAYER}>
           <PlayerPage

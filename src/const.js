@@ -17,6 +17,15 @@ const PageType = {
   ADD_REVIEW: `add-review`,
 };
 
+const AppRoute = {
+  MAIN: `/`,
+  SIGN_IN: `/login`,
+  MY_LIST: `/myList`,
+  FILM: `/films/:id`,
+  ADD_REVIEW: `/films/:id/review`,
+  PLAYER: `/player/:id`,
+};
+
 
 export {
   DELAY_PLAYBACK_PREVIEW,
@@ -28,5 +37,6 @@ export {
   NUMBER_OF_SIMILAR_FILMS,
   RATING_RANGE,
   VISIBLE_PARTICIPANTS_COUNT,
+  AppRoute,
   PageType,
 };

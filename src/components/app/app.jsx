@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
@@ -10,12 +10,14 @@ import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
-import {PageType, NUMBER_OF_SIMILAR_FILMS} from "../../const";
+import {PageType, NUMBER_OF_SIMILAR_FILMS, AppRoute} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
+import {PrivateRoute} from "../private-route/private-route";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getDataError} from "../../reducers/data/selectors";
+import {history} from "../../history";
 
 
 const AppComponent = (props) => {
@@ -81,25 +83,47 @@ const AppComponent = (props) => {
   };
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.MAIN}>
           {renderPage()}
         </Route>
-        {/* <Route exact path="/movie-details">
+
+        <Route exact path={AppRoute.FILM}>
           <MovieDetailsPage
             activeMovie={activeMovie}
-            onSmallMovieCardClick={this.openMovieDetailsPage.bind(this)}
+            authorizationStatus={authorizationStatus}
+            onSmallMovieCardClick={onOpenMovieDetailsPage}
+            onAddReviewButtonClick={onAddReviewButtonClick}
           />
         </Route>
-        <Route exact path="/sign-in">
-          <SignIn onSubmit={() => {}} />
+
+        <Route exact path={AppRoute.PLAYER}>
+          <PlayerPage
+            movie={activeMovie}
+          />
         </Route>
-        <Route exact path="/dev-review">
-          <AddReviewPage />
-        </Route>*/}
+
+        <Route exact path={AppRoute.SIGN_IN}>
+          <SignIn />
+        </Route>
+
+        <PrivateRoute
+          exact
+          path={AppRoute.ADD_REVIEW}
+          render={() => {
+            return (
+              <AddReviewPageWithNewReview
+                movie={activeMovie}
+                dataError={dataError}
+                setDataError={setDataError}
+                sendReview={sendReview}
+              />
+            );
+          }}
+        />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

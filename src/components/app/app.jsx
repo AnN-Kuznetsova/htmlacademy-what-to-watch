@@ -100,12 +100,12 @@ const AppComponent = (props) => {
           />
         </Route> */}
 
-        {/* <Route exact path={AppRoute.SIGN_IN}
+        <Route exact path={AppRoute.SIGN_IN}
           render={() => {
             changeActivePage(PageType.SIGN_IN);
             return (<SignIn />);
           }}
-        /> */}
+        />
 
         {/* <PrivateRoute
           exact

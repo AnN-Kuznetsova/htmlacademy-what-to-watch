@@ -11,6 +11,7 @@ import {Operation as DataOperation, ActionCreator as DataActionCreator} from "./
 import {Operation as UserOperation, ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducers/user/user";
 import {createAPI} from "./api";
 import {reducer} from "./reducers/reducer";
+import {getPromoMovie} from "./reducers/data/selectors";
 
 
 const onFailRequest = (error) => {
@@ -20,7 +21,7 @@ const onFailRequest = (error) => {
       break;
 
     default:
-      store.dispatch(DataActionCreator.setDataError());
+      store.dispatch(DataActionCreator.setDataError(error));
       break;
   }
 };
@@ -36,7 +37,9 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadMovies());
-store.dispatch(DataOperation.loadPromoMovie());
+store.dispatch(DataOperation.loadPromoMovie())
+  .then(() => store.dispatch(DataOperation.loadActiveMovieReviews(getPromoMovie(store.getState()).id)));
+
 store.dispatch(UserOperation.checkAuth());
 
 

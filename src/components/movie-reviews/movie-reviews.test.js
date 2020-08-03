@@ -1,15 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {MovieReviews} from "./movie-reviews";
+import {MovieReviewsComponent} from "./movie-reviews";
 
-import {mockPromoMovie} from "../../__test-data__/test-mocks";
+import {mockReviews} from "../../__test-data__/test-mocks";
 
 
 describe(`Render MovieReviews`, () => {
   it(`Should match with snapshot`, () => {
     const movieReviewsSnapshot = renderer.create(
-        <MovieReviews movie={mockPromoMovie} />
+        <MovieReviewsComponent reviews={mockReviews} />
     ).toJSON();
 
     expect(movieReviewsSnapshot).toMatchSnapshot();

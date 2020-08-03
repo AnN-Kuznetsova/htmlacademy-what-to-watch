@@ -1,7 +1,8 @@
-import {extend} from "../../utils/utils";
+import {extend, disableForm} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
 import {PageType} from "../../const";
+import {createReviews} from "../../adapters/review";
 import {createMovies, createMovie} from "../../adapters/movie";
 
 
@@ -9,13 +10,15 @@ const initialState = {
   movies: [],
   promoMovie: {},
   maxMoviesCount: null,
-  dataError: false,
+  activeMovieReviews: [],
+  dataError: null,
 };
 
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
+  LOAD_ACTIVE_MOVIE_REVIEWS: `LOAD_ACTIVE_MOVIE_REVIEWS`,
   SET_MAX_MOVIES_COUNT: `SET_MAX_MOVIES_COUNT`,
   SET_DATA_ERROR: `SET_DATA_ERROR`,
 };
@@ -32,14 +35,19 @@ const ActionCreator = {
     payload: movie,
   }),
 
+  loadActiveMovieReviews: (comments) => ({
+    type: ActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
+    payload: comments,
+  }),
+
   setMaxMoviesCount: (count) => ({
     type: ActionType.SET_MAX_MOVIES_COUNT,
     payload: count,
   }),
 
-  setDataError: () => ({
+  setDataError: (error) => ({
     type: ActionType.SET_DATA_ERROR,
-    payload: true,
+    payload: error,
   }),
 };
 
@@ -62,6 +70,38 @@ const Operation = {
         dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
       });
   },
+
+  loadActiveMovieReviews: (activeMovieId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${activeMovieId}`)
+      .then((response) => createReviews(response.data))
+      .then((response) => {
+        dispatch(ActionCreator.loadActiveMovieReviews(response));
+        dispatch(ActionCreator.setDataError(null));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.setDataError(error));
+      });
+  },
+
+  sendReview: (reviewData) => (dispatch, getState, api) => {
+    disableForm(reviewData.addReviewFormElements);
+
+    return api.post(`/comments/${reviewData.movieId}`, {
+      rating: reviewData.rating,
+      comment: reviewData.comment,
+    })
+    .then((response) => createReviews(response.data))
+    .then((response) => {
+      disableForm(reviewData.addReviewFormElements, false);
+      dispatch(ActionCreator.loadActiveMovieReviews(response));
+      dispatch(ActionCreator.setDataError(null));
+      dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
+    })
+    .catch((error) => {
+      disableForm(reviewData.addReviewFormElements, false);
+      dispatch(ActionCreator.setDataError(error));
+    });
+  },
 };
 
 
@@ -75,6 +115,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return extend(state, {
         promoMovie: action.payload,
+      });
+
+    case ActionType.LOAD_ACTIVE_MOVIE_REVIEWS:
+      return extend(state, {
+        activeMovieReviews: action.payload,
       });
 
     case ActionType.SET_MAX_MOVIES_COUNT:

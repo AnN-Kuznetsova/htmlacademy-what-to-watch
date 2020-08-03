@@ -22,10 +22,10 @@ const store = mockStore({
 
 
 describe(`Render ErrorPage`, () => {
-  it(`ErrorPage should match with snapshot when dataError is false`, () => {
+  it(`ErrorPage should match with snapshot when dataError is null`, () => {
     const errorPageSnapshot = renderer.create(
         <Provider store={store} >
-          <ErrorPage dataError={false} />
+          <ErrorPage dataError={null} />
         </Provider>
     ).toJSON();
 
@@ -36,7 +36,7 @@ describe(`Render ErrorPage`, () => {
   it(`ErrorPage should match with snapshot when dataError is true`, () => {
     const errorPageSnapshot = renderer.create(
         <Provider store={store} >
-          <ErrorPage dataError={true} />
+          <ErrorPage dataError={{request: true}} />
         </Provider>
     ).toJSON();
 

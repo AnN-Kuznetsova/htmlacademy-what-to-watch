@@ -6,6 +6,7 @@ import {
   getParticipantsLine,
   getRatingDescription,
   getRandomArrayElements,
+  disableForm,
 } from "./utils";
 
 
@@ -122,5 +123,30 @@ describe(`Utils tests`, () => {
       property1: `property one`,
       property2: `property 2`,
     });
+  });
+
+
+  it(`Testing disableForm`, () => {
+    const elements = [
+      document.createElement(`input`),
+      document.createElement(`button`),
+    ];
+
+    expect(elements[0].disabled).toEqual(false);
+    expect(elements[0].style.opacity).toEqual(``);
+    expect(elements[1].disabled).toEqual(false);
+    expect(elements[1].style.opacity).toEqual(``);
+
+    disableForm(elements);
+    expect(elements[0].disabled).toEqual(true);
+    expect(elements[0].style.opacity).toEqual(`0.5`);
+    expect(elements[1].disabled).toEqual(true);
+    expect(elements[1].style.opacity).toEqual(`0.5`);
+
+    disableForm(elements, false);
+    expect(elements[0].disabled).toEqual(false);
+    expect(elements[0].style.opacity).toEqual(`1`);
+    expect(elements[1].disabled).toEqual(false);
+    expect(elements[1].style.opacity).toEqual(`1`);
   });
 });

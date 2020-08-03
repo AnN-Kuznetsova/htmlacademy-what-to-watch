@@ -2,7 +2,9 @@ import axios from "axios";
 
 
 export const Error = {
+  BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
+  VALIDATION: `VALIDATION`,
 };
 
 
@@ -17,12 +19,10 @@ export const createAPI = (onFailRequest) => {
     return response;
   };
 
-  const onFail = (err) => {
-    const {response} = err;
+  const onFail = (error) => {
+    onFailRequest(error);
 
-    onFailRequest(response);
-
-    throw err;
+    throw error;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

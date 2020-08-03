@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render RatingItem RatingItem should match with snapshot 1`] = `
+Array [
+  <input
+    className="rating__input"
+    id="star-1"
+    name="rating"
+    onChange={[Function]}
+    type="radio"
+    value={1}
+  />,
+  <label
+    className="rating__label"
+    htmlFor="star-1"
+  >
+    Rating 
+    1
+  </label>,
+]
+`;

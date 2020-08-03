@@ -10,13 +10,17 @@ import {MoviePropType} from "../../prop-types";
 export const MovieDetailsPage = (props) => {
   const {
     activeMovie,
+    authorizationStatus,
     onSmallMovieCardClick,
+    onAddReviewButtonClick,
   } = props;
 
   return (
     <React.Fragment>
       <MovieCardFullWithPlayer
         movie={activeMovie}
+        authorizationStatus={authorizationStatus}
+        onAddReviewButtonClick={onAddReviewButtonClick}
       />
 
       <div className="page-content">
@@ -39,5 +43,7 @@ export const MovieDetailsPage = (props) => {
 
 MovieDetailsPage.propTypes = {
   activeMovie: MoviePropType.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
+  onAddReviewButtonClick: PropTypes.func.isRequired,
 };

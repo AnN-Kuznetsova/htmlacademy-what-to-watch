@@ -5,7 +5,15 @@ import {PageType} from "../../const";
 import {createAPI} from "../../api";
 import {reducer, ActionType as DataActionType, ActionCreator, Operation} from "./data";
 
-import {mockMovies, mockPromoMovie, mockRawFilm, mockRawFilmToMovie} from "../../__test-data__/test-mocks";
+import {
+  mockMovies,
+  mockPromoMovie,
+  mockRawFilm,
+  mockRawFilmToMovie,
+  mockReviews,
+  mockRawComment,
+  mockRawCommentToReview
+} from "../../__test-data__/test-mocks";
 
 
 describe(`Data reduser should work correctly`, () => {
@@ -14,7 +22,8 @@ describe(`Data reduser should work correctly`, () => {
       movies: [],
       promoMovie: {},
       maxMoviesCount: null,
-      dataError: false,
+      activeMovieReviews: [],
+      dataError: null,
     });
   });
 
@@ -55,14 +64,26 @@ describe(`Data reduser should work correctly`, () => {
   });
 
 
-  it(`Data reducer should set dataError in true`, () => {
+  it(`Data reducer should update reviews for active movie by load reviews`, () => {
     expect(reducer({
-      dataError: false,
+      activeMovieReviews: [],
+    }, {
+      type: DataActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
+      payload: mockReviews,
+    })).toEqual({
+      activeMovieReviews: mockReviews,
+    });
+  });
+
+
+  it(`Data reducer should set dataError by a given value`, () => {
+    expect(reducer({
+      dataError: null,
     }, {
       type: DataActionType.SET_DATA_ERROR,
-      payload: true,
+      payload: {status: 404},
     })).toEqual({
-      dataError: true,
+      dataError: {status: 404},
     });
   });
 });
@@ -93,10 +114,18 @@ describe(`Data action creators should work correctly`, () => {
   });
 
 
+  it(`Data action creator for load active movie reviews returns correct action`, () => {
+    expect(ActionCreator.loadActiveMovieReviews(mockReviews)).toEqual({
+      type: DataActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
+      payload: mockReviews,
+    });
+  });
+
+
   it(`Data action creator for set dataError returns correct action`, () => {
-    expect(ActionCreator.setDataError()).toEqual({
+    expect(ActionCreator.setDataError({status: 404})).toEqual({
       type: DataActionType.SET_DATA_ERROR,
-      payload: true,
+      payload: {status: 404},
     });
   });
 });
@@ -148,6 +177,124 @@ describe(`Data operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
           payload: PageType.MAIN,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call for get request to /comments/: film_id`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const reviewsLoader = Operation.loadActiveMovieReviews(1);
+
+    apiMock
+      .onGet(`/comments/1`)
+      .reply(200, [mockRawComment]);
+
+    return reviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
+          payload: [mockRawCommentToReview],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: null,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call for fail get request to /comments/: film_id`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const reviewsLoader = Operation.loadActiveMovieReviews(1);
+
+    apiMock
+      .onGet(`/comments/1`)
+      .reply(400);
+
+    return reviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: new Error(`Request failed with status code 400`),
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call for post request to /comments/: film_id`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const reviewData = {
+      movieId: 1,
+      rating: 4,
+      comment: mockRawCommentToReview.text,
+      addReviewFormElements: [],
+    };
+    const reviewSender = Operation.sendReview(reviewData);
+
+    apiMock
+      .onPost(`/comments/1`, {
+        rating: reviewData.rating,
+        comment: reviewData.comment,
+      })
+      .reply(200, [mockRawComment]);
+
+    return reviewSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
+          payload: [mockRawCommentToReview],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: null,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
+          payload: PageType.MOVIE_DETAILS,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call for fail post request to /comments/: film_id`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const reviewData = {
+      movieId: 1,
+      rating: 4,
+      comment: mockRawCommentToReview.text,
+      addReviewFormElements: [],
+    };
+    const reviewSender = Operation.sendReview(reviewData);
+
+    apiMock
+      .onPost(`/comments/1`, {
+        rating: reviewData.rating,
+        comment: reviewData.comment,
+      })
+      .reply(400);
+
+    return reviewSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: new Error(`Request failed with status code 400`),
         });
       });
   });

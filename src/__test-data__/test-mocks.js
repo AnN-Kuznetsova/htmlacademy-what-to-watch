@@ -161,6 +161,30 @@ const mockMovies = [
   },
 ];
 
+const mockReviews = [
+  {
+    id: 1,
+    text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+    rating: 8.9,
+    author: `Kate Muir`,
+    date: new Date(2016, 11, 24),
+  },
+  {
+    id: 2,
+    text: `The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.`,
+    rating: 7.2,
+    author: `Matthew Lickona`,
+    date: new Date(2016, 11, 20),
+  },
+  {
+    id: 3,
+    text: `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+    rating: 8,
+    author: `Bill Goodykoontz`,
+    date: new Date(2015, 10, 18),
+  },
+];
+
 const mockRawFilm = {
   [`name`]: `Gangs of new york`,
   [`poster_image`]: `https://htmlacademy-react-3.a…oster.jpg`,
@@ -204,10 +228,31 @@ const mockRawFilmToMovie = {
   isFavorite: false,
 };
 
+const mockRawComment = {
+  [`comment`]: `This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.`,
+  [`date`]: `2020-07-06T16:06:01.831Z`,
+  [`id`]: 1,
+  [`rating`]: 4,
+  [`user`]: {
+    [`id`]: 11,
+    [`name`]: `Jack`,
+  },
+};
+
+const mockRawCommentToReview = {
+  id: 1,
+  text: `This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.`,
+  rating: 4,
+  author: `Jack`,
+  date: new Date(`2020-07-06T16:06:01.831Z`),
+};
 
 export {
   mockMovies,
   mockPromoMovie,
   mockRawFilm,
   mockRawFilmToMovie,
+  mockRawComment,
+  mockRawCommentToReview,
+  mockReviews,
 };

@@ -202,14 +202,7 @@ describe(`User operation work correctly`, () => {
   });
 
 
-  it(`Should make a correct API call to /login with  bad post request`, () => {
-    /* const mockStore = configureStore([]);
-    const store = mockStore({
-      [NameSpace.DATA]: {
-        promoMovie: {},
-      },
-    }); */
-
+  it(`Should make a correct API call to /login with fail post request`, () => {
     const api = createAPI(() => {});
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();

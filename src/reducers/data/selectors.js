@@ -16,6 +16,10 @@ const getPromoMovie = (state) => {
   return state[NAME_SPASE].promoMovie;
 };
 
+const getActiveMovieReviews = (state) => {
+  return state[NAME_SPASE].activeMovieReviews;
+};
+
 const getMaxMoviesCount = (state) => {
   return state[NAME_SPASE].maxMoviesCount;
 };
@@ -34,13 +38,14 @@ const getFilteredMoviesByGenre = createSelector(
     }
 );
 
-const getError = (state) => {
+const getDataError = (state) => {
   return state[NAME_SPASE].dataError;
 };
 
 
 export {
-  getError,
+  getActiveMovieReviews,
+  getDataError,
   getMovies,
   getPromoMovie,
   getFilteredMoviesByGenre,

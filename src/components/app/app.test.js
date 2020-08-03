@@ -38,10 +38,14 @@ const store = mockStore({
 });
 
 const props = {
-  dataError: false,
+  dataError: null,
   activeMovie: mockPromoMovie,
   activePage: ``,
+  authorizationStatus: AuthorizationStatus.AUTH,
   onOpenMovieDetailsPage: () => {},
+  onAddReviewButtonClick: () => {},
+  setDataError: () => {},
+  sendReview: () => {},
 };
 
 
@@ -87,7 +91,34 @@ describe(`Render App`, () => {
 
   it(`Should match with snapshot when page is "ERROR"`, () => {
     props.activePage = PageType.ERROR;
-    props.dataError = true;
+    props.dataError = {request: true};
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when page is "SIGN_IN"`, () => {
+    props.activePage = PageType.SIGN_IN;
+    props.dataError = null;
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot when page is "ADD_REVIEW"`, () => {
+    props.activePage = PageType.ADD_REVIEW;
 
     const appSnapshot = renderer.create(
         <Provider store={store}>

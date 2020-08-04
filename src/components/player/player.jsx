@@ -46,6 +46,7 @@ const PlayerComponent = (props) => {
               type="button"
               className="player__exit"
               onClick={onExitButtonClick}
+              style={playerMode === VideoPlayerMode.SMALL_SCREEN ? {position: `inherit`} : {}}
             >Exit</button>
 
             <div

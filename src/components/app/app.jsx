@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Switch, Route, Router, Redirect} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
@@ -13,6 +13,7 @@ import {MoviePropType} from "../../prop-types";
 import {PageType, NUMBER_OF_SIMILAR_FILMS, AppRoute} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {PrivateRoute} from "../private-route/private-route";
+import {RedirectToMainRoute} from "../redirect-to-main-route/redirect-to-main-route";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
@@ -48,18 +49,6 @@ const AppComponent = (props) => {
           />
         );
 
-      /* case PageType.MOVIE_DETAILS:
-        return (<Redirect to={AppRoute.FILM.replace(`:id`, activeMovie.id)} />);
-
-      case PageType.PLAYER:
-        return (<Redirect to={AppRoute.PLAYER.replace(`:id`, activeMovie.id)} />);
-
-      case PageType.SIGN_IN:
-        return (<Redirect to={AppRoute.SIGN_IN} />);
-
-      case PageType.ADD_REVIEW:
-        return (<Redirect to={AppRoute.ADD_REVIEW.replace(`:id`, activeMovie.id)} />); */
-
       case PageType.ERROR:
         return (
           <ErrorPage
@@ -79,10 +68,12 @@ const AppComponent = (props) => {
           {renderPage()}
         </Route>
 
-        <Route exact path={AppRoute.FILM}
+        <RedirectToMainRoute exact path={AppRoute.FILM}
           render={(routeProps) => {
             const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
-            onOpenMovieDetailsPage(newActiveMovie);
+            if (!dataError) {
+              onOpenMovieDetailsPage(newActiveMovie);
+            }
 
             return (
               <MovieDetailsPage
@@ -95,7 +86,7 @@ const AppComponent = (props) => {
           }}
         />
 
-        <Route exact path={AppRoute.PLAYER}
+        <RedirectToMainRoute exact path={AppRoute.PLAYER}
           render={(routeProps) => {
             const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
             changeActiveMovie(newActiveMovie);
@@ -109,7 +100,7 @@ const AppComponent = (props) => {
           }}
         />
 
-        <Route exact path={AppRoute.SIGN_IN}
+        <RedirectToMainRoute exact path={AppRoute.SIGN_IN}
           render={() => {
             changeActivePage(PageType.SIGN_IN);
             return (<SignIn />);
@@ -172,6 +163,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onAddReviewButtonClick() {
     dispatch(ApplicationActionCreator.changeActivePage(PageType.ADD_REVIEW));
+    dispatch(DataActionCtrator.setDataError(null));
   },
   setDataError(error) {
     dispatch(DataActionCtrator.setDataError(error));

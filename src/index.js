@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDom from "react-dom";
+import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {createStore, applyMiddleware} from "redux";
-import thunk from "redux-thunk";
 
 import {App} from "./components/app/app";
 import {Error} from "./api";
 import {Operation as DataOperation, ActionCreator as DataActionCreator} from "./reducers/data/data";
 import {Operation as UserOperation, ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducers/user/user";
 import {createAPI} from "./api";
-import {reducer} from "./reducers/reducer";
 import {getPromoMovie} from "./reducers/data/selectors";
+import {reducer} from "./reducers/reducer";
 
 
 const onFailRequest = (error) => {

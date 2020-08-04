@@ -5,11 +5,12 @@ import {PageType, AppRoute} from "../../const";
 import {createReviews} from "../../adapters/review";
 import {createMovies, createMovie} from "../../adapters/movie";
 import {getActiveMovie} from "../application/selectors";
+import {getDataError} from "./selectors";
 import {history} from "../../history";
 
 
 const initialState = {
-  movies: [],
+  movies: null,
   promoMovie: null,
   maxMoviesCount: null,
   activeMovieReviews: [],
@@ -81,7 +82,9 @@ const Operation = {
         dispatch(ActionCreator.setDataError(null));
       })
       .catch((error) => {
-        dispatch(ActionCreator.setDataError(error));
+        if (!getDataError(getState())) {
+          dispatch(ActionCreator.setDataError(error));
+        }
       });
   },
 

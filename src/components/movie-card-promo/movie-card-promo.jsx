@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 
 import {AppRoute} from "../../const";
 import {Header} from "../header/header";
+import {ListButton} from "../list-button/list-button";
 import {MoviePropType} from "../../prop-types";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
@@ -61,12 +62,8 @@ const MovieCardPromo = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add" />
-                </svg>
-                <span>My list</span>
-              </button>
+
+              <ListButton movie={movie} />
             </div>
           </div>
         </div>}

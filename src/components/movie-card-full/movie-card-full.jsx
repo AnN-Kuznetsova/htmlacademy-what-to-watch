@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {Header} from "../header/header";
+import {ListButton} from "../list-button/list-button";
 import {MovieCardInfoWithTabs} from "../movie-card-info/movie-card-info";
 import {MoviePropType} from "../../prop-types";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
@@ -45,9 +46,7 @@ const MovieCardFull = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button
-                  className="btn btn--play movie-card__button"
-                  type="button"
+                <button className="btn btn--play movie-card__button" type="button"
                   onClick={onPlayButtonClick}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
@@ -55,12 +54,9 @@ const MovieCardFull = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
+
+                <ListButton movie={movie} />
+
                 {authorizationStatus === AuthorizationStatus.AUTH &&
                   <Link
                     className="btn movie-card__button"

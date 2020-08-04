@@ -14,9 +14,9 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS, AppRoute} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {PrivateRoute} from "../private-route/private-route";
 import {SignIn} from "../sign-in/sign-in";
-import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
+import {getActivePage} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
-import {getDataError, getMovies} from "../../reducers/data/selectors";
+import {getDataError, getMovies, getPromoMovie} from "../../reducers/data/selectors";
 import {history} from "../../history";
 
 
@@ -24,7 +24,7 @@ const AppComponent = (props) => {
   const {
     dataError,
     activePage,
-    activeMovie,
+    promoMovie,
     movies,
     authorizationStatus,
     onOpenMovieDetailsPage,
@@ -40,14 +40,15 @@ const AppComponent = (props) => {
 
     switch (activePage) {
       case PageType.MAIN:
+        changeActiveMovie(promoMovie);
         return (
           <MainPage
-            promoMovie={activeMovie}
+            promoMovie={promoMovie}
             openMovieDetailsPage={onOpenMovieDetailsPage}
           />
         );
 
-      case PageType.MOVIE_DETAILS:
+      /* case PageType.MOVIE_DETAILS:
         return (<Redirect to={AppRoute.FILM.replace(`:id`, activeMovie.id)} />);
 
       case PageType.PLAYER:
@@ -57,7 +58,7 @@ const AppComponent = (props) => {
         return (<Redirect to={AppRoute.SIGN_IN} />);
 
       case PageType.ADD_REVIEW:
-        return (<Redirect to={AppRoute.ADD_REVIEW.replace(`:id`, activeMovie.id)} />);
+        return (<Redirect to={AppRoute.ADD_REVIEW.replace(`:id`, activeMovie.id)} />); */
 
       case PageType.ERROR:
         return (
@@ -140,7 +141,7 @@ const AppComponent = (props) => {
 AppComponent.propTypes = {
   dataError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
-  activeMovie: MoviePropType,
+  promoMovie: MoviePropType,
   movies: PropTypes.arrayOf(MoviePropType),
   authorizationStatus: PropTypes.string.isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
@@ -155,14 +156,15 @@ AppComponent.propTypes = {
 const mapStateToProps = (state) => ({
   dataError: getDataError(state),
   activePage: getActivePage(state),
-  activeMovie: getActiveMovie(state),
   authorizationStatus: getAuthorizationStatus(state),
   movies: getMovies(state),
+  promoMovie: getPromoMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onOpenMovieDetailsPage(movie) {
     dispatch(DataActionCtrator.setMaxMoviesCount(NUMBER_OF_SIMILAR_FILMS));
+    dispatch(ApplicationActionCreator.resetVisibleMoviesCount());
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));
     dispatch(Operation.loadActiveMovieReviews(movie.id));
     dispatch(ApplicationActionCreator.changeGenre(movie.genres[0]));

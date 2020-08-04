@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {Link} from "react-router-dom";
 
+import {AppRoute} from "../../const";
 import {Header} from "../header/header";
 import {MoviePropType} from "../../prop-types";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
@@ -32,16 +34,20 @@ const MovieCardPromo = (props) => {
         {isPlayerVisible && renderVideoPlayer(movie.videoUrl, movie.smallPictureUrl) ||
 
         <div className="movie-card__info">
-          <div className="movie-card__poster" onClick={onMovieClick}>
-            <img src={movie.posterUrl} alt={movie.title} width="218" height="327" />
-          </div>
+          <Link
+            to={AppRoute.FILM.replace(`:id`, movie.id)}
+            onClick={onMovieClick}>
+            <div className="movie-card__poster">
+              <img src={movie.posterUrl} alt={movie.title} width="218" height="327" />
+            </div>
+          </Link>
           <div className="movie-card__desc">
-            <h2
-              className="movie-card__title"
-              onClick={onMovieClick}
-            >
-              {movie.title}
-            </h2>
+            <Link
+              style={{textDecoration: `none`, color: `inherit`}}
+              to={AppRoute.FILM.replace(`:id`, movie.id)}
+              onClick={onMovieClick}>
+              <h2 className="movie-card__title">{movie.title}</h2>
+            </Link>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{movie.genres[0]}</span>
               <span className="movie-card__year">{movie.releaseDate.getFullYear()}</span>

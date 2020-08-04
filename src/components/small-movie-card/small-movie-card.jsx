@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {DELAY_PLAYBACK_PREVIEW} from "../../const";
+import {Link} from "react-router-dom";
+
+import {DELAY_PLAYBACK_PREVIEW, AppRoute} from "../../const";
 import {MoviePropType} from "../../prop-types";
 import {VideoPlayerMode, VideoPlayerStatus} from "../../hocs/with-video/with-video";
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
@@ -27,8 +29,7 @@ const SmallMovieCard = (props) => {
     }
   };
 
-  const handleCardClick = (event) => {
-    event.preventDefault();
+  const handleCardClick = () => {
     lossHoverFromCard();
     onClick(movie);
   };
@@ -49,21 +50,26 @@ const SmallMovieCard = (props) => {
       className="small-movie-card catalog__movies-card"
       onMouseEnter={handleCardHover}
       onMouseLeave={handleCardLeave}
-      onClick={handleCardClick}
     >
-      <div className="small-movie-card__image">
-        {renderVideoPlayer(previewUrl, smallPictureUrl)}
-
-        <img
-          src={smallPictureUrl}
-          alt={title}
-          width="280"
-          height="175"
-        />
-      </div>
-
+      <Link
+        to={AppRoute.FILM.replace(`:id`, movie.id)}
+        onClick={handleCardClick}>
+        <div className="small-movie-card__image">
+          {renderVideoPlayer(previewUrl, smallPictureUrl)}
+          <img
+            src={smallPictureUrl}
+            alt={title}
+            width="280"
+            height="175"
+          />
+        </div>
+      </Link>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+        <Link
+          className="small-movie-card__link"
+          to={AppRoute.FILM.replace(`:id`, movie.id)}
+          onClick={handleCardClick}
+        >{title}</Link>
       </h3>
     </article>
   );

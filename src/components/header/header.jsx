@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
@@ -8,7 +9,7 @@ import {ActionCreator as DataActionCreator} from "../../reducers/data/data";
 import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
 import {MoviePropType} from "../../prop-types";
-import {PageType} from "../../const";
+import {PageType, AppRoute} from "../../const";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 
@@ -27,18 +28,14 @@ const HeaderComponent = (props) => {
   const renderSignInLink = authorizationStatus === AuthorizationStatus.NO_AUTH && activePage !== PageType.ERROR && activePage !== PageType.SIGN_IN;
   const renderSignInPage = activePage === PageType.SIGN_IN;
 
-  const handleSignInClick = (event) => {
-    event.preventDefault();
-    onOpenSignInPage();
-  };
-
   const breadcrambsList = activeMovie ? [
     {
-      link: `#`,
+      link: AppRoute.FILM.replace(`:id`, activeMovie.id),
       onLinkClick: onBreadcrambsLinkClick,
       title: activeMovie.title
     },
     {
+      link: ``,
       title: `Add review`,
     }
   ] : [];
@@ -62,9 +59,11 @@ const HeaderComponent = (props) => {
 
         {renderSignInLink &&
           <div className="user-block">
-            <a href="sign-in.html" className="user-block__link"
-              onClick={handleSignInClick}
-            >Sign in</a>
+            <Link
+              className="user-block__link"
+              to={AppRoute.SIGN_IN}
+              onClick={onOpenSignInPage}
+            >Sign in</Link>
           </div>}
 
         {renderSignInPage &&

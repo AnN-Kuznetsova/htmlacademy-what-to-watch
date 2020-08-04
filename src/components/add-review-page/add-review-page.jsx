@@ -157,7 +157,7 @@ const AddReviewPage = (props) => {
           </div>
         </form>
 
-        {errorMessage && <p style={{whiteSpace: `pre-wrap`}}>{errorMessage}</p>}
+        {errorMessage && <p style={{whiteSpace: `pre-wrap`, color: `#A8421E`}}>{errorMessage}</p>}
       </div>
 
     </section>

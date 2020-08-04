@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/application/application";
-import {getActivePage, getPrevPage, getPlayerStartTime} from "../../reducers/application/selectors";
+import {AppRoute} from "../../const";
+import {MoviePropType} from "../../prop-types";
+import {getActivePage, getPrevPage, getPlayerStartTime, getActiveMovie} from "../../reducers/application/selectors";
 import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
@@ -22,6 +25,7 @@ const PlayerComponent = (props) => {
     isPlaying,
     duration,
     progress,
+    activeMovie,
     children,
     onPlayButtonClick,
     onExitButtonClick,
@@ -76,16 +80,16 @@ const PlayerComponent = (props) => {
                 <div className="player__name">Transpotting</div>
 
                 {playerMode === VideoPlayerMode.SMALL_SCREEN &&
-                <button
-                  type="button"
+                <Link
                   className="player__full-screen"
+                  to={AppRoute.PLAYER.replace(`:id`, activeMovie.id)}
                   onClick={onFullScreenButtonClick}
                 >
                   <svg viewBox="0 0 27 27" width="27" height="27">
                     <use xlinkHref="#full-screen" />
                   </svg>
                   <span>Full screen</span>
-                </button>}
+                </Link>}
               </div>
             </div>
           </div>
@@ -111,6 +115,7 @@ PlayerComponent.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   duration: PropTypes.number,
   progress: PropTypes.number.isRequired,
+  activeMovie: MoviePropType.isRequired,
   activePage: PropTypes.string,
   prevPage: PropTypes.string.isRequired,
   playerStartTime: PropTypes.number.isRequired,
@@ -125,6 +130,7 @@ PlayerComponent.propTypes = {
 
 const mapStateToProps = (state) => ({
   activePage: getActivePage(state),
+  activeMovie: getActiveMovie(state),
   prevPage: getPrevPage(state),
   playerStartTime: getPlayerStartTime(state),
 });

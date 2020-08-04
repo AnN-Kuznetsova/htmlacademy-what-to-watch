@@ -2,8 +2,9 @@ import {extend} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
 import {ActionCreator as DataActionCreator} from "../data/data";
-import {PageType} from "../../const";
+import {PageType, AppRoute} from "../../const";
 import {getPromoMovie} from "../data/selectors";
+import {history} from "../../history";
 
 
 const AuthorizationStatus = {
@@ -50,13 +51,14 @@ const Operation = {
       password: authData.password,
     })
     .then(() => {
+      history.push(AppRoute.MAIN);
+      dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.setLoginError(null));
       dispatch(DataActionCreator.setMaxMoviesCount(null));
       dispatch(ApplicationActionCreator.changeActiveMovie(getPromoMovie(getState())));
       dispatch(ApplicationActionCreator.changeGenre(`All genres`));
       dispatch(ApplicationActionCreator.resetVisibleMoviesCount());
-      dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
     })
     .catch((error) => {
       dispatch(ActionCreator.setLoginError(error));

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, {PureComponent} from "react";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -15,33 +15,64 @@ import {PlayerPage} from "../player-page/player-page";
 import {PrivateRoute} from "../private-route/private-route";
 import {RedirectToMainRoute} from "../redirect-to-main-route/redirect-to-main-route";
 import {SignIn} from "../sign-in/sign-in";
-import {getActivePage} from "../../reducers/application/selectors";
+import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getDataError, getMovies, getPromoMovie} from "../../reducers/data/selectors";
 import {history} from "../../history";
 
 
-const AppComponent = (props) => {
-  const {
-    dataError,
-    activePage,
-    promoMovie,
-    movies,
-    authorizationStatus,
-    onOpenMovieDetailsPage,
-    onAddReviewButtonClick,
-    setDataError,
-    sendReview,
-    changeActivePage,
-    changeActiveMovie,
-  } = props;
+class AppComponent extends PureComponent {
+  componentDidMount() {
+    const path = window.location.pathname;
 
-  const renderPage = () => {
+    switch (true) {
+      case path.includes(`/films/`) && !path.includes(`/review`): {
+        const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/films/`, ``).replace(`/`, ``));
+        this.props.onOpenMovieDetailsPage(newActiveMovie);
+        break;
+      }
+
+      case path.includes(`/films/`) && path.includes(`/review`): {
+        const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/films/`, ``).replace(`/review`, ``).replace(`/`, ``));
+        this.props.changeActiveMovie(newActiveMovie);
+        this.props.changeActivePage(PageType.ADD_REVIEW);
+        break;
+      }
+
+      case path.includes(`/player/`): {
+        const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/player/`, ``).replace(`/`, ``));
+        this.props.changeActivePage(PageType.PLAYER);
+        this.props.changeActiveMovie(newActiveMovie);
+        break;
+      }
+
+      case path.includes(AppRoute.SIGN_IN):
+        this.props.changeActivePage(PageType.SIGN_IN);
+        break;
+
+      case path === AppRoute.MAIN:
+        this.props.changeActiveMovie(this.props.promoMovie);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  renderPage() {
+    const {
+      dataError,
+      activePage,
+      promoMovie,
+      onOpenMovieDetailsPage,
+      changeActiveMovie,
+    } = this.props;
+
     window.scrollTo(0, 0);
 
     switch (activePage) {
       case PageType.MAIN:
-        changeActiveMovie(promoMovie);
+        //changeActiveMovie(promoMovie);
         return (
           <MainPage
             promoMovie={promoMovie}
@@ -59,87 +90,87 @@ const AppComponent = (props) => {
       default:
         return null;
     }
-  };
+  }
 
-  return (
-    <Router history={history}>
-      <Switch>
-        <Route exact path={AppRoute.MAIN}>
-          {renderPage()}
-        </Route>
+  render() {
+    const {
+      dataError,
+      activeMovie,
+      authorizationStatus,
+      onOpenMovieDetailsPage,
+      onAddReviewButtonClick,
+      setDataError,
+      sendReview,
+      changeActivePage,
+    } = this.props;
 
-        <RedirectToMainRoute exact path={AppRoute.FILM}
-          render={(routeProps) => {
-            const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
-            if (!dataError) {
-              onOpenMovieDetailsPage(newActiveMovie);
-            }
+    return (
+      <Router history={history}>
+        <Switch>
+          <Route exact path={AppRoute.MAIN}>
+            {this.renderPage()}
+          </Route>
 
-            return (
-              <MovieDetailsPage
-                activeMovie={newActiveMovie}
-                authorizationStatus={authorizationStatus}
-                onSmallMovieCardClick={onOpenMovieDetailsPage}
-                onAddReviewButtonClick={onAddReviewButtonClick}
-              />
-            );
-          }}
-        />
+          <RedirectToMainRoute exact path={AppRoute.FILM}
+            render={() => {
+              return (
+                <MovieDetailsPage
+                  activeMovie={activeMovie}
+                  authorizationStatus={authorizationStatus}
+                  onSmallMovieCardClick={onOpenMovieDetailsPage}
+                  onAddReviewButtonClick={onAddReviewButtonClick}
+                />
+              );
+            }}
+          />
 
-        <RedirectToMainRoute exact path={AppRoute.PLAYER}
-          render={(routeProps) => {
-            const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
-            changeActiveMovie(newActiveMovie);
-            changeActivePage(PageType.PLAYER);
+          <RedirectToMainRoute exact path={AppRoute.PLAYER}
+            render={() => {
+              return (
+                <PlayerPage
+                  movie={activeMovie}
+                />
+              );
+            }}
+          />
 
-            return (
-              <PlayerPage
-                movie={newActiveMovie}
-              />
-            );
-          }}
-        />
+          <RedirectToMainRoute exact path={AppRoute.SIGN_IN}
+            render={() => {
+              return (<SignIn />);
+            }}
+          />
 
-        <RedirectToMainRoute exact path={AppRoute.SIGN_IN}
-          render={() => {
-            changeActivePage(PageType.SIGN_IN);
-            return (<SignIn />);
-          }}
-        />
+          <PrivateRoute exact path={AppRoute.ADD_REVIEW}
+            render={() => {
+              return (
+                <AddReviewPageWithNewReview
+                  movie={activeMovie}
+                  dataError={dataError}
+                  setDataError={setDataError}
+                  sendReview={sendReview}
+                />
+              );
+            }}
+          />
 
-        <PrivateRoute exact path={AppRoute.ADD_REVIEW}
-          render={(routeProps) => {
-            const newActiveMovie = movies.find((movie) => movie.id === +routeProps.match.params.id);
-            changeActiveMovie(newActiveMovie);
-            changeActivePage(PageType.ADD_REVIEW);
-
-            return (
-              <AddReviewPageWithNewReview
-                movie={newActiveMovie}
-                dataError={dataError}
-                setDataError={setDataError}
-                sendReview={sendReview}
-              />
-            );
-          }}
-        />
-
-        <Route
-          render={() => {
-            setDataError({status: 404});
-            changeActivePage(PageType.ERROR);
-            return (<Redirect to={AppRoute.MAIN} />);
-          }}
-        />
-      </Switch>
-    </Router>
-  );
-};
+          <Route
+            render={() => {
+              setDataError({status: 404});
+              changeActivePage(PageType.ERROR);
+              return (<Redirect to={AppRoute.MAIN} />);
+            }}
+          />
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 
 AppComponent.propTypes = {
   dataError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
+  activeMovie: MoviePropType,
   promoMovie: MoviePropType,
   movies: PropTypes.arrayOf(MoviePropType),
   authorizationStatus: PropTypes.string.isRequired,
@@ -155,6 +186,7 @@ AppComponent.propTypes = {
 const mapStateToProps = (state) => ({
   dataError: getDataError(state),
   activePage: getActivePage(state),
+  activeMovie: getActiveMovie(state),
   authorizationStatus: getAuthorizationStatus(state),
   movies: getMovies(state),
   promoMovie: getPromoMovie(state),

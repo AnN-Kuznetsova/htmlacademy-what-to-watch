@@ -5,7 +5,6 @@ import {PageType, AppRoute} from "../../const";
 import {createReviews} from "../../adapters/review";
 import {createMovies, createMovie} from "../../adapters/movie";
 import {getActiveMovie} from "../application/selectors";
-import {getDataError} from "./selectors";
 import {history} from "../../history";
 
 
@@ -82,9 +81,7 @@ const Operation = {
         dispatch(ActionCreator.setDataError(null));
       })
       .catch((error) => {
-        if (!getDataError(getState())) {
-          dispatch(ActionCreator.setDataError(error));
-        }
+        dispatch(ActionCreator.setDataError(error));
       });
   },
 

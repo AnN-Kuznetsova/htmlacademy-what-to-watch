@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
-import {ActionCreator as DataActionCreator} from "../../reducers/data/data";
+import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
 import {MoviePropType} from "../../prop-types";
@@ -31,7 +31,7 @@ const HeaderComponent = (props) => {
   const breadcrambsList = activeMovie ? [
     {
       link: AppRoute.FILM.replace(`:id`, activeMovie.id),
-      onLinkClick: onBreadcrambsLinkClick,
+      onLinkClick: onBreadcrambsLinkClick.bind(null, activeMovie.id),
       title: activeMovie.title
     },
     {
@@ -93,8 +93,9 @@ const mapDispatchToProps = (dispatch) => ({
   onOpenSignInPage() {
     dispatch(ApplicationActionCreator.changeActivePage(PageType.SIGN_IN));
   },
-  onBreadcrambsLinkClick() {
+  onBreadcrambsLinkClick(activeMovieId) {
     dispatch(DataActionCreator.setDataError(null));
+    dispatch(Operation.loadActiveMovieReviews(activeMovieId));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   },
 });

@@ -1,6 +1,8 @@
 import MockAdapter from "axios-mock-adapter";
+import configureStore from "redux-mock-store";
 
 import {ActionType as ApplicationActionType} from "../application/application";
+import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
 import {createAPI} from "../../api";
 import {reducer, ActionType as DataActionType, ActionCreator, Operation} from "./data";
@@ -19,8 +21,8 @@ import {
 describe(`Data reduser should work correctly`, () => {
   it(`Data reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      movies: [],
-      promoMovie: {},
+      movies: null,
+      promoMovie: null,
       maxMoviesCount: null,
       activeMovieReviews: [],
       dataError: null,
@@ -208,7 +210,14 @@ describe(`Data operation work correctly`, () => {
   });
 
 
-  it(`Should make a correct API call for fail get request to /comments/: film_id`, () => {
+  it(`Should make a correct API call for fail get request to /comments/: film_id when dataError is null`, () => {
+    const mockStore = configureStore([]);
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        dataError: null,
+      },
+    });
+
     const api = createAPI(() => {});
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -219,7 +228,7 @@ describe(`Data operation work correctly`, () => {
       .onGet(`/comments/1`)
       .reply(400);
 
-    return reviewsLoader(dispatch, () => {}, api)
+    return reviewsLoader(dispatch, store.getState, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -230,7 +239,39 @@ describe(`Data operation work correctly`, () => {
   });
 
 
+  it(`Should make a correct API call for fail get request to /comments/: film_id when dataError is not null`, () => {
+    const mockStore = configureStore([]);
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        dataError: {},
+      },
+    });
+
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const reviewsLoader = Operation.loadActiveMovieReviews(1);
+
+    apiMock
+      .onGet(`/comments/1`)
+      .reply(400);
+
+    return reviewsLoader(dispatch, store.getState, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(0);
+      });
+  });
+
+
   it(`Should make a correct API call for post request to /comments/: film_id`, () => {
+    const mockStore = configureStore([]);
+    const store = mockStore({
+      [NameSpace.APPLICATION]: {
+        activeMovie: mockPromoMovie,
+      },
+    });
+
     const api = createAPI(() => {});
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -250,21 +291,22 @@ describe(`Data operation work correctly`, () => {
       })
       .reply(200, [mockRawComment]);
 
-    return reviewSender(dispatch, () => {}, api)
+    return reviewSender(dispatch, store.getState, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: DataActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
-          payload: [mockRawCommentToReview],
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: DataActionType.SET_DATA_ERROR,
-          payload: null,
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
           payload: PageType.MOVIE_DETAILS,
         });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: DataActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
+          payload: [mockRawCommentToReview],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: null,
+        });
+
       });
   });
 

@@ -10,6 +10,12 @@ exports[`Render Footer Should match with snapshot when window.location is MainPa
     <a
       className="logo__link logo__link--light"
       href="/"
+      onClick={[Function]}
+      style={
+        Object {
+          "pointerEvents": "none",
+        }
+      }
     >
       <span
         className="logo__letter logo__letter--1"
@@ -48,6 +54,8 @@ exports[`Render Footer Should match with snapshot when window.location is not Ma
     <a
       className="logo__link logo__link--light"
       href="/"
+      onClick={[Function]}
+      style={Object {}}
     >
       <span
         className="logo__letter logo__letter--1"

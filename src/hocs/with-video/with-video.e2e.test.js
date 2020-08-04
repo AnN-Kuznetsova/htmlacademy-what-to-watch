@@ -4,6 +4,8 @@ import {mount} from "enzyme";
 
 import {withVideo, VideoPlayerMode, VideoPlayerStatus} from "../../hocs/with-video/with-video";
 
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
+
 
 window.HTMLMediaElement.prototype.play = () => {};
 window.HTMLMediaElement.prototype.pause = () => {};
@@ -30,6 +32,7 @@ const props = {
   src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   posterUrl: `poster-url`,
   playerMode: null,
+  activeMovie: mockPromoMovie,
   activePage: ``,
   prevPage: ``,
   playerStartTime: 0,

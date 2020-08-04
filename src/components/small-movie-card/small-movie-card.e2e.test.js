@@ -43,10 +43,12 @@ describe(`SmallMovieCard e2e-tests`, () => {
 
 
   it(`"onClick" should be called and movie data passed`, () => {
-    smallMovieCardElement.simulate(`click`, mockEvent);
+    smallMovieCardElement.find(`.small-movie-card__link`).simulate(`click`, mockEvent);
+    smallMovieCardElement.find(`Link`).at(0).simulate(`click`, mockEvent);
 
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(2);
     expect(onClick.mock.calls[0][0]).toEqual(mockMovies[1]);
+    expect(onClick.mock.calls[1][0]).toEqual(mockMovies[1]);
   });
 
 

@@ -1,12 +1,14 @@
 import React from "react";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 import {mount} from "enzyme";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {MovieDetailsPage} from "./movie-details-page";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
+import {history} from "../../history";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
@@ -20,6 +22,7 @@ const store = mockStore({
   [NameSpace.APPLICATION]: {
     genre: `All genres`,
     visibleMoviesCount: 8,
+    activeMovie: mockPromoMovie,
     activePage: PageType.MOVIE_DETAILS,
     prevPage: ``,
     playerStartTime: 0,
@@ -28,10 +31,6 @@ const store = mockStore({
     authorizationStatus: AuthorizationStatus.AUTH,
   },
 });
-
-const mockEvent = {
-  preventDefault() {}
-};
 
 const onSmallMovieCardClick = jest.fn();
 
@@ -43,19 +42,20 @@ const props = {
 };
 
 const movieDetailsPageElement = mount(
-    <Provider store={store}>
-      <MovieDetailsPage {...props} />
-    </Provider>
+    <Router history={history} >
+      <Provider store={store}>
+        <MovieDetailsPage {...props} />
+      </Provider>
+    </Router>
 );
 
 
 describe(`MovieDetailsPage e2e-tests`, () => {
   it(`Should small movie card in catalog be pressed`, () => {
     const catalogElement = movieDetailsPageElement.find(`section.catalog`);
-    const smallMovieCardElement = [...catalogElement.find(`article.small-movie-card`)][0];
+    [...catalogElement.find(`Link`)][0].props.onClick();
+    [...catalogElement.find(`Link`)][1].props.onClick();
 
-    smallMovieCardElement.props.onClick(mockEvent);
-
-    expect(onSmallMovieCardClick).toHaveBeenCalled();
+    expect(onSmallMovieCardClick).toHaveBeenCalledTimes(2);
   });
 });

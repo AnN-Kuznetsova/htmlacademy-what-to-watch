@@ -2,12 +2,14 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 
 import {AddReviewPage} from "./add-review-page";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {Error} from "../../api";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
+import {history} from "../../history";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -44,9 +46,11 @@ const props = {
 describe(`Render AddReviewPage`, () => {
   it(`AddReviewPage should match with snapshot when dataError is null`, () => {
     const addReviewPageSnapshot = renderer.create(
-        <Provider store={store} >
-          <AddReviewPage {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store} >
+            <AddReviewPage {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(addReviewPageSnapshot).toMatchSnapshot();
@@ -61,9 +65,11 @@ describe(`Render AddReviewPage`, () => {
     };
 
     const addReviewPageSnapshot = renderer.create(
-        <Provider store={store} >
-          <AddReviewPage {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store} >
+            <AddReviewPage {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(addReviewPageSnapshot).toMatchSnapshot();
@@ -78,9 +84,11 @@ describe(`Render AddReviewPage`, () => {
     };
 
     const addReviewPageSnapshot = renderer.create(
-        <Provider store={store} >
-          <AddReviewPage {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store} >
+            <AddReviewPage {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(addReviewPageSnapshot).toMatchSnapshot();
@@ -97,9 +105,11 @@ describe(`Render AddReviewPage`, () => {
     };
 
     const addReviewPageSnapshot = renderer.create(
-        <Provider store={store} >
-          <AddReviewPage {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store} >
+            <AddReviewPage {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(addReviewPageSnapshot).toMatchSnapshot();

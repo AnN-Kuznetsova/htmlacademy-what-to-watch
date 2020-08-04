@@ -2,11 +2,13 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import {mount} from "enzyme";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user.js";
 import {MainPage} from "./main-page.jsx";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const.js";
+import {history} from "../../history";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
@@ -24,6 +26,7 @@ const store = mockStore({
   [NameSpace.APPLICATION]: {
     genre: `All genres`,
     visibleMoviesCount: 8,
+    activeMovie: mockPromoMovie,
     activePage: PageType.MAIN,
     prevPage: ``,
     playerStartTime: 0,
@@ -41,28 +44,27 @@ const props = {
 };
 
 const mainPageElement = mount(
-    <Provider store={store}>
-      <MainPage {...props} />
-    </Provider>
+    <Router history={history} >
+      <Provider store={store}>
+        <MainPage {...props} />
+      </Provider>
+    </Router>
 );
 
 
 describe(`MainPage e2e-tests`, () => {
   it(`Should small movie card in catalog be pressed`, () => {
     const catalogElement = mainPageElement.find(`section.catalog`);
-    const smallMovieCardElement = [...catalogElement.find(`article.small-movie-card`)][0];
+    [...catalogElement.find(`Link`)][0].props.onClick();
+    [...catalogElement.find(`Link`)][1].props.onClick();
 
-    smallMovieCardElement.props.onClick(mockEvent);
-
-    expect(openMovieDetailsPage).toHaveBeenCalled();
+    expect(openMovieDetailsPage).toHaveBeenCalledTimes(2);
   });
 
 
   it(`Should promo movie card title be pressed`, () => {
     const movieCardElement = mainPageElement.find(`section.movie-card`);
-    const movieCardTitleElement = [...movieCardElement.find(`h2.movie-card__title`)][0];
-
-    movieCardTitleElement.props.onClick();
+    movieCardElement.find(`.movie-card__desc Link`).simulate(`click`);
 
     expect(openMovieDetailsPage).toHaveBeenCalled();
   });
@@ -70,9 +72,7 @@ describe(`MainPage e2e-tests`, () => {
 
   it(`Should promo movie card poster be pressed`, () => {
     const movieCardElement = mainPageElement.find(`section.movie-card`);
-    const movieCardPosterElement = [...movieCardElement.find(`div.movie-card__poster`)][0];
-
-    movieCardPosterElement.props.onClick();
+    movieCardElement.find(`.movie-card__info Link`).at(0).simulate(`click`);
 
     expect(openMovieDetailsPage).toHaveBeenCalled();
   });

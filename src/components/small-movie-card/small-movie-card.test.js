@@ -1,9 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
+import {Router} from "react-router-dom";
+import {shallow, mount} from "enzyme";
 
 import {SmallMovieCard} from "./small-movie-card.jsx";
 import {VideoPlayerStatus} from "../../hocs/with-video/with-video.jsx";
+import {history} from "../../history";
 
 import {mockMovies} from "../../__test-data__/test-mocks.js";
 
@@ -23,13 +25,19 @@ const nodeMock = {
   }
 };
 
-const smallMovieCardElement = shallow(<SmallMovieCard {...props} />);
+const smallMovieCardElement = mount(
+    <Router history={history} >
+      <SmallMovieCard {...props} />
+    </Router>
+);
 
 
 describe(`Render SmallMovieCard`, () => {
   it(`Should match with snapshot`, () => {
     const smallMovieCardSnapshot = renderer.create(
-        <SmallMovieCard {...props} />, nodeMock
+        <Router history={history} >
+          <SmallMovieCard {...props} />
+        </Router>, nodeMock
     ).toJSON();
 
     expect(smallMovieCardSnapshot).toMatchSnapshot();
@@ -37,7 +45,7 @@ describe(`Render SmallMovieCard`, () => {
 
 
   it(`Should render correct movie title`, () => {
-    expect(smallMovieCardElement.find(`h3.small-movie-card__title .small-movie-card__link`).text())
+    expect(smallMovieCardElement.find(`.small-movie-card__link`).at(0).text())
       .toEqual(props.movie.title);
 
     expect(smallMovieCardElement.find(`div.small-movie-card__image img`).prop(`alt`))

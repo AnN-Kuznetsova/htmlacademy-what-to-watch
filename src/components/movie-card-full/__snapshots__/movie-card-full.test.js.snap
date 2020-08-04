@@ -34,6 +34,8 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
         <a
           className="logo__link false"
           href="/"
+          onClick={[Function]}
+          style={Object {}}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -61,7 +63,7 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
           <img
             alt="User avatar"
             height="63"
-            src="img/avatar.jpg"
+            src="/img/avatar.jpg"
             width="63"
           />
         </div>
@@ -132,7 +134,7 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
           </button>
           <a
             className="btn movie-card__button"
-            href="add-review.html"
+            href="/films/1/review"
             onClick={[Function]}
           >
             Add review
@@ -293,6 +295,8 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
         <a
           className="logo__link false"
           href="/"
+          onClick={[Function]}
+          style={Object {}}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -320,7 +324,7 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
           <img
             alt="User avatar"
             height="63"
-            src="img/avatar.jpg"
+            src="/img/avatar.jpg"
             width="63"
           />
         </div>

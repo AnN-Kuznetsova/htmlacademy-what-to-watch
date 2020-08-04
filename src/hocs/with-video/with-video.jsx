@@ -83,10 +83,12 @@ export const withVideo = (Component) => {
 
       if (!isLoading) {
         if (this.getPlayingValue()) {
-          video.play()
-            .catch(()=>{
+          const playPromise = video.play();
+          if (playPromise) {
+            playPromise.catch(()=>{
               this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
             });
+          }
         } else {
           if (playerMode === VideoPlayerMode.PREVIEW) {
             video.load();

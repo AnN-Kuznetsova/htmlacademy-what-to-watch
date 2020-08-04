@@ -7,6 +7,7 @@ exports[`Render Player Should match with snapshot when player mode is "FULL_SCRE
   <video />
   <button
     className="player__exit"
+    style={Object {}}
     type="button"
   >
     Exit
@@ -87,6 +88,11 @@ exports[`Render Player Should match with snapshot when player mode is "SMALL_SCR
   <video />
   <button
     className="player__exit"
+    style={
+      Object {
+        "position": "inherit",
+      }
+    }
     type="button"
   >
     Exit
@@ -153,9 +159,10 @@ exports[`Render Player Should match with snapshot when player mode is "SMALL_SCR
       >
         Transpotting
       </div>
-      <button
+      <a
         className="player__full-screen"
-        type="button"
+        href="/player/1"
+        onClick={[Function]}
       >
         <svg
           height="27"
@@ -169,7 +176,7 @@ exports[`Render Player Should match with snapshot when player mode is "SMALL_SCR
         <span>
           Full screen
         </span>
-      </button>
+      </a>
     </div>
   </div>
 </div>

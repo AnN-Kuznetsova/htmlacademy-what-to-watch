@@ -171,32 +171,32 @@ describe(`User operation work correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(7);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
+          payload: PageType.MAIN,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: AuthorizationStatus.AUTH,
         });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.SET_LOGIN_ERROR,
           payload: null,
         });
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
           type: DataActionType.SET_MAX_MOVIES_COUNT,
           payload: null,
         });
-        expect(dispatch).toHaveBeenNthCalledWith(4, {
+        expect(dispatch).toHaveBeenNthCalledWith(5, {
           type: ApplicationActionType.CHANGE_ACTIVE_MOVIE,
           payload: {},
         });
-        expect(dispatch).toHaveBeenNthCalledWith(5, {
+        expect(dispatch).toHaveBeenNthCalledWith(6, {
           type: ApplicationActionType.CHANGE_GENRE,
           payload: `All genres`,
         });
-        expect(dispatch).toHaveBeenNthCalledWith(6, {
+        expect(dispatch).toHaveBeenNthCalledWith(7, {
           type: ApplicationActionType.RESET_VISIBLE_MOVIES_COUNT,
           payload: null,
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(7, {
-          type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
-          payload: PageType.MAIN,
         });
       });
   });

@@ -2,17 +2,20 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 
 import {CatalogComponent} from "./catalog";
 import {NameSpace} from "../../reducers/name-space";
+import {history} from "../../history";
 
-import {mockMovies} from "../../__test-data__/test-mocks";
+import {mockMovies, mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   [NameSpace.APPLICATION]: {
+    activeMovie: mockPromoMovie,
     activePage: ``,
     prevPage: ``,
     playerStartTime: 0,
@@ -38,9 +41,11 @@ describe(`Render Catalog`, () => {
     props.movies = [].concat(mockMovies, mockMovies, mockMovies);
 
     const catalogSnapshot = renderer.create(
-        <Provider store={store}>
-          <CatalogComponent {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store}>
+            <CatalogComponent {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(catalogSnapshot).toMatchSnapshot();
@@ -51,9 +56,11 @@ describe(`Render Catalog`, () => {
     props.movies = mockMovies;
 
     const catalogSnapshot = renderer.create(
-        <Provider store={store}>
-          <CatalogComponent {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store}>
+            <CatalogComponent {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(catalogSnapshot).toMatchSnapshot();

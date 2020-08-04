@@ -1,27 +1,26 @@
 import React from "react";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 import {mount} from "enzyme";
 
 import {CatalogComponent} from "./catalog.jsx";
 import {NameSpace} from "../../reducers/name-space";
+import {history} from "../../history";
 
-import {mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockMovies, mockPromoMovie} from "../../__test-data__/test-mocks.js";
 
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   [NameSpace.APPLICATION]: {
+    activeMovie: mockPromoMovie,
     activePage: ``,
     prevPage: ``,
     playerStartTime: 0,
   },
 });
-
-const mockEvent = {
-  preventDefault() {}
-};
 
 let visibleCardCount = 1;
 
@@ -39,18 +38,20 @@ const props = {
 };
 
 const catalogElement = mount(
-    <Provider store={store}>
-      <CatalogComponent {...props} />
-    </Provider>
+    <Router history={history} >
+      <Provider store={store}>
+        <CatalogComponent {...props} />
+      </Provider>
+    </Router>
 );
-const smallMovieCardElement = [...catalogElement.find(`article.small-movie-card`)][0];
 
 
 describe(`Catalog e2e-tests`, () => {
   it(`Should small movie card be pressed`, () => {
-    smallMovieCardElement.props.onClick(mockEvent);
+    [...catalogElement.find(`Link`)][0].props.onClick();
+    [...catalogElement.find(`Link`)][1].props.onClick();
 
-    expect(onSmallMovieCardClick).toHaveBeenCalledTimes(1);
+    expect(onSmallMovieCardClick).toHaveBeenCalledTimes(2);
   });
 
 

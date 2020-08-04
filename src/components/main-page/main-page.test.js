@@ -2,11 +2,13 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user.js";
 import {MainPage} from "./main-page.jsx";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const.js";
+import {history} from "../../history";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
@@ -27,6 +29,7 @@ const store = mockStore({
   [NameSpace.APPLICATION]: {
     genre: `All genres`,
     visibleMoviesCount: 8,
+    activeMovie: mockPromoMovie,
     activePage: PageType.MAIN,
     prevPage: ``,
     playerStartTime: 0,
@@ -51,9 +54,11 @@ const nodeMock = {
 describe(`Render MainPage`, () => {
   it(`Should match with snapshot`, () => {
     const mainPageSnapshot = renderer.create(
-        <Provider store={store}>
-          <MainPage {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store}>
+            <MainPage {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(mainPageSnapshot).toMatchSnapshot();

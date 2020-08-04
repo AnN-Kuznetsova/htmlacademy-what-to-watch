@@ -13,10 +13,6 @@ import {history} from "../../history";
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks.js";
 
 
-const mockEvent = {
-  preventDefault() {}
-};
-
 const mockStore = configureStore([]);
 
 const store = mockStore({

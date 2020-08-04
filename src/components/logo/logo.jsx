@@ -6,8 +6,6 @@ import {connect} from "react-redux";
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCtrator} from "../../reducers/data/data";
 import {AppRoute, PageType} from "../../const";
-import {MoviePropType} from "../../prop-types";
-import {getPromoMovie} from "../../reducers/data/selectors";
 
 
 export const LogoMode = {

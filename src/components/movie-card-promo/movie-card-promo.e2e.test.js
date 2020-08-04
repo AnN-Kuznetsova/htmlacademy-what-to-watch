@@ -2,7 +2,7 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
-import {shallow, mount} from "enzyme";
+import {mount} from "enzyme";
 
 import {AuthorizationStatus} from "../../reducers/user/user.js";
 import {MovieCardPromo} from "./movie-card-promo.jsx";

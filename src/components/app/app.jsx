@@ -65,14 +65,12 @@ class AppComponent extends PureComponent {
       activePage,
       promoMovie,
       onOpenMovieDetailsPage,
-      changeActiveMovie,
     } = this.props;
 
     window.scrollTo(0, 0);
 
     switch (activePage) {
       case PageType.MAIN:
-        //changeActiveMovie(promoMovie);
         return (
           <MainPage
             promoMovie={promoMovie}

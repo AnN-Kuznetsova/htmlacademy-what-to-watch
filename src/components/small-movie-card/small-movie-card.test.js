@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import {shallow, mount} from "enzyme";
+import {mount} from "enzyme";
 
 import {SmallMovieCard} from "./small-movie-card.jsx";
 import {VideoPlayerStatus} from "../../hocs/with-video/with-video.jsx";

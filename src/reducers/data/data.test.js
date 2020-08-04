@@ -239,31 +239,6 @@ describe(`Data operation work correctly`, () => {
   });
 
 
-  it(`Should make a correct API call for fail get request to /comments/: film_id when dataError is not null`, () => {
-    const mockStore = configureStore([]);
-    const store = mockStore({
-      [NameSpace.DATA]: {
-        dataError: {},
-      },
-    });
-
-    const api = createAPI(() => {});
-    const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn();
-
-    const reviewsLoader = Operation.loadActiveMovieReviews(1);
-
-    apiMock
-      .onGet(`/comments/1`)
-      .reply(400);
-
-    return reviewsLoader(dispatch, store.getState, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(0);
-      });
-  });
-
-
   it(`Should make a correct API call for post request to /comments/: film_id`, () => {
     const mockStore = configureStore([]);
     const store = mockStore({

@@ -1,13 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {Header} from "../header/header";
+import {Error} from "../../api";
 import {Footer} from "../footer/footer";
+import {Header} from "../header/header";
 
 
 const getErrorMessage = (dataError) => {
   if (dataError) {
-    return `The request failed`;
+    switch (true) {
+      case dataError.status === Error.PAGE_NOT_FOUND:
+        return `Page not found.`;
+
+      default:
+        return `The request failed`;
+    }
   }
 
   return null;

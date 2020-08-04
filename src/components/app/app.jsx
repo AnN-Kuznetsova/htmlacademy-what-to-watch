@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Switch, Route, Router} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
@@ -121,6 +121,14 @@ const AppComponent = (props) => {
                 sendReview={sendReview}
               />
             );
+          }}
+        />
+
+        <Route
+          render={() => {
+            setDataError({status: 404});
+            changeActivePage(PageType.ERROR);
+            return (<Redirect to={AppRoute.MAIN} />);
           }}
         />
       </Switch>

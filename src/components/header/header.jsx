@@ -20,6 +20,7 @@ const HeaderComponent = (props) => {
     activeMovie,
     activePage,
     onOpenSignInPage,
+    onOpenMyListPage,
     onBreadcrambsLinkClick,
   } = props;
 
@@ -52,9 +53,13 @@ const HeaderComponent = (props) => {
 
         {renderAvatar &&
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            <Link
+              to={AppRoute.MY_LIST}
+              onClick={onOpenMyListPage} >
+              <div className="user-block__avatar">
+                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div>
+            </Link>
           </div>}
 
         {renderSignInLink &&
@@ -79,6 +84,7 @@ HeaderComponent.propTypes = {
   activeMovie: MoviePropType,
   activePage: PropTypes.string.isRequired,
   onOpenSignInPage: PropTypes.func.isRequired,
+  onOpenMyListPage: PropTypes.func.isRequired,
   onBreadcrambsLinkClick: PropTypes.func.isRequired,
 };
 
@@ -92,6 +98,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onOpenSignInPage() {
     dispatch(ApplicationActionCreator.changeActivePage(PageType.SIGN_IN));
+  },
+  onOpenMyListPage() {
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.MY_LIST));
   },
   onBreadcrambsLinkClick(activeMovieId) {
     dispatch(DataActionCreator.setDataError(null));

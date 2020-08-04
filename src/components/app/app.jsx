@@ -95,6 +95,14 @@ class AppComponent extends PureComponent {
             }}
           />
 
+          <PrivateRoute exact path={AppRoute.MY_LIST}
+            render={() => {
+              return (
+                {/* <MyListPage /> */}
+              );
+            }}
+          />
+
           <Route
             render={() => {
               onError({status: 404});

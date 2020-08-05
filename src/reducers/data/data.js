@@ -60,6 +60,9 @@ const Operation = {
       .then((response) => createMovies(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadMovies(response));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.setDataError(error));
       });
   },
 
@@ -70,6 +73,9 @@ const Operation = {
         dispatch(ActionCreator.loadPromoMovie(response));
         dispatch(ApplicationActionCreator.changeActiveMovie(response));
         dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.setDataError(error));
       });
   },
 

@@ -6,9 +6,10 @@ import {ActionCreator as ApplicationActionCreator} from "../../reducers/applicat
 import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Error} from "../../api";
 import {Header} from "../header/header";
-import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE, PageType} from "../../const";
+import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE, PageType, AppRoute} from "../../const";
 import {MoviePropType} from "../../prop-types";
 import {RatingItem} from "../rating-item/rating-item";
+import {Redirect} from "react-router-dom";
 import {getDataError, getMovieById} from "../../reducers/data/selectors";
 import {withNewReview} from "../../hocs/with-new-review/with-new-review";
 
@@ -114,9 +115,15 @@ class AddReviewPageComponent extends PureComponent {
     const {
       movie,
       dataError,
+      onError,
     } = this.props;
 
     const errorMessage = dataError ? getErrorMessage(dataError) : null;
+
+    if (!movie) {
+      onError();
+      return (<Redirect to={AppRoute.MAIN} />);
+    }
 
     return (
       <section className="movie-card movie-card--full"
@@ -187,7 +194,7 @@ class AddReviewPageComponent extends PureComponent {
 
 AddReviewPageComponent.propTypes = {
   routeProps: PropTypes.object.isRequired,
-  movie: MoviePropType.isRequired,
+  movie: MoviePropType,
   dataError: PropTypes.object,
   sendReview: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
@@ -195,6 +202,7 @@ AddReviewPageComponent.propTypes = {
   reviewRating: PropTypes.number,
   reviewText: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
 };
 
 
@@ -218,6 +226,10 @@ const mapDispatchToProps = (dispatch) => ({
   openAddReviewPage(movie) {
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.ADD_REVIEW));
+  },
+  onError() {
+    dispatch(DataActionCreator.setDataError({status: 404}));
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.ERROR));
   },
 });
 

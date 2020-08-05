@@ -3,8 +3,10 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
+import {ActionCreator as DataActionCreator} from "../../reducers/data/data";
 import {MoviePropType} from "../../prop-types";
-import {PageType} from "../../const";
+import {PageType, AppRoute} from "../../const";
+import {Redirect} from "react-router-dom";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 import {getMovieById} from "../../reducers/data/selectors";
@@ -23,7 +25,13 @@ class PlayerPageComponent extends PureComponent {
     const {
       movie,
       renderVideoPlayer,
+      onError,
     } = this.props;
+
+    if (!movie) {
+      onError();
+      return (<Redirect to={AppRoute.MAIN} />);
+    }
 
     return (
       <React.Fragment>
@@ -35,8 +43,9 @@ class PlayerPageComponent extends PureComponent {
 
 
 PlayerPageComponent.propTypes = {
-  movie: MoviePropType.isRequired,
+  movie: MoviePropType,
   onOpenPlayerPage: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
 };
 
@@ -54,6 +63,10 @@ const mapDispatchToProps = (dispatch) => ({
   onOpenPlayerPage(movie) {
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.PLAYER));
+  },
+  onError() {
+    dispatch(DataActionCreator.setDataError({status: 404}));
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.ERROR));
   },
 });
 

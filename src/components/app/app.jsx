@@ -16,28 +16,32 @@ import {PrivateRoute} from "../private-route/private-route";
 import {RedirectToMainRoute} from "../redirect-to-main-route/redirect-to-main-route";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage} from "../../reducers/application/selectors";
-import {getDataError, getMovies} from "../../reducers/data/selectors";
+import {getDataError, getMovies, getPromoMovie} from "../../reducers/data/selectors";
 import {history} from "../../history";
 
 
 class AppComponent extends PureComponent {
-  /* componentDidMount() {
-
-  } */
-
   renderPage() {
     const {
       dataError,
       activePage,
+      movies,
+      promoMovie,
+      onError,
     } = this.props;
 
     window.scrollTo(0, 0);
 
     switch (activePage) {
-      case PageType.MAIN:
-        return (
-          <MainPage />
-        );
+      case PageType.MAIN: {
+        if (movies && promoMovie) {
+          return (
+            <MainPage />
+          );
+        }
+        onError({status: 400});
+        return (<Redirect to={AppRoute.MAIN} />);
+      }
 
       case PageType.ERROR:
         return (
@@ -51,8 +55,7 @@ class AppComponent extends PureComponent {
 
   render() {
     const {
-      setDataError,
-      changeActivePage,
+      onError
     } = this.props;
 
     return (
@@ -94,8 +97,7 @@ class AppComponent extends PureComponent {
 
           <Route
             render={() => {
-              setDataError({status: 404});
-              changeActivePage(PageType.ERROR);
+              onError({status: 404});
               return (<Redirect to={AppRoute.MAIN} />);
             }}
           />
@@ -109,25 +111,24 @@ class AppComponent extends PureComponent {
 AppComponent.propTypes = {
   dataError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
-  //movies: PropTypes.arrayOf(MoviePropType),
-  setDataError: PropTypes.func.isRequired,
-  changeActivePage: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(MoviePropType),
+  promoMovie: MoviePropType,
+  onError: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   dataError: getDataError(state),
   activePage: getActivePage(state),
-  //movies: getMovies(state),
+  movies: getMovies(state),
+  promoMovie: getPromoMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setDataError(error) {
+  onError(error) {
     dispatch(DataActionCtrator.setDataError(error));
-  },
-  changeActivePage(page) {
-    dispatch(ApplicationActionCreator.changeActivePage(page));
-  },
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.ERROR));
+  }
 });
 
 const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);

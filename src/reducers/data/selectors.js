@@ -15,7 +15,11 @@ const getMovies = (state) => {
 const getMovieById = createSelector(
     getMovies,
     (state, id) => id,
-    (movies, id) => movies.find((movie) => movie.id === id)
+    (movies, id) => {
+      return movies
+        ? movies.find((movie) => movie.id === id)
+        : null;
+    }
 );
 
 const getPromoMovie = (state) => {

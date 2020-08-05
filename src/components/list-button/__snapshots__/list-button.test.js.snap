@@ -3,6 +3,7 @@
 exports[`Render ListButton ListButton should match with snapshot when it mode is "add" 1`] = `
 <button
   className="btn btn--list movie-card__button"
+  onClick={[Function]}
   type="button"
 >
   <svg
@@ -23,6 +24,7 @@ exports[`Render ListButton ListButton should match with snapshot when it mode is
 exports[`Render ListButton ListButton should match with snapshot when it mode is "in-list" 1`] = `
 <button
   className="btn btn--list movie-card__button"
+  onClick={[Function]}
   type="button"
 >
   <svg

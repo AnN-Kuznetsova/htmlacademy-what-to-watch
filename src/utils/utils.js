@@ -1,4 +1,4 @@
-import {VISIBLE_PARTICIPANTS_COUNT} from "../const";
+import {VISIBLE_PARTICIPANTS_COUNT, ERROR_COLOR} from "../const";
 
 
 const months = [
@@ -102,6 +102,13 @@ const disableForm = (formElements, isDisabled = true) => {
 };
 
 
+const setErrorStyle = (elements, isStyle = true) => {
+  for (const element of elements) {
+    element.style.boxShadow = isStyle ? `0 0 0 1px ${ERROR_COLOR}` : `none`;
+  }
+};
+
+
 export {
   disableForm,
   extend,
@@ -111,4 +118,5 @@ export {
   getParticipantsLine,
   getRatingDescription,
   getRandomArrayElements,
+  setErrorStyle,
 };

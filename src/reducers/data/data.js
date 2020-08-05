@@ -1,4 +1,4 @@
-import {extend, disableForm} from "../../utils/utils";
+import {extend, disableForm, setErrorStyle} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
 import {PageType, AppRoute} from "../../const";
@@ -7,6 +7,8 @@ import {createMovies, createMovie} from "../../adapters/movie";
 import {getActiveMovie} from "../application/selectors";
 import {history} from "../../history";
 
+
+const TIME_FOR_ERROR = 500;
 
 const initialState = {
   movies: null,
@@ -21,6 +23,7 @@ const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   LOAD_ACTIVE_MOVIE_REVIEWS: `LOAD_ACTIVE_MOVIE_REVIEWS`,
+  CHANGE_MOVIE: `CHANGE_MOVIE`,
   SET_MAX_MOVIES_COUNT: `SET_MAX_MOVIES_COUNT`,
   SET_DATA_ERROR: `SET_DATA_ERROR`,
 };
@@ -40,6 +43,11 @@ const ActionCreator = {
   loadActiveMovieReviews: (comments) => ({
     type: ActionType.LOAD_ACTIVE_MOVIE_REVIEWS,
     payload: comments,
+  }),
+
+  changeMovie: (movie) => ({
+    type: ActionType.CHANGE_MOVIE,
+    payload: movie,
   }),
 
   setMaxMoviesCount: (count) => ({
@@ -108,6 +116,24 @@ const Operation = {
       dispatch(ActionCreator.setDataError(error));
     });
   },
+
+  changeMovie: (newMovieData, changeMovieFormElements) => (dispatch, getState, api) => {
+    disableForm(changeMovieFormElements);
+
+    return api.post(`/favorite/${newMovieData.id}/${newMovieData.status}`)
+      .then((response) => createMovie(response.data))
+      .then((response) => {
+        dispatch(ActionCreator.changeMovie(response));
+        disableForm(changeMovieFormElements, false);
+      })
+      .catch(() => {
+        setErrorStyle(changeMovieFormElements);
+        setTimeout(() => {
+          setErrorStyle(changeMovieFormElements, false);
+        }, TIME_FOR_ERROR);
+        disableForm(changeMovieFormElements, false);
+      });
+  },
 };
 
 
@@ -137,6 +163,22 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         dataError: action.payload,
       });
+
+    case ActionType.CHANGE_MOVIE: {
+      const newMovie = action.payload;
+      const movieIndex = state.movies.findIndex((movie) => movie.id === newMovie.id);
+
+      if (movieIndex === -1) {
+        return state;
+      }
+
+      return extend(state, {
+        movies: [].concat(state.movies.slice(0, movieIndex), [newMovie], state.movies.slice(movieIndex + 1)),
+        promoMovie: newMovie.id === state.promoMovie.id
+          ? newMovie
+          : state.promoMovie,
+      });
+    }
 
     default:
       return state;

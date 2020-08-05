@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {AppRoute} from "../../const";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {MoviePropType} from "../../prop-types";
+import {Operation} from "../../reducers/data/data";
 import {getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {history} from "../../history";
@@ -14,7 +15,10 @@ const ListButtonComponent = (props) => {
   const {
     movie,
     authorizationStatus,
+    changeMovie,
   } = props;
+
+  const buttonRef = React.createRef();
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -23,11 +27,16 @@ const ListButtonComponent = (props) => {
       history.push(AppRoute.SIGN_IN);
     }
 
-
+    changeMovie({
+      id: movie.id,
+      status: +(!movie.isFavorite),
+    },
+    [buttonRef.current]);
   };
 
   return (
     <button className="btn btn--list movie-card__button" type="button"
+      ref={buttonRef}
       onClick={handleClick}
     >
       <svg viewBox="0 0 19 20" width="19" height="20">
@@ -44,6 +53,7 @@ const ListButtonComponent = (props) => {
 ListButtonComponent.propTypes = {
   movie: MoviePropType.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  changeMovie: PropTypes.func.isRequired,
 };
 
 
@@ -52,14 +62,13 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
 });
 
-/* const mapDispatchToProps = (dispatch) => ({
-  onAddReviewButtonClick() {
-    dispatch(ApplicationActionCreator.changeActivePage(PageType.ADD_REVIEW));
-    dispatch(DataActionCreator.setDataError(null));
+const mapDispatchToProps = (dispatch) => ({
+  changeMovie(newMovieData, changeMovieFormElements) {
+    dispatch(Operation.changeMovie(newMovieData, changeMovieFormElements));
   },
-}); */
+});
 
-const ListButton = connect(mapStateToProps)(ListButtonComponent);
+const ListButton = connect(mapStateToProps, mapDispatchToProps)(ListButtonComponent);
 
 
 export {

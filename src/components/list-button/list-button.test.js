@@ -8,6 +8,8 @@ import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 const props = {
   movie: mockPromoMovie,
+  authorizationStatus: ``,
+  changeMovie: () => {},
 };
 
 

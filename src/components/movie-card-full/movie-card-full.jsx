@@ -21,11 +21,6 @@ const MovieCardFull = (props) => {
     onAddReviewButtonClick,
   } = props;
 
-  /* const handleAddReviewButtonClick = (event) => {
-    //event.preventDefault();
-    onAddReviewButtonClick();
-  }; */
-
   return (
     <section
       className={`movie-card ${isPlayerVisible || `movie-card--full`}`}

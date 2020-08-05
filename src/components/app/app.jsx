@@ -16,7 +16,6 @@ import {PrivateRoute} from "../private-route/private-route";
 import {RedirectToMainRoute} from "../redirect-to-main-route/redirect-to-main-route";
 import {SignIn} from "../sign-in/sign-in";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
-import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getDataError, getMovies, getPromoMovie} from "../../reducers/data/selectors";
 import {history} from "../../history";
 
@@ -26,11 +25,11 @@ class AppComponent extends PureComponent {
     const path = window.location.pathname;
 
     switch (true) {
-      case path.includes(`/films/`) && !path.includes(`/review`): {
+      /* case path.includes(`/films/`) && !path.includes(`/review`): {
         const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/films/`, ``).replace(`/`, ``));
         this.props.onOpenMovieDetailsPage(newActiveMovie);
         break;
-      }
+      } */
 
       case path.includes(`/films/`) && path.includes(`/review`): {
         const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/films/`, ``).replace(`/review`, ``).replace(`/`, ``));
@@ -64,7 +63,6 @@ class AppComponent extends PureComponent {
       dataError,
       activePage,
       promoMovie,
-      onOpenMovieDetailsPage,
     } = this.props;
 
     window.scrollTo(0, 0);
@@ -72,17 +70,12 @@ class AppComponent extends PureComponent {
     switch (activePage) {
       case PageType.MAIN:
         return (
-          <MainPage
-            promoMovie={promoMovie}
-            openMovieDetailsPage={onOpenMovieDetailsPage}
-          />
+          <MainPage promoMovie={promoMovie} />
         );
 
       case PageType.ERROR:
         return (
-          <ErrorPage
-            dataError={dataError}
-          />
+          <ErrorPage dataError={dataError} />
         );
 
       default:
@@ -94,9 +87,6 @@ class AppComponent extends PureComponent {
     const {
       dataError,
       activeMovie,
-      authorizationStatus,
-      onOpenMovieDetailsPage,
-      onAddReviewButtonClick,
       setDataError,
       sendReview,
       changeActivePage,
@@ -110,14 +100,9 @@ class AppComponent extends PureComponent {
           </Route>
 
           <RedirectToMainRoute exact path={AppRoute.FILM}
-            render={() => {
+            render={(routeProps) => {
               return (
-                <MovieDetailsPage
-                  activeMovie={activeMovie}
-                  authorizationStatus={authorizationStatus}
-                  onSmallMovieCardClick={onOpenMovieDetailsPage}
-                  onAddReviewButtonClick={onAddReviewButtonClick}
-                />
+                <MovieDetailsPage routeProps={routeProps} />
               );
             }}
           />
@@ -171,7 +156,6 @@ AppComponent.propTypes = {
   activeMovie: MoviePropType,
   promoMovie: MoviePropType,
   movies: PropTypes.arrayOf(MoviePropType),
-  authorizationStatus: PropTypes.string.isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
@@ -185,7 +169,6 @@ const mapStateToProps = (state) => ({
   dataError: getDataError(state),
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
-  authorizationStatus: getAuthorizationStatus(state),
   movies: getMovies(state),
   promoMovie: getPromoMovie(state),
 });

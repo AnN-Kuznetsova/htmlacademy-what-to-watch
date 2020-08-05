@@ -12,6 +12,12 @@ const getMovies = (state) => {
   return state[NAME_SPASE].movies;
 };
 
+const getMovieById = createSelector(
+    getMovies,
+    (state, id) => id,
+    (movies, id) => movies.find((movie) => movie.id === id)
+);
+
 const getPromoMovie = (state) => {
   return state[NAME_SPASE].promoMovie;
 };
@@ -46,6 +52,7 @@ const getDataError = (state) => {
 export {
   getActiveMovieReviews,
   getDataError,
+  getMovieById,
   getMovies,
   getPromoMovie,
   getFilteredMoviesByGenre,

@@ -11,7 +11,6 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 const SmallMovieCard = (props) => {
   const {
     movie,
-    onClick,
     renderVideoPlayer,
     currentVideoPlayerStatus,
     setVideoPlayerStatus,
@@ -31,7 +30,6 @@ const SmallMovieCard = (props) => {
 
   const handleCardClick = () => {
     lossHoverFromCard();
-    onClick(movie);
   };
 
   const handleCardHover = () => {
@@ -53,7 +51,8 @@ const SmallMovieCard = (props) => {
     >
       <Link
         to={AppRoute.FILM.replace(`:id`, movie.id)}
-        onClick={handleCardClick}>
+        onClick={handleCardClick}
+      >
         <div className="small-movie-card__image">
           {renderVideoPlayer(previewUrl, smallPictureUrl)}
           <img
@@ -78,7 +77,6 @@ const SmallMovieCard = (props) => {
 
 SmallMovieCard.propTypes = {
   movie: MoviePropType.isRequired,
-  onClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   currentVideoPlayerStatus: PropTypes.string.isRequired,
   setVideoPlayerStatus: PropTypes.func.isRequired,

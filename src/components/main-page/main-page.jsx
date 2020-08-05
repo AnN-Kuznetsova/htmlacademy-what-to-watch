@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import {Catalog} from "../catalog/catalog";
 import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
@@ -9,25 +8,11 @@ import {MoviePropType} from "../../prop-types";
 
 
 export const MainPage = (props) => {
-  const {
-    promoMovie,
-    openMovieDetailsPage,
-  } = props;
-
-  const handleSmallMovieCardClick = (movie) => {
-    openMovieDetailsPage(movie);
-  };
-
-  const handlePromoMovieClick = () => {
-    openMovieDetailsPage(promoMovie);
-  };
+  const {promoMovie} = props;
 
   return (
     <React.Fragment>
-      <MovieCardPromoWithPlayer
-        movie={promoMovie}
-        onMovieClick={handlePromoMovieClick}
-      />
+      <MovieCardPromoWithPlayer movie={promoMovie} />
 
       <div className="page-content">
         <section className="catalog">
@@ -37,9 +22,7 @@ export const MainPage = (props) => {
 
           <FilterByGenre />
 
-          <Catalog
-            onSmallMovieCardClick={handleSmallMovieCardClick}
-          />
+          <Catalog />
         </section>
 
         <Footer />
@@ -51,5 +34,4 @@ export const MainPage = (props) => {
 
 MainPage.propTypes = {
   promoMovie: MoviePropType.isRequired,
-  openMovieDetailsPage: PropTypes.func.isRequired,
 };

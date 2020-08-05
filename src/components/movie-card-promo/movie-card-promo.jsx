@@ -12,7 +12,6 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 const MovieCardPromo = (props) => {
   const {
     movie,
-    onMovieClick,
     renderVideoPlayer,
     isPlayerVisible,
     onPlayButtonClick,
@@ -36,7 +35,7 @@ const MovieCardPromo = (props) => {
         <div className="movie-card__info">
           <Link
             to={AppRoute.FILM.replace(`:id`, movie.id)}
-            onClick={onMovieClick}>
+          >
             <div className="movie-card__poster">
               <img src={movie.posterUrl} alt={movie.title} width="218" height="327" />
             </div>
@@ -45,7 +44,7 @@ const MovieCardPromo = (props) => {
             <Link
               style={{textDecoration: `none`, color: `inherit`}}
               to={AppRoute.FILM.replace(`:id`, movie.id)}
-              onClick={onMovieClick}>
+            >
               <h2 className="movie-card__title">{movie.title}</h2>
             </Link>
             <p className="movie-card__meta">
@@ -79,7 +78,6 @@ const MovieCardPromo = (props) => {
 
 MovieCardPromo.propTypes = {
   movie: MoviePropType.isRequired,
-  onMovieClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,

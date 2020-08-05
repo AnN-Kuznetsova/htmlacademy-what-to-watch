@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
-import React, {createRef} from "react";
+import React, {createRef, PureComponent} from "react";
+import {connect} from "react-redux";
 
-import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE} from "../../const";
+import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
+import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Error} from "../../api";
 import {Header} from "../header/header";
+import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE, PageType} from "../../const";
 import {MoviePropType} from "../../prop-types";
 import {RatingItem} from "../rating-item/rating-item";
+import {getDataError, getMovieById} from "../../reducers/data/selectors";
 import {withNewReview} from "../../hocs/with-new-review/with-new-review";
 
 
@@ -33,6 +37,7 @@ const getErrorMessage = (dataError) => {
   }
 };
 
+
 const getReviewRatingValidation = (ratingContainer) => {
   const ratingElement = Array.from(ratingContainer.querySelectorAll(`input`))
     .filter((ratingItem) => ratingItem.checked)[0];
@@ -47,139 +52,181 @@ const getReviewTextValidation = (reviewTextValue) => {
 };
 
 
-const AddReviewPage = (props) => {
-  const {
-    movie,
-    dataError,
-    sendReview,
-    setDataError,
-    reviewRating,
-    reviewText,
-    onChange,
-  } = props;
+class AddReviewPageComponent extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  const ratingRef = createRef();
-  const reviewTextRef = createRef();
-  const addReviewButtonRef = createRef();
-  const addReviewFormRef = createRef();
+    this._ratingRef = createRef();
+    this._reviewTextRef = createRef();
+    this._addReviewButtonRef = createRef();
+    this._addReviewFormRef = createRef();
 
-  const errorMessage = dataError ? getErrorMessage(dataError) : null;
+    this._ratingValue = null;
+    this._reviewTextValue = null;
 
-  const handleDataReviewChange = () => {
-    const ratingValue = getReviewRatingValidation(ratingRef.current) || null;
-    const reviewTextValue = getReviewTextValidation(reviewTextRef.current.value) || null;
+    this.handleDataReviewChange = this.handleDataReviewChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    onChange(ratingValue, reviewTextValue);
+  componentWillMount() {
+    this.props.openAddReviewPage(this.props.movie);
+  }
 
-    if (ratingValue && reviewTextValue) {
-      addReviewButtonRef.current.disabled = false;
-      addReviewButtonRef.current.style.opacity = 1;
-      setDataError(null);
+  componentDidUpdate() {
+    this.props.openAddReviewPage(this.props.movie);
+  }
+
+  handleDataReviewChange() {
+    this._ratingValue = getReviewRatingValidation(this._ratingRef.current) || null;
+    this._reviewTextValue = getReviewTextValidation(this._reviewTextRef.current.value) || null;
+
+    this.props.onChange(this._ratingValue, this._reviewTextValue);
+
+    if (this._ratingValue && this._reviewTextValue) {
+      this._addReviewButtonRef.current.disabled = false;
+      this._addReviewButtonRef.current.style.opacity = 1;
+      this.props.setDataError(null);
     } else {
-      addReviewButtonRef.current.disabled = true;
-      addReviewButtonRef.current.style.opacity = 0.5;
-      setDataError({
+      this._addReviewButtonRef.current.disabled = true;
+      this._addReviewButtonRef.current.style.opacity = 0.5;
+      this.props.setDataError({
         response: Error.VALIDATION,
         data: {
-          reviewTextValueError: reviewTextValue ? null : true,
-          ratingValueError: ratingValue ? null : true,
+          reviewTextValueError: this._reviewTextValue ? null : true,
+          ratingValueError: this._ratingValue ? null : true,
         }
       });
     }
-  };
+  }
 
-  const handleSubmit = (event) => {
+  handleSubmit(event) {
     event.preventDefault();
 
-    sendReview({
-      movieId: movie.id,
-      rating: reviewRating,
-      comment: reviewText,
-      addReviewFormElements: addReviewFormRef.current.elements,
+    this.props.sendReview({
+      movieId: this.props.movie.id,
+      rating: this.props.reviewRating,
+      comment: this.props.reviewText,
+      addReviewFormElements: this._addReviewFormRef.current.elements,
     });
-  };
+  }
 
-  return (
-    <section className="movie-card movie-card--full"
-      style={{backgroundColor: movie.backgroundColor}}>
-      <div className="movie-card__header">
-        <div className="movie-card__bg">
-          <img src={movie.backgroundUrl} alt={movie.title} />
-        </div>
+  render() {
+    const {
+      movie,
+      dataError,
+    } = this.props;
 
-        <Header />
+    const errorMessage = dataError ? getErrorMessage(dataError) : null;
 
-        <div className="movie-card__poster movie-card__poster--small">
-          <img src={movie.posterUrl} alt={`${movie.title} poster`} width="218" height="327" />
-        </div>
-      </div>
-
-      <div className="add-review">
-        <form
-          action="#"
-          className="add-review__form"
-          onSubmit={handleSubmit}
-          ref={addReviewFormRef}
-        >
-          <div className="rating">
-            <div
-              ref={ratingRef}
-              className="rating__stars"
-              style={dataError && dataError.response === Error.VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
-              {new Array(RATING_RANGE).fill(``).map((ratingItem, index) => (
-                <RatingItem
-                  key={ratingItem + index}
-                  id={index + 1}
-                  onClick={handleDataReviewChange}
-                />
-              ))}
-            </div>
+    return (
+      <section className="movie-card movie-card--full"
+        style={{backgroundColor: movie.backgroundColor}}>
+        <div className="movie-card__header">
+          <div className="movie-card__bg">
+            <img src={movie.backgroundUrl} alt={movie.title} />
           </div>
 
-          <div className="add-review__text" style={{backgroundColor: `rgba(255, 255, 255, 0.3)`}}>
-            <textarea
-              ref={reviewTextRef}
-              className="add-review__textarea"
-              name="review-text" id="review-text"
-              placeholder="Review text"
-              onChange={handleDataReviewChange}
-              style={dataError && dataError.response === Error.VALIDATION && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
-            </textarea>
-            <div className="add-review__submit">
-              <button
-                ref={addReviewButtonRef}
-                className="add-review__btn"
-                type="submit"
-                disabled={true}
-                style={{opacity: 0.5}}
-              >Post</button>
-            </div>
+          <Header />
+
+          <div className="movie-card__poster movie-card__poster--small">
+            <img src={movie.posterUrl} alt={`${movie.title} poster`} width="218" height="327" />
           </div>
-        </form>
+        </div>
 
-        {errorMessage && <p style={{whiteSpace: `pre-wrap`, color: `#A8421E`}}>{errorMessage}</p>}
-      </div>
+        <div className="add-review">
+          <form
+            action="#"
+            className="add-review__form"
+            onSubmit={this.handleSubmit}
+            ref={this._addReviewFormRef}
+          >
+            <div className="rating">
+              <div
+                ref={this._ratingRef}
+                className="rating__stars"
+                style={dataError && dataError.response === Error.VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+                {new Array(RATING_RANGE).fill(``).map((ratingItem, index) => (
+                  <RatingItem
+                    key={ratingItem + index}
+                    id={index + 1}
+                    onClick={this.handleDataReviewChange}
+                  />
+                ))}
+              </div>
+            </div>
 
-    </section>
-  );
-};
+            <div className="add-review__text" style={{backgroundColor: `rgba(255, 255, 255, 0.3)`}}>
+              <textarea
+                ref={this._reviewTextRef}
+                className="add-review__textarea"
+                name="review-text" id="review-text"
+                placeholder="Review text"
+                onChange={this.handleDataReviewChange}
+                style={dataError && dataError.response === Error.VALIDATION && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+              </textarea>
+              <div className="add-review__submit">
+                <button
+                  ref={this._addReviewButtonRef}
+                  className="add-review__btn"
+                  type="submit"
+                  disabled={true}
+                  style={{opacity: 0.5}}
+                >Post</button>
+              </div>
+            </div>
+          </form>
+
+          {errorMessage && <p style={{whiteSpace: `pre-wrap`, color: `#A8421E`}}>{errorMessage}</p>}
+        </div>
+
+      </section>
+    );
+  }
+}
 
 
-AddReviewPage.propTypes = {
+AddReviewPageComponent.propTypes = {
+  routeProps: PropTypes.object.isRequired,
   movie: MoviePropType.isRequired,
   dataError: PropTypes.object,
   sendReview: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
+  openAddReviewPage: PropTypes.func.isRequired,
   reviewRating: PropTypes.number,
   reviewText: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
 
+const mapStateToProps = (state, props) => {
+  const {routeProps} = props;
+  const movieId = +routeProps.match.params.id;
+
+  return {
+    movie: getMovieById(state, movieId),
+    dataError: getDataError(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  setDataError(error) {
+    dispatch(DataActionCreator.setDataError(error));
+  },
+  sendReview(reviewData) {
+    dispatch(Operation.sendReview(reviewData));
+  },
+  openAddReviewPage(movie) {
+    dispatch(ApplicationActionCreator.changeActiveMovie(movie));
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.ADD_REVIEW));
+  },
+});
+
+const AddReviewPage = connect(mapStateToProps, mapDispatchToProps)(AddReviewPageComponent);
 const AddReviewPageWithNewReview = withNewReview(AddReviewPage);
 
 
 export {
+  AddReviewPageComponent,
   AddReviewPage,
   AddReviewPageWithNewReview,
 };

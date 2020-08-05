@@ -31,12 +31,12 @@ class AppComponent extends PureComponent {
         break;
       } */
 
-      case path.includes(`/films/`) && path.includes(`/review`): {
+      /* case path.includes(`/films/`) && path.includes(`/review`): {
         const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/films/`, ``).replace(`/review`, ``).replace(`/`, ``));
         this.props.changeActiveMovie(newActiveMovie);
         this.props.changeActivePage(PageType.ADD_REVIEW);
         break;
-      }
+      } */
 
       case path.includes(`/player/`): {
         const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/player/`, ``).replace(`/`, ``));
@@ -85,10 +85,8 @@ class AppComponent extends PureComponent {
 
   render() {
     const {
-      dataError,
       activeMovie,
       setDataError,
-      sendReview,
       changeActivePage,
     } = this.props;
 
@@ -124,14 +122,9 @@ class AppComponent extends PureComponent {
           />
 
           <PrivateRoute exact path={AppRoute.ADD_REVIEW}
-            render={() => {
+            render={(routeProps) => {
               return (
-                <AddReviewPageWithNewReview
-                  movie={activeMovie}
-                  dataError={dataError}
-                  setDataError={setDataError}
-                  sendReview={sendReview}
-                />
+                <AddReviewPageWithNewReview routeProps={routeProps} />
               );
             }}
           />
@@ -159,7 +152,6 @@ AppComponent.propTypes = {
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
-  sendReview: PropTypes.func.isRequired,
   changeActivePage: PropTypes.func.isRequired,
   changeActiveMovie: PropTypes.func.isRequired,
 };
@@ -188,9 +180,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setDataError(error) {
     dispatch(DataActionCtrator.setDataError(error));
-  },
-  sendReview(reviewData) {
-    dispatch(Operation.sendReview(reviewData));
   },
   changeActivePage(page) {
     dispatch(ApplicationActionCreator.changeActivePage(page));

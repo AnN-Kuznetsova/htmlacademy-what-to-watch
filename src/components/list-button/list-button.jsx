@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {connect} from "react-redux";
 
 import {MoviePropType} from "../../prop-types";
+import {getActiveMovie} from "../../reducers/application/selectors";
 
 
-export const ListButton = (props) => {
+const ListButtonComponent = (props) => {
   const {movie} = props;
 
   return (
@@ -20,6 +22,26 @@ export const ListButton = (props) => {
 };
 
 
-ListButton.propTypes = {
+ListButtonComponent.propTypes = {
   movie: MoviePropType.isRequired,
+};
+
+
+const mapStateToProps = (state) => ({
+  movie: getActiveMovie(state),
+});
+
+/* const mapDispatchToProps = (dispatch) => ({
+  onAddReviewButtonClick() {
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.ADD_REVIEW));
+    dispatch(DataActionCreator.setDataError(null));
+  },
+}); */
+
+const ListButton = connect(mapStateToProps)(ListButtonComponent);
+
+
+export {
+  ListButtonComponent,
+  ListButton,
 };

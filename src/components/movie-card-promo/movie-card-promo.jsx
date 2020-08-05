@@ -63,7 +63,7 @@ const MovieCardPromo = (props) => {
                 <span>Play</span>
               </button>
 
-              <ListButton movie={movie} />
+              <ListButton />
             </div>
           </div>
         </div>}

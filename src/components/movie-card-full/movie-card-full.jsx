@@ -55,7 +55,7 @@ const MovieCardFull = (props) => {
                   <span>Play</span>
                 </button>
 
-                <ListButton movie={movie} />
+                <ListButton />
 
                 {authorizationStatus === AuthorizationStatus.AUTH &&
                   <Link

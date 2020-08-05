@@ -3,7 +3,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 import {AppRoute} from "../../const";
-import {AuthorizationStatus} from "../../reducers/user/user";
 import {Header} from "../header/header";
 import {ListButton} from "../list-button/list-button";
 import {MovieCardInfoWithTabs} from "../movie-card-info/movie-card-info";
@@ -15,7 +14,6 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 const MovieCardFull = (props) => {
   const {
     movie,
-    authorizationStatus,
     renderVideoPlayer,
     isPlayerVisible,
     onPlayButtonClick,
@@ -57,12 +55,12 @@ const MovieCardFull = (props) => {
 
                 <ListButton />
 
-                {authorizationStatus === AuthorizationStatus.AUTH &&
-                  <Link
-                    className="btn movie-card__button"
-                    onClick={onAddReviewButtonClick}
-                    to={AppRoute.ADD_REVIEW.replace(`:id`, movie.id)}
-                  >Add review</Link>}
+                <Link
+                  className="btn movie-card__button"
+                  onClick={onAddReviewButtonClick}
+                  to={AppRoute.ADD_REVIEW.replace(`:id`, movie.id)}
+                >Add review
+                </Link>
               </div>
             </div>}
         </div>
@@ -76,7 +74,6 @@ const MovieCardFull = (props) => {
 
 MovieCardFull.propTypes = {
   movie: MoviePropType.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,

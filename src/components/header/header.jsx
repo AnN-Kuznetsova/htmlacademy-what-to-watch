@@ -4,8 +4,6 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
-import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
-import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
 import {MoviePropType} from "../../prop-types";
@@ -19,20 +17,17 @@ const HeaderComponent = (props) => {
     authorizationStatus,
     activeMovie,
     activePage,
-    onOpenSignInPage,
-    onOpenMyListPage,
-    onBreadcrambsLinkClick,
   } = props;
 
   const renderBreadcrumbs = activePage === PageType.ADD_REVIEW;
   const renderAvatar = authorizationStatus === AuthorizationStatus.AUTH && activePage !== PageType.ERROR && activePage !== PageType.SIGN_IN;
   const renderSignInLink = authorizationStatus === AuthorizationStatus.NO_AUTH && activePage !== PageType.ERROR && activePage !== PageType.SIGN_IN;
   const renderSignInPage = activePage === PageType.SIGN_IN;
+  const renderMyList = activePage === PageType.MY_LIST;
 
   const breadcrambsList = activeMovie ? [
     {
       link: AppRoute.FILM.replace(`:id`, activeMovie.id),
-      onLinkClick: onBreadcrambsLinkClick.bind(null, activeMovie.id),
       title: activeMovie.title
     },
     {
@@ -45,7 +40,7 @@ const HeaderComponent = (props) => {
     <React.Fragment>
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className={`page-header ${renderAvatar && `movie-card__head`} ${renderSignInPage && `user-page__head`}`}>
+      <header className={`page-header ${renderAvatar && !renderMyList && `movie-card__head`} ${(renderSignInPage || renderMyList) && `user-page__head`}`}>
         <Logo mode={LogoMode.NORMAL} />
 
         {renderBreadcrumbs &&
@@ -53,9 +48,7 @@ const HeaderComponent = (props) => {
 
         {renderAvatar &&
           <div className="user-block">
-            <Link
-              to={AppRoute.MY_LIST}
-              onClick={onOpenMyListPage} >
+            <Link to={AppRoute.MY_LIST} >
               <div className="user-block__avatar">
                 <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
               </div>
@@ -64,15 +57,16 @@ const HeaderComponent = (props) => {
 
         {renderSignInLink &&
           <div className="user-block">
-            <Link
-              className="user-block__link"
+            <Link className="user-block__link"
               to={AppRoute.SIGN_IN}
-              onClick={onOpenSignInPage}
             >Sign in</Link>
           </div>}
 
         {renderSignInPage &&
           <h1 className="page-title user-page__title">Sign in</h1>}
+
+        {renderMyList &&
+          <h1 className="page-title user-page__title">My list</h1>}
       </header>
     </React.Fragment>
   );
@@ -83,9 +77,6 @@ HeaderComponent.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   activeMovie: MoviePropType,
   activePage: PropTypes.string.isRequired,
-  onOpenSignInPage: PropTypes.func.isRequired,
-  onOpenMyListPage: PropTypes.func.isRequired,
-  onBreadcrambsLinkClick: PropTypes.func.isRequired,
 };
 
 
@@ -95,21 +86,8 @@ const mapStateToProps = (state) => ({
   activePage: getActivePage(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onOpenSignInPage() {
-    dispatch(ApplicationActionCreator.changeActivePage(PageType.SIGN_IN));
-  },
-  onOpenMyListPage() {
-    dispatch(ApplicationActionCreator.changeActivePage(PageType.MY_LIST));
-  },
-  onBreadcrambsLinkClick(activeMovieId) {
-    dispatch(DataActionCreator.setDataError(null));
-    dispatch(Operation.loadActiveMovieReviews(activeMovieId));
-    dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
-  },
-});
+const Header = connect(mapStateToProps)(HeaderComponent);
 
-const Header = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
 
 export {
   HeaderComponent,

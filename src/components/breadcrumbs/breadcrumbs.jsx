@@ -15,7 +15,6 @@ export const Breadcrumbs = (props) => {
               <Link
                 className="breadcrumbs__link"
                 to={item.link}
-                onClick={item.onLinkClick}
                 style={item.link ? {} : {pointerEvents: `none`}}
               >{item.title}</Link>
             </li>
@@ -32,6 +31,5 @@ Breadcrumbs.propTypes = {
   breadcrambsList: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    onLinkClick: PropTypes.func,
   })),
 };

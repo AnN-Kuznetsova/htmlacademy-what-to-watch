@@ -94,6 +94,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataActionCreator.setDataError(null));
   },
   onOpenMovieDetailsPage(movie) {
+    dispatch(DataActionCreator.setDataError(null));
     dispatch(DataActionCreator.setMaxMoviesCount(NUMBER_OF_SIMILAR_FILMS));
     dispatch(ApplicationActionCreator.resetVisibleMoviesCount());
     dispatch(ApplicationActionCreator.changeActiveMovie(movie));

@@ -12,8 +12,6 @@ import {mockMovies} from "../../__test-data__/test-mocks.js";
 
 const props = {
   movie: mockMovies[1],
-  onClick: () => {},
-  onHover: () => {},
   renderVideoPlayer: () => {},
   currentVideoPlayerStatus: VideoPlayerStatus.ON_PAUSE,
   setVideoPlayerStatus: () => {},

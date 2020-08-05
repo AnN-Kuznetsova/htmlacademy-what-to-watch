@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
-import {MovieDetailsPage} from "./movie-details-page";
+import {MovieDetailsPageComponent} from "./movie-details-page";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
 import {history} from "../../history";
@@ -50,10 +50,15 @@ const nodeMock = {
 };
 
 const props = {
-  activeMovie: mockPromoMovie,
+  routeProps: {
+    match: {
+      params: 1}
+  },
+  movie: mockPromoMovie,
   authorizationStatus: AuthorizationStatus.AUTH,
-  onSmallMovieCardClick: () => {},
   onAddReviewButtonClick: () => {},
+  onOpenMovieDetailsPage: () => {},
+  onError: () => {},
 };
 
 
@@ -62,7 +67,7 @@ describe(`Render MovieDetailsPage`, () => {
     const movieDetailsPageSnapshot = renderer.create(
         <Router history={history} >
           <Provider store={store}>
-            <MovieDetailsPage {...props} />
+            <MovieDetailsPageComponent {...props} />
           </Provider>
         </Router>, nodeMock
     ).toJSON();
@@ -77,7 +82,7 @@ describe(`Render MovieDetailsPage`, () => {
     const movieDetailsPageSnapshot = renderer.create(
         <Router history={history} >
           <Provider store={store}>
-            <MovieDetailsPage {...props} />
+            <MovieDetailsPageComponent {...props} />
           </Provider>
         </Router>, nodeMock
     ).toJSON();

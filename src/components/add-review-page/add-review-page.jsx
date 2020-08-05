@@ -69,7 +69,7 @@ class AddReviewPageComponent extends PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.openAddReviewPage(this.props.movie);
   }
 

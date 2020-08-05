@@ -13,7 +13,7 @@ import {getPromoMovie} from "../../reducers/data/selectors";
 
 
 class MainPageComponent extends PureComponent {
-  componentWillMount() {
+  componentDidMount() {
     this.props.onOpenMainPage(this.props.promoMovie);
   }
 

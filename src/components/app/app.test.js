@@ -27,6 +27,7 @@ describe(`Render App`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
         movies: mockMovies,
+        promoMovie: mockPromoMovie,
       },
       [NameSpace.APPLICATION]: {
         genre: `All genres`,
@@ -44,15 +45,9 @@ describe(`Render App`, () => {
     const props = {
       dataError: null,
       activePage: PageType.MAIN,
-      promoMovie: mockPromoMovie,
       movies: mockMovies,
-      authorizationStatus: AuthorizationStatus.AUTH,
-      onOpenMovieDetailsPage: () => {},
-      onAddReviewButtonClick: () => {},
-      setDataError: () => {},
-      sendReview: () => {},
-      changeActivePage: () => {},
-      changeActiveMovie: () => {},
+      promoMovie: mockPromoMovie,
+      onError: () => {},
     };
 
     const appSnapshot = renderer.create(

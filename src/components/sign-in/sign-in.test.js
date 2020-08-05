@@ -24,9 +24,10 @@ const store = mockStore({
 });
 
 const props = {
-  login: () => {},
   loginError: null,
+  login: () => {},
   setLoginError: () => {},
+  onOpenSignInPage: () => {},
 };
 
 

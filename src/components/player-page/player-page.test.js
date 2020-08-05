@@ -7,7 +7,13 @@ import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 const props = {
+  routeProps: {
+    match: {
+      params: 1}
+  },
   movie: mockPromoMovie,
+  onOpenPlayerPage: () => {},
+  onError: () => {},
   renderVideoPlayer: () => {},
   activePage: ``,
   prevPage: ``,

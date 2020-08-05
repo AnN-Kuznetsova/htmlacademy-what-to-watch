@@ -47,12 +47,12 @@ const catalogElement = mount(
 
 
 describe(`Catalog e2e-tests`, () => {
-  it(`Should small movie card be pressed`, () => {
+  /* it(`Should small movie card be pressed`, () => {
     [...catalogElement.find(`Link`)][0].props.onClick();
     [...catalogElement.find(`Link`)][1].props.onClick();
 
     expect(onSmallMovieCardClick).toHaveBeenCalledTimes(2);
-  });
+  }); */
 
 
   it(`Clicking on the ShowMoreButton should increment visible small movie card count`, () => {

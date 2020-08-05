@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user.js";
-import {MainPage} from "./main-page.jsx";
+import {MainPageComponent} from "./main-page.jsx";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const.js";
 import {history} from "../../history";
@@ -41,7 +41,7 @@ const store = mockStore({
 
 const props = {
   promoMovie: mockPromoMovie,
-  openMovieDetailsPage: () => {},
+  onOpenMainPage: () => {},
 };
 
 const nodeMock = {
@@ -56,7 +56,7 @@ describe(`Render MainPage`, () => {
     const mainPageSnapshot = renderer.create(
         <Router history={history} >
           <Provider store={store}>
-            <MainPage {...props} />
+            <MainPageComponent {...props} />
           </Provider>
         </Router>, nodeMock
     ).toJSON();

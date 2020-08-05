@@ -34,16 +34,6 @@ const getEmailValidation = (emailValue) => {
 
 
 class SignInComponent extends PureComponent {
-  /* const {
-    login,
-    loginError,
-    setLoginError,
-  } = props;
-
-  const emailRef = createRef();
-  const passwordRef = createRef();
-
-  const errorMessage = loginError ? getErrorMessage(loginError) : null; */
   constructor(props) {
     super(props);
 
@@ -53,7 +43,7 @@ class SignInComponent extends PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.onOpenSignInPage();
   }
 

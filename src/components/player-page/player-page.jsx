@@ -13,7 +13,7 @@ import {getMovieById} from "../../reducers/data/selectors";
 
 
 class PlayerPageComponent extends PureComponent {
-  componentWillMount() {
+  componentDidMount() {
     this.props.onOpenPlayerPage(this.props.movie);
   }
 
@@ -43,6 +43,7 @@ class PlayerPageComponent extends PureComponent {
 
 
 PlayerPageComponent.propTypes = {
+  routeProps: PropTypes.object.isRequired,
   movie: MoviePropType,
   onOpenPlayerPage: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,

@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
-import {AddReviewPage} from "./add-review-page";
+import {AddReviewPageComponent} from "./add-review-page";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {Error} from "../../api";
 import {NameSpace} from "../../reducers/name-space";
@@ -33,13 +33,19 @@ const nodeMock = {
 };
 
 const props = {
+  routeProps: {
+    match: {
+      params: 1}
+  },
   movie: mockPromoMovie,
   dataError: null,
   sendReview: () => {},
   setDataError: () => {},
+  openAddReviewPage: () => {},
   reviewRating: null,
   reviewText: null,
   onChange: () => {},
+  onError: () => {},
 };
 
 
@@ -48,7 +54,7 @@ describe(`Render AddReviewPage`, () => {
     const addReviewPageSnapshot = renderer.create(
         <Router history={history} >
           <Provider store={store} >
-            <AddReviewPage {...props} />
+            <AddReviewPageComponent {...props} />
           </Provider>
         </Router>, nodeMock
     ).toJSON();
@@ -67,7 +73,7 @@ describe(`Render AddReviewPage`, () => {
     const addReviewPageSnapshot = renderer.create(
         <Router history={history} >
           <Provider store={store} >
-            <AddReviewPage {...props} />
+            <AddReviewPageComponent {...props} />
           </Provider>
         </Router>, nodeMock
     ).toJSON();
@@ -86,7 +92,7 @@ describe(`Render AddReviewPage`, () => {
     const addReviewPageSnapshot = renderer.create(
         <Router history={history} >
           <Provider store={store} >
-            <AddReviewPage {...props} />
+            <AddReviewPageComponent {...props} />
           </Provider>
         </Router>, nodeMock
     ).toJSON();
@@ -107,7 +113,7 @@ describe(`Render AddReviewPage`, () => {
     const addReviewPageSnapshot = renderer.create(
         <Router history={history} >
           <Provider store={store} >
-            <AddReviewPage {...props} />
+            <AddReviewPageComponent {...props} />
           </Provider>
         </Router>, nodeMock
     ).toJSON();

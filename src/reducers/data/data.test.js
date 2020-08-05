@@ -155,6 +155,27 @@ describe(`Data operation work correctly`, () => {
   });
 
 
+  it(`Should make a correct API call for fail get request to /films`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const moviesLoader = Operation.loadMovies();
+
+    apiMock
+      .onGet(`/films`)
+      .reply(400);
+
+    return moviesLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: new Error(`Request failed with status code 400`),
+        });
+      });
+  });
+
+
   it(`Should make a correct API call to /films/promo`, () => {
     const api = createAPI(() => {});
     const apiMock = new MockAdapter(api);
@@ -179,6 +200,27 @@ describe(`Data operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ApplicationActionType.CHANGE_ACTIVE_PAGE,
           payload: PageType.MAIN,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call for fail get request to /films/promo`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const promoMovieLoader = Operation.loadPromoMovie();
+
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(400);
+
+    return promoMovieLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: new Error(`Request failed with status code 400`),
         });
       });
   });

@@ -25,10 +25,6 @@ class AppComponent extends PureComponent {
     const path = window.location.pathname;
 
     switch (true) {
-      case path.includes(AppRoute.SIGN_IN):
-        this.props.changeActivePage(PageType.SIGN_IN);
-        break;
-
       case path === AppRoute.MAIN:
         this.props.changeActiveMovie(this.props.promoMovie);
         break;

@@ -58,4 +58,58 @@ describe(`Render App`, () => {
 
     expect(appSnapshot).toMatchSnapshot();
   });
+
+
+  it(`Should match with snapshot with data error 400`, () => {
+    const store = mockStore({
+      [NameSpace.APPLICATION]: {
+        activeMovie: mockPromoMovie,
+        activePage: PageType.ERROR,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
+
+    const props = {
+      dataError: {status: 400},
+      activePage: PageType.ERROR,
+      onError: () => {},
+    };
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Should match with snapshot with data error 404`, () => {
+    const store = mockStore({
+      [NameSpace.APPLICATION]: {
+        activeMovie: mockPromoMovie,
+        activePage: PageType.ERROR,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
+
+    const props = {
+      dataError: {status: 404},
+      activePage: PageType.ERROR,
+      onError: () => {},
+    };
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
 });

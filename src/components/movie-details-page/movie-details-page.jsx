@@ -15,13 +15,21 @@ import {PageType, NUMBER_OF_SIMILAR_FILMS, AppRoute} from "../../const";
 
 
 class MovieDetailsPageComponent extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.handleMovieDetailsPageOpen = this.handleMovieDetailsPageOpen.bind(this);
+  }
+
   componentDidMount() {
-    if (this.props.movie) {
-      this.props.onOpenMovieDetailsPage(this.props.movie);
-    }
+    this.handleMovieDetailsPageOpen();
   }
 
   componentDidUpdate() {
+    this.handleMovieDetailsPageOpen();
+  }
+
+  handleMovieDetailsPageOpen() {
     if (this.props.movie) {
       this.props.onOpenMovieDetailsPage(this.props.movie);
     }

@@ -15,7 +15,7 @@ import {PlayerPage} from "../player-page/player-page";
 import {PrivateRoute} from "../private-route/private-route";
 import {RedirectToMainRoute} from "../redirect-to-main-route/redirect-to-main-route";
 import {SignIn} from "../sign-in/sign-in";
-import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
+import {getActivePage} from "../../reducers/application/selectors";
 import {getDataError, getMovies, getPromoMovie} from "../../reducers/data/selectors";
 import {history} from "../../history";
 
@@ -25,26 +25,6 @@ class AppComponent extends PureComponent {
     const path = window.location.pathname;
 
     switch (true) {
-      /* case path.includes(`/films/`) && !path.includes(`/review`): {
-        const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/films/`, ``).replace(`/`, ``));
-        this.props.onOpenMovieDetailsPage(newActiveMovie);
-        break;
-      } */
-
-      /* case path.includes(`/films/`) && path.includes(`/review`): {
-        const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/films/`, ``).replace(`/review`, ``).replace(`/`, ``));
-        this.props.changeActiveMovie(newActiveMovie);
-        this.props.changeActivePage(PageType.ADD_REVIEW);
-        break;
-      } */
-
-      case path.includes(`/player/`): {
-        const newActiveMovie = this.props.movies.find((movie) => movie.id === +path.replace(`/player/`, ``).replace(`/`, ``));
-        this.props.changeActivePage(PageType.PLAYER);
-        this.props.changeActiveMovie(newActiveMovie);
-        break;
-      }
-
       case path.includes(AppRoute.SIGN_IN):
         this.props.changeActivePage(PageType.SIGN_IN);
         break;
@@ -85,7 +65,6 @@ class AppComponent extends PureComponent {
 
   render() {
     const {
-      activeMovie,
       setDataError,
       changeActivePage,
     } = this.props;
@@ -106,11 +85,9 @@ class AppComponent extends PureComponent {
           />
 
           <RedirectToMainRoute exact path={AppRoute.PLAYER}
-            render={() => {
+            render={(routeProps) => {
               return (
-                <PlayerPage
-                  movie={activeMovie}
-                />
+                <PlayerPage routeProps={routeProps} />
               );
             }}
           />
@@ -146,7 +123,6 @@ class AppComponent extends PureComponent {
 AppComponent.propTypes = {
   dataError: PropTypes.object,
   activePage: PropTypes.string.isRequired,
-  activeMovie: MoviePropType,
   promoMovie: MoviePropType,
   movies: PropTypes.arrayOf(MoviePropType),
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
@@ -160,7 +136,6 @@ AppComponent.propTypes = {
 const mapStateToProps = (state) => ({
   dataError: getDataError(state),
   activePage: getActivePage(state),
-  activeMovie: getActiveMovie(state),
   movies: getMovies(state),
   promoMovie: getPromoMovie(state),
 });

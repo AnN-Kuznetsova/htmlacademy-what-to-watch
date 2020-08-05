@@ -85,9 +85,6 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadActiveMovieReviews(response));
         dispatch(ActionCreator.setDataError(null));
-      })
-      .catch((error) => {
-        dispatch(ActionCreator.setDataError(error));
       });
   },
 

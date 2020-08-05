@@ -10,7 +10,7 @@ import {Error} from "./api";
 import {Operation as DataOperation, ActionCreator as DataActionCreator} from "./reducers/data/data";
 import {Operation as UserOperation, ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducers/user/user";
 import {createAPI} from "./api";
-import {getPromoMovie} from "./reducers/data/selectors";
+import {getPromoMovie, getDataError} from "./reducers/data/selectors";
 import {reducer} from "./reducers/reducer";
 
 
@@ -21,7 +21,9 @@ const onFailRequest = (error) => {
       break;
 
     default:
-      store.dispatch(DataActionCreator.setDataError(error));
+      if (!getDataError(store.getState())) {
+        store.dispatch(DataActionCreator.setDataError(error));
+      }
       break;
   }
 };

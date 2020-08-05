@@ -252,35 +252,6 @@ describe(`Data operation work correctly`, () => {
   });
 
 
-  it(`Should make a correct API call for fail get request to /comments/: film_id when dataError is null`, () => {
-    const mockStore = configureStore([]);
-    const store = mockStore({
-      [NameSpace.DATA]: {
-        dataError: null,
-      },
-    });
-
-    const api = createAPI(() => {});
-    const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn();
-
-    const reviewsLoader = Operation.loadActiveMovieReviews(1);
-
-    apiMock
-      .onGet(`/comments/1`)
-      .reply(400);
-
-    return reviewsLoader(dispatch, store.getState, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: DataActionType.SET_DATA_ERROR,
-          payload: new Error(`Request failed with status code 400`),
-        });
-      });
-  });
-
-
   it(`Should make a correct API call for post request to /comments/: film_id`, () => {
     const mockStore = configureStore([]);
     const store = mockStore({

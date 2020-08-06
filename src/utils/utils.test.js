@@ -1,3 +1,4 @@
+import {ERROR_COLOR} from "../const";
 import {
   extend,
   getFormatedDate,
@@ -7,6 +8,7 @@ import {
   getRatingDescription,
   getRandomArrayElements,
   disableForm,
+  setErrorStyle,
 } from "./utils";
 
 
@@ -148,5 +150,24 @@ describe(`Utils tests`, () => {
     expect(elements[0].style.opacity).toEqual(`1`);
     expect(elements[1].disabled).toEqual(false);
     expect(elements[1].style.opacity).toEqual(`1`);
+  });
+
+
+  it(`Testing setErrorStyle`, () => {
+    const elements = [
+      document.createElement(`input`),
+      document.createElement(`button`),
+    ];
+
+    expect(elements[0].style.boxShadow).toEqual(``);
+    expect(elements[1].style.boxShadow).toEqual(``);
+
+    setErrorStyle(elements);
+    expect(elements[0].style.boxShadow).toEqual(`0 0 0 1px ${ERROR_COLOR}`);
+    expect(elements[1].style.boxShadow).toEqual(`0 0 0 1px ${ERROR_COLOR}`);
+
+    setErrorStyle(elements, false);
+    expect(elements[0].style.boxShadow).toEqual(`none`);
+    expect(elements[1].style.boxShadow).toEqual(`none`);
   });
 });

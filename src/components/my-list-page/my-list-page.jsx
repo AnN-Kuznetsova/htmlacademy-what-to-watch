@@ -42,7 +42,7 @@ class MyListPageComponent extends PureComponent {
 
 MyListPageComponent.propTypes = {
   onOpenMyListPage: PropTypes.func.isRequired,
-  dataError: PropTypes.string,
+  dataError: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

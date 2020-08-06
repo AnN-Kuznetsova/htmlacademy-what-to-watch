@@ -6,6 +6,7 @@ import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
 import {createAPI} from "../../api";
 import {reducer, ActionType as DataActionType, ActionCreator, Operation} from "./data";
+import * as utils from "../../utils/utils";
 
 import {
   mockMovies,
@@ -23,6 +24,7 @@ describe(`Data reduser should work correctly`, () => {
     expect(reducer(void 0, {})).toEqual({
       movies: null,
       promoMovie: null,
+      favoriteMovies: null,
       maxMoviesCount: null,
       activeMovieReviews: [],
       dataError: null,
@@ -38,6 +40,18 @@ describe(`Data reduser should work correctly`, () => {
       payload: mockMovies,
     })).toEqual({
       movies: mockMovies,
+    });
+  });
+
+
+  it(`Data reducer should update favoriteMovies by load favorite movies`, () => {
+    expect(reducer({
+      favoriteMovies: null,
+    }, {
+      type: DataActionType.LOAD_FAVORITE_MOVIES,
+      payload: mockMovies,
+    })).toEqual({
+      favoriteMovies: mockMovies,
     });
   });
 
@@ -88,6 +102,104 @@ describe(`Data reduser should work correctly`, () => {
       dataError: {status: 404},
     });
   });
+
+
+  it(`Data reducer should change movie in a movies by a given value`, () => {
+    const testMovies = [{
+      id: 1,
+      isFavorite: false,
+    }, {
+      id: 2,
+      isFavorite: false,
+    }, {
+      id: 3,
+      isFavorite: false,
+    }];
+
+    let movie = {
+      id: 2,
+      isFavorite: true,
+    };
+
+    expect(reducer({
+      movies: testMovies,
+      promoMovie: testMovies[1],
+    }, {
+      type: DataActionType.CHANGE_MOVIE,
+      payload: movie,
+    })).toEqual({
+      movies: [{
+        id: 1,
+        isFavorite: false,
+      }, {
+        id: 2,
+        isFavorite: true,
+      }, {
+        id: 3,
+        isFavorite: false,
+      }],
+      promoMovie: {
+        id: 2,
+        isFavorite: true,
+      },
+    });
+
+    movie = {
+      id: 1,
+      isFavorite: true,
+    };
+
+    expect(reducer({
+      movies: testMovies,
+      promoMovie: testMovies[1],
+    }, {
+      type: DataActionType.CHANGE_MOVIE,
+      payload: movie,
+    })).toEqual({
+      movies: [{
+        id: 1,
+        isFavorite: true,
+      }, {
+        id: 2,
+        isFavorite: false,
+      }, {
+        id: 3,
+        isFavorite: false,
+      }],
+      promoMovie: {
+        id: 2,
+        isFavorite: false,
+      },
+    });
+
+    movie = {
+      id: 4,
+      isFavorite: true,
+    };
+
+    expect(reducer({
+      movies: testMovies,
+      promoMovie: testMovies[1],
+    }, {
+      type: DataActionType.CHANGE_MOVIE,
+      payload: movie,
+    })).toEqual({
+      movies: [{
+        id: 1,
+        isFavorite: false,
+      }, {
+        id: 2,
+        isFavorite: false,
+      }, {
+        id: 3,
+        isFavorite: false,
+      }],
+      promoMovie: {
+        id: 2,
+        isFavorite: false,
+      },
+    });
+  });
 });
 
 
@@ -95,6 +207,14 @@ describe(`Data action creators should work correctly`, () => {
   it(`Data action creator for load movies returns correct action`, () => {
     expect(ActionCreator.loadMovies(mockMovies)).toEqual({
       type: DataActionType.LOAD_MOVIES,
+      payload: mockMovies,
+    });
+  });
+
+
+  it(`Data action creator for load favorite movies returns correct action`, () => {
+    expect(ActionCreator.loadFavoriteMovies(mockMovies)).toEqual({
+      type: DataActionType.LOAD_FAVORITE_MOVIES,
       payload: mockMovies,
     });
   });
@@ -128,6 +248,14 @@ describe(`Data action creators should work correctly`, () => {
     expect(ActionCreator.setDataError({status: 404})).toEqual({
       type: DataActionType.SET_DATA_ERROR,
       payload: {status: 404},
+    });
+  });
+
+
+  it(`Data action creator for change movie returns correct action`, () => {
+    expect(ActionCreator.changeMovie(mockPromoMovie)).toEqual({
+      type: DataActionType.CHANGE_MOVIE,
+      payload: mockPromoMovie,
     });
   });
 });
@@ -166,6 +294,48 @@ describe(`Data operation work correctly`, () => {
       .reply(400);
 
     return moviesLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.SET_DATA_ERROR,
+          payload: new Error(`Request failed with status code 400`),
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call to /favorite`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoriteMoviesLoader = Operation.loadFavoriteMovies();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [mockRawFilm]);
+
+    return favoriteMoviesLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.LOAD_FAVORITE_MOVIES,
+          payload: [mockRawFilmToMovie],
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call for fail get request to /favorite`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoriteMoviesLoader = Operation.loadFavoriteMovies();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(400);
+
+    return favoriteMoviesLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -294,7 +464,6 @@ describe(`Data operation work correctly`, () => {
           type: DataActionType.SET_DATA_ERROR,
           payload: null,
         });
-
       });
   });
 
@@ -326,6 +495,65 @@ describe(`Data operation work correctly`, () => {
           type: DataActionType.SET_DATA_ERROR,
           payload: new Error(`Request failed with status code 400`),
         });
+      });
+  });
+
+
+  it(`Should make a correct API call to /favorite/:id/:status`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const newMovieData = {
+      id: 1,
+      status: 0,
+    };
+    const changeMovieDataSender = Operation.changeMovie(newMovieData, []);
+
+    apiMock
+      .onPost(`/favorite/1/0`)
+      .reply(200, mockRawFilm);
+
+    return changeMovieDataSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActionType.CHANGE_MOVIE,
+          payload: mockRawFilmToMovie,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call fail post request to /favorite/:id/:status`, () => {
+    jest.useFakeTimers();
+    utils.setErrorStyle = jest.fn();
+
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const newMovieData = {
+      id: 1,
+      status: 0,
+    };
+    const formElements = [];
+    const changeMovieDataSender = Operation.changeMovie(newMovieData, formElements);
+
+    apiMock
+      .onPost(`/favorite/1/0`)
+      .reply(400);
+
+    return changeMovieDataSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(0);
+
+        expect(utils.setErrorStyle).toHaveBeenCalledTimes(1);
+        expect(setTimeout).toHaveBeenCalledTimes(1);
+        jest.runTimersToTime(500);
+        expect(utils.setErrorStyle).toHaveBeenCalledTimes(2);
+        expect(utils.setErrorStyle).toHaveBeenNthCalledWith(1, formElements);
+        expect(utils.setErrorStyle).toHaveBeenNthCalledWith(2, formElements, false);
       });
   });
 });

@@ -97,16 +97,21 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/myList"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="/img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -249,7 +254,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
     <p
       style={
         Object {
-          "color": "#A8421E",
+          "color": "#a8421e",
           "whiteSpace": "pre-wrap",
         }
       }
@@ -357,16 +362,21 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/myList"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="/img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -509,7 +519,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
     <p
       style={
         Object {
-          "color": "#A8421E",
+          "color": "#a8421e",
           "whiteSpace": "pre-wrap",
         }
       }
@@ -617,16 +627,21 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/myList"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="/img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -656,7 +671,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
           style={
             Object {
               "borderRadius": "8px",
-              "boxShadow": "0 0 0 1px #A8421E",
+              "boxShadow": "0 0 0 1px #a8421e",
             }
           }
         >
@@ -754,7 +769,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
           style={
             Object {
               "borderRadius": "8px",
-              "boxShadow": "0 0 0 1px #A8421E",
+              "boxShadow": "0 0 0 1px #a8421e",
             }
           }
         />
@@ -779,7 +794,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
     <p
       style={
         Object {
-          "color": "#A8421E",
+          "color": "#a8421e",
           "whiteSpace": "pre-wrap",
         }
       }
@@ -889,16 +904,21 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/myList"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="/img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div

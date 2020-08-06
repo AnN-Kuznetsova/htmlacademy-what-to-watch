@@ -118,4 +118,24 @@ describe(`Render Header`, () => {
 
     expect(headerSnapshot).toMatchSnapshot();
   });
+
+
+  it(`Should match with snapshot when active page is MY_LIST`, () => {
+    const props = {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      activePage: PageType.MY_LIST,
+      onOpenSignInPage: () => {},
+      onBreadcrambsLinkClick: () => {},
+    };
+
+    const headerSnapshot = renderer.create(
+        <Router history={history} >
+          <Provider store={store} >
+            <HeaderComponent {...props} />
+          </Provider>
+        </Router>
+    ).toJSON();
+
+    expect(headerSnapshot).toMatchSnapshot();
+  });
 });

@@ -65,16 +65,23 @@ class AddReviewPageComponent extends PureComponent {
     this._ratingValue = null;
     this._reviewTextValue = null;
 
+    this.handleAddRreviewPageOpen = this.handleAddRreviewPageOpen.bind(this);
     this.handleDataReviewChange = this.handleDataReviewChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.props.openAddReviewPage(this.props.movie);
+    this.handleAddRreviewPageOpen();
   }
 
   componentDidUpdate() {
-    this.props.openAddReviewPage(this.props.movie);
+    this.handleAddRreviewPageOpen();
+  }
+
+  handleAddRreviewPageOpen() {
+    if (this.props.movie) {
+      this.props.openAddReviewPage(this.props.movie);
+    }
   }
 
   handleDataReviewChange() {

@@ -13,12 +13,24 @@ import {getMovieById} from "../../reducers/data/selectors";
 
 
 class PlayerPageComponent extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.handlePlayerPageOpen = this.handlePlayerPageOpen.bind(this);
+  }
+
   componentDidMount() {
-    this.props.onOpenPlayerPage(this.props.movie);
+    this.handlePlayerPageOpen();
   }
 
   componentDidUpdate() {
-    this.props.onOpenPlayerPage(this.props.movie);
+    this.handlePlayerPageOpen();
+  }
+
+  handlePlayerPageOpen() {
+    if (this.props.movie) {
+      this.props.onOpenPlayerPage(this.props.movie);
+    }
   }
 
   render() {

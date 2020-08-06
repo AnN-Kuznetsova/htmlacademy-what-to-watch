@@ -5,13 +5,9 @@ import React from "react";
 export const RatingItem = (props) => {
   const {
     id,
-    onClick,
+    onChange,
+    rating,
   } = props;
-
-  const handleRatingChange = (event) => {
-    event.target.checked = true;
-    onClick();
-  };
 
   return (
     <React.Fragment>
@@ -21,7 +17,9 @@ export const RatingItem = (props) => {
         type="radio"
         name="rating"
         value={id}
-        onChange={handleRatingChange} />
+        checked={id === rating}
+        onChange={onChange}
+      />
       <label className="rating__label" htmlFor={`star-${id}`}>Rating {id}</label>
     </React.Fragment>
   );
@@ -30,5 +28,6 @@ export const RatingItem = (props) => {
 
 RatingItem.propTypes = {
   id: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  rating: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
 };

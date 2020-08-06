@@ -18,6 +18,7 @@ const mockStore = configureStore([]);
 const store = mockStore({
   [NameSpace.APPLICATION]: {
     activePage: PageType.MAIN,
+    activeMovie: mockPromoMovie,
   },
   [NameSpace.USER]: {
     authorizationStatus: AuthorizationStatus.AUTH,

@@ -9,7 +9,6 @@ import {Footer} from "../footer/footer";
 import {MovieCardFullWithPlayer} from "../movie-card-full/movie-card-full";
 import {MoviePropType} from "../../prop-types";
 import {Redirect} from "react-router-dom";
-import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getMovieById} from "../../reducers/data/selectors";
 import {PageType, NUMBER_OF_SIMILAR_FILMS, AppRoute} from "../../const";
 
@@ -38,7 +37,6 @@ class MovieDetailsPageComponent extends PureComponent {
   render() {
     const {
       movie,
-      authorizationStatus,
       onAddReviewButtonClick,
       onError,
     } = this.props;
@@ -52,7 +50,6 @@ class MovieDetailsPageComponent extends PureComponent {
       <React.Fragment>
         <MovieCardFullWithPlayer
           movie={movie}
-          authorizationStatus={authorizationStatus}
           onAddReviewButtonClick={onAddReviewButtonClick}
         />
 
@@ -76,7 +73,6 @@ class MovieDetailsPageComponent extends PureComponent {
 MovieDetailsPageComponent.propTypes = {
   routeProps: PropTypes.object.isRequired,
   movie: MoviePropType,
-  authorizationStatus: PropTypes.string.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
   onOpenMovieDetailsPage: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
@@ -89,7 +85,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     movie: getMovieById(state, movieId),
-    authorizationStatus: getAuthorizationStatus(state),
   };
 };
 

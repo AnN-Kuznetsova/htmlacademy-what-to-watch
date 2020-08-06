@@ -1,7 +1,8 @@
 import {createSelector} from "reselect";
 
 import {NameSpace} from "../name-space";
-import {getActiveGenre, getActiveMovie} from "../application/selectors";
+import {PageType} from "../../const";
+import {getActiveGenre, getActiveMovie, getActivePage} from "../application/selectors";
 import {getRandomArrayElements} from "../../utils/utils";
 
 
@@ -10,6 +11,10 @@ const NAME_SPASE = NameSpace.DATA;
 
 const getMovies = (state) => {
   return state[NAME_SPASE].movies;
+};
+
+const getFavoriteMovies = (state) => {
+  return state[NAME_SPASE].favoriteMovies;
 };
 
 const getMovieById = createSelector(
@@ -48,6 +53,17 @@ const getFilteredMoviesByGenre = createSelector(
     }
 );
 
+const getMoviesForCatalog = createSelector(
+    getActivePage,
+    getFilteredMoviesByGenre,
+    getFavoriteMovies,
+    (page, filteredMovies, favoriteMovies) => {
+      return page === PageType.MY_LIST
+        ? favoriteMovies
+        : filteredMovies;
+    }
+);
+
 const getDataError = (state) => {
   return state[NAME_SPASE].dataError;
 };
@@ -59,5 +75,5 @@ export {
   getMovieById,
   getMovies,
   getPromoMovie,
-  getFilteredMoviesByGenre,
+  getMoviesForCatalog,
 };

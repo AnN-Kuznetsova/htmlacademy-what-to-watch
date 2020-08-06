@@ -57,16 +57,21 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/myList"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="/img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -117,6 +122,7 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
           </button>
           <button
             className="btn btn--list movie-card__button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -318,16 +324,21 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/myList"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="/img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -378,6 +389,7 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
           </button>
           <button
             className="btn btn--list movie-card__button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -393,6 +405,13 @@ exports[`Render MovieCardFull Should match with snapshot when authorizationStatu
               My list
             </span>
           </button>
+          <a
+            className="btn movie-card__button"
+            href="/films/1/review"
+            onClick={[Function]}
+          >
+            Add review
+          </a>
         </div>
       </div>
     </div>

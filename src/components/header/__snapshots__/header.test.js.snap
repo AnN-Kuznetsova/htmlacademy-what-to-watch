@@ -172,17 +172,90 @@ Array [
     <div
       className="user-block"
     >
-      <div
-        className="user-block__avatar"
+      <a
+        href="/myList"
+        onClick={[Function]}
       >
-        <img
-          alt="User avatar"
-          height="63"
-          src="/img/avatar.jpg"
-          width="63"
-        />
-      </div>
+        <div
+          className="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            src="/img/avatar.jpg"
+            width="63"
+          />
+        </div>
+      </a>
     </div>
+  </header>,
+]
+`;
+
+exports[`Render Header Should match with snapshot when active page is MY_LIST 1`] = `
+Array [
+  <h1
+    className="visually-hidden"
+  >
+    WTW
+  </h1>,
+  <header
+    className="page-header false user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link false"
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="user-block"
+    >
+      <a
+        href="/myList"
+        onClick={[Function]}
+      >
+        <div
+          className="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            src="/img/avatar.jpg"
+            width="63"
+          />
+        </div>
+      </a>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      My list
+    </h1>
   </header>,
 ]
 `;
@@ -230,16 +303,21 @@ Array [
     <div
       className="user-block"
     >
-      <div
-        className="user-block__avatar"
+      <a
+        href="/myList"
+        onClick={[Function]}
       >
-        <img
-          alt="User avatar"
-          height="63"
-          src="/img/avatar.jpg"
-          width="63"
-        />
-      </div>
+        <div
+          className="user-block__avatar"
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            src="/img/avatar.jpg"
+            width="63"
+          />
+        </div>
+      </a>
     </div>
   </header>,
 ]

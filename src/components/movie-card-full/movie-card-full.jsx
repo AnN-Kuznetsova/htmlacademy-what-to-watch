@@ -3,8 +3,8 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 import {AppRoute} from "../../const";
-import {AuthorizationStatus} from "../../reducers/user/user";
 import {Header} from "../header/header";
+import {ListButton} from "../list-button/list-button";
 import {MovieCardInfoWithTabs} from "../movie-card-info/movie-card-info";
 import {MoviePropType} from "../../prop-types";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
@@ -14,7 +14,6 @@ import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 const MovieCardFull = (props) => {
   const {
     movie,
-    authorizationStatus,
     renderVideoPlayer,
     isPlayerVisible,
     onPlayButtonClick,
@@ -45,9 +44,7 @@ const MovieCardFull = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button
-                  className="btn btn--play movie-card__button"
-                  type="button"
+                <button className="btn btn--play movie-card__button" type="button"
                   onClick={onPlayButtonClick}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
@@ -55,18 +52,15 @@ const MovieCardFull = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
-                {authorizationStatus === AuthorizationStatus.AUTH &&
-                  <Link
-                    className="btn movie-card__button"
-                    onClick={onAddReviewButtonClick}
-                    to={AppRoute.ADD_REVIEW.replace(`:id`, movie.id)}
-                  >Add review</Link>}
+
+                <ListButton />
+
+                <Link
+                  className="btn movie-card__button"
+                  onClick={onAddReviewButtonClick}
+                  to={AppRoute.ADD_REVIEW.replace(`:id`, movie.id)}
+                >Add review
+                </Link>
               </div>
             </div>}
         </div>
@@ -80,7 +74,6 @@ const MovieCardFull = (props) => {
 
 MovieCardFull.propTypes = {
   movie: MoviePropType.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   isPlayerVisible: PropTypes.bool.isRequired,

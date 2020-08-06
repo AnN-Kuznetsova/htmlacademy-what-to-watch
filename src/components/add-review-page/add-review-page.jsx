@@ -6,7 +6,7 @@ import {ActionCreator as ApplicationActionCreator} from "../../reducers/applicat
 import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Error} from "../../api";
 import {Header} from "../header/header";
-import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE, PageType, AppRoute} from "../../const";
+import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE, PageType, AppRoute, ERROR_COLOR} from "../../const";
 import {MoviePropType} from "../../prop-types";
 import {RatingItem} from "../rating-item/rating-item";
 import {Redirect} from "react-router-dom";
@@ -65,16 +65,23 @@ class AddReviewPageComponent extends PureComponent {
     this._ratingValue = null;
     this._reviewTextValue = null;
 
+    this.handleAddRreviewPageOpen = this.handleAddRreviewPageOpen.bind(this);
     this.handleDataReviewChange = this.handleDataReviewChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.props.openAddReviewPage(this.props.movie);
+    this.handleAddRreviewPageOpen();
   }
 
   componentDidUpdate() {
-    this.props.openAddReviewPage(this.props.movie);
+    this.handleAddRreviewPageOpen();
+  }
+
+  handleAddRreviewPageOpen() {
+    if (this.props.movie) {
+      this.props.openAddReviewPage(this.props.movie);
+    }
   }
 
   handleDataReviewChange() {
@@ -114,6 +121,7 @@ class AddReviewPageComponent extends PureComponent {
   render() {
     const {
       movie,
+      reviewRating,
       dataError,
       onError,
     } = this.props;
@@ -151,12 +159,13 @@ class AddReviewPageComponent extends PureComponent {
               <div
                 ref={this._ratingRef}
                 className="rating__stars"
-                style={dataError && dataError.response === Error.VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+                style={dataError && dataError.response === Error.VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px ${ERROR_COLOR}`} : {}}>
                 {new Array(RATING_RANGE).fill(``).map((ratingItem, index) => (
                   <RatingItem
                     key={ratingItem + index}
                     id={index + 1}
-                    onClick={this.handleDataReviewChange}
+                    rating={reviewRating}
+                    onChange={this.handleDataReviewChange}
                   />
                 ))}
               </div>
@@ -169,7 +178,7 @@ class AddReviewPageComponent extends PureComponent {
                 name="review-text" id="review-text"
                 placeholder="Review text"
                 onChange={this.handleDataReviewChange}
-                style={dataError && dataError.response === Error.VALIDATION && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px #A8421E`} : {}}>
+                style={dataError && dataError.response === Error.VALIDATION && dataError.data.reviewTextValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px ${ERROR_COLOR}`} : {}}>
               </textarea>
               <div className="add-review__submit">
                 <button
@@ -183,7 +192,7 @@ class AddReviewPageComponent extends PureComponent {
             </div>
           </form>
 
-          {errorMessage && <p style={{whiteSpace: `pre-wrap`, color: `#A8421E`}}>{errorMessage}</p>}
+          {errorMessage && <p style={{whiteSpace: `pre-wrap`, color: ERROR_COLOR}}>{errorMessage}</p>}
         </div>
 
       </section>
@@ -199,10 +208,10 @@ AddReviewPageComponent.propTypes = {
   sendReview: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
   openAddReviewPage: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   reviewRating: PropTypes.number,
   reviewText: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  onError: PropTypes.func.isRequired,
 };
 
 

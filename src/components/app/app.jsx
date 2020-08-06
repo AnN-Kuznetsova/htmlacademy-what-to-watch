@@ -10,6 +10,7 @@ import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
 import {MoviePropType} from "../../prop-types";
+import {MyListPage} from "../my-list-page/my-list-page";
 import {PageType, AppRoute} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {PrivateRoute} from "../private-route/private-route";
@@ -91,6 +92,14 @@ class AppComponent extends PureComponent {
             render={(routeProps) => {
               return (
                 <AddReviewPageWithNewReview routeProps={routeProps} />
+              );
+            }}
+          />
+
+          <PrivateRoute exact path={AppRoute.MY_LIST}
+            render={() => {
+              return (
+                <MyListPage />
               );
             }}
           />

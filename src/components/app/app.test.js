@@ -60,6 +60,43 @@ describe(`Render App`, () => {
   });
 
 
+  it(`Should match with snapshot when authorizationStatus is NO_AUTH`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        movies: mockMovies,
+        promoMovie: mockPromoMovie,
+      },
+      [NameSpace.APPLICATION]: {
+        genre: `All genres`,
+        visibleMoviesCount: 8,
+        activeMovie: mockPromoMovie,
+        activePage: PageType.MAIN,
+        prevPage: ``,
+        playerStartTime: 0,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+      },
+    });
+
+    const props = {
+      dataError: null,
+      activePage: PageType.MAIN,
+      movies: mockMovies,
+      promoMovie: mockPromoMovie,
+      onError: () => {},
+    };
+
+    const appSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(appSnapshot).toMatchSnapshot();
+  });
+
+
   it(`Should match with snapshot with data error 400`, () => {
     const store = mockStore({
       [NameSpace.APPLICATION]: {

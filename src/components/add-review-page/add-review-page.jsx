@@ -121,6 +121,7 @@ class AddReviewPageComponent extends PureComponent {
   render() {
     const {
       movie,
+      reviewRating,
       dataError,
       onError,
     } = this.props;
@@ -163,7 +164,8 @@ class AddReviewPageComponent extends PureComponent {
                   <RatingItem
                     key={ratingItem + index}
                     id={index + 1}
-                    onClick={this.handleDataReviewChange}
+                    rating={reviewRating}
+                    onChange={this.handleDataReviewChange}
                   />
                 ))}
               </div>
@@ -206,10 +208,10 @@ AddReviewPageComponent.propTypes = {
   sendReview: PropTypes.func.isRequired,
   setDataError: PropTypes.func.isRequired,
   openAddReviewPage: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   reviewRating: PropTypes.number,
   reviewText: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  onError: PropTypes.func.isRequired,
 };
 
 

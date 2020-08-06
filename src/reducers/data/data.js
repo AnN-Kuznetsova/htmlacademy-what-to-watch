@@ -106,7 +106,7 @@ const Operation = {
   },
 
   loadActiveMovieReviews: (activeMovieId) => (dispatch, getState, api) => {
-    return api.get(`/comments1/${activeMovieId}`)
+    return api.get(`/comments/${activeMovieId}`)
       .then((response) => createReviews(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadActiveMovieReviews(response));

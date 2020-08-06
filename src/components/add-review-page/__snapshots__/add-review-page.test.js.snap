@@ -141,6 +141,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
           style={Object {}}
         >
           <input
+            checked={false}
             className="rating__input"
             id="star-1"
             name="rating"
@@ -156,6 +157,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             1
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-2"
             name="rating"
@@ -171,6 +173,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             2
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-3"
             name="rating"
@@ -186,6 +189,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             3
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-4"
             name="rating"
@@ -201,6 +205,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             4
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-5"
             name="rating"
@@ -406,6 +411,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
           style={Object {}}
         >
           <input
+            checked={false}
             className="rating__input"
             id="star-1"
             name="rating"
@@ -421,6 +427,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             1
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-2"
             name="rating"
@@ -436,6 +443,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             2
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-3"
             name="rating"
@@ -451,6 +459,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             3
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-4"
             name="rating"
@@ -466,6 +475,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             4
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-5"
             name="rating"
@@ -676,6 +686,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
           }
         >
           <input
+            checked={false}
             className="rating__input"
             id="star-1"
             name="rating"
@@ -691,6 +702,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             1
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-2"
             name="rating"
@@ -706,6 +718,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             2
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-3"
             name="rating"
@@ -721,6 +734,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             3
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-4"
             name="rating"
@@ -736,6 +750,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             4
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-5"
             name="rating"
@@ -948,6 +963,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
           style={Object {}}
         >
           <input
+            checked={false}
             className="rating__input"
             id="star-1"
             name="rating"
@@ -963,6 +979,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             1
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-2"
             name="rating"
@@ -978,6 +995,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             2
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-3"
             name="rating"
@@ -993,6 +1011,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             3
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-4"
             name="rating"
@@ -1008,6 +1027,7 @@ exports[`Render AddReviewPage AddReviewPage should match with snapshot when data
             4
           </label>
           <input
+            checked={false}
             className="rating__input"
             id="star-5"
             name="rating"

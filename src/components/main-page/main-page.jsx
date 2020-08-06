@@ -3,6 +3,7 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
+import {ActionCreator as DataActionCreator} from "../../reducers/data/data";
 import {Catalog} from "../catalog/catalog";
 import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
 import {Footer} from "../footer/footer";
@@ -61,6 +62,9 @@ const mapDispatchToProps = (dispatch) => ({
   onOpenMainPage(promoMovie) {
     dispatch(ApplicationActionCreator.changeActiveMovie(promoMovie));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
+    dispatch(DataActionCreator.setMaxMoviesCount(null));
+    dispatch(ApplicationActionCreator.resetVisibleMoviesCount());
+    dispatch(ApplicationActionCreator.changeGenre(`All genres`));
   },
 });
 

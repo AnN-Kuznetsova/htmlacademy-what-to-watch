@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
-import {ActionCreator as DataActionCtrator} from "../../reducers/data/data";
 import {AppRoute, PageType} from "../../const";
 
 
@@ -21,13 +20,12 @@ const LogoComponent = (props) => {
   } = props;
 
   const isMainPage = window.location.pathname === AppRoute.MAIN;
-  const mainPageLink = isMainPage ? `` : AppRoute.MAIN;
 
   return (
     <div className="logo">
       <Link
         className={`logo__link ${mode === LogoMode.LIGHT && `logo__link--light`}`}
-        to={mainPageLink}
+        to={AppRoute.MAIN}
         onClick={onClick}
         style={isMainPage ? {pointerEvents: `none`} : {}}
       >
@@ -48,9 +46,6 @@ LogoComponent.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onClick() {
-    dispatch(DataActionCtrator.setMaxMoviesCount(null));
-    dispatch(ApplicationActionCreator.resetVisibleMoviesCount());
-    dispatch(ApplicationActionCreator.changeGenre(`All genres`));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
   },
 });

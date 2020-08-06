@@ -8,6 +8,7 @@ import {Catalog} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
 import {Header} from "../header/header";
 import {PageType} from "../../const";
+import {getDataError} from "../../reducers/data/selectors";
 
 
 class MyListPageComponent extends PureComponent {
@@ -15,18 +16,21 @@ class MyListPageComponent extends PureComponent {
     this.props.onOpenMyListPage();
   }
 
-  componentDidUpdate() {}
-
   render() {
+    const {dataError} = this.props;
 
     return (
       <div className="user-page">
         <Header />
 
         <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          {dataError && <h2 className="catalog__title">Data loading error. Sorry</h2>}
 
-          <Catalog />
+          {!dataError &&
+          <React.Fragment>
+            <h2 className="catalog__title visually-hidden">Catalog</h2>
+            <Catalog />
+          </React.Fragment>}
         </section>
 
         <Footer />
@@ -38,8 +42,12 @@ class MyListPageComponent extends PureComponent {
 
 MyListPageComponent.propTypes = {
   onOpenMyListPage: PropTypes.func.isRequired,
+  dataError: PropTypes.string,
 };
 
+const mapStateToProps = (state) => ({
+  dataError: getDataError(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onOpenMyListPage() {
@@ -51,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const MyListPage = connect(null, mapDispatchToProps)(MyListPageComponent);
+const MyListPage = connect(mapStateToProps, mapDispatchToProps)(MyListPageComponent);
 
 
 export {

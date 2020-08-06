@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 
-import {MoviePropType} from '../../prop-types';
 import {PlayerWithVideo} from '../../components/player/player';
 import {VideoPlayerStatus, VideoPlayerMode} from "../with-video/with-video";
 
@@ -15,12 +14,6 @@ export const withVideoPlayer = (Component, playerMode) => {
         playerMode,
         isPlayerVisible: false,
       };
-    }
-
-    componentDidUpdate(prevProps) {
-      if (prevProps.movie !== this.props.movie) {
-        this.setVideoPlayerVisibility(false);
-      }
     }
 
     setVideoPlayerVisibility(newValue) {
@@ -69,9 +62,7 @@ export const withVideoPlayer = (Component, playerMode) => {
   }
 
 
-  WithVideoPlayer.propTypes = {
-    movie: MoviePropType.isRequired,
-  };
+  WithVideoPlayer.propTypes = {};
 
 
   return WithVideoPlayer;

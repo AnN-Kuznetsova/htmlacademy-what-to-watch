@@ -1,9 +1,17 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
+
 import {Footer} from "./footer.jsx";
+import {history} from "../../history";
 
 
 global.window = Object.create(window);
+
+const mockStore = configureStore([]);
+const store = mockStore({});
 
 
 describe(`Render Footer`, () => {
@@ -15,7 +23,11 @@ describe(`Render Footer`, () => {
     });
 
     const footerSnapshot = renderer.create(
-        <Footer />
+        <Router history={history} >
+          <Provider store={store} >
+            <Footer />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(footerSnapshot).toMatchSnapshot();
@@ -26,7 +38,11 @@ describe(`Render Footer`, () => {
     window.location.pathname = `/page-name`;
 
     const footerSnapshot = renderer.create(
-        <Footer />
+        <Router history={history} >
+          <Provider store={store} >
+            <Footer />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(footerSnapshot).toMatchSnapshot();

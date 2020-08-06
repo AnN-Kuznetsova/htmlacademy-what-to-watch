@@ -2,11 +2,13 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
-import {MovieDetailsPage} from "./movie-details-page";
+import {MovieDetailsPageComponent} from "./movie-details-page";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
+import {history} from "../../history";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
@@ -31,6 +33,7 @@ const store = mockStore({
   [NameSpace.APPLICATION]: {
     genre: `All genres`,
     visibleMoviesCount: 8,
+    activeMovie: mockPromoMovie,
     activePage: PageType.MOVIE_DETAILS,
     prevPage: ``,
     playerStartTime: 0,
@@ -47,19 +50,26 @@ const nodeMock = {
 };
 
 const props = {
-  activeMovie: mockPromoMovie,
+  routeProps: {
+    match: {
+      params: 1}
+  },
+  movie: mockPromoMovie,
   authorizationStatus: AuthorizationStatus.AUTH,
-  onSmallMovieCardClick: () => {},
   onAddReviewButtonClick: () => {},
+  onOpenMovieDetailsPage: () => {},
+  onError: () => {},
 };
 
 
 describe(`Render MovieDetailsPage`, () => {
   it(`Should match with snapshot when authorizationStatus is "AUTH"`, () => {
     const movieDetailsPageSnapshot = renderer.create(
-        <Provider store={store}>
-          <MovieDetailsPage {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store}>
+            <MovieDetailsPageComponent {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(movieDetailsPageSnapshot).toMatchSnapshot();
@@ -70,9 +80,11 @@ describe(`Render MovieDetailsPage`, () => {
     props.authorizationStatus = AuthorizationStatus.NO_AUTH;
 
     const movieDetailsPageSnapshot = renderer.create(
-        <Provider store={store}>
-          <MovieDetailsPage {...props} />
-        </Provider>, nodeMock
+        <Router history={history} >
+          <Provider store={store}>
+            <MovieDetailsPageComponent {...props} />
+          </Provider>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(movieDetailsPageSnapshot).toMatchSnapshot();

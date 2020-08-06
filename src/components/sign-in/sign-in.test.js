@@ -2,12 +2,14 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {Error} from "../../api";
 import {NameSpace} from "../../reducers/name-space";
 import {PageType} from "../../const";
 import {SignInComponent} from "./sign-in";
+import {history} from "../../history";
 
 
 const mockStore = configureStore([]);
@@ -22,18 +24,21 @@ const store = mockStore({
 });
 
 const props = {
-  login: () => {},
   loginError: null,
+  login: () => {},
   setLoginError: () => {},
+  onOpenSignInPage: () => {},
 };
 
 
 describe(`Render SignIn`, () => {
   it(`SignIn should match with snapshot when loginError is null`, () => {
     const signInSnapshot = renderer.create(
-        <Provider store={store} >
-          <SignInComponent {...props} />
-        </Provider>
+        <Router history={history} >
+          <Provider store={store} >
+            <SignInComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(signInSnapshot).toMatchSnapshot();
@@ -46,9 +51,11 @@ describe(`Render SignIn`, () => {
     };
 
     const signInSnapshot = renderer.create(
-        <Provider store={store} >
-          <SignInComponent {...props} />
-        </Provider>
+        <Router history={history} >
+          <Provider store={store} >
+            <SignInComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(signInSnapshot).toMatchSnapshot();
@@ -63,9 +70,11 @@ describe(`Render SignIn`, () => {
     };
 
     const signInSnapshot = renderer.create(
-        <Provider store={store} >
-          <SignInComponent {...props} />
-        </Provider>
+        <Router history={history} >
+          <Provider store={store} >
+            <SignInComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(signInSnapshot).toMatchSnapshot();

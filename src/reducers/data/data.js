@@ -1,14 +1,16 @@
 import {extend, disableForm} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
-import {PageType} from "../../const";
+import {PageType, AppRoute} from "../../const";
 import {createReviews} from "../../adapters/review";
 import {createMovies, createMovie} from "../../adapters/movie";
+import {getActiveMovie} from "../application/selectors";
+import {history} from "../../history";
 
 
 const initialState = {
-  movies: [],
-  promoMovie: {},
+  movies: null,
+  promoMovie: null,
   maxMoviesCount: null,
   activeMovieReviews: [],
   dataError: null,
@@ -58,6 +60,9 @@ const Operation = {
       .then((response) => createMovies(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadMovies(response));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.setDataError(error));
       });
   },
 
@@ -68,6 +73,9 @@ const Operation = {
         dispatch(ActionCreator.loadPromoMovie(response));
         dispatch(ApplicationActionCreator.changeActiveMovie(response));
         dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.setDataError(error));
       });
   },
 
@@ -77,9 +85,6 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadActiveMovieReviews(response));
         dispatch(ActionCreator.setDataError(null));
-      })
-      .catch((error) => {
-        dispatch(ActionCreator.setDataError(error));
       });
   },
 
@@ -92,10 +97,11 @@ const Operation = {
     })
     .then((response) => createReviews(response.data))
     .then((response) => {
+      history.push(AppRoute.FILM.replace(`:id`, getActiveMovie(getState()).id));
+      dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
       disableForm(reviewData.addReviewFormElements, false);
       dispatch(ActionCreator.loadActiveMovieReviews(response));
       dispatch(ActionCreator.setDataError(null));
-      dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
     })
     .catch((error) => {
       disableForm(reviewData.addReviewFormElements, false);

@@ -3,15 +3,15 @@ import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
-import {AppComponent} from "./app.jsx";
-import {NameSpace} from "../../reducers/name-space";
-
-import {PageType} from "../../const.js";
-
+import {AppComponent} from "./app";
 import {AuthorizationStatus} from "../../reducers/user/user";
+import {NameSpace} from "../../reducers/name-space";
+import {PageType} from "../../const";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
+
+global.window = Object.create(window);
 
 const nodeMock = {
   createNodeMock: () => {
@@ -21,37 +21,34 @@ const nodeMock = {
 
 const mockStore = configureStore([]);
 
-const store = mockStore({
-  [NameSpace.DATA]: {
-    movies: mockMovies,
-  },
-  [NameSpace.APPLICATION]: {
-    genre: `All genres`,
-    visibleMoviesCount: 8,
-    activePage: PageType.MAIN,
-    prevPage: ``,
-    playerStartTime: 0,
-  },
-  [NameSpace.USER]: {
-    authorizationStatus: AuthorizationStatus.AUTH,
-  },
-});
-
-const props = {
-  dataError: null,
-  activeMovie: mockPromoMovie,
-  activePage: ``,
-  authorizationStatus: AuthorizationStatus.AUTH,
-  onOpenMovieDetailsPage: () => {},
-  onAddReviewButtonClick: () => {},
-  setDataError: () => {},
-  sendReview: () => {},
-};
-
 
 describe(`Render App`, () => {
-  it(`Should match with snapshot when page is "MAIN"`, () => {
-    props.activePage = PageType.MAIN;
+  it(`Should match with snapshot`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        movies: mockMovies,
+        promoMovie: mockPromoMovie,
+      },
+      [NameSpace.APPLICATION]: {
+        genre: `All genres`,
+        visibleMoviesCount: 8,
+        activeMovie: mockPromoMovie,
+        activePage: PageType.MAIN,
+        prevPage: ``,
+        playerStartTime: 0,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
+
+    const props = {
+      dataError: null,
+      activePage: PageType.MAIN,
+      movies: mockMovies,
+      promoMovie: mockPromoMovie,
+      onError: () => {},
+    };
 
     const appSnapshot = renderer.create(
         <Provider store={store}>
@@ -63,8 +60,22 @@ describe(`Render App`, () => {
   });
 
 
-  it(`Should match with snapshot when page is "MOVIE_DETAILS"`, () => {
-    props.activePage = PageType.MOVIE_DETAILS;
+  it(`Should match with snapshot with data error 400`, () => {
+    const store = mockStore({
+      [NameSpace.APPLICATION]: {
+        activeMovie: mockPromoMovie,
+        activePage: PageType.ERROR,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
+
+    const props = {
+      dataError: {status: 400},
+      activePage: PageType.ERROR,
+      onError: () => {},
+    };
 
     const appSnapshot = renderer.create(
         <Provider store={store}>
@@ -76,49 +87,22 @@ describe(`Render App`, () => {
   });
 
 
-  it(`Should match with snapshot when page is "PLAYER"`, () => {
-    props.activePage = PageType.PLAYER;
+  it(`Should match with snapshot with data error 404`, () => {
+    const store = mockStore({
+      [NameSpace.APPLICATION]: {
+        activeMovie: mockPromoMovie,
+        activePage: PageType.ERROR,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
 
-    const appSnapshot = renderer.create(
-        <Provider store={store}>
-          <AppComponent {...props} />
-        </Provider>, nodeMock
-    ).toJSON();
-
-    expect(appSnapshot).toMatchSnapshot();
-  });
-
-
-  it(`Should match with snapshot when page is "ERROR"`, () => {
-    props.activePage = PageType.ERROR;
-    props.dataError = {request: true};
-
-    const appSnapshot = renderer.create(
-        <Provider store={store}>
-          <AppComponent {...props} />
-        </Provider>, nodeMock
-    ).toJSON();
-
-    expect(appSnapshot).toMatchSnapshot();
-  });
-
-
-  it(`Should match with snapshot when page is "SIGN_IN"`, () => {
-    props.activePage = PageType.SIGN_IN;
-    props.dataError = null;
-
-    const appSnapshot = renderer.create(
-        <Provider store={store}>
-          <AppComponent {...props} />
-        </Provider>, nodeMock
-    ).toJSON();
-
-    expect(appSnapshot).toMatchSnapshot();
-  });
-
-
-  it(`Should match with snapshot when page is "ADD_REVIEW"`, () => {
-    props.activePage = PageType.ADD_REVIEW;
+    const props = {
+      dataError: {status: 404},
+      activePage: PageType.ERROR,
+      onError: () => {},
+    };
 
     const appSnapshot = renderer.create(
         <Provider store={store}>

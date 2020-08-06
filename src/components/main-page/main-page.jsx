@@ -1,55 +1,73 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React, {PureComponent} from "react";
+import {connect} from "react-redux";
 
+import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {Catalog} from "../catalog/catalog";
 import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
 import {Footer} from "../footer/footer";
 import {MovieCardPromoWithPlayer} from "../movie-card-promo/movie-card-promo";
 import {MoviePropType} from "../../prop-types";
+import {PageType} from "../../const";
+import {getPromoMovie} from "../../reducers/data/selectors";
 
 
-export const MainPage = (props) => {
-  const {
-    promoMovie,
-    openMovieDetailsPage,
-  } = props;
+class MainPageComponent extends PureComponent {
+  componentDidMount() {
+    this.props.onOpenMainPage(this.props.promoMovie);
+  }
 
-  const handleSmallMovieCardClick = (movie) => {
-    openMovieDetailsPage(movie);
-  };
+  componentDidUpdate() {
+    this.props.onOpenMainPage(this.props.promoMovie);
+  }
 
-  const handlePromoMovieClick = () => {
-    openMovieDetailsPage(promoMovie);
-  };
+  render() {
+    const {promoMovie} = this.props;
 
-  return (
-    <React.Fragment>
-      <MovieCardPromoWithPlayer
-        movie={promoMovie}
-        onMovieClick={handlePromoMovieClick}
-      />
+    return (
+      <React.Fragment>
+        <MovieCardPromoWithPlayer movie={promoMovie} />
 
-      <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">
-            Catalog
-          </h2>
+        <div className="page-content">
+          <section className="catalog">
+            <h2 className="catalog__title visually-hidden">
+              Catalog
+            </h2>
 
-          <FilterByGenre />
+            <FilterByGenre />
 
-          <Catalog
-            onSmallMovieCardClick={handleSmallMovieCardClick}
-          />
-        </section>
+            <Catalog />
+          </section>
 
-        <Footer />
-      </div>
-    </React.Fragment>
-  );
+          <Footer />
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+
+MainPageComponent.propTypes = {
+  promoMovie: MoviePropType.isRequired,
+  onOpenMainPage: PropTypes.func.isRequired,
 };
 
 
-MainPage.propTypes = {
-  promoMovie: MoviePropType.isRequired,
-  openMovieDetailsPage: PropTypes.func.isRequired,
+const mapStateToProps = (state) => ({
+  promoMovie: getPromoMovie(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onOpenMainPage(promoMovie) {
+    dispatch(ApplicationActionCreator.changeActiveMovie(promoMovie));
+    dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
+  },
+});
+
+const MainPage = connect(mapStateToProps, mapDispatchToProps)(MainPageComponent);
+
+
+export {
+  MainPageComponent,
+  MainPage,
 };

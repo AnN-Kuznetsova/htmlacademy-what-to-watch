@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
-import {ActionCreator as DataActionCreator} from "../../reducers/data/data";
+import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
 import {MoviePropType} from "../../prop-types";
-import {PageType} from "../../const";
+import {PageType, AppRoute} from "../../const";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 
@@ -27,18 +28,14 @@ const HeaderComponent = (props) => {
   const renderSignInLink = authorizationStatus === AuthorizationStatus.NO_AUTH && activePage !== PageType.ERROR && activePage !== PageType.SIGN_IN;
   const renderSignInPage = activePage === PageType.SIGN_IN;
 
-  const handleSignInClick = (event) => {
-    event.preventDefault();
-    onOpenSignInPage();
-  };
-
   const breadcrambsList = activeMovie ? [
     {
-      link: `#`,
-      onLinkClick: onBreadcrambsLinkClick,
+      link: AppRoute.FILM.replace(`:id`, activeMovie.id),
+      onLinkClick: onBreadcrambsLinkClick.bind(null, activeMovie.id),
       title: activeMovie.title
     },
     {
+      link: ``,
       title: `Add review`,
     }
   ] : [];
@@ -56,15 +53,17 @@ const HeaderComponent = (props) => {
         {renderAvatar &&
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
             </div>
           </div>}
 
         {renderSignInLink &&
           <div className="user-block">
-            <a href="sign-in.html" className="user-block__link"
-              onClick={handleSignInClick}
-            >Sign in</a>
+            <Link
+              className="user-block__link"
+              to={AppRoute.SIGN_IN}
+              onClick={onOpenSignInPage}
+            >Sign in</Link>
           </div>}
 
         {renderSignInPage &&
@@ -94,8 +93,9 @@ const mapDispatchToProps = (dispatch) => ({
   onOpenSignInPage() {
     dispatch(ApplicationActionCreator.changeActivePage(PageType.SIGN_IN));
   },
-  onBreadcrambsLinkClick() {
+  onBreadcrambsLinkClick(activeMovieId) {
     dispatch(DataActionCreator.setDataError(null));
+    dispatch(Operation.loadActiveMovieReviews(activeMovieId));
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MOVIE_DETAILS));
   },
 });

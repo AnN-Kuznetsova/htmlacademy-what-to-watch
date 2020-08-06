@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import React, {PureComponent, createRef} from "react";
 
-import {PageType} from "../../const";
+import {MoviePropType} from "../../prop-types";
+import {PageType, AppRoute} from "../../const";
+import {history} from "../../history";
 
 
 export const VideoPlayerMode = {
@@ -81,7 +83,12 @@ export const withVideo = (Component) => {
 
       if (!isLoading) {
         if (this.getPlayingValue()) {
-          video.play();
+          const playPromise = video.play();
+          if (playPromise) {
+            playPromise.catch(()=>{
+              this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
+            });
+          }
         } else {
           if (playerMode === VideoPlayerMode.PREVIEW) {
             video.load();
@@ -129,7 +136,9 @@ export const withVideo = (Component) => {
       const {activePage, prevPage} = this.props;
 
       if (activePage === PageType.PLAYER) {
+        const page = prevPage === PageType.MAIN ? AppRoute.MAIN : AppRoute.FILM.replace(`:id`, this.props.activeMovie.id);
         this.props.onChangePage(prevPage);
+        history.push(page);
       } else {
         this.props.onChangePage(activePage);
       }
@@ -137,9 +146,7 @@ export const withVideo = (Component) => {
       this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
     }
 
-    handleFullScreenButtonClick(event) {
-      event.preventDefault();
-
+    handleFullScreenButtonClick() {
       const video = this._videoRef.current;
       this.props.setPlayerStartTime(video.currentTime);
       this.props.onChangePage(PageType.PLAYER);
@@ -184,6 +191,7 @@ export const withVideo = (Component) => {
     src: PropTypes.string.isRequired,
     posterUrl: PropTypes.string.isRequired,
     playerMode: PropTypes.string.isRequired,
+    activeMovie: MoviePropType.isRequired,
     activePage: PropTypes.string,
     prevPage: PropTypes.string.isRequired,
     playerStartTime: PropTypes.number.isRequired,

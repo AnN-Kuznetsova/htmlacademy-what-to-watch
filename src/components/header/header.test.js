@@ -1,46 +1,25 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {HeaderComponent} from "./header";
 import {PageType} from "../../const";
+import {history} from "../../history";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 global.window = Object.create(window);
 
+const mockStore = configureStore([]);
+const store = mockStore({});
+
 
 describe(`Render Header`, () => {
-  // TO DO: воостановить после настройки маршрутов
-  /* it(`Should match with snapshot when window.location is MainPage`, () => {
-    Object.defineProperty(window, `location`, {
-      value: {
-        pathname: `/`
-      }
-    });
-
-    const headerSnapshot = renderer.create(
-        <HeaderComponent mode={HeaderMode.AUTH} />
-    ).toJSON();
-
-    expect(headerSnapshot).toMatchSnapshot();
-  });
-
-
-  it(`Should match with snapshot when window.location is not MainPage`, () => {
-    window.location.pathname = `/page-name`;
-
-    const headerSnapshot = renderer.create(
-        <HeaderComponent mode={HeaderMode.AUTH} />
-    ).toJSON();
-
-    expect(headerSnapshot).toMatchSnapshot();
-  }); */
-
-
-  it(`Should match with snapshot when authorizationStatus is "AUTH"`, () => {
-    // window.location.pathname = `/`;
+  it(`Should match with snapshot when authorizationStatus is "AUTH`, () => {
     const props = {
       authorizationStatus: AuthorizationStatus.AUTH,
       activePage: PageType.MAIN,
@@ -49,7 +28,11 @@ describe(`Render Header`, () => {
     };
 
     const headerSnapshot = renderer.create(
-        <HeaderComponent {...props} />
+        <Router history={history} >
+          <Provider store={store} >
+            <HeaderComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(headerSnapshot).toMatchSnapshot();
@@ -65,7 +48,11 @@ describe(`Render Header`, () => {
     };
 
     const headerSnapshot = renderer.create(
-        <HeaderComponent {...props} />
+        <Router history={history} >
+          <Provider store={store} >
+            <HeaderComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(headerSnapshot).toMatchSnapshot();
@@ -81,7 +68,11 @@ describe(`Render Header`, () => {
     };
 
     const headerSnapshot = renderer.create(
-        <HeaderComponent {...props} />
+        <Router history={history} >
+          <Provider store={store} >
+            <HeaderComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(headerSnapshot).toMatchSnapshot();
@@ -97,14 +88,18 @@ describe(`Render Header`, () => {
     };
 
     const headerSnapshot = renderer.create(
-        <HeaderComponent {...props} />
+        <Router history={history} >
+          <Provider store={store} >
+            <HeaderComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(headerSnapshot).toMatchSnapshot();
   });
 
 
-  it(`Should match with snapshot when active page is "ADD_REVIEW"`, () => {
+  it(`Should match with snapshot when active page is ADD_REVIEW`, () => {
     const props = {
       authorizationStatus: AuthorizationStatus.AUTH,
       activeMovie: mockPromoMovie,
@@ -114,7 +109,11 @@ describe(`Render Header`, () => {
     };
 
     const headerSnapshot = renderer.create(
-        <HeaderComponent {...props} />
+        <Router history={history} >
+          <Provider store={store} >
+            <HeaderComponent {...props} />
+          </Provider>
+        </Router>
     ).toJSON();
 
     expect(headerSnapshot).toMatchSnapshot();

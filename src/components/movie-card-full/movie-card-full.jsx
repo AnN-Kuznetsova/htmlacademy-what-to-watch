@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {Link} from "react-router-dom";
 
+import {AppRoute} from "../../const";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {Header} from "../header/header";
 import {MovieCardInfoWithTabs} from "../movie-card-info/movie-card-info";
@@ -18,11 +20,6 @@ const MovieCardFull = (props) => {
     onPlayButtonClick,
     onAddReviewButtonClick,
   } = props;
-
-  const handleAddReviewButtonClick = (event) => {
-    event.preventDefault();
-    onAddReviewButtonClick();
-  };
 
   return (
     <section
@@ -65,11 +62,11 @@ const MovieCardFull = (props) => {
                   <span>My list</span>
                 </button>
                 {authorizationStatus === AuthorizationStatus.AUTH &&
-                  <a
-                    href="add-review.html"
+                  <Link
                     className="btn movie-card__button"
-                    onClick={handleAddReviewButtonClick}
-                  >Add review</a>}
+                    onClick={onAddReviewButtonClick}
+                    to={AppRoute.ADD_REVIEW.replace(`:id`, movie.id)}
+                  >Add review</Link>}
               </div>
             </div>}
         </div>

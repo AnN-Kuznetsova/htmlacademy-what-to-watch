@@ -12,8 +12,9 @@ exports[`Render Breadcrambs Breadcrambs should match with snapshot 1`] = `
     >
       <a
         className="breadcrumbs__link"
-        href="#"
+        href="/films/1"
         onClick={[Function]}
+        style={Object {}}
       >
         title
       </a>
@@ -23,6 +24,13 @@ exports[`Render Breadcrambs Breadcrambs should match with snapshot 1`] = `
     >
       <a
         className="breadcrumbs__link"
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
       >
         Add review
       </a>

@@ -42,14 +42,6 @@ describe(`SmallMovieCard e2e-tests`, () => {
   });
 
 
-  it(`"onClick" should be called and movie data passed`, () => {
-    smallMovieCardElement.simulate(`click`, mockEvent);
-
-    expect(onClick).toHaveBeenCalledTimes(1);
-    expect(onClick.mock.calls[0][0]).toEqual(mockMovies[1]);
-  });
-
-
   it(`Should set timer and call "setVideoPlayerStatus" after 1 second after hover`, () => {
     smallMovieCardElement.simulate(`mouseEnter`, mockEvent);
 

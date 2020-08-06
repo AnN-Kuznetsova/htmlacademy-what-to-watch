@@ -1,8 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Router} from "react-router-dom";
 
 import {PlayerComponent} from "./player";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
+import {history} from "../../history";
+
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 const nodeMock = {
@@ -17,6 +21,7 @@ const props = {
   isPlaying: false,
   duration: 105,
   progress: 0,
+  activeMovie: mockPromoMovie,
   activePage: ``,
   prevPage: ``,
   playerStartTime: 0,
@@ -30,9 +35,11 @@ describe(`Render Player`, () => {
     props.playerMode = VideoPlayerMode.PREVIEW;
 
     const videoPlayerSnapshot = renderer.create(
-        <PlayerComponent {...props} >
-          <video />
-        </PlayerComponent>, nodeMock
+        <Router history={history} >
+          <PlayerComponent {...props} >
+            <video />
+          </PlayerComponent>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(videoPlayerSnapshot).toMatchSnapshot();
@@ -43,9 +50,11 @@ describe(`Render Player`, () => {
     props.playerMode = VideoPlayerMode.SMALL_SCREEN;
 
     const videoPlayerSnapshot = renderer.create(
-        <PlayerComponent {...props} >
-          <video />
-        </PlayerComponent>, nodeMock
+        <Router history={history} >
+          <PlayerComponent {...props} >
+            <video />
+          </PlayerComponent>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(videoPlayerSnapshot).toMatchSnapshot();
@@ -56,9 +65,11 @@ describe(`Render Player`, () => {
     props.playerMode = VideoPlayerMode.FULL_SCREEN;
 
     const videoPlayerSnapshot = renderer.create(
-        <PlayerComponent {...props} >
-          <video />
-        </PlayerComponent>, nodeMock
+        <Router history={history} >
+          <PlayerComponent {...props} >
+            <video />
+          </PlayerComponent>
+        </Router>, nodeMock
     ).toJSON();
 
     expect(videoPlayerSnapshot).toMatchSnapshot();

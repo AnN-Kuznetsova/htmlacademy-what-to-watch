@@ -15,6 +15,16 @@ const PageType = {
   ERROR: `error`,
   SIGN_IN: `sign-in`,
   ADD_REVIEW: `add-review`,
+  MY_LIST: `MY_LIST`,
+};
+
+const AppRoute = {
+  MAIN: `/`,
+  SIGN_IN: `/login`,
+  MY_LIST: `/myList`,
+  FILM: `/films/:id`,
+  ADD_REVIEW: `/films/:id/review`,
+  PLAYER: `/player/:id`,
 };
 
 
@@ -28,5 +38,6 @@ export {
   NUMBER_OF_SIMILAR_FILMS,
   RATING_RANGE,
   VISIBLE_PARTICIPANTS_COUNT,
+  AppRoute,
   PageType,
 };

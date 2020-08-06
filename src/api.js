@@ -4,6 +4,7 @@ import axios from "axios";
 export const Error = {
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
+  PAGE_NOT_FOUND: 404,
   VALIDATION: `VALIDATION`,
 };
 

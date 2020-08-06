@@ -1,22 +1,53 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Router} from "react-router-dom";
 
-import {Logo, LogoMode} from "./logo";
+import {LogoComponent, LogoMode} from "./logo";
+import {history} from "../../history";
+
+import {mockPromoMovie} from "../../__test-data__/test-mocks";
+
+
+global.window = Object.create(window);
 
 
 describe(`Render Logo`, () => {
-  it(`Logo should match with snapshot when logo mode is "NORMAL"`, () => {
+  it(`Logo should match with snapshot when logo mode is "NORMAL" and page is MAIN`, () => {
+    Object.defineProperty(window, `location`, {
+      value: {
+        pathname: `/`,
+      }
+    });
+
+    const props = {
+      mode: LogoMode.NORMAL,
+      promoMovie: mockPromoMovie,
+      onClick: () => {},
+    };
+
     const logoSnapshot = renderer.create(
-        <Logo mode={LogoMode.NORMAL} />
+        <Router history={history} >
+          <LogoComponent {...props} />
+        </Router>
     ).toJSON();
 
     expect(logoSnapshot).toMatchSnapshot();
   });
 
 
-  it(`Logo should match with snapshot when logo mode is "LIGHT"`, () => {
+  it(`Logo should match with snapshot when logo mode is "LIGHT" and page is not MAIN`, () => {
+    window.location.pathname = `/page-name`;
+
+    const props = {
+      mode: LogoMode.LIGHT,
+      promoMovie: mockPromoMovie,
+      onClick: () => {},
+    };
+
     const logoSnapshot = renderer.create(
-        <Logo mode={LogoMode.LIGHT} />
+        <Router history={history} >
+          <LogoComponent {...props} />
+        </Router>
     ).toJSON();
 
     expect(logoSnapshot).toMatchSnapshot();

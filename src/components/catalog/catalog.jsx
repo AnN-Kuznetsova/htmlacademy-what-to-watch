@@ -14,7 +14,6 @@ const CatalogComponent = (props) => {
   const {
     movies,
     visibleCardCount,
-    onSmallMovieCardClick,
     onShowMoreButtonClick,
   } = props;
 
@@ -26,7 +25,6 @@ const CatalogComponent = (props) => {
             <SmallMovieCardWithVideoPlayer
               key={movie.title + index}
               movie={movie}
-              onClick={onSmallMovieCardClick}
             />
           )}
       </div>
@@ -43,7 +41,6 @@ const CatalogComponent = (props) => {
 CatalogComponent.propTypes = {
   movies: PropTypes.arrayOf(MoviePropType).isRequired,
   visibleCardCount: PropTypes.number.isRequired,
-  onSmallMovieCardClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 

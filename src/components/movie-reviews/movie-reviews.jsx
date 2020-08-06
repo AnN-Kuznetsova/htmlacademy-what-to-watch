@@ -22,31 +22,35 @@ const MovieReviewsComponent = (props) => {
   const columns = [];
 
   if (dataError) {
-    columns.push(<h2 key={dataError} style={{color: `#252525`}}>Reviews could not be loaded. Sorry</h2>);
-  } else {
-    for (let columnIndex = 1; columnIndex <= COLUMNS_COUNT; columnIndex++) {
-      const rows = [];
-      for (let rowIndex = columnIndex - 1; rowIndex < reviews.length; rowIndex += COLUMNS_COUNT) {
-        const review = reviews[rowIndex];
-        rows.push(
-            <div key={review.author + rowIndex} className="review">
-              <blockquote className="review__quote">
-                <p className="review__text">{review.text}</p>
+    return (
+      <div className="movie-card__reviews movie-card__row">
+        <h2 key={dataError} style={{color: `#252525`}}>Reviews could not be loaded. Sorry</h2>
+      </div>
+    );
+  }
 
-                <footer className="review__details">
-                  <cite className="review__author">{review.author}</cite>
-                  <time className="review__date" dateTime={getFormatedDate(review.date, true)}>
-                    {getFormatedDate(review.date)}
-                  </time>
-                </footer>
-              </blockquote>
+  for (let columnIndex = 1; columnIndex <= COLUMNS_COUNT; columnIndex++) {
+    const rows = [];
+    for (let rowIndex = columnIndex - 1; rowIndex < reviews.length; rowIndex += COLUMNS_COUNT) {
+      const review = reviews[rowIndex];
+      rows.push(
+          <div key={review.author + rowIndex} className="review">
+            <blockquote className="review__quote">
+              <p className="review__text">{review.text}</p>
 
-              <div className="review__rating">{getFormatedScore(review.rating)}</div>
-            </div>
-        );
-      }
-      columns.push(<div key={columnIndex} className="movie-card__reviews-col">{rows}</div>);
+              <footer className="review__details">
+                <cite className="review__author">{review.author}</cite>
+                <time className="review__date" dateTime={getFormatedDate(review.date, true)}>
+                  {getFormatedDate(review.date)}
+                </time>
+              </footer>
+            </blockquote>
+
+            <div className="review__rating">{getFormatedScore(review.rating)}</div>
+          </div>
+      );
     }
+    columns.push(<div key={columnIndex} className="movie-card__reviews-col">{rows}</div>);
   }
 
   return (

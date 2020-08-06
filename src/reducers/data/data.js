@@ -13,6 +13,7 @@ const TIME_FOR_ERROR = 500;
 const initialState = {
   movies: null,
   promoMovie: null,
+  favoriteMovies: null,
   maxMoviesCount: null,
   activeMovieReviews: [],
   dataError: null,
@@ -21,6 +22,7 @@ const initialState = {
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
+  LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   LOAD_ACTIVE_MOVIE_REVIEWS: `LOAD_ACTIVE_MOVIE_REVIEWS`,
   CHANGE_MOVIE: `CHANGE_MOVIE`,
@@ -32,6 +34,11 @@ const ActionType = {
 const ActionCreator = {
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
+    payload: movies,
+  }),
+
+  loadFavoriteMovies: (movies) => ({
+    type: ActionType.LOAD_FAVORITE_MOVIES,
     payload: movies,
   }),
 
@@ -68,6 +75,17 @@ const Operation = {
       .then((response) => createMovies(response.data))
       .then((response) => {
         dispatch(ActionCreator.loadMovies(response));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.setDataError(error));
+      });
+  },
+
+  loadFavoriteMovies: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => createMovies(response.data))
+      .then((response) => {
+        dispatch(ActionCreator.loadFavoriteMovies(response));
       })
       .catch((error) => {
         dispatch(ActionCreator.setDataError(error));
@@ -142,6 +160,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload,
+      });
+
+    case ActionType.LOAD_FAVORITE_MOVIES:
+      return extend(state, {
+        favoriteMovies: action.payload,
       });
 
     case ActionType.LOAD_PROMO_MOVIE:

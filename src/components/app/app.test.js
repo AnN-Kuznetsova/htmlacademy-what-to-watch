@@ -35,7 +35,6 @@ describe(`Render App`, () => {
         activeMovie: mockPromoMovie,
         activePage: PageType.MAIN,
         prevPage: ``,
-        playerStartTime: 0,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -72,7 +71,6 @@ describe(`Render App`, () => {
         activeMovie: mockPromoMovie,
         activePage: PageType.MAIN,
         prevPage: ``,
-        playerStartTime: 0,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,

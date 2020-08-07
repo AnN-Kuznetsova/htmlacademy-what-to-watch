@@ -45,7 +45,6 @@ export const withVideo = (Component) => {
       this._duration = null;
 
       this.state = {
-        playerStartTime: this.props.playerMode === VideoPlayerMode.PREVIEW ? 0 : this.props.playerStartTime,
         progress: 0,
         isLoading: true,
       };
@@ -58,7 +57,6 @@ export const withVideo = (Component) => {
 
       video.src = src;
       video.muted = !isSound;
-      video.currentTime = this.state.playerStartTime;
 
       video.oncanplaythrough = () => {
         this.setState({
@@ -128,7 +126,6 @@ export const withVideo = (Component) => {
 
     handleExitButtonClick(event) {
       event.preventDefault();
-      this.props.setPlayerStartTime(0);
 
       const {activePage, prevPage} = this.props;
 
@@ -189,9 +186,7 @@ export const withVideo = (Component) => {
     activeMovie: MoviePropType.isRequired,
     activePage: PropTypes.string,
     prevPage: PropTypes.string.isRequired,
-    playerStartTime: PropTypes.number.isRequired,
     onChangePage: PropTypes.func.isRequired,
-    setPlayerStartTime: PropTypes.func,
     setVideoPlayerVisibility: PropTypes.func.isRequired,
     setVideoPlayerMode: PropTypes.func.isRequired,
     setVideoPlayerStatus: PropTypes.func.isRequired,

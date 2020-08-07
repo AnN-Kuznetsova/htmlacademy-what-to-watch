@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/application/application";
 import {MoviePropType} from "../../prop-types";
-import {getActivePage, getPrevPage, getPlayerStartTime, getActiveMovie} from "../../reducers/application/selectors";
+import {getActivePage, getPrevPage, getActiveMovie} from "../../reducers/application/selectors";
 import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
@@ -121,9 +121,7 @@ PlayerComponent.propTypes = {
   activeMovie: MoviePropType.isRequired,
   activePage: PropTypes.string,
   prevPage: PropTypes.string.isRequired,
-  playerStartTime: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
-  setPlayerStartTime: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -135,15 +133,11 @@ const mapStateToProps = (state) => ({
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
   prevPage: getPrevPage(state),
-  playerStartTime: getPlayerStartTime(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangePage(newPage) {
     dispatch(ActionCreator.changeActivePage(newPage));
-  },
-  setPlayerStartTime(currentTime) {
-    dispatch(ActionCreator.setPlayerStartTime(currentTime));
   },
 });
 

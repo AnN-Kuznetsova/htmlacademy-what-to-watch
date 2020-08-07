@@ -24,16 +24,11 @@ const getPrevPage = (state) => {
   return state[NAME_SPASE].prevPage;
 };
 
-const getPlayerStartTime = (state) => {
-  return state[NAME_SPASE].playerStartTime;
-};
-
 
 export {
   getActiveGenre,
   getActiveMovie,
   getActivePage,
-  getPlayerStartTime,
   getPrevPage,
   getVisibleMoviesCount,
 };

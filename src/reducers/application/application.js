@@ -12,7 +12,6 @@ const initialState = {
   visibleMoviesCount: NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   activePage: PageType.ERROR,
   prevPage: PageType.ERROR,
-  playerStartTime: 0,
 };
 
 
@@ -22,7 +21,6 @@ const ActionType = {
   CHANGE_ACTIVE_PAGE: `CHANGE_ACTIVE_PAGE`,
   INCREMENT_VISIBLE_MOVIES_COUNT: `INCREMENT_VISIBLE_MOVIES_COUNT`,
   RESET_VISIBLE_MOVIES_COUNT: `RESET_VISIBLE_MOVIES_COUNT`,
-  SET_PLAYER_START_TIME: `SET_PLAYER_START_TIME`,
 };
 
 const ActionCreator = {
@@ -49,11 +47,6 @@ const ActionCreator = {
   resetVisibleMoviesCount: () => ({
     type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
     payload: null,
-  }),
-
-  setPlayerStartTime: (currentTime) => ({
-    type: ActionType.SET_PLAYER_START_TIME,
-    payload: currentTime,
   }),
 };
 
@@ -87,11 +80,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.RESET_VISIBLE_MOVIES_COUNT:
       return extend(state, {
         visibleMoviesCount: initialState.visibleMoviesCount,
-      });
-
-    case ActionType.SET_PLAYER_START_TIME:
-      return extend(state, {
-        playerStartTime: action.payload,
       });
 
     default:

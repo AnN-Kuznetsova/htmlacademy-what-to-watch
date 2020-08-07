@@ -17,17 +17,14 @@ export const videoOptions = {
   [VideoPlayerMode.PREVIEW]: {
     isAutoPlay: false,
     isSound: false,
-    isVisible: true,
   },
   [VideoPlayerMode.SMALL_SCREEN]: {
     isAutoPlay: true,
     isSound: true,
-    isVisible: false,
   },
   [VideoPlayerMode.FULL_SCREEN]: {
     isAutoPlay: true,
     isSound: true,
-    isVisible: true,
   },
 };
 
@@ -146,10 +143,8 @@ export const withVideo = (Component) => {
       this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
     }
 
-    handleFullScreenButtonClick() {
-      const video = this._videoRef.current;
-      this.props.setPlayerStartTime(video.currentTime);
-      this.props.onChangePage(PageType.PLAYER);
+    handleFullScreenButtonClick(mode) {
+      this.props.setVideoPlayerMode(mode);
     }
 
     render() {
@@ -198,6 +193,7 @@ export const withVideo = (Component) => {
     onChangePage: PropTypes.func.isRequired,
     setPlayerStartTime: PropTypes.func,
     setVideoPlayerVisibility: PropTypes.func.isRequired,
+    setVideoPlayerMode: PropTypes.func.isRequired,
     setVideoPlayerStatus: PropTypes.func.isRequired,
     playerStatus: PropTypes.string.isRequired,
   };

@@ -22,6 +22,12 @@ export const withVideoPlayer = (Component, playerMode) => {
       });
     }
 
+    setVideoPlayerMode(newValue) {
+      this.setState({
+        playerMode: newValue,
+      });
+    }
+
     setVideoPlayerStatus(newPlayerStatus) {
       this.setState({
         playerStatus: newPlayerStatus,
@@ -41,6 +47,7 @@ export const withVideoPlayer = (Component, playerMode) => {
           posterUrl={posterUrl}
           playerMode={this.state.playerMode}
           setVideoPlayerVisibility={this.setVideoPlayerVisibility.bind(this)}
+          setVideoPlayerMode={this.setVideoPlayerMode.bind(this)}
           setVideoPlayerStatus={this.setVideoPlayerStatus.bind(this)}
           playerStatus={this.state.playerStatus}
         />

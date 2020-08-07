@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const PlayerPageComponentConnect = connect(mapStateToProps, mapDispatchToProps)(PlayerPageComponent);
-const PlayerPage = withVideoPlayer(PlayerPageComponentConnect, VideoPlayerMode.FULL_SCREEN);
+const PlayerPage = withVideoPlayer(PlayerPageComponentConnect, VideoPlayerMode.SMALL_SCREEN);
 
 
 export {

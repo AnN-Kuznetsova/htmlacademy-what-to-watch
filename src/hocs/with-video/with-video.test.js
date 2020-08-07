@@ -39,6 +39,7 @@ const props = {
   activePage: ``,
   prevPage: ``,
   onChangePage: () => {},
+  setVideoPlayerMode: () => {},
   setVideoPlayerStatus: () => {},
   playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
 };

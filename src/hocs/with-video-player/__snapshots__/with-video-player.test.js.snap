@@ -3,7 +3,6 @@
 exports[`Render withVideoPlayer Should match with snapshot 1`] = `
 <div
   currentVideoPlayerStatus="on-autoplay"
-  isPlayerVisible={false}
   movie={
     Object {
       "backgroundColor": "black",
@@ -51,7 +50,6 @@ exports[`Render withVideoPlayer Should match with snapshot 1`] = `
       "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
     }
   }
-  onPlayButtonClick={[Function]}
   renderVideoPlayer={[Function]}
   setVideoPlayerStatus={[Function]}
 />

@@ -30,10 +30,11 @@ const PlayerComponent = (props) => {
   } = props;
   const timeLeft = duration ? getFormatedTimeLeft(duration - progress) : 0;
   const progressValue = duration ? progress * 100 / duration : 0;
+  const playerRef = React.createRef();
 
   const handleFullScreenButtonClick = () => {
     if (playerMode === VideoPlayerMode.SMALL_SCREEN) {
-      document.querySelector(`.player`).requestFullscreen();
+      playerRef.current.requestFullscreen();
       onFullScreenButtonClick(VideoPlayerMode.FULL_SCREEN);
     } else if (playerMode === VideoPlayerMode.FULL_SCREEN) {
       document.exitFullscreen();
@@ -46,7 +47,9 @@ const PlayerComponent = (props) => {
       case VideoPlayerMode.SMALL_SCREEN:
       case VideoPlayerMode.FULL_SCREEN:
         return (
-          <div className="player">
+          <div
+            className="player"
+            ref={playerRef}>
             {children}
 
             <button

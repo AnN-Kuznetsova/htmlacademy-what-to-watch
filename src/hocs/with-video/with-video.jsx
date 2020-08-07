@@ -136,7 +136,6 @@ export const withVideo = (Component) => {
       } else {
         this.props.onChangePage(activePage);
       }
-      this.props.setVideoPlayerVisibility(false);
       this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
     }
 
@@ -187,7 +186,6 @@ export const withVideo = (Component) => {
     activePage: PropTypes.string,
     prevPage: PropTypes.string.isRequired,
     onChangePage: PropTypes.func.isRequired,
-    setVideoPlayerVisibility: PropTypes.func.isRequired,
     setVideoPlayerMode: PropTypes.func.isRequired,
     setVideoPlayerStatus: PropTypes.func.isRequired,
     playerStatus: PropTypes.string.isRequired,

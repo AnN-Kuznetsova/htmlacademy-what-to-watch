@@ -28,7 +28,6 @@ const store = mockStore({
 const props = {
   movie: mockPromoMovie,
   renderVideoPlayer: () => {},
-  isPlayerVisible: false,
   onPlayButtonClick: () => {},
 };
 

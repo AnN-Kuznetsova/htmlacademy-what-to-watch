@@ -13,7 +13,6 @@ describe(`Application reduser should work correctly`, () => {
       visibleMoviesCount: 8,
       activePage: PageType.ERROR,
       prevPage: PageType.ERROR,
-      playerStartTime: 0,
     });
   });
 
@@ -136,27 +135,6 @@ describe(`Application reduser should work correctly`, () => {
       visibleMoviesCount: 8,
     });
   });
-
-
-  it(`Application reducer should change playerStartTime by a given value`, () => {
-    expect(reducer({
-      playerStartTime: 0,
-    }, {
-      type: ActionType.SET_PLAYER_START_TIME,
-      payload: 15,
-    })).toEqual({
-      playerStartTime: 15,
-    });
-
-    expect(reducer({
-      playerStartTime: 0,
-    }, {
-      type: ActionType.SET_PLAYER_START_TIME,
-      payload: 123,
-    })).toEqual({
-      playerStartTime: 123,
-    });
-  });
 });
 
 
@@ -197,14 +175,6 @@ describe(`Application action creators should work correctly`, () => {
     expect(ActionCreator.resetVisibleMoviesCount()).toEqual({
       type: ActionType.RESET_VISIBLE_MOVIES_COUNT,
       payload: null,
-    });
-  });
-
-
-  it(`Application action creator for set player start time returns correct action`, () => {
-    expect(ActionCreator.setPlayerStartTime(321)).toEqual({
-      type: ActionType.SET_PLAYER_START_TIME,
-      payload: 321,
     });
   });
 });

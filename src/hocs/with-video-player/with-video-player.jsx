@@ -12,13 +12,12 @@ export const withVideoPlayer = (Component, playerMode) => {
       this.state = {
         playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
         playerMode,
-        isPlayerVisible: false,
       };
     }
 
-    setVideoPlayerVisibility(newValue) {
+    setVideoPlayerMode(newValue) {
       this.setState({
-        isPlayerVisible: newValue,
+        playerMode: newValue,
       });
     }
 
@@ -40,7 +39,7 @@ export const withVideoPlayer = (Component, playerMode) => {
           src={src}
           posterUrl={posterUrl}
           playerMode={this.state.playerMode}
-          setVideoPlayerVisibility={this.setVideoPlayerVisibility.bind(this)}
+          setVideoPlayerMode={this.setVideoPlayerMode.bind(this)}
           setVideoPlayerStatus={this.setVideoPlayerStatus.bind(this)}
           playerStatus={this.state.playerStatus}
         />
@@ -54,8 +53,6 @@ export const withVideoPlayer = (Component, playerMode) => {
           renderVideoPlayer={this.renderPlayer.bind(this)}
           currentVideoPlayerStatus={this.state.playerStatus}
           setVideoPlayerStatus={this.setVideoPlayerStatus.bind(this)}
-          isPlayerVisible={this.state.isPlayerVisible}
-          onPlayButtonClick={this.setVideoPlayerVisibility.bind(this, true)}
         />
       );
     }

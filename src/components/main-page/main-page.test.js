@@ -32,7 +32,6 @@ const store = mockStore({
     activeMovie: mockPromoMovie,
     activePage: PageType.MAIN,
     prevPage: ``,
-    playerStartTime: 0,
   },
   [NameSpace.USER]: {
     authorizationStatus: AuthorizationStatus.AUTH,

@@ -6,7 +6,7 @@ import {ActionCreator as ApplicationActionCreator} from "../../reducers/applicat
 import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Catalog} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
-import {MovieCardFullWithPlayer} from "../movie-card-full/movie-card-full";
+import {MovieCardFull} from "../movie-card-full/movie-card-full";
 import {MoviePropType} from "../../prop-types";
 import {Redirect} from "react-router-dom";
 import {getMovieById} from "../../reducers/data/selectors";
@@ -48,7 +48,7 @@ class MovieDetailsPageComponent extends PureComponent {
 
     return (
       <React.Fragment>
-        <MovieCardFullWithPlayer
+        <MovieCardFull
           movie={movie}
           onAddReviewButtonClick={onAddReviewButtonClick}
         />

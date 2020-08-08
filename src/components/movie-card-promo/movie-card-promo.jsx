@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 import {Link} from "react-router-dom";
 
@@ -6,33 +5,25 @@ import {AppRoute} from "../../const";
 import {Header} from "../header/header";
 import {ListButton} from "../list-button/list-button";
 import {MoviePropType} from "../../prop-types";
-import {VideoPlayerMode} from "../../hocs/with-video/with-video";
-import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
-const MovieCardPromo = (props) => {
+export const MovieCardPromo = (props) => {
   const {
     movie,
-    renderVideoPlayer,
-    isPlayerVisible,
-    onPlayButtonClick,
   } = props;
 
   return (
     <section
       className="movie-card"
-      style={isPlayerVisible ? {backgroundColor: `#180202`} : {backgroundColor: movie.backgroundColor}}
+      style={{backgroundColor: movie.backgroundColor}}
     >
-      {!isPlayerVisible &&
-        <div className="movie-card__bg">
-          <img src={movie.backgroundUrl} alt={movie.title} />
-        </div>}
+      <div className="movie-card__bg">
+        <img src={movie.backgroundUrl} alt={movie.title} />
+      </div>
 
       <Header />
 
       <div className="movie-card__wrap">
-        {isPlayerVisible && renderVideoPlayer(movie.videoUrl, movie.smallPictureUrl) ||
-
         <div className="movie-card__info">
           <Link
             to={AppRoute.FILM.replace(`:id`, movie.id)}
@@ -54,19 +45,20 @@ const MovieCardPromo = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button"
-                onClick={onPlayButtonClick}
+              <Link
+                className="btn btn--play movie-card__button"
+                to={AppRoute.PLAYER.replace(`:id`, movie.id)}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s" />
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
 
               <ListButton />
             </div>
           </div>
-        </div>}
+        </div>
       </div>
     </section>
   );
@@ -75,16 +67,4 @@ const MovieCardPromo = (props) => {
 
 MovieCardPromo.propTypes = {
   movie: MoviePropType.isRequired,
-  renderVideoPlayer: PropTypes.func.isRequired,
-  isPlayerVisible: PropTypes.bool.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-};
-
-
-const MovieCardPromoWithPlayer = withVideoPlayer(MovieCardPromo, VideoPlayerMode.SMALL_SCREEN);
-
-
-export {
-  MovieCardPromo,
-  MovieCardPromoWithPlayer,
 };

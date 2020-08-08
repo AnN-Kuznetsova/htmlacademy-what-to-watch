@@ -37,7 +37,6 @@ const props = {
   authorizationStatus: AuthorizationStatus.AUTH,
   onAddReviewButtonClick: () => {},
   renderVideoPlayer: () => {},
-  isPlayerVisible: false,
   onPlayButtonClick: () => {},
 };
 

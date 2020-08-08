@@ -7,7 +7,7 @@ import {ActionCreator as DataActionCreator} from "../../reducers/data/data";
 import {Catalog} from "../catalog/catalog";
 import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
 import {Footer} from "../footer/footer";
-import {MovieCardPromoWithPlayer} from "../movie-card-promo/movie-card-promo";
+import {MovieCardPromo} from "../movie-card-promo/movie-card-promo";
 import {MoviePropType} from "../../prop-types";
 import {PageType} from "../../const";
 import {getPromoMovie} from "../../reducers/data/selectors";
@@ -27,7 +27,7 @@ class MainPageComponent extends PureComponent {
 
     return (
       <React.Fragment>
-        <MovieCardPromoWithPlayer movie={promoMovie} />
+        <MovieCardPromo movie={promoMovie} />
 
         <div className="page-content">
           <section className="catalog">

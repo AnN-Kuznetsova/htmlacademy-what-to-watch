@@ -18,7 +18,6 @@ const store = mockStore({
     activeMovie: mockPromoMovie,
     activePage: ``,
     prevPage: ``,
-    playerStartTime: 0,
   },
 });
 

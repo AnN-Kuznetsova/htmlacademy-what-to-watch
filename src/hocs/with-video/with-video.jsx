@@ -17,17 +17,14 @@ export const videoOptions = {
   [VideoPlayerMode.PREVIEW]: {
     isAutoPlay: false,
     isSound: false,
-    isVisible: true,
   },
   [VideoPlayerMode.SMALL_SCREEN]: {
     isAutoPlay: true,
     isSound: true,
-    isVisible: false,
   },
   [VideoPlayerMode.FULL_SCREEN]: {
     isAutoPlay: true,
     isSound: true,
-    isVisible: true,
   },
 };
 
@@ -48,7 +45,6 @@ export const withVideo = (Component) => {
       this._duration = null;
 
       this.state = {
-        playerStartTime: this.props.playerMode === VideoPlayerMode.PREVIEW ? 0 : this.props.playerStartTime,
         progress: 0,
         isLoading: true,
       };
@@ -61,7 +57,6 @@ export const withVideo = (Component) => {
 
       video.src = src;
       video.muted = !isSound;
-      video.currentTime = this.state.playerStartTime;
 
       video.oncanplaythrough = () => {
         this.setState({
@@ -131,7 +126,6 @@ export const withVideo = (Component) => {
 
     handleExitButtonClick(event) {
       event.preventDefault();
-      this.props.setPlayerStartTime(0);
 
       const {activePage, prevPage} = this.props;
 
@@ -142,14 +136,11 @@ export const withVideo = (Component) => {
       } else {
         this.props.onChangePage(activePage);
       }
-      this.props.setVideoPlayerVisibility(false);
       this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
     }
 
-    handleFullScreenButtonClick() {
-      const video = this._videoRef.current;
-      this.props.setPlayerStartTime(video.currentTime);
-      this.props.onChangePage(PageType.PLAYER);
+    handleFullScreenButtonClick(mode) {
+      this.props.setVideoPlayerMode(mode);
     }
 
     render() {
@@ -194,10 +185,8 @@ export const withVideo = (Component) => {
     activeMovie: MoviePropType.isRequired,
     activePage: PropTypes.string,
     prevPage: PropTypes.string.isRequired,
-    playerStartTime: PropTypes.number.isRequired,
     onChangePage: PropTypes.func.isRequired,
-    setPlayerStartTime: PropTypes.func,
-    setVideoPlayerVisibility: PropTypes.func.isRequired,
+    setVideoPlayerMode: PropTypes.func.isRequired,
     setVideoPlayerStatus: PropTypes.func.isRequired,
     playerStatus: PropTypes.string.isRequired,
   };

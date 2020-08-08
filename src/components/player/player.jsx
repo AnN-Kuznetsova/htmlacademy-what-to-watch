@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/application/application";
-import {AppRoute} from "../../const";
 import {MoviePropType} from "../../prop-types";
-import {getActivePage, getPrevPage, getPlayerStartTime, getActiveMovie} from "../../reducers/application/selectors";
+import {getActivePage, getPrevPage, getActiveMovie} from "../../reducers/application/selectors";
 import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
 
 
@@ -33,25 +31,35 @@ const PlayerComponent = (props) => {
   } = props;
   const timeLeft = duration ? getFormatedTimeLeft(duration - progress) : 0;
   const progressValue = duration ? progress * 100 / duration : 0;
+  const playerRef = React.createRef();
+
+  const handleFullScreenButtonClick = () => {
+    if (playerMode === VideoPlayerMode.SMALL_SCREEN) {
+      playerRef.current.requestFullscreen();
+      onFullScreenButtonClick(VideoPlayerMode.FULL_SCREEN);
+    } else if (playerMode === VideoPlayerMode.FULL_SCREEN) {
+      document.exitFullscreen();
+      onFullScreenButtonClick(VideoPlayerMode.SMALL_SCREEN);
+    }
+  };
 
   const getPlayer = () => {
     switch (playerMode) {
       case VideoPlayerMode.SMALL_SCREEN:
       case VideoPlayerMode.FULL_SCREEN:
         return (
-          <div className={playerMode === VideoPlayerMode.FULL_SCREEN ? `player` : ``}>
+          <div
+            className="player"
+            ref={playerRef}>
             {children}
 
             <button
               type="button"
               className="player__exit"
               onClick={onExitButtonClick}
-              style={playerMode === VideoPlayerMode.SMALL_SCREEN ? {position: `inherit`} : {}}
             >Exit</button>
 
-            <div
-              className="player__controls"
-              style={{position: `${playerMode === VideoPlayerMode.FULL_SCREEN ? `absolute` : `relative`}`}}>
+            <div className="player__controls" >
               <div className="player__controls-row">
                 <div className="player__time">
                   <progress className="player__progress" value={progressValue} max="100" />
@@ -78,19 +86,17 @@ const PlayerComponent = (props) => {
                   }
                   <span>{isPlaying && `Pause` || `Play`}</span>
                 </button>
-                <div className="player__name">Transpotting</div>
+                <div className="player__name">{activeMovie.title}</div>
 
-                {playerMode === VideoPlayerMode.SMALL_SCREEN &&
-                <Link
+                <button
                   className="player__full-screen"
-                  to={AppRoute.PLAYER.replace(`:id`, activeMovie.id)}
-                  onClick={onFullScreenButtonClick}
+                  onClick={handleFullScreenButtonClick}
                 >
                   <svg viewBox="0 0 27 27" width="27" height="27">
                     <use xlinkHref="#full-screen" />
                   </svg>
                   <span>Full screen</span>
-                </Link>}
+                </button>
               </div>
             </div>
           </div>
@@ -119,9 +125,7 @@ PlayerComponent.propTypes = {
   activeMovie: MoviePropType.isRequired,
   activePage: PropTypes.string,
   prevPage: PropTypes.string.isRequired,
-  playerStartTime: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
-  setPlayerStartTime: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -133,15 +137,11 @@ const mapStateToProps = (state) => ({
   activePage: getActivePage(state),
   activeMovie: getActiveMovie(state),
   prevPage: getPrevPage(state),
-  playerStartTime: getPlayerStartTime(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangePage(newPage) {
     dispatch(ActionCreator.changeActivePage(newPage));
-  },
-  setPlayerStartTime(currentTime) {
-    dispatch(ActionCreator.setPlayerStartTime(currentTime));
   },
 });
 

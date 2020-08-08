@@ -35,10 +35,8 @@ const props = {
   activeMovie: mockPromoMovie,
   activePage: ``,
   prevPage: ``,
-  playerStartTime: 0,
   onChangePage: () => {},
-  setPlayerStartTime: () => {},
-  setVideoPlayerVisibility: () => {},
+  setVideoPlayerMode: () => {},
   setVideoPlayerStatus: () => {},
   playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
 };

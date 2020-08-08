@@ -23,6 +23,7 @@ const PlayerComponent = (props) => {
     isPlaying,
     duration,
     progress,
+    activeMovie,
     children,
     onPlayButtonClick,
     onExitButtonClick,
@@ -85,7 +86,7 @@ const PlayerComponent = (props) => {
                   }
                   <span>{isPlaying && `Pause` || `Play`}</span>
                 </button>
-                <div className="player__name">Transpotting</div>
+                <div className="player__name">{activeMovie.title}</div>
 
                 <button
                   className="player__full-screen"

@@ -66,7 +66,7 @@ exports[`Render Player Should match with snapshot when player mode is "FULL_SCRE
       <div
         className="player__name"
       >
-        Transpotting
+        The Grand Budapest Hotel
       </div>
       <button
         className="player__full-screen"
@@ -158,7 +158,7 @@ exports[`Render Player Should match with snapshot when player mode is "SMALL_SCR
       <div
         className="player__name"
       >
-        Transpotting
+        The Grand Budapest Hotel
       </div>
       <button
         className="player__full-screen"

@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDom from "react-dom";
+import * as React from "react";
+import * as ReactDom from "react-dom";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 import {composeWithDevTools} from "redux-devtools-extension";

@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import * as React, {PureComponent} from 'react';
 
 
 export const withTabs = (Component) => {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import * as React, {PureComponent} from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";

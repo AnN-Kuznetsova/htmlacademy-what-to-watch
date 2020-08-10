@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, {PureComponent, createRef} from "react";
+import * as React, {PureComponent, createRef} from "react";
 
 import {MoviePropType} from "../../prop-types";
 import {PageType, AppRoute} from "../../const";

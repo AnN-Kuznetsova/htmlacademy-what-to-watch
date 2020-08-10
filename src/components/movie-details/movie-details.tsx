@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import {MoviePropType} from "../../prop-types";
 import {getFormatedRunTime} from "../../utils/utils";

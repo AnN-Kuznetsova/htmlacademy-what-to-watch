@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 
 import {MovieDetails} from "../movie-details/movie-details";
 import {MovieOverview} from "../movie-overview/movie-overview";

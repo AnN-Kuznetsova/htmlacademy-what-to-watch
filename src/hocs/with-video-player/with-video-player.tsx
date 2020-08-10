@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import * as React, {PureComponent} from 'react';
 
 import {PlayerWithVideo} from '../../components/player/player';
 import {VideoPlayerStatus, VideoPlayerMode} from "../with-video/with-video";

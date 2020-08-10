@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from 'react';
+import * as React from 'react';
 import {connect} from "react-redux";
 
 import {MAX_FILTER_ELEMENTS_COUNT} from "../../const";

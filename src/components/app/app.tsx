@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import * as React, {PureComponent} from "react";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 

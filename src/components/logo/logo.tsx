@@ -3,7 +3,8 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
-import {AppRoute, PageType} from "../../const";
+import {AppRoute} from "../../const";
+import {PageType} from "../../types";
 
 
 const LogoMode = {

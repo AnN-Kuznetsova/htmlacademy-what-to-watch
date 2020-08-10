@@ -1,8 +1,8 @@
 import * as React from "react";
 import {Subtract} from "utility-types";
 
-import {MovieType} from "../../types";
-import {PageType, AppRoute} from "../../const";
+import {MovieType, PageType} from "../../types";
+import {AppRoute} from "../../const";
 import {history} from "../../history";
 
 

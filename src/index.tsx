@@ -14,6 +14,11 @@ import {getPromoMovie, getDataError} from "./reducers/data/selectors";
 import {reducer} from "./reducers/reducer";
 
 
+declare interface PromiseConstructor {
+  allSettled(promises: Array<Promise<any>>): Promise<Array<{status: 'fulfilled' | 'rejected', value?: any, reason?: any}>>;
+}
+
+
 const onFailRequest = (error) => {
   switch (true) {
     case error && error.status === Error.UNAUTHORIZED:
@@ -39,13 +44,13 @@ const store = createStore(
 );
 
 
-const moviesLoaded = store.dispatch(DataOperation.loadMovies());
-const promoMoviesLoaded = store.dispatch(DataOperation.loadPromoMovie())
+const moviesLoaded: Promise<any> = store.dispatch(DataOperation.loadMovies());
+const promoMoviesLoaded: Promise<any> = store.dispatch(DataOperation.loadPromoMovie())
   .then(() => store.dispatch(DataOperation.loadActiveMovieReviews(getPromoMovie(store.getState()).id)));
 
 store.dispatch(UserOperation.checkAuth());
 
-
+declare const Promise : PromiseConstructor;
 Promise.allSettled([moviesLoaded, promoMoviesLoaded])
       .then(() => {
         ReactDom.render(
@@ -55,3 +60,4 @@ Promise.allSettled([moviesLoaded, promoMoviesLoaded])
             document.querySelector(`#root`)
         );
       });
+

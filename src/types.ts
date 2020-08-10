@@ -1,3 +1,13 @@
+enum PageType {
+  MAIN = `main`,
+  MOVIE_DETAILS = `movie-details`,
+  PLAYER = `player`,
+  ERROR = `error`,
+  SIGN_IN = `sign-in`,
+  ADD_REVIEW = `add-review`,
+  MY_LIST = `MY_LIST`,
+};
+
 interface MovieType {
   id: number,
   title: string,
@@ -30,6 +40,7 @@ interface ReviewType {
 
 
 export {
+  PageType,
   MovieType,
   ReviewType,
 };

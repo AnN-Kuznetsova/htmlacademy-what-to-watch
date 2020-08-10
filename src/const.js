@@ -9,15 +9,6 @@ const MAX_REVIEW_TEXT_LENGTH = 400;
 const RATING_RANGE = 5;
 const ERROR_COLOR = `#a8421e`;
 
-const PageType = {
-  MAIN: `main`,
-  MOVIE_DETAILS: `movie-details`,
-  PLAYER: `player`,
-  ERROR: `error`,
-  SIGN_IN: `sign-in`,
-  ADD_REVIEW: `add-review`,
-  MY_LIST: `MY_LIST`,
-};
 
 const AppRoute = {
   MAIN: `/`,
@@ -41,5 +32,4 @@ export {
   RATING_RANGE,
   VISIBLE_PARTICIPANTS_COUNT,
   AppRoute,
-  PageType,
 };

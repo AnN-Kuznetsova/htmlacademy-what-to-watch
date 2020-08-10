@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
@@ -6,13 +5,20 @@ import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
-import {MoviePropType} from "../../prop-types";
-import {PageType, AppRoute} from "../../const";
+import {MovieType, PageType} from "../../types";
+import {AppRoute} from "../../const";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 
 
-const HeaderComponent = (props) => {
+interface Props {
+  authorizationStatus: string;
+  activeMovie: MovieType;
+  activePage: PageType;
+}
+
+
+const HeaderComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     authorizationStatus,
     activeMovie,
@@ -70,13 +76,6 @@ const HeaderComponent = (props) => {
       </header>
     </React.Fragment>
   );
-};
-
-
-HeaderComponent.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  activeMovie: MoviePropType,
-  activePage: PropTypes.string.isRequired,
 };
 
 

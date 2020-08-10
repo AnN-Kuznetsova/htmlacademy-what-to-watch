@@ -4,10 +4,15 @@ import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 import {Header} from "../header/header";
 import {ListButton} from "../list-button/list-button";
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 
 
-export const MovieCardPromo = (props) => {
+interface Props {
+  movie: MovieType;
+}
+
+
+export const MovieCardPromo: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movie,
   } = props;
@@ -62,9 +67,4 @@ export const MovieCardPromo = (props) => {
       </div>
     </section>
   );
-};
-
-
-MovieCardPromo.propTypes = {
-  movie: MoviePropType.isRequired,
 };

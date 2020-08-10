@@ -1,5 +1,5 @@
 
-import * as React, {PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
@@ -7,11 +7,17 @@ import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data
 import {Catalog} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
 import {Header} from "../header/header";
-import {PageType} from "../../const";
+import {PageType} from "../../types";
 import {getDataError} from "../../reducers/data/selectors";
 
 
-class MyListPageComponent extends PureComponent {
+interface Props {
+  onOpenMyListPage: () => void;
+  dataError?: object;
+}
+
+
+class MyListPageComponent extends React.PureComponent<Props, {}> {
   componentDidMount() {
     this.props.onOpenMyListPage();
   }
@@ -39,11 +45,6 @@ class MyListPageComponent extends PureComponent {
   }
 }
 
-
-MyListPageComponent.propTypes = {
-  onOpenMyListPage: PropTypes.func.isRequired,
-  dataError: PropTypes.object,
-};
 
 const mapStateToProps = (state) => ({
   dataError: getDataError(state),

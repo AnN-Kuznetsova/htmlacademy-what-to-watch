@@ -1,11 +1,26 @@
-import * as React, {PureComponent} from 'react';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
 
 import {PlayerWithVideo} from '../../components/player/player';
 import {VideoPlayerStatus, VideoPlayerMode} from "../with-video/with-video";
 
 
+interface State {
+  playerStatus: string;
+  playerMode: string;
+}
+
+interface InjectingProps {
+  renderVideoPlayer: (src: string, posterUrl: string) => React.ReactNode;
+  currentVideoPlayerStatus: string;
+  setVideoPlayerStatus: (newPlayerStatus: string) => void;
+}
+
 export const withVideoPlayer = (Component, playerMode) => {
-  class WithVideoPlayer extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithVideoPlayer extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -15,7 +30,7 @@ export const withVideoPlayer = (Component, playerMode) => {
       };
     }
 
-    setVideoPlayerMode(newValue) {
+    setVideoPlayerMode(newValue: string) {
       this.setState({
         playerMode: newValue,
       });
@@ -57,9 +72,6 @@ export const withVideoPlayer = (Component, playerMode) => {
       );
     }
   }
-
-
-  WithVideoPlayer.propTypes = {};
 
 
   return WithVideoPlayer;

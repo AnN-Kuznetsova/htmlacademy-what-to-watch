@@ -5,14 +5,21 @@ import {connect} from "react-redux";
 import {MAX_FILTER_ELEMENTS_COUNT} from "../../const";
 import {ActionCreator} from "../../reducers/application/application";
 import {FilterItem} from '../filter-item/filter-item';
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from '../../types';
 import {getMovies} from "../../reducers/data/selectors";
 import {getActiveGenre} from "../../reducers/application/selectors";
 
 
-const getGenreFilterNames = (movies) => {
-  const filtersCount = MAX_FILTER_ELEMENTS_COUNT;
-  const filterNames = new Set();
+interface Props {
+  movies: MovieType[];
+  activeFilter: string;
+  onClick: () => void;
+}
+
+
+const getGenreFilterNames = (movies: MovieType[]) => {
+  const filtersCount: number = MAX_FILTER_ELEMENTS_COUNT;
+  const filterNames: Set<string> = new Set();
 
   movies.forEach((movie) => {
     movie.genres.forEach((genre) => filterNames.add(genre));
@@ -23,7 +30,7 @@ const getGenreFilterNames = (movies) => {
 };
 
 
-const FilterByGenreComponent = (props) => {
+const FilterByGenreComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movies,
     activeFilter,
@@ -46,13 +53,6 @@ const FilterByGenreComponent = (props) => {
       }
     </ul>
   );
-};
-
-
-FilterByGenreComponent.propTypes = {
-  movies: PropTypes.arrayOf(MoviePropType).isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 

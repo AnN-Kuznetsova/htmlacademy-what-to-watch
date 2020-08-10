@@ -1,14 +1,20 @@
-
 import * as React from "react";
-import {Route, Redirect} from "react-router-dom";
+import {Route, Redirect, RouteProps} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {AppRoute} from "../../const";
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {getMovies, getPromoMovie} from "../../reducers/data/selectors";
 
 
-const RedirectToMainRouteComponent = (props) => {
+type Props = RouteProps & {
+  render: () => React.ReactNode;
+  movies: MovieType[];
+  promoMovie: MovieType;
+};
+
+
+const RedirectToMainRouteComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     render,
     path,
@@ -30,15 +36,6 @@ const RedirectToMainRouteComponent = (props) => {
       }}
     />
   );
-};
-
-
-RedirectToMainRouteComponent.propTypes = {
-  render: PropTypes.func.isRequired,
-  path: PropTypes.string.isRequired,
-  exact: PropTypes.bool.isRequired,
-  movies: PropTypes.arrayOf(MoviePropType),
-  promoMovie: MoviePropType,
 };
 
 

@@ -6,10 +6,16 @@ import {AppRoute} from "../../const";
 import {Header} from "../header/header";
 import {ListButton} from "../list-button/list-button";
 import {MovieCardInfoWithTabs} from "../movie-card-info/movie-card-info";
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 
 
-export const MovieCardFull = (props) => {
+interface Props {
+  movie: MovieType;
+  onAddReviewButtonClick: () => void;
+}
+
+
+export const MovieCardFull: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movie,
     onAddReviewButtonClick,
@@ -62,10 +68,4 @@ export const MovieCardFull = (props) => {
       <MovieCardInfoWithTabs movie={movie} />
     </section>
   );
-};
-
-
-MovieCardFull.propTypes = {
-  movie: MoviePropType.isRequired,
-  onAddReviewButtonClick: PropTypes.func.isRequired,
 };

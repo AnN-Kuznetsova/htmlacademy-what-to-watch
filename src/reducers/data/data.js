@@ -1,7 +1,8 @@
 import {extend, disableForm, setErrorStyle} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
-import {PageType, AppRoute} from "../../const";
+import {AppRoute} from "../../const";
+import {PageType} from "../../types";
 import {createReviews} from "../../adapters/review";
 import {createMovies, createMovie} from "../../adapters/movie";
 import {getActiveMovie} from "../application/selectors";

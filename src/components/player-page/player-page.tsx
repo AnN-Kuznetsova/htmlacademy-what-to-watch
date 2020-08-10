@@ -1,18 +1,27 @@
 
-import * as React, {PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCreator} from "../../reducers/data/data";
-import {MoviePropType} from "../../prop-types";
-import {PageType, AppRoute} from "../../const";
+import {MovieType, PageType} from "../../types";
+import {AppRoute} from "../../const";
 import {Redirect} from "react-router-dom";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 import {getMovieById} from "../../reducers/data/selectors";
 
 
-class PlayerPageComponent extends PureComponent {
+interface Props {
+  routeProps: object;
+  movie: MovieType;
+  onOpenPlayerPage: (movie: MovieType) => void;
+  onError: () => void;
+  renderVideoPlayer: (src: string, posterUrl: string) => React.ReactNode;
+}
+
+
+class PlayerPageComponent extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -52,15 +61,6 @@ class PlayerPageComponent extends PureComponent {
     );
   }
 }
-
-
-PlayerPageComponent.propTypes = {
-  routeProps: PropTypes.object.isRequired,
-  movie: MoviePropType,
-  onOpenPlayerPage: PropTypes.func.isRequired,
-  onError: PropTypes.func.isRequired,
-  renderVideoPlayer: PropTypes.func.isRequired,
-};
 
 
 const mapStateToProps = (state, props) => {

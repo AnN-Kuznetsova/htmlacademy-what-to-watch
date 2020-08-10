@@ -1,8 +1,24 @@
-import * as React, {PureComponent} from 'react';
+import * as React from 'react';
+import {Subtract} from "utility-types";
+
+
+interface State {
+  reviewRating: number | null;
+  reviewText: string | null,
+}
+
+interface InjectingProps {
+  reviewRating: number | null;
+  reviewText: string | null;
+  onChange: () => {};
+};
 
 
 export const withNewReview = (Component) => {
-  class WithNewReview extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithNewReview extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -32,9 +48,6 @@ export const withNewReview = (Component) => {
       />;
     }
   }
-
-
-  WithNewReview.propTypes = {};
 
 
   return WithNewReview;

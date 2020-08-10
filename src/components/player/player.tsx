@@ -1,11 +1,27 @@
-
 import * as React from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/application/application";
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {getActivePage, getPrevPage, getActiveMovie} from "../../reducers/application/selectors";
 import {withVideo, VideoPlayerMode} from "../../hocs/with-video/with-video";
+
+
+interface Props {
+  playerMode: string;
+  isLoading: boolean;
+  isPlaying: boolean;
+  duration: number,
+  progress: number;
+  activeMovie: MovieType;
+  activePage: string,
+  prevPage: string;
+  onChangePage: (newPage: string) => void;
+  children: React.ReactNode | React.ReactNode[];
+  onPlayButtonClick: () => void;
+  onExitButtonClick: () => void;
+  onFullScreenButtonClick: (mode: string) => void;
+}
 
 
 const getFormatedTimeLeft = (time) => {
@@ -16,7 +32,7 @@ const getFormatedTimeLeft = (time) => {
 };
 
 
-const PlayerComponent = (props) => {
+const PlayerComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     playerMode,
     isLoading,
@@ -31,7 +47,7 @@ const PlayerComponent = (props) => {
   } = props;
   const timeLeft = duration ? getFormatedTimeLeft(duration - progress) : 0;
   const progressValue = duration ? progress * 100 / duration : 0;
-  const playerRef = React.createRef();
+  const playerRef: React.RefObject<HTMLDivElement> = React.createRef();
 
   const handleFullScreenButtonClick = () => {
     if (playerMode === VideoPlayerMode.SMALL_SCREEN) {
@@ -113,23 +129,6 @@ const PlayerComponent = (props) => {
   };
 
   return getPlayer();
-};
-
-
-PlayerComponent.propTypes = {
-  playerMode: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  duration: PropTypes.number,
-  progress: PropTypes.number.isRequired,
-  activeMovie: MoviePropType.isRequired,
-  activePage: PropTypes.string,
-  prevPage: PropTypes.string.isRequired,
-  onChangePage: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
 };
 
 

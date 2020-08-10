@@ -1,9 +1,13 @@
 import * as React from "react";
 
-
 import {Error} from "../../api";
 import {Footer} from "../footer/footer";
 import {Header} from "../header/header";
+
+
+interface Props {
+  dataError?: object;
+}
 
 
 const getErrorMessage = (dataError) => {
@@ -21,7 +25,7 @@ const getErrorMessage = (dataError) => {
 };
 
 
-export const ErrorPage = (props) => {
+export const ErrorPage: React.FunctionComponent<Props> = (props: Props) => {
   const {dataError} = props;
 
   return (
@@ -46,9 +50,4 @@ export const ErrorPage = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-
-ErrorPage.propTypes = {
-  dataError: PropTypes.object,
 };

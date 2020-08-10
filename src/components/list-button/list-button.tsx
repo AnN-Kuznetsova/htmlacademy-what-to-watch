@@ -1,24 +1,30 @@
-
 import * as React from "react";
 import {connect} from "react-redux";
 
 import {AppRoute} from "../../const";
 import {AuthorizationStatus} from "../../reducers/user/user";
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {Operation} from "../../reducers/data/data";
 import {getActiveMovie} from "../../reducers/application/selectors";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {history} from "../../history";
 
 
-const ListButtonComponent = (props) => {
+interface Props {
+  movie: MovieType;
+  authorizationStatus: string;
+  changeMovie: ({id, status}: {id: number; status: number}, []) => void;
+}
+
+
+const ListButtonComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movie,
     authorizationStatus,
     changeMovie,
   } = props;
 
-  const buttonRef = React.createRef();
+  const buttonRef: React.RefObject<HTMLButtonElement> = React.createRef();
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -47,13 +53,6 @@ const ListButtonComponent = (props) => {
       <span>My list</span>
     </button>
   );
-};
-
-
-ListButtonComponent.propTypes = {
-  movie: MoviePropType.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  changeMovie: PropTypes.func.isRequired,
 };
 
 

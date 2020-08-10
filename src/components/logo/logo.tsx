@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
@@ -7,13 +6,19 @@ import {ActionCreator as ApplicationActionCreator} from "../../reducers/applicat
 import {AppRoute, PageType} from "../../const";
 
 
-export const LogoMode = {
+const LogoMode = {
   NORMAL: `NORMAL`,
   LIGHT: `LIGHT`,
 };
 
 
-const LogoComponent = (props) => {
+interface Props {
+  mode: string;
+  onClick: () => void;
+}
+
+
+const LogoComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     mode,
     onClick,
@@ -38,12 +43,6 @@ const LogoComponent = (props) => {
 };
 
 
-LogoComponent.propTypes = {
-  mode: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
-
-
 const mapDispatchToProps = (dispatch) => ({
   onClick() {
     dispatch(ApplicationActionCreator.changeActivePage(PageType.MAIN));
@@ -54,6 +53,7 @@ const Logo = connect(null, mapDispatchToProps)(LogoComponent);
 
 
 export {
+  LogoMode,
   LogoComponent,
   Logo,
 };

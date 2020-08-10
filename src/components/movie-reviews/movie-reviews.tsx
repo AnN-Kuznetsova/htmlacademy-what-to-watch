@@ -2,7 +2,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 
-import {ReviewPropType} from "../../prop-types";
+import {ReviewType} from "../../types";
 import {getActiveMovieReviews, getDataError} from "../../reducers/data/selectors";
 import {
   getFormatedScore,
@@ -10,10 +10,16 @@ import {
 } from "../../utils/utils";
 
 
+interface Props {
+  reviews: ReviewType[];
+  dataError?: object;
+}
+
+
 const COLUMNS_COUNT = 2;
 
 
-const MovieReviewsComponent = (props) => {
+const MovieReviewsComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     reviews,
     dataError,
@@ -24,7 +30,7 @@ const MovieReviewsComponent = (props) => {
   if (dataError) {
     return (
       <div className="movie-card__reviews movie-card__row">
-        <h2 key={dataError} style={{color: `#252525`}}>Reviews could not be loaded. Sorry</h2>
+        <h2 key={dataError.toString()} style={{color: `#252525`}}>Reviews could not be loaded. Sorry</h2>
       </div>
     );
   }
@@ -58,12 +64,6 @@ const MovieReviewsComponent = (props) => {
       {columns}
     </div>
   );
-};
-
-
-MovieReviewsComponent.propTypes = {
-  reviews: PropTypes.arrayOf(ReviewPropType),
-  dataError: PropTypes.object,
 };
 
 

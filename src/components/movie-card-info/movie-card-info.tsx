@@ -1,11 +1,17 @@
-
 import * as React from "react";
 
 import {MovieDetails} from "../movie-details/movie-details";
 import {MovieOverview} from "../movie-overview/movie-overview";
-import {MoviePropType} from "../../prop-types";
 import {MovieReviews} from "../movie-reviews/movie-reviews";
+import {MovieType} from "../../types";
 import {withTabs} from "../../hocs/with-tabs/with-tabs";
+
+
+interface Props {
+  movie: MovieType;
+  renderTabNav: (tabNames: string[]) => React.ReactNode;
+  renderTab: (tabId: number, TabComponent: React.FunctionComponent, props: object, key: string) => React.ReactNode;
+}
 
 
 const tabList = [
@@ -24,7 +30,7 @@ const tabList = [
 ];
 
 
-const MovieCardInfo = (props) => {
+const MovieCardInfo: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movie,
     renderTabNav,
@@ -55,12 +61,3 @@ export {
   MovieCardInfo,
   MovieCardInfoWithTabs,
 };
-
-
-MovieCardInfo.propTypes = {
-  movie: MoviePropType.isRequired,
-  renderTabNav: PropTypes.func.isRequired,
-  renderTab: PropTypes.func.isRequired,
-};
-
-

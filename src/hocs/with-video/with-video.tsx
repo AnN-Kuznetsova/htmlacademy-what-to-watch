@@ -1,19 +1,49 @@
+import * as React from "react";
+import {Subtract} from "utility-types";
 
-import * as React, {PureComponent, createRef} from "react";
-
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {PageType, AppRoute} from "../../const";
 import {history} from "../../history";
 
 
-export const VideoPlayerMode = {
+interface Props {
+  src: string;
+  posterUrl: string;
+  playerMode: string;
+  activeMovie: MovieType;
+  activePage?: string,
+  prevPage: string;
+  onChangePage: (newPage: string) => void;
+  setVideoPlayerMode: (newValue: string) => void;
+  setVideoPlayerStatus: (newPlayerStatus: string) => void;
+  playerStatus: string;
+}
+
+interface State {
+  progress: number;
+  isLoading: boolean;
+}
+
+interface InjectingProps {
+  playerMode: string;
+  isLoading: boolean;
+  isPlaying: boolean;
+  duration: number;
+  progress: number;
+  onPlayButtonClick: () => void;
+  onExitButtonClick: (event: Event) => void;
+  onFullScreenButtonClick: (mode: string) => void;
+}
+
+
+const VideoPlayerMode = {
   PREVIEW: `PREVIEW`,
   SMALL_SCREEN: `SMALL_SCREEN`,
   FULL_SCREEN: `FULL_SCREEN`,
 };
 
 
-export const videoOptions = {
+const videoOptions = {
   [VideoPlayerMode.PREVIEW]: {
     isAutoPlay: false,
     isSound: false,
@@ -28,7 +58,7 @@ export const videoOptions = {
   },
 };
 
-export const VideoPlayerStatus = {
+const VideoPlayerStatus = {
   ON_AUTOPLAY: `on-autoplay`,
   ON_PLAY: `on-play`,
   ON_PAUSE: `on-pause`,
@@ -36,13 +66,19 @@ export const VideoPlayerStatus = {
 };
 
 
-export const withVideo = (Component) => {
-  class WithVideo extends PureComponent {
+const withVideo = (Component) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectingProps>;
+
+  class WithVideo extends React.PureComponent<T, State> {
+    private videoRef: React.RefObject<HTMLVideoElement>;
+    private duration: number | null;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = createRef();
-      this._duration = null;
+      this.videoRef = React.createRef();
+      this.duration = null;
 
       this.state = {
         progress: 0,
@@ -53,7 +89,7 @@ export const withVideo = (Component) => {
     componentDidMount() {
       const {src, playerMode} = this.props;
       const {isSound} = videoOptions[playerMode];
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = src;
       video.muted = !isSound;
@@ -63,7 +99,7 @@ export const withVideo = (Component) => {
           isLoading: false,
         });
 
-        this._duration = video.duration;
+        this.duration = video.duration;
       };
 
       video.ontimeupdate = () => this.setState({
@@ -72,7 +108,7 @@ export const withVideo = (Component) => {
     }
 
     componentDidUpdate() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
       const {playerMode} = this.props;
       const {isLoading} = this.state;
 
@@ -95,7 +131,7 @@ export const withVideo = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.oncanplaythrough = null;
       video.ontimeupdate = null;
@@ -124,7 +160,7 @@ export const withVideo = (Component) => {
       }
     }
 
-    handleExitButtonClick(event) {
+    handleExitButtonClick(event: Event) {
       event.preventDefault();
 
       const {activePage, prevPage} = this.props;
@@ -139,7 +175,7 @@ export const withVideo = (Component) => {
       this.props.setVideoPlayerStatus(VideoPlayerStatus.ON_AUTOPLAY);
     }
 
-    handleFullScreenButtonClick(mode) {
+    handleFullScreenButtonClick(mode: string) {
       this.props.setVideoPlayerMode(mode);
     }
 
@@ -160,14 +196,14 @@ export const withVideo = (Component) => {
           playerMode={playerMode}
           isLoading={isLoading}
           isPlaying={isPlaying}
-          duration={this._duration}
+          duration={this.duration}
           progress={progress || 0}
           onPlayButtonClick={this.handlePlayButtonClick.bind(this)}
           onExitButtonClick={this.handleExitButtonClick.bind(this)}
           onFullScreenButtonClick={this.handleFullScreenButtonClick.bind(this)}
         >
           <video
-            ref={this._videoRef}
+            ref={this.videoRef}
             className="player__video"
             poster={posterUrl}
             autoPlay={isPlaying}
@@ -178,19 +214,13 @@ export const withVideo = (Component) => {
   }
 
 
-  WithVideo.propTypes = {
-    src: PropTypes.string.isRequired,
-    posterUrl: PropTypes.string.isRequired,
-    playerMode: PropTypes.string.isRequired,
-    activeMovie: MoviePropType.isRequired,
-    activePage: PropTypes.string,
-    prevPage: PropTypes.string.isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    setVideoPlayerMode: PropTypes.func.isRequired,
-    setVideoPlayerStatus: PropTypes.func.isRequired,
-    playerStatus: PropTypes.string.isRequired,
-  };
-
-
   return WithVideo;
+};
+
+
+export {
+  videoOptions,
+  VideoPlayerMode,
+  VideoPlayerStatus,
+  withVideo,
 };

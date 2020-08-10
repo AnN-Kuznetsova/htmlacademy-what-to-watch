@@ -1,5 +1,4 @@
-
-import * as React, {PureComponent} from "react";
+import * as React from "react";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -9,9 +8,9 @@ import {AddReviewPageWithNewReview} from "../add-review-page/add-review-page";
 import {ErrorPage} from "../error-page/error-page";
 import {MainPage} from "../main-page/main-page";
 import {MovieDetailsPage} from "../movie-details-page/movie-details-page";
-import {MoviePropType} from "../../prop-types";
+import {MovieType, PageType} from "../../types";
 import {MyListPage} from "../my-list-page/my-list-page";
-import {PageType, AppRoute} from "../../const";
+import {AppRoute} from "../../const";
 import {PlayerPage} from "../player-page/player-page";
 import {PrivateRoute} from "../private-route/private-route";
 import {RedirectToMainRoute} from "../redirect-to-main-route/redirect-to-main-route";
@@ -21,7 +20,16 @@ import {getDataError, getMovies, getPromoMovie} from "../../reducers/data/select
 import {history} from "../../history";
 
 
-class AppComponent extends PureComponent {
+interface Props {
+  dataError?: object;
+  activePage: string;
+  movies?: MovieType[];
+  promoMovie?: MovieType;
+  onError: (error: object) => void;
+}
+
+
+class AppComponent extends React.PureComponent<Props, {}> {
   renderPage() {
     const {
       dataError,
@@ -115,15 +123,6 @@ class AppComponent extends PureComponent {
     );
   }
 }
-
-
-AppComponent.propTypes = {
-  dataError: PropTypes.object,
-  activePage: PropTypes.string.isRequired,
-  movies: PropTypes.arrayOf(MoviePropType),
-  promoMovie: MoviePropType,
-  onError: PropTypes.func.isRequired,
-};
 
 
 const mapStateToProps = (state) => ({

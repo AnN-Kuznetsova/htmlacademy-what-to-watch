@@ -3,7 +3,15 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 
 
-export const Breadcrumbs = (props) => {
+interface Props {
+  breadcrambsList?: {
+    link: string,
+    title: string,
+  }[];
+}
+
+
+export const Breadcrumbs: React.FunctionComponent<Props> = (props: Props) => {
   const {breadcrambsList} = props;
 
   return (
@@ -24,12 +32,4 @@ export const Breadcrumbs = (props) => {
       </ul>
     </nav>
   );
-};
-
-
-Breadcrumbs.propTypes = {
-  breadcrambsList: PropTypes.arrayOf(PropTypes.shape({
-    link: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  })),
 };

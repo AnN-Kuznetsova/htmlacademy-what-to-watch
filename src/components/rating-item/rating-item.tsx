@@ -2,7 +2,14 @@
 import * as React from "react";
 
 
-export const RatingItem = (props) => {
+interface Props {
+  id: number;
+  rating?: number;
+  onChange: () => void;
+}
+
+
+export const RatingItem: React.FunctionComponent<Props> = (props: Props) => {
   const {
     id,
     onChange,
@@ -23,11 +30,4 @@ export const RatingItem = (props) => {
       <label className="rating__label" htmlFor={`star-${id}`}>Rating {id}</label>
     </React.Fragment>
   );
-};
-
-
-RatingItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  rating: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
 };

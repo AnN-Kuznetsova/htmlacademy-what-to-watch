@@ -1,5 +1,4 @@
-
-import * as React, {PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
@@ -8,12 +7,17 @@ import {Catalog} from "../catalog/catalog";
 import {FilterByGenre} from "../filter-by-genre/filter-by-genre";
 import {Footer} from "../footer/footer";
 import {MovieCardPromo} from "../movie-card-promo/movie-card-promo";
-import {MoviePropType} from "../../prop-types";
-import {PageType} from "../../const";
+import {MovieType, PageType} from "../../types";
 import {getPromoMovie} from "../../reducers/data/selectors";
 
 
-class MainPageComponent extends PureComponent {
+interface Props {
+  promoMovie: MovieType;
+  onOpenMainPage: (promoMovie: MovieType) => void;
+}
+
+
+class MainPageComponent extends React.PureComponent<Props, {}> {
   componentDidMount() {
     this.props.onOpenMainPage(this.props.promoMovie);
   }
@@ -46,12 +50,6 @@ class MainPageComponent extends PureComponent {
     );
   }
 }
-
-
-MainPageComponent.propTypes = {
-  promoMovie: MoviePropType.isRequired,
-  onOpenMainPage: PropTypes.func.isRequired,
-};
 
 
 const mapStateToProps = (state) => ({

@@ -1,8 +1,21 @@
-import * as React, {PureComponent} from 'react';
+import * as React from 'react';
+import {Subtract} from "utility-types";
 
+
+interface State {
+  activeTabId: number;
+}
+
+interface InjectingProps {
+  renderTabNav: (tabNames: string[]) => React.ReactNode;
+  renderTab: (tabId: number, TabComponent: React.FunctionComponent, props: object, key: string) => React.ReactNode;
+}
 
 export const withTabs = (Component) => {
-  class WithTabs extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithTabs extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -63,9 +76,6 @@ export const withTabs = (Component) => {
       />;
     }
   }
-
-
-  WithTabs.propTypes = {};
 
 
   return WithTabs;

@@ -1,17 +1,37 @@
-
-import * as React, {createRef, PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
 import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data/data";
 import {Error} from "../../api";
 import {Header} from "../header/header";
-import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE, PageType, AppRoute, ERROR_COLOR} from "../../const";
-import {MoviePropType} from "../../prop-types";
+import {MIN_REVIEW_TEXT_LENGTH, MAX_REVIEW_TEXT_LENGTH, RATING_RANGE, AppRoute, ERROR_COLOR} from "../../const";
 import {RatingItem} from "../rating-item/rating-item";
 import {Redirect} from "react-router-dom";
+import {MovieType, PageType} from "../../types";
 import {getDataError, getMovieById} from "../../reducers/data/selectors";
 import {withNewReview} from "../../hocs/with-new-review/with-new-review";
+
+
+interface Props {
+  routeProps: object;
+  movie?: MovieType;
+  dataError?: {
+    response?: string,
+    data?: {
+      ratingValueError?: string,
+      reviewTextValueError?: string,
+    }
+  };
+  sendReview: ({movieId, rating, comment, addReviewFormElements}:
+    {rating: number; comment: string; movieId: number; addReviewFormElements: React.ReactNode}) => void;
+  setDataError: (error: object) => void;
+  openAddReviewPage: (movie: MovieType) => void;
+  onError: () => void;
+  reviewRating: number,
+  reviewText: string,
+  onChange: (newRating: number, newText: string) => void;
+}
 
 
 const getErrorMessage = (dataError) => {
@@ -39,7 +59,7 @@ const getErrorMessage = (dataError) => {
 };
 
 
-const getReviewRatingValidation = (ratingContainer) => {
+const getReviewRatingValidation = (ratingContainer: HTMLDivElement) => {
   const ratingElement = Array.from(ratingContainer.querySelectorAll(`input`))
     .filter((ratingItem) => ratingItem.checked)[0];
 
@@ -53,17 +73,25 @@ const getReviewTextValidation = (reviewTextValue) => {
 };
 
 
-class AddReviewPageComponent extends PureComponent {
+class AddReviewPageComponent extends React.PureComponent<Props, {}> {
+  private ratingRef: React.RefObject<HTMLInputElement>;
+  private reviewTextRef: React.RefObject<HTMLTextAreaElement>;
+  private addReviewButtonRef: React.RefObject<HTMLButtonElement>;
+  private addReviewFormRef: React.RefObject<HTMLFormElement>;
+
+  private ratingValue: number | null;
+  private reviewTextValue: string | null;
+
   constructor(props) {
     super(props);
 
-    this._ratingRef = createRef();
-    this._reviewTextRef = createRef();
-    this._addReviewButtonRef = createRef();
-    this._addReviewFormRef = createRef();
+    this.ratingRef = React.createRef();
+    this.reviewTextRef = React.createRef();
+    this.addReviewButtonRef = React.createRef();
+    this.addReviewFormRef = React.createRef();
 
-    this._ratingValue = null;
-    this._reviewTextValue = null;
+    this.ratingValue = null;
+    this.reviewTextValue = null;
 
     this.handleAddRreviewPageOpen = this.handleAddRreviewPageOpen.bind(this);
     this.handleDataReviewChange = this.handleDataReviewChange.bind(this);
@@ -85,23 +113,23 @@ class AddReviewPageComponent extends PureComponent {
   }
 
   handleDataReviewChange() {
-    this._ratingValue = getReviewRatingValidation(this._ratingRef.current) || null;
-    this._reviewTextValue = getReviewTextValidation(this._reviewTextRef.current.value) || null;
+    this.ratingValue = getReviewRatingValidation(this.ratingRef.current) || null;
+    this.reviewTextValue = getReviewTextValidation(this.reviewTextRef.current.value) || null;
 
-    this.props.onChange(this._ratingValue, this._reviewTextValue);
+    this.props.onChange(this.ratingValue, this.reviewTextValue);
 
-    if (this._ratingValue && this._reviewTextValue) {
-      this._addReviewButtonRef.current.disabled = false;
-      this._addReviewButtonRef.current.style.opacity = 1;
+    if (this.ratingValue && this.reviewTextValue) {
+      this.addReviewButtonRef.current.disabled = false;
+      this.addReviewButtonRef.current.style.opacity = `1`;
       this.props.setDataError(null);
     } else {
-      this._addReviewButtonRef.current.disabled = true;
-      this._addReviewButtonRef.current.style.opacity = 0.5;
+      this.addReviewButtonRef.current.disabled = true;
+      this.addReviewButtonRef.current.style.opacity = `0.5`;
       this.props.setDataError({
         response: Error.VALIDATION,
         data: {
-          reviewTextValueError: this._reviewTextValue ? null : true,
-          ratingValueError: this._ratingValue ? null : true,
+          reviewTextValueError: this.reviewTextValue ? null : true,
+          ratingValueError: this.ratingValue ? null : true,
         }
       });
     }
@@ -114,7 +142,7 @@ class AddReviewPageComponent extends PureComponent {
       movieId: this.props.movie.id,
       rating: this.props.reviewRating,
       comment: this.props.reviewText,
-      addReviewFormElements: this._addReviewFormRef.current.elements,
+      addReviewFormElements: this.addReviewFormRef.current.elements,
     });
   }
 
@@ -153,11 +181,11 @@ class AddReviewPageComponent extends PureComponent {
             action="#"
             className="add-review__form"
             onSubmit={this.handleSubmit}
-            ref={this._addReviewFormRef}
+            ref={this.addReviewFormRef}
           >
             <div className="rating">
               <div
-                ref={this._ratingRef}
+                ref={this.ratingRef}
                 className="rating__stars"
                 style={dataError && dataError.response === Error.VALIDATION && dataError.data.ratingValueError ? {borderRadius: `8px`, boxShadow: `0 0 0 1px ${ERROR_COLOR}`} : {}}>
                 {new Array(RATING_RANGE).fill(``).map((ratingItem, index) => (
@@ -173,7 +201,7 @@ class AddReviewPageComponent extends PureComponent {
 
             <div className="add-review__text" style={{backgroundColor: `rgba(255, 255, 255, 0.3)`}}>
               <textarea
-                ref={this._reviewTextRef}
+                ref={this.reviewTextRef}
                 className="add-review__textarea"
                 name="review-text" id="review-text"
                 placeholder="Review text"
@@ -182,7 +210,7 @@ class AddReviewPageComponent extends PureComponent {
               </textarea>
               <div className="add-review__submit">
                 <button
-                  ref={this._addReviewButtonRef}
+                  ref={this.addReviewButtonRef}
                   className="add-review__btn"
                   type="submit"
                   disabled={true}
@@ -199,20 +227,6 @@ class AddReviewPageComponent extends PureComponent {
     );
   }
 }
-
-
-AddReviewPageComponent.propTypes = {
-  routeProps: PropTypes.object.isRequired,
-  movie: MoviePropType,
-  dataError: PropTypes.object,
-  sendReview: PropTypes.func.isRequired,
-  setDataError: PropTypes.func.isRequired,
-  openAddReviewPage: PropTypes.func.isRequired,
-  onError: PropTypes.func.isRequired,
-  reviewRating: PropTypes.number,
-  reviewText: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-};
 
 
 const mapStateToProps = (state, props) => {

@@ -1,5 +1,4 @@
-
-import * as React, {PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator as ApplicationActionCreator} from "../../reducers/application/application";
@@ -7,13 +6,22 @@ import {ActionCreator as DataActionCreator, Operation} from "../../reducers/data
 import {Catalog} from "../catalog/catalog";
 import {Footer} from "../footer/footer";
 import {MovieCardFull} from "../movie-card-full/movie-card-full";
-import {MoviePropType} from "../../prop-types";
+import {MovieType, PageType} from "../../types";
 import {Redirect} from "react-router-dom";
 import {getMovieById} from "../../reducers/data/selectors";
-import {PageType, NUMBER_OF_SIMILAR_FILMS, AppRoute} from "../../const";
+import {NUMBER_OF_SIMILAR_FILMS, AppRoute} from "../../const";
 
 
-class MovieDetailsPageComponent extends PureComponent {
+interface Props {
+  routeProps: object;
+  movie?: MovieType;
+  onAddReviewButtonClick: () => void;
+  onOpenMovieDetailsPage: (movie: MovieType) => void;
+  onError: () => void;
+}
+
+
+class MovieDetailsPageComponent extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -68,15 +76,6 @@ class MovieDetailsPageComponent extends PureComponent {
     );
   }
 }
-
-
-MovieDetailsPageComponent.propTypes = {
-  routeProps: PropTypes.object.isRequired,
-  movie: MoviePropType,
-  onAddReviewButtonClick: PropTypes.func.isRequired,
-  onOpenMovieDetailsPage: PropTypes.func.isRequired,
-  onError: PropTypes.func.isRequired,
-};
 
 
 const mapStateToProps = (state, props) => {

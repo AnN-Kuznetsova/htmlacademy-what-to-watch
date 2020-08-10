@@ -1,8 +1,8 @@
 import {
   NUMBER_OF_CARDS_IN_CATALOG_AT_STARTUP,
   NUMBER_OF_CARDS_TO_INCREMENT,
-  PageType,
 } from "../../const";
+import {PageType} from "../../types";
 import {extend} from "../../utils/utils";
 
 

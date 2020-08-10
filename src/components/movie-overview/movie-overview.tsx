@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {
   getParticipantsLine,
   getFormatedScore,
@@ -8,7 +8,12 @@ import {
 } from "../../utils/utils";
 
 
-export const MovieOverview = (props) => {
+interface Props {
+  movie: MovieType;
+}
+
+
+export const MovieOverview: React.FunctionComponent<Props> = (props: Props) => {
   const {movie} = props;
 
   const scoreValue = getFormatedScore(movie.rating.score);
@@ -34,9 +39,4 @@ export const MovieOverview = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-
-MovieOverview.propTypes = {
-  movie: MoviePropType.isRequired,
 };

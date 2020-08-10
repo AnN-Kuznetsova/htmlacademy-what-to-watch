@@ -1,16 +1,22 @@
-
 import * as React from "react";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/application/application";
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {SmallMovieCardWithVideoPlayer} from "../small-movie-card/small-movie-card";
 import {ShowMoreButton} from "../show-more-button/show-more-button";
 import {getMoviesForCatalog} from "../../reducers/data/selectors";
 import {getVisibleMoviesCount} from "../../reducers/application/selectors";
 
 
-const CatalogComponent = (props) => {
+interface Props {
+  movies?: MovieType[];
+  visibleCardCount: number;
+  onShowMoreButtonClick: () => {};
+}
+
+
+const CatalogComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movies,
     visibleCardCount,
@@ -39,13 +45,6 @@ const CatalogComponent = (props) => {
   }
 
   return null;
-};
-
-
-CatalogComponent.propTypes = {
-  movies: PropTypes.arrayOf(MoviePropType),
-  visibleCardCount: PropTypes.number.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 

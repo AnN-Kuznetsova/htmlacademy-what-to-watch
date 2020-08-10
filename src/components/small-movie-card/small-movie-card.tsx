@@ -1,14 +1,21 @@
-
 import * as React from "react";
 import {Link} from "react-router-dom";
 
 import {DELAY_PLAYBACK_PREVIEW, AppRoute} from "../../const";
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {VideoPlayerMode, VideoPlayerStatus} from "../../hocs/with-video/with-video";
 import {withVideoPlayer} from "../../hocs/with-video-player/with-video-player";
 
 
-const SmallMovieCard = (props) => {
+interface Props {
+  movie: MovieType;
+  renderVideoPlayer: (src: string, posterUrl: string) => React.ReactNode;
+  currentVideoPlayerStatus: string;
+  setVideoPlayerStatus: (newPlayerStatus: string) => void;
+}
+
+
+const SmallMovieCard: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movie,
     renderVideoPlayer,
@@ -72,14 +79,6 @@ const SmallMovieCard = (props) => {
       </h3>
     </article>
   );
-};
-
-
-SmallMovieCard.propTypes = {
-  movie: MoviePropType.isRequired,
-  renderVideoPlayer: PropTypes.func.isRequired,
-  currentVideoPlayerStatus: PropTypes.string.isRequired,
-  setVideoPlayerStatus: PropTypes.func.isRequired,
 };
 
 

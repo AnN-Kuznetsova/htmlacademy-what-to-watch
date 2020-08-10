@@ -1,10 +1,15 @@
 import * as React from "react";
 
-import {MoviePropType} from "../../prop-types";
+import {MovieType} from "../../types";
 import {getFormatedRunTime} from "../../utils/utils";
 
 
-export const MovieDetails = (props) => {
+interface Props {
+  movie: MovieType;
+}
+
+
+export const MovieDetails: React.FunctionComponent<Props> = (props: Props) => {
   const {movie} = props;
 
   return (
@@ -42,9 +47,4 @@ export const MovieDetails = (props) => {
       </div>
     </div>
   );
-};
-
-
-MovieDetails.propTypes = {
-  movie: MoviePropType.isRequired,
 };

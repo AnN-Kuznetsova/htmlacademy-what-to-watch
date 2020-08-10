@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 
 interface Props {
   breadcrambsList?: {
-    link: string,
-    title: string,
+    link: string;
+    title: string;
   }[];
 }
 

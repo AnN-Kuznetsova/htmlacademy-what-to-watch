@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const ShowMoreButton: React.FunctionComponent<Props>  = (props: Props) => {
+export const ShowMoreButton: React.FunctionComponent<Props> = (props: Props) => {
   const {onClick} = props;
 
   return (

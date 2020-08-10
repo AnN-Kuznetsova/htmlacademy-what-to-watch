@@ -11,7 +11,7 @@ interface Props {
   posterUrl: string;
   playerMode: string;
   activeMovie: MovieType;
-  activePage?: string,
+  activePage?: string;
   prevPage: string;
   onChangePage: (newPage: string) => void;
   setVideoPlayerMode: (newValue: string) => void;

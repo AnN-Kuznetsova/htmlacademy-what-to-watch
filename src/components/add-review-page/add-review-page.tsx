@@ -17,19 +17,19 @@ interface Props {
   routeProps: object;
   movie?: MovieType;
   dataError?: {
-    response?: string,
+    response?: string;
     data?: {
-      ratingValueError?: string,
-      reviewTextValueError?: string,
-    }
+      ratingValueError?: string;
+      reviewTextValueError?: string;
+    };
   };
   sendReview: ({movieId, rating, comment, addReviewFormElements}:
     {rating: number; comment: string; movieId: number; addReviewFormElements: React.ReactNode}) => void;
   setDataError: (error: object) => void;
   openAddReviewPage: (movie: MovieType) => void;
   onError: () => void;
-  reviewRating: number,
-  reviewText: string,
+  reviewRating: number;
+  reviewText: string;
   onChange: (newRating: number, newText: string) => void;
 }
 

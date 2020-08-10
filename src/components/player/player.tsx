@@ -11,10 +11,10 @@ interface Props {
   playerMode: string;
   isLoading: boolean;
   isPlaying: boolean;
-  duration: number,
+  duration: number;
   progress: number;
   activeMovie: MovieType;
-  activePage: string,
+  activePage: string;
   prevPage: string;
   onChangePage: (newPage: string) => void;
   children: React.ReactNode | React.ReactNode[];

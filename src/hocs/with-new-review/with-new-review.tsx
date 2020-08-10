@@ -4,14 +4,14 @@ import {Subtract} from "utility-types";
 
 interface State {
   reviewRating: number | null;
-  reviewText: string | null,
+  reviewText: string | null;
 }
 
 interface InjectingProps {
   reviewRating: number | null;
   reviewText: string | null;
   onChange: () => {};
-};
+}
 
 
 export const withNewReview = (Component) => {

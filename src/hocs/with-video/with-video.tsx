@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+
 import * as React, {PureComponent, createRef} from "react";
 
 import {MoviePropType} from "../../prop-types";

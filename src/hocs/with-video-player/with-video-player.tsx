@@ -16,7 +16,7 @@ interface InjectingProps {
   setVideoPlayerStatus: (newPlayerStatus: string) => void;
 }
 
-export const withVideoPlayer = (Component, playerMode) => {
+const withVideoPlayer = (Component, playerMode) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectingProps>;
 
@@ -75,4 +75,9 @@ export const withVideoPlayer = (Component, playerMode) => {
 
 
   return WithVideoPlayer;
+};
+
+
+export {
+  withVideoPlayer,
 };

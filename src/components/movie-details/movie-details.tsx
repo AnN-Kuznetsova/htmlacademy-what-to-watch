@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-export const MovieDetails: React.FunctionComponent<Props> = (props: Props) => {
+const MovieDetails: React.FunctionComponent<Props> = (props: Props) => {
   const {movie} = props;
 
   return (
@@ -47,4 +47,9 @@ export const MovieDetails: React.FunctionComponent<Props> = (props: Props) => {
       </div>
     </div>
   );
+};
+
+
+export {
+  MovieDetails,
 };

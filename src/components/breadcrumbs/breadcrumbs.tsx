@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-export const Breadcrumbs: React.FunctionComponent<Props> = (props: Props) => {
+const Breadcrumbs: React.FunctionComponent<Props> = (props: Props) => {
   const {breadcrambsList} = props;
 
   return (
@@ -32,4 +32,9 @@ export const Breadcrumbs: React.FunctionComponent<Props> = (props: Props) => {
       </ul>
     </nav>
   );
+};
+
+
+export {
+  Breadcrumbs,
 };

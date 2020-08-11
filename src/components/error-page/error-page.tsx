@@ -25,7 +25,7 @@ const getErrorMessage = (dataError) => {
 };
 
 
-export const ErrorPage: React.FunctionComponent<Props> = (props: Props) => {
+const ErrorPage: React.FunctionComponent<Props> = (props: Props) => {
   const {dataError} = props;
 
   return (
@@ -50,4 +50,9 @@ export const ErrorPage: React.FunctionComponent<Props> = (props: Props) => {
       </div>
     </React.Fragment>
   );
+};
+
+
+export {
+  ErrorPage,
 };

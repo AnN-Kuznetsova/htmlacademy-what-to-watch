@@ -8,7 +8,7 @@ interface Props {
 }
 
 
-export const FilterItem: React.FunctionComponent<Props> = (props: Props) => {
+const FilterItem: React.FunctionComponent<Props> = (props: Props) => {
   const {filterName, onClick, isActive} = props;
 
   return (
@@ -20,4 +20,9 @@ export const FilterItem: React.FunctionComponent<Props> = (props: Props) => {
       >{filterName}</a>
     </li>
   );
+};
+
+
+export {
+  FilterItem,
 };

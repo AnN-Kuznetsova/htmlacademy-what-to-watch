@@ -15,7 +15,7 @@ interface Props {
 }
 
 
-export const MovieCardFull: React.FunctionComponent<Props> = (props: Props) => {
+const MovieCardFull: React.FunctionComponent<Props> = (props: Props) => {
   const {
     movie,
     onAddReviewButtonClick,
@@ -68,4 +68,9 @@ export const MovieCardFull: React.FunctionComponent<Props> = (props: Props) => {
       <MovieCardInfoWithTabs movie={movie} />
     </section>
   );
+};
+
+
+export {
+  MovieCardFull,
 };

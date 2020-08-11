@@ -3,7 +3,7 @@ import * as React from "react";
 import {Logo, LogoMode} from "../logo/logo";
 
 
-export const Footer: React.FunctionComponent = () => {
+const Footer: React.FunctionComponent = () => {
   return (
     <footer className="page-footer">
       <Logo mode={LogoMode.LIGHT} />
@@ -13,4 +13,9 @@ export const Footer: React.FunctionComponent = () => {
       </div>
     </footer>
   );
+};
+
+
+export {
+  Footer,
 };

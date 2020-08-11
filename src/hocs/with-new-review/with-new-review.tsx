@@ -14,7 +14,7 @@ interface InjectingProps {
 }
 
 
-export const withNewReview = (Component) => {
+const withNewReview = (Component) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectingProps>;
 
@@ -51,4 +51,9 @@ export const withNewReview = (Component) => {
 
 
   return WithNewReview;
+};
+
+
+export {
+  withNewReview,
 };

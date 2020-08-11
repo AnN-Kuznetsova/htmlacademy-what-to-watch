@@ -11,7 +11,7 @@ interface InjectingProps {
   renderTab: (tabId: number, TabComponent: React.FunctionComponent, props: object, key: string) => React.ReactNode;
 }
 
-export const withTabs = (Component) => {
+const withTabs = (Component) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectingProps>;
 
@@ -79,4 +79,9 @@ export const withTabs = (Component) => {
 
 
   return WithTabs;
+};
+
+
+export {
+  withTabs,
 };

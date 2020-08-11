@@ -13,7 +13,7 @@ interface Props {
 }
 
 
-export const MovieOverview: React.FunctionComponent<Props> = (props: Props) => {
+const MovieOverview: React.FunctionComponent<Props> = (props: Props) => {
   const {movie} = props;
 
   const scoreValue = getFormatedScore(movie.rating.score);
@@ -39,4 +39,9 @@ export const MovieOverview: React.FunctionComponent<Props> = (props: Props) => {
       </div>
     </React.Fragment>
   );
+};
+
+
+export {
+  MovieOverview,
 };

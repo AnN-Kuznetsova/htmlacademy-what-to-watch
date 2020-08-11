@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-export const RatingItem: React.FunctionComponent<Props> = (props: Props) => {
+const RatingItem: React.FunctionComponent<Props> = (props: Props) => {
   const {
     id,
     onChange,
@@ -30,4 +30,9 @@ export const RatingItem: React.FunctionComponent<Props> = (props: Props) => {
       <label className="rating__label" htmlFor={`star-${id}`}>Rating {id}</label>
     </React.Fragment>
   );
+};
+
+
+export {
+  RatingItem,
 };

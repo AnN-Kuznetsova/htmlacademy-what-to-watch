@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render MovieCardInfo Should match with snapshot 1`] = `
+<div
+  className="movie-card__wrap movie-card__translate-top"
+>
+  <div
+    className="movie-card__info"
+  >
+    <div
+      className="movie-card__poster movie-card__poster--big"
+    >
+      <img
+        alt="The Grand Budapest Hotel poster"
+        height="327"
+        src="img/the-grand-budapest-hotel-poster.jpg"
+        width="218"
+      />
+    </div>
+    <div
+      className="movie-card__desc"
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  </div>
+</div>
+`;

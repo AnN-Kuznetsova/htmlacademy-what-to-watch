@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render SmallMovieCard Should match with snapshot 1`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <a
+    href="/films/3"
+    onClick={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <div />
+      <img
+        alt="Aviator"
+        height="175"
+        src="img/aviator.jpg"
+        width="280"
+      />
+    </div>
+  </a>
+  <h3
+    className="small-movie-card__title"
+  >
+    <a
+      className="small-movie-card__link"
+      href="/films/3"
+      onClick={[Function]}
+    >
+      Aviator
+    </a>
+  </h3>
+</article>
+`;

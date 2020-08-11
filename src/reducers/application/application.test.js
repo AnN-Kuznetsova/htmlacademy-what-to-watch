@@ -1,6 +1,6 @@
 import {reducer, ActionType, ActionCreator} from "./application";
 
-import {PageType} from "../../const";
+import {PageType} from "../../types";
 
 import {mockMovies} from "../../__test-data__/test-mocks";
 

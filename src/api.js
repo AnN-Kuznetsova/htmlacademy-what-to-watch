@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-export const Error = {
+const Error = {
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   PAGE_NOT_FOUND: 404,
@@ -9,7 +9,7 @@ export const Error = {
 };
 
 
-export const createAPI = (onFailRequest) => {
+const createAPI = (onFailRequest) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/wtw`,
     timeout: 1000 * 5,
@@ -29,4 +29,10 @@ export const createAPI = (onFailRequest) => {
   api.interceptors.response.use(onSuccess, onFail);
 
   return api;
+};
+
+
+export {
+  Error,
+  createAPI,
 };

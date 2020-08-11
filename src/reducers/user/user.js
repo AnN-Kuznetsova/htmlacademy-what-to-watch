@@ -2,7 +2,8 @@ import {extend} from "../../utils/utils";
 
 import {ActionCreator as ApplicationActionCreator} from "../application/application";
 import {ActionCreator as DataActionCreator} from "../data/data";
-import {PageType, AppRoute} from "../../const";
+import {AppRoute} from "../../const";
+import {PageType} from "../../types";
 import {getPromoMovie} from "../data/selectors";
 import {history} from "../../history";
 

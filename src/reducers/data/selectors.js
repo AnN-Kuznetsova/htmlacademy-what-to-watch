@@ -1,7 +1,7 @@
 import {createSelector} from "reselect";
 
 import {NameSpace} from "../name-space";
-import {PageType} from "../../const";
+import {PageType} from "../../types";
 import {getActiveGenre, getActiveMovie, getActivePage} from "../application/selectors";
 import {getRandomArrayElements} from "../../utils/utils";
 

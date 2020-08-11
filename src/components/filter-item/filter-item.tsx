@@ -3,7 +3,7 @@ import * as React from "react";
 
 interface Props {
   filterName: string;
-  onClick: () => void;
+  onClick: (newFilterValue: string) => void;
   isActive: boolean;
 }
 

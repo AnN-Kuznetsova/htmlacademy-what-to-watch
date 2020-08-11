@@ -13,7 +13,7 @@ import {getActivePage, getActiveMovie} from "../../reducers/application/selector
 
 interface Props {
   authorizationStatus: string;
-  activeMovie: MovieType;
+  activeMovie?: MovieType;
   activePage: PageType;
 }
 

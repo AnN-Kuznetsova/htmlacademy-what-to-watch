@@ -1,12 +1,13 @@
 import * as React from "react";
+import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
 import {CatalogComponent} from "./catalog";
 import {NameSpace} from "../../reducers/name-space";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 import {mockMovies, mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -24,8 +25,8 @@ const store = mockStore({
 const props = {
   movies: [],
   visibleCardCount: 8,
-  onSmallMovieCardClick: () => {},
-  onShowMoreButtonClick: () => {},
+  onSmallMovieCardClick: noop,
+  onShowMoreButtonClick: noop,
 };
 
 const nodeMock = {

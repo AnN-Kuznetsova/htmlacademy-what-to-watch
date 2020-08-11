@@ -13,7 +13,7 @@ import {getActiveGenre} from "../../reducers/application/selectors";
 interface Props {
   movies: MovieType[];
   activeFilter: string;
-  onClick: () => void;
+  onClick: (newFilterValue: string) => void;
 }
 
 

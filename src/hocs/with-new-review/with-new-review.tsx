@@ -10,7 +10,7 @@ interface State {
 interface InjectingProps {
   reviewRating: number | null;
   reviewText: string | null;
-  onChange: () => {};
+  onChange: () => void;
 }
 
 

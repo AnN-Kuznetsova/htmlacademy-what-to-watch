@@ -1,7 +1,8 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 
 import {withVideoPlayer} from "./with-video-player";
+import {VideoPlayerMode} from "../with-video/with-video";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -12,7 +13,7 @@ const MockComponent = (props) => {
   );
 };
 
-const ComponentWithVideoPlayer = withVideoPlayer(MockComponent);
+const ComponentWithVideoPlayer = withVideoPlayer(MockComponent, VideoPlayerMode.SMALL_SCREEN);
 
 
 describe(`Render withVideoPlayer`, () => {

@@ -1,7 +1,8 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 
 import {ListButtonComponent} from "./list-button";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -9,7 +10,7 @@ import {mockPromoMovie} from "../../__test-data__/test-mocks";
 const props = {
   movie: mockPromoMovie,
   authorizationStatus: ``,
-  changeMovie: () => {},
+  changeMovie: noop,
 };
 
 

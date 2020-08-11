@@ -3,15 +3,16 @@ import * as React from "react";
 import {mount} from "enzyme";
 
 import {withVideo, VideoPlayerMode, VideoPlayerStatus} from "../../hocs/with-video/with-video";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
-window.HTMLMediaElement.prototype.play = () => {};
-window.HTMLMediaElement.prototype.pause = () => {};
-window.HTMLMediaElement.prototype.load = () => {};
+window.HTMLMediaElement.prototype.play = noop;
+window.HTMLMediaElement.prototype.pause = noop;
+window.HTMLMediaElement.prototype.load = noop;
 
-const MockPlayer = (props) => {
+const MockPlayer = (props: MockPlayerProps) => {
   const {children} = props;
 
   return (
@@ -21,12 +22,9 @@ const MockPlayer = (props) => {
   );
 };
 
-MockPlayer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
+interface MockPlayerProps {
+  children: React.ReactNode | React.ReactNode[];
+}
 
 const props = {
   src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -35,9 +33,9 @@ const props = {
   activeMovie: mockPromoMovie,
   activePage: ``,
   prevPage: ``,
-  onChangePage: () => {},
-  setVideoPlayerMode: () => {},
-  setVideoPlayerStatus: () => {},
+  onChangePage: noop,
+  setVideoPlayerMode: noop,
+  setVideoPlayerStatus: noop,
   playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
 };
 
@@ -50,21 +48,17 @@ describe(`withVideo e2e-tests`, () => {
     props.playerStatus = VideoPlayerStatus.ON_PLAY;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
-    const {_videoRef} = videoPlayerElement.instance();
+    const {videoRef} = videoPlayerElement.instance();
 
-    window.HTMLMediaElement.prototype.canplaythrough = () => {
-      videoPlayerElement.instance().setState({
-        isLoading: false,
-      });
-    };
+    videoPlayerElement.instance().setState({
+      isLoading: false,
+    });
 
-    _videoRef.current.canplaythrough();
-
-    jest.spyOn(_videoRef.current, `play`);
+    jest.spyOn(videoRef.current, `play`);
     videoPlayerElement.instance().componentDidMount();
     videoPlayerElement.instance().componentDidUpdate();
 
-    expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
+    expect(videoRef.current.play).toHaveBeenCalledTimes(1);
   });
 
 
@@ -73,20 +67,16 @@ describe(`withVideo e2e-tests`, () => {
     props.playerStatus = VideoPlayerStatus.ON_PAUSE;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
-    const {_videoRef} = videoPlayerElement.instance();
+    const {videoRef} = videoPlayerElement.instance();
 
-    window.HTMLMediaElement.prototype.canplaythrough = () => {
-      videoPlayerElement.instance().setState({
-        isLoading: false,
-      });
-    };
+    videoPlayerElement.instance().setState({
+      isLoading: false,
+    });
 
-    _videoRef.current.canplaythrough();
-
-    jest.spyOn(_videoRef.current, `pause`);
+    jest.spyOn(videoRef.current, `pause`);
     videoPlayerElement.instance().componentDidUpdate();
 
-    expect(_videoRef.current.pause).toHaveBeenCalledTimes(1);
+    expect(videoRef.current.pause).toHaveBeenCalledTimes(1);
   });
 
 
@@ -95,20 +85,16 @@ describe(`withVideo e2e-tests`, () => {
     props.playerStatus = VideoPlayerStatus.ON_PAUSE;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
-    const {_videoRef} = videoPlayerElement.instance();
+    const {videoRef} = videoPlayerElement.instance();
 
-    window.HTMLMediaElement.prototype.canplaythrough = () => {
-      videoPlayerElement.instance().setState({
-        isLoading: false,
-      });
-    };
+    videoPlayerElement.instance().setState({
+      isLoading: false,
+    });
 
-    _videoRef.current.canplaythrough();
-
-    jest.spyOn(_videoRef.current, `load`);
+    jest.spyOn(videoRef.current, `load`);
     videoPlayerElement.instance().componentDidUpdate();
 
-    expect(_videoRef.current.load).toHaveBeenCalledTimes(1);
+    expect(videoRef.current.load).toHaveBeenCalledTimes(1);
   });
 
 
@@ -117,19 +103,15 @@ describe(`withVideo e2e-tests`, () => {
     props.playerStatus = VideoPlayerStatus.ON_PAUSE;
 
     const videoPlayerElement = mount(<PlayerWithVideo {...props} />);
-    const {_videoRef} = videoPlayerElement.instance();
+    const {videoRef} = videoPlayerElement.instance();
 
-    window.HTMLMediaElement.prototype.canplaythrough = () => {
-      videoPlayerElement.instance().setState({
-        isLoading: false,
-      });
-    };
-
-    _videoRef.current.canplaythrough();
+    videoPlayerElement.instance().setState({
+      isLoading: false,
+    });
 
     videoPlayerElement.instance().componentWillUnmount();
 
-    expect(_videoRef.current.oncanplaythrough).toBeNull();
-    expect(_videoRef.current.ontimeupdate).toBeNull();
+    expect(videoRef.current.oncanplaythrough).toBeNull();
+    expect(videoRef.current.ontimeupdate).toBeNull();
   });
 });

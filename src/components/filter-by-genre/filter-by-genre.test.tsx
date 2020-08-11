@@ -1,7 +1,8 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 
 import {FilterByGenreComponent} from "./filter-by-genre";
+import {noop} from "../../utils/utils";
 
 import {mockMovies} from "../../__test-data__/test-mocks";
 
@@ -9,7 +10,7 @@ import {mockMovies} from "../../__test-data__/test-mocks";
 const props = {
   movies: mockMovies,
   activeFilter: `All genres`,
-  onClick: () => {},
+  onClick: noop,
 };
 
 

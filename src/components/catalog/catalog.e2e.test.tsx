@@ -4,11 +4,11 @@ import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 import {mount} from "enzyme";
 
-import {CatalogComponent} from "./catalog.jsx";
+import {CatalogComponent} from "./catalog";
 import {NameSpace} from "../../reducers/name-space";
 import {history} from "../../history";
 
-import {mockMovies, mockPromoMovie} from "../../__test-data__/test-mocks.js";
+import {mockMovies, mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
 const mockStore = configureStore([]);

@@ -1,9 +1,10 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {LogoComponent, LogoMode} from "./logo";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -22,7 +23,7 @@ describe(`Render Logo`, () => {
     const props = {
       mode: LogoMode.NORMAL,
       promoMovie: mockPromoMovie,
-      onClick: () => {},
+      onClick: noop,
     };
 
     const logoSnapshot = renderer.create(
@@ -41,7 +42,7 @@ describe(`Render Logo`, () => {
     const props = {
       mode: LogoMode.LIGHT,
       promoMovie: mockPromoMovie,
-      onClick: () => {},
+      onClick: noop,
     };
 
     const logoSnapshot = renderer.create(

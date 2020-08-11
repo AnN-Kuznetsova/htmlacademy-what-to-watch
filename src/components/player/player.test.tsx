@@ -1,10 +1,11 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {PlayerComponent} from "./player";
 import {VideoPlayerMode} from "../../hocs/with-video/with-video";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -24,7 +25,10 @@ const props = {
   activeMovie: mockPromoMovie,
   activePage: ``,
   prevPage: ``,
-  onChangePage: () => {},
+  onChangePage: noop,
+  onPlayButtonClick: noop,
+  onExitButtonClick: noop,
+  onFullScreenButtonClick: noop,
 };
 
 

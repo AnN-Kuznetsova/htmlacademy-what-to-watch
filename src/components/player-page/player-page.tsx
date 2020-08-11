@@ -14,7 +14,7 @@ import {getMovieById} from "../../reducers/data/selectors";
 
 interface Props {
   routeProps: object;
-  movie: MovieType;
+  movie?: MovieType;
   onOpenPlayerPage: (movie: MovieType) => void;
   onError: () => void;
   renderVideoPlayer: (src: string, posterUrl: string) => React.ReactNode;

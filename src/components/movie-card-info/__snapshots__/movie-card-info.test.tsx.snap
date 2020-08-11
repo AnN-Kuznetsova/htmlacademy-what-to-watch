@@ -19,7 +19,12 @@ exports[`Render MovieCardInfo Should match with snapshot 1`] = `
     </div>
     <div
       className="movie-card__desc"
-    />
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
   </div>
 </div>
 `;

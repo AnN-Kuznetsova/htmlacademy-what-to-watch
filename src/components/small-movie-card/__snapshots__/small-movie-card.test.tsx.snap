@@ -13,6 +13,7 @@ exports[`Render SmallMovieCard Should match with snapshot 1`] = `
     <div
       className="small-movie-card__image"
     >
+      <div />
       <img
         alt="Aviator"
         height="175"

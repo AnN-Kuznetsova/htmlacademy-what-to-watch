@@ -1,14 +1,15 @@
 import * as React from "react";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user.js";
-import {MainPageComponent} from "./main-page.jsx";
+import {MainPageComponent} from "./main-page";
 import {NameSpace} from "../../reducers/name-space";
-import {PageType} from "../../const.js";
+import {PageType} from "../../types";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
@@ -40,7 +41,7 @@ const store = mockStore({
 
 const props = {
   promoMovie: mockPromoMovie,
-  onOpenMainPage: () => {},
+  onOpenMainPage: noop,
 };
 
 const nodeMock = {

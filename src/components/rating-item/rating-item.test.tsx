@@ -1,7 +1,8 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 
 import {RatingItem} from "./rating-item";
+import {noop} from "../../utils/utils";
 
 
 describe(`Render RatingItem`, () => {
@@ -9,7 +10,7 @@ describe(`Render RatingItem`, () => {
     const props = {
       id: 1,
       rating: 2,
-      onChange: () => {},
+      onChange: noop,
     };
 
     const ratingItemSnapshot = renderer.create(
@@ -24,7 +25,7 @@ describe(`Render RatingItem`, () => {
     const props = {
       id: 1,
       rating: 1,
-      onChange: () => {},
+      onChange: noop,
     };
 
     const ratingItemSnapshot = renderer.create(

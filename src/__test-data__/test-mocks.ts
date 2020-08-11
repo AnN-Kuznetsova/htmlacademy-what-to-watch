@@ -1,6 +1,8 @@
-const mockVideoUrl = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
+import {MovieType, ReviewType} from "../types";
 
-const mockPromoMovie = {
+const mockVideoUrl: string = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
+
+const mockPromoMovie: MovieType = {
   id: 1,
   title: `The Grand Budapest Hotel`,
   smallPictureUrl: ``,
@@ -40,7 +42,7 @@ const mockPromoMovie = {
   isFavorite: false,
 };
 
-const mockMovies = [
+const mockMovies: MovieType[] = [
   {
     id: 2,
     title: `Bohemian Rhapsody`,
@@ -161,7 +163,7 @@ const mockMovies = [
   },
 ];
 
-const mockReviews = [
+const mockReviews: ReviewType[] = [
   {
     id: 1,
     text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
@@ -205,7 +207,7 @@ const mockRawFilm = {
   [`preview_video_link`]: `https://download.blender.org/…-480p.mp4`,
 };
 
-const mockRawFilmToMovie = {
+const mockRawFilmToMovie: MovieType = {
   id: 1,
   title: `Gangs of new york`,
   smallPictureUrl: `https://htmlacademy-react-3.a…_york.jpg`,
@@ -239,7 +241,7 @@ const mockRawComment = {
   },
 };
 
-const mockRawCommentToReview = {
+const mockRawCommentToReview: ReviewType = {
   id: 1,
   text: `This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.`,
   rating: 4,

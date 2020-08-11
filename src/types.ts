@@ -32,6 +32,7 @@ interface MovieType {
 };
 
 interface ReviewType {
+  id?: number,
   text: string,
   rating: number,
   author: string,

@@ -108,6 +108,10 @@ const setErrorStyle = (elements, isStyle = true) => {
   }
 };
 
+const noop = () => {
+  // do nothing
+};
+
 
 export {
   disableForm,
@@ -119,4 +123,5 @@ export {
   getRatingDescription,
   getRandomArrayElements,
   setErrorStyle,
+  noop,
 };

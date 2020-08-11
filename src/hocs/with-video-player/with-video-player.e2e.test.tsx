@@ -23,15 +23,11 @@ describe(`withVideoPlayer e2e-tests`, () => {
     expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_AUTOPLAY);
     expect(componentWithPlayerInstance.state.playerMode).toEqual(VideoPlayerMode.PREVIEW);
 
-    const spyOnSetPlayerStatus = jest.spyOn(componentWithPlayerInstance, `setVideoPlayerStatus`);
-
-    spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PLAY);
+    componentWithPlayerInstance.setVideoPlayerStatus(VideoPlayerStatus.ON_PLAY);
     expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_PLAY);
 
-    spyOnSetPlayerStatus.call(componentWithPlayerInstance, VideoPlayerStatus.ON_PAUSE);
+    componentWithPlayerInstance.setVideoPlayerStatus(VideoPlayerStatus.ON_PAUSE);
     expect(componentWithPlayerInstance.state.playerStatus).toEqual(VideoPlayerStatus.ON_RESET);
-
-
   });
 
 
@@ -39,11 +35,10 @@ describe(`withVideoPlayer e2e-tests`, () => {
     const ComponentWithVideoPlayer = withVideoPlayer(MockComponent, VideoPlayerMode.PREVIEW);
     const componentWithPlayerElement = mount(<ComponentWithVideoPlayer movie={mockPromoMovie} />);
     const componentWithPlayerInstance = componentWithPlayerElement.instance();
-    const spyOnRenderPlayer = jest.spyOn(componentWithPlayerInstance, `renderPlayer`);
     const src = `pathSrc`;
     const posterUrl = `pathPosterUrl`;
 
-    const videoPlayer = spyOnRenderPlayer.call(componentWithPlayerInstance, src, posterUrl);
+    const videoPlayer = componentWithPlayerInstance.renderPlayer(src, posterUrl);
 
     expect(videoPlayer.props.src).toEqual(src);
     expect(videoPlayer.props.posterUrl).toEqual(posterUrl);

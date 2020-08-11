@@ -1,8 +1,9 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {shallow} from "enzyme";
 
-import {FilterItem} from "./filter-item.jsx";
+import {FilterItem} from "./filter-item";
+import {noop} from "../../utils/utils";
 
 
 const filterNames = [
@@ -14,7 +15,7 @@ const filterNames = [
 
 const props = {
   filterName: filterNames[2],
-  onClick: () => {},
+  onClick: noop,
   isActive: false,
 };
 

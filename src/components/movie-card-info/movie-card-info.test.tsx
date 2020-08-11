@@ -1,5 +1,5 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {shallow} from "enzyme";
 
 import {MovieCardInfo} from "./movie-card-info";
@@ -7,10 +7,16 @@ import {MovieCardInfo} from "./movie-card-info";
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
+let key = 0;
+const renderNoop = () => {
+  key++;
+  return <div key={key} />;
+};
+
 const props = {
   movie: mockPromoMovie,
-  renderTabNav: () =>{},
-  renderTab: () =>{},
+  renderTabNav: renderNoop,
+  renderTab: renderNoop,
 };
 
 const movieCardInfoElement = shallow(<MovieCardInfo {...props} />);

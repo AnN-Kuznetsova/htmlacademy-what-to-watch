@@ -1,10 +1,10 @@
 import * as React from "react";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
-import {Footer} from "./footer.jsx";
+import {Footer} from "./footer";
 import {history} from "../../history";
 
 

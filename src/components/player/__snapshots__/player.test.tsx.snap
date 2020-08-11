@@ -7,6 +7,7 @@ exports[`Render Player Should match with snapshot when player mode is "FULL_SCRE
   <video />
   <button
     className="player__exit"
+    onClick={[Function]}
     type="button"
   >
     Exit
@@ -48,6 +49,7 @@ exports[`Render Player Should match with snapshot when player mode is "FULL_SCRE
       <button
         className="player__play"
         disabled={false}
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -99,6 +101,7 @@ exports[`Render Player Should match with snapshot when player mode is "SMALL_SCR
   <video />
   <button
     className="player__exit"
+    onClick={[Function]}
     type="button"
   >
     Exit
@@ -140,6 +143,7 @@ exports[`Render Player Should match with snapshot when player mode is "SMALL_SCR
       <button
         className="player__play"
         disabled={false}
+        onClick={[Function]}
         type="button"
       >
         <svg

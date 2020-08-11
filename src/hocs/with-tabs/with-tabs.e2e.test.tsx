@@ -23,7 +23,7 @@ const tabList = [
   },
 ];
 
-const MockComponent = (props) => {
+const MockComponent = (props: MockComponentProps) => {
   const {renderTabNav, renderTab} = props;
   const tabNames = tabList.map((tab) => tab.name);
 
@@ -37,10 +37,10 @@ const MockComponent = (props) => {
   );
 };
 
-MockComponent.propTypes = {
-  renderTabNav: PropTypes.func.isRequired,
-  renderTab: PropTypes.func.isRequired,
-};
+interface MockComponentProps {
+  renderTabNav: (tabNames: string[]) => React.ReactNode;
+  renderTab: (tabId: number, TabComponent: React.FunctionComponent, props: object, key: string) => React.ReactNode;
+}
 
 const ComponentWithTabs = withTabs(MockComponent);
 const componentWithTabsElement = mount(<ComponentWithTabs />);

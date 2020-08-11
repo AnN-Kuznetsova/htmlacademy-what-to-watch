@@ -12,7 +12,7 @@ import {getVisibleMoviesCount} from "../../reducers/application/selectors";
 interface Props {
   movies?: MovieType[];
   visibleCardCount: number;
-  onShowMoreButtonClick: () => {};
+  onShowMoreButtonClick: () => void;
 }
 
 

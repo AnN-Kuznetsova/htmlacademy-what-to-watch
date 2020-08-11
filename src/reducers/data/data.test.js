@@ -3,7 +3,7 @@ import configureStore from "redux-mock-store";
 
 import {ActionType as ApplicationActionType} from "../application/application";
 import {NameSpace} from "../../reducers/name-space";
-import {PageType} from "../../const";
+import {PageType} from "../../types";
 import {createAPI} from "../../api";
 import {reducer, ActionType as DataActionType, ActionCreator, Operation} from "./data";
 import * as utils from "../../utils/utils";

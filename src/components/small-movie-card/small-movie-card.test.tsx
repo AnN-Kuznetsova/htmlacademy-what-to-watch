@@ -1,20 +1,25 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 import {mount} from "enzyme";
 
-import {SmallMovieCard} from "./small-movie-card.jsx";
-import {VideoPlayerStatus} from "../../hocs/with-video/with-video.jsx";
+import {SmallMovieCard} from "./small-movie-card";
+import {VideoPlayerStatus} from "../../hocs/with-video/with-video";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
-import {mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockMovies} from "../../__test-data__/test-mocks";
 
+
+const renderNoop = () => {
+  return <div />;
+};
 
 const props = {
   movie: mockMovies[1],
-  renderVideoPlayer: () => {},
+  renderVideoPlayer: renderNoop,
   currentVideoPlayerStatus: VideoPlayerStatus.ON_PAUSE,
-  setVideoPlayerStatus: () => {},
+  setVideoPlayerStatus: noop,
 };
 
 const nodeMock = {

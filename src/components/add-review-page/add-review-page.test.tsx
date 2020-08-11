@@ -1,6 +1,6 @@
 import * as React from "react";
+import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
@@ -8,8 +8,9 @@ import {AddReviewPageComponent} from "./add-review-page";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {Error} from "../../api";
 import {NameSpace} from "../../reducers/name-space";
-import {PageType} from "../../const";
+import {PageType} from "../../types";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -39,13 +40,13 @@ const props = {
   },
   movie: mockPromoMovie,
   dataError: null,
-  sendReview: () => {},
-  setDataError: () => {},
-  openAddReviewPage: () => {},
+  sendReview: noop,
+  setDataError: noop,
+  openAddReviewPage: noop,
   reviewRating: null,
   reviewText: null,
-  onChange: () => {},
-  onError: () => {},
+  onChange: noop,
+  onError: noop,
 };
 
 

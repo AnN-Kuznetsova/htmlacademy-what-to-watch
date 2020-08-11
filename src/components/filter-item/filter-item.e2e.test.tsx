@@ -1,7 +1,7 @@
 import * as React from "react";
 import {shallow} from "enzyme";
 
-import {FilterItem} from "./filter-item.jsx";
+import {FilterItem} from "./filter-item";
 
 
 const onClick = jest.fn();

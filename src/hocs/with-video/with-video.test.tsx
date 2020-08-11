@@ -1,14 +1,15 @@
 
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {mount} from 'enzyme';
 
 import {withVideo, VideoPlayerMode, VideoPlayerStatus} from "./with-video";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
 
-const MockPlayer = (props) => {
+const MockPlayer = (props: MockPlayerProps) => {
   const {children} = props;
 
   return (
@@ -18,12 +19,9 @@ const MockPlayer = (props) => {
   );
 };
 
-MockPlayer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
+interface MockPlayerProps {
+  children: React.ReactNode | React.ReactNode[];
+}
 
 const nodeMock = {
   createNodeMock: () => {
@@ -38,9 +36,9 @@ const props = {
   activeMovie: mockPromoMovie,
   activePage: ``,
   prevPage: ``,
-  onChangePage: () => {},
-  setVideoPlayerMode: () => {},
-  setVideoPlayerStatus: () => {},
+  onChangePage: noop,
+  setVideoPlayerMode: noop,
+  setVideoPlayerStatus: noop,
   playerStatus: VideoPlayerStatus.ON_AUTOPLAY,
 };
 

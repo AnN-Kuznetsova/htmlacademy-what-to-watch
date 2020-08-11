@@ -1,13 +1,14 @@
 import * as React from "react";
+import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {HeaderComponent} from "./header";
-import {PageType} from "../../const";
+import {PageType} from "../../types";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
@@ -23,8 +24,8 @@ describe(`Render Header`, () => {
     const props = {
       authorizationStatus: AuthorizationStatus.AUTH,
       activePage: PageType.MAIN,
-      onOpenSignInPage: () => {},
-      onBreadcrambsLinkClick: () => {},
+      onOpenSignInPage: noop,
+      onBreadcrambsLinkClick: noop,
     };
 
     const headerSnapshot = renderer.create(
@@ -43,8 +44,8 @@ describe(`Render Header`, () => {
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       activePage: PageType.MAIN,
-      onOpenSignInPage: () => {},
-      onBreadcrambsLinkClick: () => {},
+      onOpenSignInPage: noop,
+      onBreadcrambsLinkClick: noop,
     };
 
     const headerSnapshot = renderer.create(
@@ -63,8 +64,8 @@ describe(`Render Header`, () => {
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       activePage: PageType.SIGN_IN,
-      onOpenSignInPage: () => {},
-      onBreadcrambsLinkClick: () => {},
+      onOpenSignInPage: noop,
+      onBreadcrambsLinkClick: noop,
     };
 
     const headerSnapshot = renderer.create(
@@ -83,8 +84,8 @@ describe(`Render Header`, () => {
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       activePage: PageType.ERROR,
-      onOpenSignInPage: () => {},
-      onBreadcrambsLinkClick: () => {},
+      onOpenSignInPage: noop,
+      onBreadcrambsLinkClick: noop,
     };
 
     const headerSnapshot = renderer.create(
@@ -104,8 +105,8 @@ describe(`Render Header`, () => {
       authorizationStatus: AuthorizationStatus.AUTH,
       activeMovie: mockPromoMovie,
       activePage: PageType.ADD_REVIEW,
-      onOpenSignInPage: () => {},
-      onBreadcrambsLinkClick: () => {},
+      onOpenSignInPage: noop,
+      onBreadcrambsLinkClick: noop,
     };
 
     const headerSnapshot = renderer.create(
@@ -124,8 +125,8 @@ describe(`Render Header`, () => {
     const props = {
       authorizationStatus: AuthorizationStatus.AUTH,
       activePage: PageType.MY_LIST,
-      onOpenSignInPage: () => {},
-      onBreadcrambsLinkClick: () => {},
+      onOpenSignInPage: noop,
+      onBreadcrambsLinkClick: noop,
     };
 
     const headerSnapshot = renderer.create(

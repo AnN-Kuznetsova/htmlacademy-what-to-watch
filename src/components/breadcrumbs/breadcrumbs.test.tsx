@@ -1,16 +1,17 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {Breadcrumbs} from "./breadcrumbs";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 
 const breadcrambsList = [
   {
     title: `title`,
     link: `/films/1`,
-    onLinkClick: () => {},
+    onLinkClick: noop,
   },
   {
     title: `Add review`,

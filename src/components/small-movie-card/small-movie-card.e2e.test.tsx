@@ -1,15 +1,14 @@
 import * as React from "react";
 import {shallow} from "enzyme";
 
-import {SmallMovieCard} from "./small-movie-card.jsx";
-import {VideoPlayerStatus} from "../../hocs/with-video/with-video.jsx";
+import {SmallMovieCard} from "./small-movie-card";
+import {VideoPlayerStatus} from "../../hocs/with-video/with-video";
+import {noop} from "../../utils/utils";
 
-import {mockMovies} from "../../__test-data__/test-mocks.js";
+import {mockMovies} from "../../__test-data__/test-mocks";
 
 
-const mockEvent = {
-  preventDefault() {}
-};
+const mockEvent = noop;
 
 const onClick = jest.fn();
 let renderVideoPlayer = null;

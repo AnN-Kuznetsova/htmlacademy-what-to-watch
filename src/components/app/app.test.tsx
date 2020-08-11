@@ -1,12 +1,13 @@
 import * as React from "react";
+import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {AppComponent} from "./app";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {NameSpace} from "../../reducers/name-space";
-import {PageType} from "../../const";
+import {PageType} from "../../types";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie, mockMovies} from "../../__test-data__/test-mocks";
 
@@ -46,7 +47,7 @@ describe(`Render App`, () => {
       activePage: PageType.MAIN,
       movies: mockMovies,
       promoMovie: mockPromoMovie,
-      onError: () => {},
+      onError: noop,
     };
 
     const appSnapshot = renderer.create(
@@ -82,7 +83,7 @@ describe(`Render App`, () => {
       activePage: PageType.MAIN,
       movies: mockMovies,
       promoMovie: mockPromoMovie,
-      onError: () => {},
+      onError: noop,
     };
 
     const appSnapshot = renderer.create(
@@ -109,7 +110,7 @@ describe(`Render App`, () => {
     const props = {
       dataError: {status: 400},
       activePage: PageType.ERROR,
-      onError: () => {},
+      onError: noop,
     };
 
     const appSnapshot = renderer.create(
@@ -136,7 +137,7 @@ describe(`Render App`, () => {
     const props = {
       dataError: {status: 404},
       activePage: PageType.ERROR,
-      onError: () => {},
+      onError: noop,
     };
 
     const appSnapshot = renderer.create(

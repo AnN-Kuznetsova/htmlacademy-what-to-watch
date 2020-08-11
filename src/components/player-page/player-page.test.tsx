@@ -1,10 +1,15 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 
 import {PlayerPageComponent} from "./player-page";
+import {noop} from "../../utils/utils";
 
 import {mockPromoMovie} from "../../__test-data__/test-mocks";
 
+
+const renderNoop = () => {
+  return <div />;
+};
 
 const props = {
   routeProps: {
@@ -12,14 +17,9 @@ const props = {
       params: 1}
   },
   movie: mockPromoMovie,
-  onOpenPlayerPage: () => {},
-  onError: () => {},
-  renderVideoPlayer: () => {},
-  activePage: ``,
-  prevPage: ``,
-  progress: 0,
-  onChangePage: () => {},
-  setPlayerCurrentTime: () => {},
+  onOpenPlayerPage: noop,
+  onError: noop,
+  renderVideoPlayer: renderNoop,
 };
 
 

@@ -1,14 +1,16 @@
 import * as React from "react";
+import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {MyListPageComponent} from "./my-list-page";
 import {NameSpace} from "../../reducers/name-space";
-import {PageType} from "../../const";
+import {PageType} from "../../types";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
+
 import {mockMovies} from "../../__test-data__/test-mocks";
 
 
@@ -30,7 +32,7 @@ const store = mockStore({
 describe(`Render MyListPage`, () => {
   it(`MyListPage should match with snapshot`, () => {
     const props = {
-      onOpenMyListPage: () => {},
+      onOpenMyListPage: noop,
       dataError: null,
     };
 
@@ -48,7 +50,7 @@ describe(`Render MyListPage`, () => {
 
   it(`MyListPage should match with snapshot with error`, () => {
     const props = {
-      onOpenMyListPage: () => {},
+      onOpenMyListPage: noop,
       dataError: {status: 400},
     };
 

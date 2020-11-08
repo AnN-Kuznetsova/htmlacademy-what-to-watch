@@ -9,14 +9,15 @@ const MAX_REVIEW_TEXT_LENGTH = 400;
 const RATING_RANGE = 5;
 const ERROR_COLOR = `#a8421e`;
 
+const BASENAME_FOR_DEPLOY = `/htmlacademy-what-to-watch`;
 
 const AppRoute = {
-  MAIN: `/htmlacademy-what-to-watch/`,
-  SIGN_IN: `/htmlacademy-what-to-watch/login`,
-  MY_LIST: `/htmlacademy-what-to-watch/myList`,
-  FILM: `/htmlacademy-what-to-watch/films/:id`,
-  ADD_REVIEW: `/htmlacademy-what-to-watch/films/:id/review`,
-  PLAYER: `/htmlacademy-what-to-watch/player/:id`,
+  MAIN: BASENAME_FOR_DEPLOY + `/`,
+  SIGN_IN: BASENAME_FOR_DEPLOY + `/login`,
+  MY_LIST: BASENAME_FOR_DEPLOY + `/myList`,
+  FILM: BASENAME_FOR_DEPLOY + `/films/:id`,
+  ADD_REVIEW: BASENAME_FOR_DEPLOY + `/films/:id/review`,
+  PLAYER: BASENAME_FOR_DEPLOY + `/player/:id`,
 };
 
 

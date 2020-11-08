@@ -19,4 +19,4 @@ deploy:
   github-token: $GITHUB_TOKEN
   local_dir: public
   on:
-    branch: deploy-on-gh-pages
+    branch: master

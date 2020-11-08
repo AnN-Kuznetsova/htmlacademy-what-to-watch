@@ -11,12 +11,12 @@ const ERROR_COLOR = `#a8421e`;
 
 
 const AppRoute = {
-  MAIN: `/`,
-  SIGN_IN: `/login`,
-  MY_LIST: `/myList`,
-  FILM: `/films/:id`,
-  ADD_REVIEW: `/films/:id/review`,
-  PLAYER: `/player/:id`,
+  MAIN: `/htmlacademy-what-to-watch/`,
+  SIGN_IN: `/htmlacademy-what-to-watch/login`,
+  MY_LIST: `/htmlacademy-what-to-watch/myList`,
+  FILM: `/htmlacademy-what-to-watch/films/:id`,
+  ADD_REVIEW: `/htmlacademy-what-to-watch/films/:id/review`,
+  PLAYER: `/htmlacademy-what-to-watch/player/:id`,
 };
 
 

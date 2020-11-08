@@ -20,6 +20,7 @@ import {getDataError, getMovies, getPromoMovie} from "../../reducers/data/select
 import {history} from "../../history";
 
 
+
 interface Props {
   dataError?: object;
   activePage: string;

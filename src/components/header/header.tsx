@@ -6,7 +6,7 @@ import {AuthorizationStatus} from "../../reducers/user/user";
 import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 import {Logo, LogoMode} from "../logo/logo";
 import {MovieType, PageType} from "../../types";
-import {AppRoute} from "../../const";
+import {AppRoute, BASENAME_FOR_DEPLOY} from "../../const";
 import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {getActivePage, getActiveMovie} from "../../reducers/application/selectors";
 
@@ -56,7 +56,7 @@ const HeaderComponent: React.FunctionComponent<Props> = (props: Props) => {
           <div className="user-block">
             <Link to={AppRoute.MY_LIST} >
               <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <img src={BASENAME_FOR_DEPLOY + `/img/avatar.jpg`} alt="User avatar" width="63" height="63" />
               </div>
             </Link>
           </div>}
